@@ -1,0 +1,16 @@
+targets:
+  $default:
+    builders:
+      x_gen:
+        enabled: true
+
+builders:
+  generators:
+    import: "package:x_gens/x_gens.dart"
+    builder_factories: ["build"]
+    build_extensions: { '$package$': ['.x.dart'] }
+    auto_apply: dependents
+    build_to: source
+
+
+    
