@@ -1,4 +1,4 @@
-extension ListExtension on List {
+extension ListExtension<T> on List<T> {
   bool isEqualIgnoreOrder(List other) {
     if (length != other.length) {
       return false;
@@ -24,5 +24,9 @@ extension ListExtension on List {
     }
 
     return true;
+  }
+
+  T? firstWhereOrNull(bool Function(T element) test) {
+    return where(test).firstOrNull;
   }
 }

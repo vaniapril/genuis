@@ -2,53 +2,48 @@ import 'package:genuis/src/utils/list_extension.dart';
 
 sealed class Node<N> {
   final String name;
+  final List<String> path;
+
   const Node({
     required this.name,
+    required this.path,
   });
 }
 
-class NodeItem<N> extends Node<N> {
-  final N value;
+class Item<N> extends Node<N> {
+  final Map<String, N> values;
 
-  const NodeItem({
+  const Item({
     required super.name,
-    required this.value,
+    required this.values,
+    required super.path,
   });
 
   @override
-  String toString() => '{name: $name, value: $value}';
+  String toString() => '{name: $name, value: $values}';
 }
 
-class NodeFolder<N> extends Node<N> {
-  final List<Node<N>> nodes;
+class Folder<N> extends Node<N> {
+  final List<Folder<N>> _folders;
+  final List<Item<N>> _items;
+  final List<String> _themes;
 
-  const NodeFolder({
+  List<Folder<N>> get folders => _folders;
+  List<Item<N>> get items => _items;
+  List<String> get themes => _themes;
+  List<Node<N>> get nodes => [..._folders, ..._items];
+
+  const Folder({
     required super.name,
-    required this.nodes,
-  });
+    required super.path,
+    required List<Folder<N>> folders,
+    required List<Item<N>> items,
+    required List<String> themes,
+  })  : _folders = folders,
+        _items = items,
+        _themes = themes;
 
-  void addWithMerge(List<Node<N>> newNodes) {
-    for (final newNode in newNodes) {
-      final sameNode = folders.where((e) => e.name == newNode.name).firstOrNull;
-      if (sameNode == null) {
-        nodes.add(newNode);
-      } else if (newNode is NodeFolder<N>) {
-        sameNode.addWithMerge(newNode.nodes);
-      }
-    }
-  }
-
-  List<NodeFolder<N>> get folders => nodes.whereType<NodeFolder<N>>().toList();
-  List<NodeItem<N>> get items => nodes.whereType<NodeItem<N>>().toList();
-  bool isTheme(List<String> themes) =>
-      // TODO(IvanPrylepski): isEpty??? only themes ???
-      folders.map((e) => e.name).toList().containsAll(themes); //&& items.isEmpty;
-
-  bool isNodeTheme(List<String> themes) =>
-      // TODO(IvanPrylepski): isEpty??? only themes ???
-      nodes.map((e) => e.name).toList().containsAll(themes); //&& items.isEmpty;
-
-  bool isEqual(NodeFolder<N> other) {
+  bool isEqual(Folder<N> other) {
     final folderNames = folders.map((e) => e.name).toList();
     final itemNames = items.map((e) => e.name).toList();
 
@@ -59,32 +54,6 @@ class NodeFolder<N> extends Node<N> {
         itemNames.isEqualIgnoreOrder(otherItemNames);
   }
 
-  String notEqual(NodeFolder<N> other) {
-    final folderNames = folders.map((e) => e.name).toList().toSet();
-    final itemNames = items.map((e) => e.name).toList().toSet();
-
-    final otherFolderNames = other.folders.map((e) => e.name).toList().toSet();
-    final otherItemNames = other.items.map((e) => e.name).toList().toSet();
-
-    final diff = folderNames.difference(otherFolderNames)
-      ..addAll(itemNames.difference(otherItemNames));
-
-    return diff.toString();
-  }
-
-  NodeFolder<T> map<T>(NodeItem<T> Function(NodeItem<N>) mapper) {
-    final newNodes = nodes.map((e) {
-      switch (e) {
-        case NodeFolder<N>():
-          return e.map(mapper);
-        case NodeItem<N>():
-          return mapper(e);
-      }
-    }).toList();
-
-    return NodeFolder<T>(name: name, nodes: newNodes);
-  }
-
   @override
-  String toString() => '{name: $name, nodes: $nodes}';
+  String toString() => '{name: $name, folders: $folders, items: $items}';
 }

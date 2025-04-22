@@ -9,13 +9,11 @@ extension StringExtension on String {
 
   String get forwardSlash => replaceAll('\\', '/');
 
-  String get backSlash => replaceAll('/', '\\');
-
-  String get pathCamelCase => replaceAll('_', '/')
-      .replaceAll(' ', '/')
-      .replaceAll('%', '/')
-      .replaceAll('-', '/')
-      .split('/')
+  String get pathCamelCase => replaceAll('/', '_')
+      .replaceAll(' ', '_')
+      .replaceAll('%', '_')
+      .replaceAll('-', '_')
+      .split('_')
       .map((e) => e.upperFirst)
       .join()
       .lowerFirst;

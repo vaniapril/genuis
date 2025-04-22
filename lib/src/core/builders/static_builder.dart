@@ -1,10 +1,11 @@
+import 'package:genuis/src/core/builders/base/model_builder.dart';
 import 'package:genuis/src/core/data/field.dart';
 import 'package:genuis/src/core/data/node.dart';
 
 class StaticBuilder<T extends Field> {
   final String className;
   final String baseTheme;
-  final NodeFolder<T> root;
+  final Folder<T> root;
 
   const StaticBuilder({
     required this.className,
@@ -23,32 +24,32 @@ class StaticBuilder<T extends Field> {
     //buffer.writeln('const $className._();');
     //buffer.writeln('factory $className() => _instance;');
     buffer.writeln();
-    _writeFolder(root, buffer, []);
+    _writeFolder(root, buffer);
     buffer.writeln('}');
     return buffer;
   }
 
-  void _writeFolder(NodeFolder<T> folder, StringBuffer buffer, List<String> path) {
+  void _writeFolder(Folder<T> folder, StringBuffer buffer) {
     for (final node in folder.folders) {
-      _writeFolder(node, buffer, [...path, folder.name]);
+      _writeFolder(node, buffer);
     }
 
-    _writeModels(folder, buffer, path);
+    _writeModels(folder, buffer);
   }
 
-  void _writeModels(NodeFolder<T> folder, StringBuffer buffer, List<String> path) {
+  void _writeModels(Folder<T> folder, StringBuffer buffer) {
     if (folder.items.isEmpty) {
       return;
     }
     buffer.writeln();
-    buffer.writeln('  // ${_comment([...path, folder.name])}');
+    buffer.writeln('  // ${_comment(folder)}');
 
     for (final item in folder.items) {
-      buffer.writeln("static const ${item.value.type} ${item.name} = ${item.value.code};");
+      buffer.writeln("static const ${item.type} ${item.name} = ${item.value('base')};");
     }
   }
 
-  String _comment(List<String> path) {
-    return path.where((e) => e.isNotEmpty).join('/');
+  String _comment(Folder folder) {
+    return folder.path.where((e) => e.isNotEmpty).join('/');
   }
 }

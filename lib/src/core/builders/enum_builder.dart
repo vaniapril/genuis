@@ -1,12 +1,14 @@
+import 'package:genuis/src/core/data/field.dart';
 import 'package:genuis/src/core/data/node.dart';
 import 'package:genuis/src/utils/string_extension.dart';
+import 'package:genuis/src/core/builders/base/model_builder.dart';
 
-class EnumBuilder<T> {
+class EnumBuilder<T extends Field> {
   final String basePath;
   final String valueName;
   final String valueType;
   final String enumName;
-  final NodeFolder<T> root;
+  final Folder<T> root;
 
   const EnumBuilder({
     required this.basePath,
@@ -20,7 +22,7 @@ class EnumBuilder<T> {
     final StringBuffer buffer = StringBuffer();
     buffer.writeln('enum $enumName {');
     final StringBuffer lines = StringBuffer();
-    _writeFolder(root, lines, []);
+    _writeFolder(root, lines);
     final String strLines = lines.toString();
     buffer.writeln(strLines.replaceFirst(',', ';', strLines.length - 3));
 
@@ -36,33 +38,33 @@ class EnumBuilder<T> {
     return buffer;
   }
 
-  void _writeFolder(NodeFolder<T> folder, StringBuffer buffer, List<String> path) {
+  void _writeFolder(Folder<T> folder, StringBuffer buffer) {
     for (final node in folder.folders) {
-      _writeFolder(node, buffer, [...path, folder.name]);
+      _writeFolder(node, buffer);
     }
 
-    _writeModels(folder, buffer, path);
+    _writeModels(folder, buffer);
   }
 
-  void _writeModels(NodeFolder<T> folder, StringBuffer buffer, List<String> path) {
+  void _writeModels(Folder<T> folder, StringBuffer buffer) {
     if (folder.items.isEmpty) {
       return;
     }
     buffer.writeln();
-    buffer.writeln('  // ${_comment([...path, folder.name])}');
+    buffer.writeln('  // ${_comment(folder)}');
 
     for (final item in folder.items) {
       basePath.isEmpty
-          ? buffer.writeln("${_enumName(item, [])}(${item.value}),")
-          : buffer.writeln("${_enumName(item, [...path, folder.name])}('\${_base}${item.value}'),");
+          ? buffer.writeln("${_enumName(item)}(${item.value('base')}),")
+          : buffer.writeln("${_enumName(item)}('\${_base}${item.value('base')}'),");
     }
   }
 
-  String _enumName(NodeItem<T> model, List<String> path) {
-    return '${path.map((e) => e.upperFirst).join()}${model.name.upperFirst}'.lowerFirst;
+  String _enumName(Item<T> model) {
+    return '${model.path.map((e) => e.upperFirst).join()}${model.name.upperFirst}'.lowerFirst;
   }
 
-  String _comment(List<String> path) {
-    return path.where((e) => e.isNotEmpty).join('/');
+  String _comment(Folder<T> folder) {
+    return [...folder.path, folder.name].where((e) => e.isNotEmpty).join('/');
   }
 }

@@ -1,10 +1,10 @@
 import 'package:genuis/src/core/builders/base/model_builder.dart';
 import 'package:genuis/src/core/data/field.dart';
-import 'package:genuis/src/core/data/model.dart';
+import 'package:genuis/src/core/data/node.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GetterThemeBuilder<T extends Field> extends ModelBuilder<T> {
-  final ModelFolder<T> root;
+  final Folder<T> root;
 
   final String? additions;
 
@@ -18,75 +18,68 @@ class GetterThemeBuilder<T extends Field> extends ModelBuilder<T> {
 
   StringBuffer code() {
     final StringBuffer buffer = StringBuffer();
-    _writeFolder(root, buffer, []);
+    _writeFolder(root, buffer);
     return buffer;
   }
 
-  void _writeFolder(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
-    for (final model in folder.models) {
-      if (model is ModelFolder<T>) {
-        _writeFolder(model, buffer, [...path, folder.name]);
-      }
+  void _writeFolder(Folder<T> folder, StringBuffer buffer) {
+    for (final model in folder.folders) {
+      _writeFolder(model, buffer);
     }
 
-    _writeMainClass(folder, buffer, path);
+    _writeMainClass(folder, buffer);
     buffer.writeln();
 
     for (final theme in folder.themes) {
-      _writeThemeClass(folder, theme, buffer, path);
+      _writeThemeClass(folder, theme, buffer);
       buffer.writeln();
     }
   }
 
-  void _writeMainClass(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
-    buffer.writeln('abstract class ${type(folder, path)} {');
-    _writeThemesInMain(folder, buffer, path);
+  void _writeMainClass(Folder<T> folder, StringBuffer buffer) {
+    buffer.writeln('abstract class ${folder.type} {');
+    _writeThemesInMain(folder, buffer);
     buffer.writeln();
     if (additions != null) {
       buffer.writeln(additions!);
       buffer.writeln();
     }
 
-    buffer.writeln('const ${type(folder, path)}._();');
+    buffer.writeln('const ${folder.type}._();');
     buffer.writeln();
-    _writeGettersInMain(folder, buffer, path);
+    _writeGettersInMain(folder, buffer);
     buffer.writeln('}');
   }
 
-  void _writeThemesInMain(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
+  void _writeThemesInMain(Folder<T> folder, StringBuffer buffer) {
     for (final theme in folder.themes) {
       buffer.writeln(
-        'static const ${type(folder, path)} $theme = _${theme.upperFirst}${type(folder, path)}();',
+        'static const ${folder.type} $theme = _${theme.upperFirst}${folder.type}();',
       );
     }
   }
 
-  void _writeGettersInMain(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
-    for (final model in folder.models) {
-      buffer.writeln('${type(model, [...path, folder.name])} get ${model.name};');
+  void _writeGettersInMain(Folder<T> folder, StringBuffer buffer) {
+    for (final model in folder.nodes) {
+      buffer.writeln('${model.type} get ${model.name};');
     }
   }
 
-  void _writeThemeClass(
-      ModelFolder<T> folder, String theme, StringBuffer buffer, List<String> path) {
+  void _writeThemeClass(Folder<T> folder, String theme, StringBuffer buffer) {
     buffer.writeln(
-      'class _${theme.upperFirst}${type(folder, path)} extends ${type(folder, path)} {',
+      'class _${theme.upperFirst}${folder.type} extends ${folder.type} {',
     );
-    buffer.writeln('const _${theme.upperFirst}${type(folder, path)}(): super._();');
+    buffer.writeln('const _${theme.upperFirst}${folder.type}(): super._();');
     buffer.writeln();
-    _writeGettersInTheme(folder, theme, buffer, path);
+    _writeGettersInTheme(folder, theme, buffer);
     buffer.writeln('}');
   }
 
-  void _writeGettersInTheme(
-      ModelFolder<T> folder, String theme, StringBuffer buffer, List<String> path) {
-    for (final model in folder.models) {
+  void _writeGettersInTheme(Folder<T> folder, String theme, StringBuffer buffer) {
+    for (final model in folder.nodes) {
       buffer.writeln('@override');
       buffer.writeln(
-        '${type(model, [...path, folder.name])} get ${model.name} => ${value(model, theme, [
-              ...path,
-              folder.name
-            ])};',
+        '${folder.type} get ${model.name} => ${model.value(theme)};',
       );
     }
   }

@@ -1,10 +1,10 @@
 import 'package:genuis/src/core/builders/base/model_builder.dart';
 import 'package:genuis/src/core/data/field.dart';
-import 'package:genuis/src/core/data/model.dart';
+import 'package:genuis/src/core/data/node.dart';
 
 class ThemeExtensionBuilder<T extends Field> extends ModelBuilder<T> {
   final bool baseHasLerp;
-  final ModelFolder<T> root;
+  final Folder<T> root;
 
   final String? additions;
 
@@ -20,86 +20,79 @@ class ThemeExtensionBuilder<T extends Field> extends ModelBuilder<T> {
   StringBuffer code() {
     final StringBuffer buffer = StringBuffer();
 
-    _writeFolder(root, buffer, []);
+    _writeFolder(root, buffer);
 
     return buffer;
   }
 
-  void _writeFolder(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
-    for (final model in folder.models) {
-      if (model is ModelFolder<T>) {
-        // TODO(IvanPrylepski): remove
-        if (model.models.isNotEmpty) {
-          _writeFolder(model, buffer, [...path, folder.name]);
-        }
+  void _writeFolder(Folder<T> folder, StringBuffer buffer) {
+    for (final model in folder.folders) {
+      if (model.nodes.isNotEmpty) {
+        _writeFolder(model, buffer);
       }
     }
-    buffer.writeln('class ${type(folder, path)} extends ThemeExtension<${type(folder, path)}> {');
+    buffer.writeln('class ${folder.type} extends ThemeExtension<${folder.type}> {');
     if (additions != null) {
       buffer.writeln(additions);
       buffer.writeln();
     }
-    _writeFields(folder, buffer, path);
+    _writeFields(folder, buffer);
     buffer.writeln();
-    _writeConstructor(folder, buffer, path);
+    _writeConstructor(folder, buffer);
     buffer.writeln();
-    _writeCopyWith(folder, buffer, path);
+    _writeCopyWith(folder, buffer);
     buffer.writeln();
-    _writeLerp(folder, buffer, path);
+    _writeLerp(folder, buffer);
     buffer.writeln();
-    _writeThemes(folder, buffer, path);
+    _writeThemes(folder, buffer);
 
     buffer.writeln('}');
   }
 
-  void _writeFields(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
-    for (final model in folder.models) {
-      buffer.writeln('final ${type(model, [...path, folder.name])} ${model.name};');
+  void _writeFields(Folder<T> folder, StringBuffer buffer) {
+    for (final model in folder.nodes) {
+      buffer.writeln('final ${model.type} ${model.name};');
     }
   }
 
-  void _writeConstructor(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
-    buffer.writeln('const ${type(folder, path)}({');
-    for (final model in folder.models) {
+  void _writeConstructor(Folder<T> folder, StringBuffer buffer) {
+    buffer.writeln('const ${folder.type}({');
+    for (final model in folder.nodes) {
       buffer.writeln('required this.${model.name},');
     }
     buffer.writeln('});');
   }
 
-  void _writeCopyWith(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
+  void _writeCopyWith(Folder<T> folder, StringBuffer buffer) {
     buffer.writeln('@override');
-    buffer.writeln('${type(folder, path)} copyWith({');
-    for (final model in folder.models) {
-      buffer.writeln('${type(model, [...path, folder.name])}? ${model.name},');
+    buffer.writeln('${folder.type} copyWith({');
+    for (final model in folder.nodes) {
+      buffer.writeln('${model.type}? ${model.name},');
     }
     buffer.writeln('}) {');
-    buffer.writeln('return ${type(folder, path)}(');
-    for (final model in folder.models) {
+    buffer.writeln('return ${folder.type}(');
+    for (final model in folder.nodes) {
       buffer.writeln('${model.name}: ${model.name} ?? this.${model.name},');
     }
     buffer.writeln(');');
     buffer.writeln('}');
   }
 
-  void _writeLerp(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
+  void _writeLerp(Folder<T> folder, StringBuffer buffer) {
     buffer.writeln('@override');
-    buffer.writeln(
-        '${type(folder, path)} lerp(ThemeExtension<${type(folder, path)}>? other, double t) {');
-    buffer.writeln('if (other is! ${type(folder, path)}) return this;');
-    buffer.writeln('return ${type(folder, path)}(');
-    for (final model in folder.models) {
-      final hasLerp = model is ModelFolder<T> || (model is ModelItem<T> && baseHasLerp);
+    buffer.writeln('${folder.type} lerp(ThemeExtension<${folder.type}>? other, double t) {');
+    buffer.writeln('if (other is! ${folder.type}) return this;');
+    buffer.writeln('return ${folder.type}(');
+    for (final model in folder.nodes) {
+      final hasLerp = model is Folder<T> || (model is Item<T> && baseHasLerp);
 
-      if (model is ModelFolder<T>) {
+      if (model is Folder<T>) {
         buffer.writeln(
           '${model.name}:${hasLerp ? '${model.name}.lerp(other.${model.name}, t)' : 't < 0.5 ? ${model.name} : other.${model.name}'},',
         );
       } else {
         buffer.writeln(
-          '${model.name}:${hasLerp ? '${type(model, [
-                  ...path,
-                  folder.name
-                ])}.lerp(${model.name}, other.${model.name}, t) ?? other.${model.name}' : 't < 0.5 ? ${model.name} : other.${model.name}'},',
+          '${model.name}:${hasLerp ? '${model.type}.lerp(${model.name}, other.${model.name}, t) ?? other.${model.name}' : 't < 0.5 ? ${model.name} : other.${model.name}'},',
         );
       }
     }
@@ -107,11 +100,11 @@ class ThemeExtensionBuilder<T extends Field> extends ModelBuilder<T> {
     buffer.writeln('}');
   }
 
-  void _writeThemes(ModelFolder<T> folder, StringBuffer buffer, List<String> path) {
+  void _writeThemes(Folder<T> folder, StringBuffer buffer) {
     for (final theme in folder.themes) {
-      buffer.writeln('static final ${type(folder, path)} $theme = ${type(folder, path)}(');
-      for (final model in folder.models) {
-        buffer.writeln('${model.name}: ${value(model, theme, [...path, folder.name])},');
+      buffer.writeln('static final ${folder.type} $theme = ${folder.type}(');
+      for (final model in folder.nodes) {
+        buffer.writeln('${model.name}: ${model.value(theme)},');
       }
       buffer.writeln(');');
     }
