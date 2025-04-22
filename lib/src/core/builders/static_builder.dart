@@ -1,5 +1,5 @@
-import 'package:x_gens/src/core/data/field.dart';
-import 'package:x_gens/src/core/data/node.dart';
+import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/node.dart';
 
 class StaticBuilder<T extends Field> {
   final String className;

@@ -1,8 +1,8 @@
-import 'package:x_gens/src/core/data/field.dart';
-import 'package:x_gens/src/core/fields/color_tween_field.dart';
-import 'package:x_gens/src/core/fields/enum_field.dart';
-import 'package:x_gens/src/core/fields/token_field.dart';
-import 'package:x_gens/src/utils/string_extension.dart';
+import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/fields/color_tween_field.dart';
+import 'package:genuis/src/core/fields/enum_field.dart';
+import 'package:genuis/src/core/fields/token_field.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class ColorField extends Field {
   final String hex;

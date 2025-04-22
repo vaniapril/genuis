@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:x_gens/src/core/data/model.dart';
-import 'package:x_gens/src/core/data/node.dart';
-import 'package:x_gens/src/utils/list_extension.dart';
+import 'package:genuis/src/core/data/model.dart';
+import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/utils/list_extension.dart';
 
 class ModelsParser<N, M> {
   static const _baseTheme = 'base';

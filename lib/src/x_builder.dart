@@ -2,9 +2,9 @@ import 'package:build/build.dart';
 import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart';
 import 'package:source_gen/source_gen.dart';
-import 'package:x_gens/src/core/x_generator.dart';
-import 'package:x_gens/src/pubspec/pubspec.dart';
-import 'package:x_gens/src/utils/string_extension.dart';
+import 'package:genuis/src/core/x_generator.dart';
+import 'package:genuis/src/pubspec/pubspec.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class XBuilder extends Builder {
   final List<XGenerator> generators;
@@ -41,7 +41,7 @@ class XBuilder extends Builder {
       buildStep.writeAsString(
         _output(
           buildStep,
-          join(config.xGens.output, config.xGens.folder, '${generator.name}.x.dart'),
+          join(config.xGens.output, config.xGens.folder, '${generator.name}.ui.dart'),
         ),
         DartFormatter(
           pageWidth: config.xGens.lineLength,
@@ -66,8 +66,8 @@ class XBuilder extends Builder {
     return {
       r'$package$': [
         for (final name in [
-          '$file.x.dart',
-          for (final generator in generators) join(subFolder, '${generator.name}.x.dart'),
+          '$file.ui.dart',
+          for (final generator in generators) join(subFolder, '${generator.name}.ui.dart'),
         ])
           join(output, name),
       ],

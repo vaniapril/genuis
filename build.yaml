@@ -6,9 +6,9 @@ targets:
 
 builders:
   generators:
-    import: "package:x_gens/x_gens.dart"
+    import: "package:genuis/genuis.dart"
     builder_factories: ["build"]
-    build_extensions: { '$package$': ['.x.dart'] }
+    build_extensions: { '$package$': ['.ui.dart'] }
     auto_apply: dependents
     build_to: source
 

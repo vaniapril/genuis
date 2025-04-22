@@ -1,4 +1,4 @@
-import 'package:x_gens/src/core/data/field.dart';
+import 'package:genuis/src/core/data/field.dart';
 
 class DimenField extends Field {
   final String value;

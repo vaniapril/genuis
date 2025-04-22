@@ -1,6 +1,6 @@
-import 'package:x_gens/src/core/data/model.dart';
-import 'package:x_gens/src/core/data/field.dart';
-import 'package:x_gens/src/utils/string_extension.dart';
+import 'package:genuis/src/core/data/model.dart';
+import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class ModelBuilder<T extends Field> {
   final String typePrefix;

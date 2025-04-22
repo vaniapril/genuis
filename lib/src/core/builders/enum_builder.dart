@@ -1,5 +1,5 @@
-import 'package:x_gens/src/core/data/node.dart';
-import 'package:x_gens/src/utils/string_extension.dart';
+import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class EnumBuilder<T> {
   final String basePath;

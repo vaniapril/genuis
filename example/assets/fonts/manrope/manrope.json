@@ -1,0 +1,51 @@
+{
+    "Large Title": {
+        "Regular": "'Manrope' 400 34px 40px 0.4px",
+        "Bold": "'Manrope' 700 34px 40px 0.4px"
+    },
+    "Title 1": {
+        "Regular": "'Manrope' 400 28px 34px 0.12px",
+        "Bold": "'Manrope' 700 28px 34px 0.12px"
+    },
+    "Title 2": {
+        "Regular": "'Manrope' 400 22px 28px -0.26px",
+        "Bold": "'Manrope' 700 22px 28px -0.26px"
+    },
+    "Title 3": {
+        "Regular": "'Manrope' 400 20px 24px -0.45px",
+        "SemiBold": "'Manrope' 600 20px 24px -0.45px"
+    },
+    "Headline": {
+        "SemiBold": "'Manrope' 600 17px 22px -0.36px",
+        "Regular": "'Manrope' 400 17px 22px -0.36px"
+    },
+    "Body": {
+        "Regular": "'Manrope' 400 16px 22px 0.12px",
+        "Medium": "'Manrope' 500 16px 22px 0.12px",
+        "SemiBold": "'Manrope' 600 16px 22px 0.12px",
+        "Bold": "'Manrope' 700 16px 22px 0.12px"
+    },
+    "Callout": {
+        "Regular": "'Manrope' 400 16px 20px 0.04px",
+        "SemiBold": "'Manrope' 600 16px 20px 0.04px"
+    },
+    "Subhead": {
+        "Regular": "'Manrope' 400 15px 20px 0.0px",
+        "Medium": "'Manrope' 500 15px 20px 0.0px",
+        "SemiBold": "'Manrope' 600 15px 20px 0.0px"
+    },
+    "Footnote": {
+        "Regular": "'Manrope' 400 13px 16px 0.08px",
+        "Medium": "'Manrope' 500 13px 16px 0.08px",
+        "SemiBold": "'Manrope' 600 13px 16px 0.08px",
+        "SemiBold UC": "'Manrope' 600 13px 16px 0.08px"
+    },
+    "Caption 1": {
+        "Regular": "'Manrope' 400 12px 16px 0.4px",
+        "Medium": "'Manrope' 500 12px 16px 0.4px"
+    },
+    "Caption 2": {
+        "Regular": "'Manrope' 400 11px 14px 0.06px",
+        "SemiBold": "'Manrope' 600 11px 14px 0.06px"
+    }
+}

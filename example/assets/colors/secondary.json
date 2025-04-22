@@ -1,0 +1,6 @@
+{
+    "error": {
+        "light": "$primary_error_500",
+        "dark": "$primary_error_600"
+    }
+}

@@ -1,8 +1,8 @@
-import 'package:x_gens/src/core/builders/theme_extension_builder.dart';
-import 'package:x_gens/src/core/data/model.dart';
-import 'package:x_gens/src/core/data/field.dart';
-import 'package:x_gens/src/core/x_generator.dart';
-import 'package:x_gens/src/utils/string_extension.dart';
+import 'package:genuis/src/core/builders/theme_extension_builder.dart';
+import 'package:genuis/src/core/data/model.dart';
+import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/x_generator.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 // TODO(IvanPrylepski): refactor all
 class AppGenerator extends XGenerator {
@@ -22,14 +22,14 @@ class AppGenerator extends XGenerator {
 
   @override
   String get imports =>
-      generators.map((e) => 'import \'${e.name}.x.dart\';').join('\n') +
-      "import 'package:core/core.dart';" +
+      generators.map((e) => 'import \'${e.name}.ui.dart\';').join('\n') +
+      // "import 'package:core/core.dart';" +
       "import 'package:flutter/material.dart';" +
       '\n' +
       '\n' +
-      // generators.map((e) => 'export \'${e.name}.x.dart\';').join('\n') +
-      "export 'dimens.x.dart';" +
-      "export 'ui_build_context_extension.x.dart';";
+      // generators.map((e) => 'export \'${e.name}.ui.dart\';').join('\n') +
+      // "export 'dimens.ui.dart';" +
+      "export 'ui_build_context_extension.ui.dart';";
 
   @override
   String generate() {
@@ -73,14 +73,6 @@ class AppGenerator extends XGenerator {
 
       // TODO(IvanPrylepski): refactor
       additions: '''
-  factory UI.ofGlobalContext() {
-    final BuildContext? context = appLocator<AppRouter>().navigatorKey.currentContext;
-    if (context == null) {
-      return UI.dark;
-    }
-    return UI.of(context);
-  }
-
   factory UI.of(BuildContext context) {
     return Theme.of(context).extension<UI>() ?? UI.dark;
   }

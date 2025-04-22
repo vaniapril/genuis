@@ -1,6 +1,6 @@
-import 'package:x_gens/src/core/builders/base/model_builder.dart';
-import 'package:x_gens/src/core/data/field.dart';
-import 'package:x_gens/src/core/data/model.dart';
+import 'package:genuis/src/core/builders/base/model_builder.dart';
+import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/model.dart';
 
 class ThemeExtensionBuilder<T extends Field> extends ModelBuilder<T> {
   final bool baseHasLerp;

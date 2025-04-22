@@ -1,9 +1,9 @@
 import 'dart:io';
 import 'package:path/path.dart';
-import 'package:x_gens/src/core/data/node.dart';
-import 'package:x_gens/src/core/parsers/file/file_parser.dart';
-import 'package:x_gens/src/utils/file_extension.dart';
-import 'package:x_gens/src/utils/string_extension.dart';
+import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/parsers/file/file_parser.dart';
+import 'package:genuis/src/utils/file_extension.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class AssetFileParser extends FileParser<String> {
   final String fullPath;

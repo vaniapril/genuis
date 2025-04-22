@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:x_gens/src/core/data/node.dart';
-import 'package:x_gens/src/core/parsers/file/file_parser.dart';
-import 'package:x_gens/src/utils/directory_extension.dart';
-import 'package:x_gens/src/utils/string_extension.dart';
+import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/parsers/file/file_parser.dart';
+import 'package:genuis/src/utils/directory_extension.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class NodesParser<T> {
   final String path;

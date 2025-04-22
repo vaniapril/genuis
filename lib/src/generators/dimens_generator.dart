@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:x_gens/src/core/builders/static_builder.dart';
-import 'package:x_gens/src/core/data/node.dart';
-import 'package:x_gens/src/core/parsers/file/file_parser.dart';
-import 'package:x_gens/src/core/parsers/nodes_parser.dart';
-import 'package:x_gens/src/core/fields/dimen_field.dart';
-import 'package:x_gens/src/core/x_generator.dart';
+import 'package:genuis/src/core/builders/static_builder.dart';
+import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/parsers/file/file_parser.dart';
+import 'package:genuis/src/core/parsers/nodes_parser.dart';
+import 'package:genuis/src/core/fields/dimen_field.dart';
+import 'package:genuis/src/core/x_generator.dart';
 
 class DimensGenerator extends XGenerator {
   const DimensGenerator(super.pubspec, super.config);

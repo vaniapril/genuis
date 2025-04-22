@@ -1,7 +1,7 @@
-import 'package:x_gens/src/pubspec/pubspec.dart';
+import 'package:genuis/src/pubspec/pubspec.dart';
 
-const defaultOutput = 'core_ui/lib/src/theme';
-const defaultAssets = 'core/resources';
+const defaultOutput = 'lib/config/ui';
+const defaultAssets = 'assets';
 const defaultFolder = '';
 const defaultFile = 'theme';
 const defaultLineLength = 100;

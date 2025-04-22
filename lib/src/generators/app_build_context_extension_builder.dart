@@ -1,4 +1,4 @@
-import 'package:x_gens/src/core/x_generator.dart';
+import 'package:genuis/src/core/x_generator.dart';
 
 class AppBuildContextExtensionGenerator extends XGenerator {
   final List<XGenerator> generators;
@@ -16,7 +16,7 @@ class AppBuildContextExtensionGenerator extends XGenerator {
   String get ignores => '';
 
   @override
-  String get imports => "import 'package:flutter/material.dart';import 'ui.x.dart';";
+  String get imports => "import 'package:flutter/material.dart';import 'ui.ui.dart';";
 
   @override
   String generate() {

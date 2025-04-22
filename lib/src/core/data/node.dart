@@ -1,4 +1,4 @@
-import 'package:x_gens/src/utils/list_extension.dart';
+import 'package:genuis/src/utils/list_extension.dart';
 
 sealed class Node<N> {
   final String name;

@@ -1,14 +1,14 @@
-import 'package:x_gens/src/core/builders/enum_builder.dart';
-import 'package:x_gens/src/core/builders/theme_extension_builder.dart';
-import 'package:x_gens/src/core/data/field.dart';
-import 'package:x_gens/src/core/data/node.dart';
-import 'package:x_gens/src/core/fields/dimen_field.dart';
-import 'package:x_gens/src/core/fields/enum_field.dart';
-import 'package:x_gens/src/core/parsers/file/file_parser.dart';
-import 'package:x_gens/src/core/parsers/models_parser.dart';
-import 'package:x_gens/src/core/parsers/nodes_parser.dart';
-import 'package:x_gens/src/core/x_generator.dart';
-import 'package:x_gens/src/utils/string_extension.dart';
+import 'package:genuis/src/core/builders/enum_builder.dart';
+import 'package:genuis/src/core/builders/theme_extension_builder.dart';
+import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/fields/dimen_field.dart';
+import 'package:genuis/src/core/fields/enum_field.dart';
+import 'package:genuis/src/core/parsers/file/file_parser.dart';
+import 'package:genuis/src/core/parsers/models_parser.dart';
+import 'package:genuis/src/core/parsers/nodes_parser.dart';
+import 'package:genuis/src/core/x_generator.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class TokensGenerator extends XGenerator {
   final String folder;

@@ -1,0 +1,14 @@
+{
+    "neomorphism": {
+        "light": "$primary_neutral_200 0px 1px 0px 0px",
+        "dark": "$primary_neutral_800 0px 1px 0px 0px"
+    },
+    "pop_up": {
+        "light": "$transparency_black_10 0px 0px 32px 0px",
+        "dark": "$transparency_black_90 0px 0px 32px 0px"
+    },
+    "input_active": {
+        "light": "#16162e0d 0px 2px 2px 0px inset",
+        "dark": "#0a0a0a5c 0px 2px 2px 0px inset"
+    }
+}

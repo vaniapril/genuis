@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:x_gens/src/pubspec/pubspec_default.dart';
+import 'package:genuis/src/pubspec/pubspec_default.dart';
 import 'package:yaml/yaml.dart';
 
 Pubspec loadPubspec(File file) {

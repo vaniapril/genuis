@@ -1,7 +1,7 @@
 import 'dart:io';
 
-import 'package:x_gens/src/pubspec/pubspec.dart';
-import 'package:x_gens/src/utils/string_extension.dart';
+import 'package:genuis/src/pubspec/pubspec.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 abstract class XGenerator {
   final File pubspec;

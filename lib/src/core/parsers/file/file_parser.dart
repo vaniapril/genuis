@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:x_gens/src/core/data/node.dart';
-import 'package:x_gens/src/core/parsers/file/asset_file_parser.dart';
-import 'package:x_gens/src/core/parsers/file/json_file_parser.dart';
-import 'package:x_gens/src/core/parsers/file/xml_file_parser.dart';
+import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/parsers/file/asset_file_parser.dart';
+import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
+import 'package:genuis/src/core/parsers/file/xml_file_parser.dart';
 
 abstract class FileParser<T> {
   List<Node<T>> parse(File file);
