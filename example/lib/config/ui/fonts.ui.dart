@@ -5,27 +5,33 @@
 
 import 'package:flutter/material.dart';
 
-class UIManropeLargeTitleFonts extends ThemeExtension<UIManropeLargeTitleFonts> {
+class UIFontsManropeManropeLargeTitle extends ThemeExtension<UIFontsManropeManropeLargeTitle> {
   final TextStyle regular;
   final TextStyle bold;
 
-  const UIManropeLargeTitleFonts({required this.regular, required this.bold});
+  const UIFontsManropeManropeLargeTitle({required this.regular, required this.bold});
 
   @override
-  UIManropeLargeTitleFonts copyWith({TextStyle? regular, TextStyle? bold}) {
-    return UIManropeLargeTitleFonts(regular: regular ?? this.regular, bold: bold ?? this.bold);
+  UIFontsManropeManropeLargeTitle copyWith({TextStyle? regular, TextStyle? bold}) {
+    return UIFontsManropeManropeLargeTitle(
+      regular: regular ?? this.regular,
+      bold: bold ?? this.bold,
+    );
   }
 
   @override
-  UIManropeLargeTitleFonts lerp(ThemeExtension<UIManropeLargeTitleFonts>? other, double t) {
-    if (other is! UIManropeLargeTitleFonts) return this;
-    return UIManropeLargeTitleFonts(
+  UIFontsManropeManropeLargeTitle lerp(
+    ThemeExtension<UIFontsManropeManropeLargeTitle>? other,
+    double t,
+  ) {
+    if (other is! UIFontsManropeManropeLargeTitle) return this;
+    return UIFontsManropeManropeLargeTitle(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       bold: TextStyle.lerp(bold, other.bold, t) ?? other.bold,
     );
   }
 
-  static final UIManropeLargeTitleFonts base = UIManropeLargeTitleFonts(
+  static final UIFontsManropeManropeLargeTitle base = UIFontsManropeManropeLargeTitle(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -43,27 +49,27 @@ class UIManropeLargeTitleFonts extends ThemeExtension<UIManropeLargeTitleFonts> 
   );
 }
 
-class UIManropeTitle1Fonts extends ThemeExtension<UIManropeTitle1Fonts> {
+class UIFontsManropeManropeTitle1 extends ThemeExtension<UIFontsManropeManropeTitle1> {
   final TextStyle regular;
   final TextStyle bold;
 
-  const UIManropeTitle1Fonts({required this.regular, required this.bold});
+  const UIFontsManropeManropeTitle1({required this.regular, required this.bold});
 
   @override
-  UIManropeTitle1Fonts copyWith({TextStyle? regular, TextStyle? bold}) {
-    return UIManropeTitle1Fonts(regular: regular ?? this.regular, bold: bold ?? this.bold);
+  UIFontsManropeManropeTitle1 copyWith({TextStyle? regular, TextStyle? bold}) {
+    return UIFontsManropeManropeTitle1(regular: regular ?? this.regular, bold: bold ?? this.bold);
   }
 
   @override
-  UIManropeTitle1Fonts lerp(ThemeExtension<UIManropeTitle1Fonts>? other, double t) {
-    if (other is! UIManropeTitle1Fonts) return this;
-    return UIManropeTitle1Fonts(
+  UIFontsManropeManropeTitle1 lerp(ThemeExtension<UIFontsManropeManropeTitle1>? other, double t) {
+    if (other is! UIFontsManropeManropeTitle1) return this;
+    return UIFontsManropeManropeTitle1(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       bold: TextStyle.lerp(bold, other.bold, t) ?? other.bold,
     );
   }
 
-  static final UIManropeTitle1Fonts base = UIManropeTitle1Fonts(
+  static final UIFontsManropeManropeTitle1 base = UIFontsManropeManropeTitle1(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -81,27 +87,27 @@ class UIManropeTitle1Fonts extends ThemeExtension<UIManropeTitle1Fonts> {
   );
 }
 
-class UIManropeTitle2Fonts extends ThemeExtension<UIManropeTitle2Fonts> {
+class UIFontsManropeManropeTitle2 extends ThemeExtension<UIFontsManropeManropeTitle2> {
   final TextStyle regular;
   final TextStyle bold;
 
-  const UIManropeTitle2Fonts({required this.regular, required this.bold});
+  const UIFontsManropeManropeTitle2({required this.regular, required this.bold});
 
   @override
-  UIManropeTitle2Fonts copyWith({TextStyle? regular, TextStyle? bold}) {
-    return UIManropeTitle2Fonts(regular: regular ?? this.regular, bold: bold ?? this.bold);
+  UIFontsManropeManropeTitle2 copyWith({TextStyle? regular, TextStyle? bold}) {
+    return UIFontsManropeManropeTitle2(regular: regular ?? this.regular, bold: bold ?? this.bold);
   }
 
   @override
-  UIManropeTitle2Fonts lerp(ThemeExtension<UIManropeTitle2Fonts>? other, double t) {
-    if (other is! UIManropeTitle2Fonts) return this;
-    return UIManropeTitle2Fonts(
+  UIFontsManropeManropeTitle2 lerp(ThemeExtension<UIFontsManropeManropeTitle2>? other, double t) {
+    if (other is! UIFontsManropeManropeTitle2) return this;
+    return UIFontsManropeManropeTitle2(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       bold: TextStyle.lerp(bold, other.bold, t) ?? other.bold,
     );
   }
 
-  static final UIManropeTitle2Fonts base = UIManropeTitle2Fonts(
+  static final UIFontsManropeManropeTitle2 base = UIFontsManropeManropeTitle2(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -119,30 +125,30 @@ class UIManropeTitle2Fonts extends ThemeExtension<UIManropeTitle2Fonts> {
   );
 }
 
-class UIManropeTitle3Fonts extends ThemeExtension<UIManropeTitle3Fonts> {
+class UIFontsManropeManropeTitle3 extends ThemeExtension<UIFontsManropeManropeTitle3> {
   final TextStyle regular;
   final TextStyle semiBold;
 
-  const UIManropeTitle3Fonts({required this.regular, required this.semiBold});
+  const UIFontsManropeManropeTitle3({required this.regular, required this.semiBold});
 
   @override
-  UIManropeTitle3Fonts copyWith({TextStyle? regular, TextStyle? semiBold}) {
-    return UIManropeTitle3Fonts(
+  UIFontsManropeManropeTitle3 copyWith({TextStyle? regular, TextStyle? semiBold}) {
+    return UIFontsManropeManropeTitle3(
       regular: regular ?? this.regular,
       semiBold: semiBold ?? this.semiBold,
     );
   }
 
   @override
-  UIManropeTitle3Fonts lerp(ThemeExtension<UIManropeTitle3Fonts>? other, double t) {
-    if (other is! UIManropeTitle3Fonts) return this;
-    return UIManropeTitle3Fonts(
+  UIFontsManropeManropeTitle3 lerp(ThemeExtension<UIFontsManropeManropeTitle3>? other, double t) {
+    if (other is! UIFontsManropeManropeTitle3) return this;
+    return UIFontsManropeManropeTitle3(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       semiBold: TextStyle.lerp(semiBold, other.semiBold, t) ?? other.semiBold,
     );
   }
 
-  static final UIManropeTitle3Fonts base = UIManropeTitle3Fonts(
+  static final UIFontsManropeManropeTitle3 base = UIFontsManropeManropeTitle3(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -160,30 +166,33 @@ class UIManropeTitle3Fonts extends ThemeExtension<UIManropeTitle3Fonts> {
   );
 }
 
-class UIManropeHeadlineFonts extends ThemeExtension<UIManropeHeadlineFonts> {
+class UIFontsManropeManropeHeadline extends ThemeExtension<UIFontsManropeManropeHeadline> {
   final TextStyle semiBold;
   final TextStyle regular;
 
-  const UIManropeHeadlineFonts({required this.semiBold, required this.regular});
+  const UIFontsManropeManropeHeadline({required this.semiBold, required this.regular});
 
   @override
-  UIManropeHeadlineFonts copyWith({TextStyle? semiBold, TextStyle? regular}) {
-    return UIManropeHeadlineFonts(
+  UIFontsManropeManropeHeadline copyWith({TextStyle? semiBold, TextStyle? regular}) {
+    return UIFontsManropeManropeHeadline(
       semiBold: semiBold ?? this.semiBold,
       regular: regular ?? this.regular,
     );
   }
 
   @override
-  UIManropeHeadlineFonts lerp(ThemeExtension<UIManropeHeadlineFonts>? other, double t) {
-    if (other is! UIManropeHeadlineFonts) return this;
-    return UIManropeHeadlineFonts(
+  UIFontsManropeManropeHeadline lerp(
+    ThemeExtension<UIFontsManropeManropeHeadline>? other,
+    double t,
+  ) {
+    if (other is! UIFontsManropeManropeHeadline) return this;
+    return UIFontsManropeManropeHeadline(
       semiBold: TextStyle.lerp(semiBold, other.semiBold, t) ?? other.semiBold,
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
     );
   }
 
-  static final UIManropeHeadlineFonts base = UIManropeHeadlineFonts(
+  static final UIFontsManropeManropeHeadline base = UIFontsManropeManropeHeadline(
     semiBold: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w600,
@@ -201,13 +210,13 @@ class UIManropeHeadlineFonts extends ThemeExtension<UIManropeHeadlineFonts> {
   );
 }
 
-class UIManropeBodyFonts extends ThemeExtension<UIManropeBodyFonts> {
+class UIFontsManropeManropeBody extends ThemeExtension<UIFontsManropeManropeBody> {
   final TextStyle regular;
   final TextStyle medium;
   final TextStyle semiBold;
   final TextStyle bold;
 
-  const UIManropeBodyFonts({
+  const UIFontsManropeManropeBody({
     required this.regular,
     required this.medium,
     required this.semiBold,
@@ -215,13 +224,13 @@ class UIManropeBodyFonts extends ThemeExtension<UIManropeBodyFonts> {
   });
 
   @override
-  UIManropeBodyFonts copyWith({
+  UIFontsManropeManropeBody copyWith({
     TextStyle? regular,
     TextStyle? medium,
     TextStyle? semiBold,
     TextStyle? bold,
   }) {
-    return UIManropeBodyFonts(
+    return UIFontsManropeManropeBody(
       regular: regular ?? this.regular,
       medium: medium ?? this.medium,
       semiBold: semiBold ?? this.semiBold,
@@ -230,9 +239,9 @@ class UIManropeBodyFonts extends ThemeExtension<UIManropeBodyFonts> {
   }
 
   @override
-  UIManropeBodyFonts lerp(ThemeExtension<UIManropeBodyFonts>? other, double t) {
-    if (other is! UIManropeBodyFonts) return this;
-    return UIManropeBodyFonts(
+  UIFontsManropeManropeBody lerp(ThemeExtension<UIFontsManropeManropeBody>? other, double t) {
+    if (other is! UIFontsManropeManropeBody) return this;
+    return UIFontsManropeManropeBody(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       medium: TextStyle.lerp(medium, other.medium, t) ?? other.medium,
       semiBold: TextStyle.lerp(semiBold, other.semiBold, t) ?? other.semiBold,
@@ -240,7 +249,7 @@ class UIManropeBodyFonts extends ThemeExtension<UIManropeBodyFonts> {
     );
   }
 
-  static final UIManropeBodyFonts base = UIManropeBodyFonts(
+  static final UIFontsManropeManropeBody base = UIFontsManropeManropeBody(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -272,30 +281,30 @@ class UIManropeBodyFonts extends ThemeExtension<UIManropeBodyFonts> {
   );
 }
 
-class UIManropeCalloutFonts extends ThemeExtension<UIManropeCalloutFonts> {
+class UIFontsManropeManropeCallout extends ThemeExtension<UIFontsManropeManropeCallout> {
   final TextStyle regular;
   final TextStyle semiBold;
 
-  const UIManropeCalloutFonts({required this.regular, required this.semiBold});
+  const UIFontsManropeManropeCallout({required this.regular, required this.semiBold});
 
   @override
-  UIManropeCalloutFonts copyWith({TextStyle? regular, TextStyle? semiBold}) {
-    return UIManropeCalloutFonts(
+  UIFontsManropeManropeCallout copyWith({TextStyle? regular, TextStyle? semiBold}) {
+    return UIFontsManropeManropeCallout(
       regular: regular ?? this.regular,
       semiBold: semiBold ?? this.semiBold,
     );
   }
 
   @override
-  UIManropeCalloutFonts lerp(ThemeExtension<UIManropeCalloutFonts>? other, double t) {
-    if (other is! UIManropeCalloutFonts) return this;
-    return UIManropeCalloutFonts(
+  UIFontsManropeManropeCallout lerp(ThemeExtension<UIFontsManropeManropeCallout>? other, double t) {
+    if (other is! UIFontsManropeManropeCallout) return this;
+    return UIFontsManropeManropeCallout(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       semiBold: TextStyle.lerp(semiBold, other.semiBold, t) ?? other.semiBold,
     );
   }
 
-  static final UIManropeCalloutFonts base = UIManropeCalloutFonts(
+  static final UIFontsManropeManropeCallout base = UIFontsManropeManropeCallout(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -313,20 +322,24 @@ class UIManropeCalloutFonts extends ThemeExtension<UIManropeCalloutFonts> {
   );
 }
 
-class UIManropeSubheadFonts extends ThemeExtension<UIManropeSubheadFonts> {
+class UIFontsManropeManropeSubhead extends ThemeExtension<UIFontsManropeManropeSubhead> {
   final TextStyle regular;
   final TextStyle medium;
   final TextStyle semiBold;
 
-  const UIManropeSubheadFonts({
+  const UIFontsManropeManropeSubhead({
     required this.regular,
     required this.medium,
     required this.semiBold,
   });
 
   @override
-  UIManropeSubheadFonts copyWith({TextStyle? regular, TextStyle? medium, TextStyle? semiBold}) {
-    return UIManropeSubheadFonts(
+  UIFontsManropeManropeSubhead copyWith({
+    TextStyle? regular,
+    TextStyle? medium,
+    TextStyle? semiBold,
+  }) {
+    return UIFontsManropeManropeSubhead(
       regular: regular ?? this.regular,
       medium: medium ?? this.medium,
       semiBold: semiBold ?? this.semiBold,
@@ -334,16 +347,16 @@ class UIManropeSubheadFonts extends ThemeExtension<UIManropeSubheadFonts> {
   }
 
   @override
-  UIManropeSubheadFonts lerp(ThemeExtension<UIManropeSubheadFonts>? other, double t) {
-    if (other is! UIManropeSubheadFonts) return this;
-    return UIManropeSubheadFonts(
+  UIFontsManropeManropeSubhead lerp(ThemeExtension<UIFontsManropeManropeSubhead>? other, double t) {
+    if (other is! UIFontsManropeManropeSubhead) return this;
+    return UIFontsManropeManropeSubhead(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       medium: TextStyle.lerp(medium, other.medium, t) ?? other.medium,
       semiBold: TextStyle.lerp(semiBold, other.semiBold, t) ?? other.semiBold,
     );
   }
 
-  static final UIManropeSubheadFonts base = UIManropeSubheadFonts(
+  static final UIFontsManropeManropeSubhead base = UIFontsManropeManropeSubhead(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -368,13 +381,13 @@ class UIManropeSubheadFonts extends ThemeExtension<UIManropeSubheadFonts> {
   );
 }
 
-class UIManropeFootnoteFonts extends ThemeExtension<UIManropeFootnoteFonts> {
+class UIFontsManropeManropeFootnote extends ThemeExtension<UIFontsManropeManropeFootnote> {
   final TextStyle regular;
   final TextStyle medium;
   final TextStyle semiBold;
   final TextStyle semiBoldUC;
 
-  const UIManropeFootnoteFonts({
+  const UIFontsManropeManropeFootnote({
     required this.regular,
     required this.medium,
     required this.semiBold,
@@ -382,13 +395,13 @@ class UIManropeFootnoteFonts extends ThemeExtension<UIManropeFootnoteFonts> {
   });
 
   @override
-  UIManropeFootnoteFonts copyWith({
+  UIFontsManropeManropeFootnote copyWith({
     TextStyle? regular,
     TextStyle? medium,
     TextStyle? semiBold,
     TextStyle? semiBoldUC,
   }) {
-    return UIManropeFootnoteFonts(
+    return UIFontsManropeManropeFootnote(
       regular: regular ?? this.regular,
       medium: medium ?? this.medium,
       semiBold: semiBold ?? this.semiBold,
@@ -397,9 +410,12 @@ class UIManropeFootnoteFonts extends ThemeExtension<UIManropeFootnoteFonts> {
   }
 
   @override
-  UIManropeFootnoteFonts lerp(ThemeExtension<UIManropeFootnoteFonts>? other, double t) {
-    if (other is! UIManropeFootnoteFonts) return this;
-    return UIManropeFootnoteFonts(
+  UIFontsManropeManropeFootnote lerp(
+    ThemeExtension<UIFontsManropeManropeFootnote>? other,
+    double t,
+  ) {
+    if (other is! UIFontsManropeManropeFootnote) return this;
+    return UIFontsManropeManropeFootnote(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       medium: TextStyle.lerp(medium, other.medium, t) ?? other.medium,
       semiBold: TextStyle.lerp(semiBold, other.semiBold, t) ?? other.semiBold,
@@ -407,7 +423,7 @@ class UIManropeFootnoteFonts extends ThemeExtension<UIManropeFootnoteFonts> {
     );
   }
 
-  static final UIManropeFootnoteFonts base = UIManropeFootnoteFonts(
+  static final UIFontsManropeManropeFootnote base = UIFontsManropeManropeFootnote(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -439,27 +455,33 @@ class UIManropeFootnoteFonts extends ThemeExtension<UIManropeFootnoteFonts> {
   );
 }
 
-class UIManropeCaption1Fonts extends ThemeExtension<UIManropeCaption1Fonts> {
+class UIFontsManropeManropeCaption1 extends ThemeExtension<UIFontsManropeManropeCaption1> {
   final TextStyle regular;
   final TextStyle medium;
 
-  const UIManropeCaption1Fonts({required this.regular, required this.medium});
+  const UIFontsManropeManropeCaption1({required this.regular, required this.medium});
 
   @override
-  UIManropeCaption1Fonts copyWith({TextStyle? regular, TextStyle? medium}) {
-    return UIManropeCaption1Fonts(regular: regular ?? this.regular, medium: medium ?? this.medium);
+  UIFontsManropeManropeCaption1 copyWith({TextStyle? regular, TextStyle? medium}) {
+    return UIFontsManropeManropeCaption1(
+      regular: regular ?? this.regular,
+      medium: medium ?? this.medium,
+    );
   }
 
   @override
-  UIManropeCaption1Fonts lerp(ThemeExtension<UIManropeCaption1Fonts>? other, double t) {
-    if (other is! UIManropeCaption1Fonts) return this;
-    return UIManropeCaption1Fonts(
+  UIFontsManropeManropeCaption1 lerp(
+    ThemeExtension<UIFontsManropeManropeCaption1>? other,
+    double t,
+  ) {
+    if (other is! UIFontsManropeManropeCaption1) return this;
+    return UIFontsManropeManropeCaption1(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       medium: TextStyle.lerp(medium, other.medium, t) ?? other.medium,
     );
   }
 
-  static final UIManropeCaption1Fonts base = UIManropeCaption1Fonts(
+  static final UIFontsManropeManropeCaption1 base = UIFontsManropeManropeCaption1(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -477,30 +499,33 @@ class UIManropeCaption1Fonts extends ThemeExtension<UIManropeCaption1Fonts> {
   );
 }
 
-class UIManropeCaption2Fonts extends ThemeExtension<UIManropeCaption2Fonts> {
+class UIFontsManropeManropeCaption2 extends ThemeExtension<UIFontsManropeManropeCaption2> {
   final TextStyle regular;
   final TextStyle semiBold;
 
-  const UIManropeCaption2Fonts({required this.regular, required this.semiBold});
+  const UIFontsManropeManropeCaption2({required this.regular, required this.semiBold});
 
   @override
-  UIManropeCaption2Fonts copyWith({TextStyle? regular, TextStyle? semiBold}) {
-    return UIManropeCaption2Fonts(
+  UIFontsManropeManropeCaption2 copyWith({TextStyle? regular, TextStyle? semiBold}) {
+    return UIFontsManropeManropeCaption2(
       regular: regular ?? this.regular,
       semiBold: semiBold ?? this.semiBold,
     );
   }
 
   @override
-  UIManropeCaption2Fonts lerp(ThemeExtension<UIManropeCaption2Fonts>? other, double t) {
-    if (other is! UIManropeCaption2Fonts) return this;
-    return UIManropeCaption2Fonts(
+  UIFontsManropeManropeCaption2 lerp(
+    ThemeExtension<UIFontsManropeManropeCaption2>? other,
+    double t,
+  ) {
+    if (other is! UIFontsManropeManropeCaption2) return this;
+    return UIFontsManropeManropeCaption2(
       regular: TextStyle.lerp(regular, other.regular, t) ?? other.regular,
       semiBold: TextStyle.lerp(semiBold, other.semiBold, t) ?? other.semiBold,
     );
   }
 
-  static final UIManropeCaption2Fonts base = UIManropeCaption2Fonts(
+  static final UIFontsManropeManropeCaption2 base = UIFontsManropeManropeCaption2(
     regular: const TextStyle(
       fontFamily: 'Manrope',
       fontWeight: FontWeight.w400,
@@ -518,20 +543,20 @@ class UIManropeCaption2Fonts extends ThemeExtension<UIManropeCaption2Fonts> {
   );
 }
 
-class UIManropeFonts extends ThemeExtension<UIManropeFonts> {
-  final UIManropeLargeTitleFonts largeTitle;
-  final UIManropeTitle1Fonts title1;
-  final UIManropeTitle2Fonts title2;
-  final UIManropeTitle3Fonts title3;
-  final UIManropeHeadlineFonts headline;
-  final UIManropeBodyFonts body;
-  final UIManropeCalloutFonts callout;
-  final UIManropeSubheadFonts subhead;
-  final UIManropeFootnoteFonts footnote;
-  final UIManropeCaption1Fonts caption1;
-  final UIManropeCaption2Fonts caption2;
+class UIFontsManropeManrope extends ThemeExtension<UIFontsManropeManrope> {
+  final UIFontsManropeManropeLargeTitle largeTitle;
+  final UIFontsManropeManropeTitle1 title1;
+  final UIFontsManropeManropeTitle2 title2;
+  final UIFontsManropeManropeTitle3 title3;
+  final UIFontsManropeManropeHeadline headline;
+  final UIFontsManropeManropeBody body;
+  final UIFontsManropeManropeCallout callout;
+  final UIFontsManropeManropeSubhead subhead;
+  final UIFontsManropeManropeFootnote footnote;
+  final UIFontsManropeManropeCaption1 caption1;
+  final UIFontsManropeManropeCaption2 caption2;
 
-  const UIManropeFonts({
+  const UIFontsManropeManrope({
     required this.largeTitle,
     required this.title1,
     required this.title2,
@@ -546,20 +571,20 @@ class UIManropeFonts extends ThemeExtension<UIManropeFonts> {
   });
 
   @override
-  UIManropeFonts copyWith({
-    UIManropeLargeTitleFonts? largeTitle,
-    UIManropeTitle1Fonts? title1,
-    UIManropeTitle2Fonts? title2,
-    UIManropeTitle3Fonts? title3,
-    UIManropeHeadlineFonts? headline,
-    UIManropeBodyFonts? body,
-    UIManropeCalloutFonts? callout,
-    UIManropeSubheadFonts? subhead,
-    UIManropeFootnoteFonts? footnote,
-    UIManropeCaption1Fonts? caption1,
-    UIManropeCaption2Fonts? caption2,
+  UIFontsManropeManrope copyWith({
+    UIFontsManropeManropeLargeTitle? largeTitle,
+    UIFontsManropeManropeTitle1? title1,
+    UIFontsManropeManropeTitle2? title2,
+    UIFontsManropeManropeTitle3? title3,
+    UIFontsManropeManropeHeadline? headline,
+    UIFontsManropeManropeBody? body,
+    UIFontsManropeManropeCallout? callout,
+    UIFontsManropeManropeSubhead? subhead,
+    UIFontsManropeManropeFootnote? footnote,
+    UIFontsManropeManropeCaption1? caption1,
+    UIFontsManropeManropeCaption2? caption2,
   }) {
-    return UIManropeFonts(
+    return UIFontsManropeManrope(
       largeTitle: largeTitle ?? this.largeTitle,
       title1: title1 ?? this.title1,
       title2: title2 ?? this.title2,
@@ -575,9 +600,9 @@ class UIManropeFonts extends ThemeExtension<UIManropeFonts> {
   }
 
   @override
-  UIManropeFonts lerp(ThemeExtension<UIManropeFonts>? other, double t) {
-    if (other is! UIManropeFonts) return this;
-    return UIManropeFonts(
+  UIFontsManropeManrope lerp(ThemeExtension<UIFontsManropeManrope>? other, double t) {
+    if (other is! UIFontsManropeManrope) return this;
+    return UIFontsManropeManrope(
       largeTitle: largeTitle.lerp(other.largeTitle, t),
       title1: title1.lerp(other.title1, t),
       title2: title2.lerp(other.title2, t),
@@ -592,28 +617,47 @@ class UIManropeFonts extends ThemeExtension<UIManropeFonts> {
     );
   }
 
-  static final UIManropeFonts base = UIManropeFonts(
-    largeTitle: UIManropeLargeTitleFonts.base,
-    title1: UIManropeTitle1Fonts.base,
-    title2: UIManropeTitle2Fonts.base,
-    title3: UIManropeTitle3Fonts.base,
-    headline: UIManropeHeadlineFonts.base,
-    body: UIManropeBodyFonts.base,
-    callout: UIManropeCalloutFonts.base,
-    subhead: UIManropeSubheadFonts.base,
-    footnote: UIManropeFootnoteFonts.base,
-    caption1: UIManropeCaption1Fonts.base,
-    caption2: UIManropeCaption2Fonts.base,
+  static final UIFontsManropeManrope base = UIFontsManropeManrope(
+    largeTitle: UIFontsManropeManropeLargeTitle.base,
+    title1: UIFontsManropeManropeTitle1.base,
+    title2: UIFontsManropeManropeTitle2.base,
+    title3: UIFontsManropeManropeTitle3.base,
+    headline: UIFontsManropeManropeHeadline.base,
+    body: UIFontsManropeManropeBody.base,
+    callout: UIFontsManropeManropeCallout.base,
+    subhead: UIFontsManropeManropeSubhead.base,
+    footnote: UIFontsManropeManropeFootnote.base,
+    caption1: UIFontsManropeManropeCaption1.base,
+    caption2: UIFontsManropeManropeCaption2.base,
   );
 }
 
+class UIFontsManrope extends ThemeExtension<UIFontsManrope> {
+  final UIFontsManropeManrope manrope;
+
+  const UIFontsManrope({required this.manrope});
+
+  @override
+  UIFontsManrope copyWith({UIFontsManropeManrope? manrope}) {
+    return UIFontsManrope(manrope: manrope ?? this.manrope);
+  }
+
+  @override
+  UIFontsManrope lerp(ThemeExtension<UIFontsManrope>? other, double t) {
+    if (other is! UIFontsManrope) return this;
+    return UIFontsManrope(manrope: manrope.lerp(other.manrope, t));
+  }
+
+  static final UIFontsManrope base = UIFontsManrope(manrope: UIFontsManropeManrope.base);
+}
+
 class UIFonts extends ThemeExtension<UIFonts> {
-  final UIManropeFonts manrope;
+  final UIFontsManrope manrope;
 
   const UIFonts({required this.manrope});
 
   @override
-  UIFonts copyWith({UIManropeFonts? manrope}) {
+  UIFonts copyWith({UIFontsManrope? manrope}) {
     return UIFonts(manrope: manrope ?? this.manrope);
   }
 
@@ -623,5 +667,24 @@ class UIFonts extends ThemeExtension<UIFonts> {
     return UIFonts(manrope: manrope.lerp(other.manrope, t));
   }
 
-  static final UIFonts base = UIFonts(manrope: UIManropeFonts.base);
+  static final UIFonts base = UIFonts(manrope: UIFontsManrope.base);
+}
+
+class UI extends ThemeExtension<UI> {
+  final UIFonts fonts;
+
+  const UI({required this.fonts});
+
+  @override
+  UI copyWith({UIFonts? fonts}) {
+    return UI(fonts: fonts ?? this.fonts);
+  }
+
+  @override
+  UI lerp(ThemeExtension<UI>? other, double t) {
+    if (other is! UI) return this;
+    return UI(fonts: fonts.lerp(other.fonts, t));
+  }
+
+  static final UI base = UI(fonts: UIFonts.base);
 }

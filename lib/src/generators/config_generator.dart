@@ -1,5 +1,5 @@
 import 'package:genuis/src/core/builders/theme_extension_builder.dart';
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/value.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
@@ -8,7 +8,7 @@ import 'package:genuis/src/utils/string_extension.dart';
 
 class ConfigGenerator extends XGenerator {
   final String folder;
-  final Field? Function(String) tryParse;
+  final Value? Function(String) tryParse;
   final String additionImport;
   final FileParser<String> parser;
   final bool baseHasLerp;
@@ -40,7 +40,7 @@ class ConfigGenerator extends XGenerator {
     ).parse();
 
     final rootModel = ModelsParser(
-      folder: rootNode,
+      sequences: rootNode,
       themes: config.xGens.themes,
       mapper: (value) {
         final element = tryParse(value);
@@ -53,7 +53,7 @@ class ConfigGenerator extends XGenerator {
       },
     ).parse();
 
-    StringBuffer buffer = ThemeExtensionBuilder<Field>(
+    StringBuffer buffer = ThemeExtensionBuilder(
       baseHasLerp: baseHasLerp,
       typePrefix: 'UI',
       typePostfix: folder.upperFirst,

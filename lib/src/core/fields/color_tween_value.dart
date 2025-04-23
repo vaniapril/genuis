@@ -1,10 +1,10 @@
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/value.dart';
 
-class ColorTweenField extends Field {
+class ColorTweenValue extends Value {
   final String beginHex;
   final String endHex;
 
-  ColorTweenField({
+  ColorTweenValue({
     required this.beginHex,
     required this.endHex,
   });

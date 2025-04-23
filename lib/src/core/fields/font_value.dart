@@ -1,13 +1,13 @@
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/value.dart';
 
-class FontField extends Field {
+class FontValue extends Value {
   final String family;
   final String weight;
   final String size;
   final String height;
   final String? spacing;
 
-  FontField({
+  FontValue({
     required this.family,
     required this.weight,
     required this.size,
@@ -22,12 +22,12 @@ class FontField extends Field {
   @override
   String get type => 'TextStyle';
 
-  static Field? tryParse(String value) {
+  static Value? tryParse(String value) {
     final family = value.substring(0, value.indexOf("'", 1) + 1);
 
     final list = value.substring(value.indexOf("'", 1) + 2).split(' ');
 
-    return FontField(
+    return FontValue(
       family: family,
       weight: list[0],
       size: list[1].replaceAll('px', ''),

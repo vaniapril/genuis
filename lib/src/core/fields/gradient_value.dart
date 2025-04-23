@@ -1,13 +1,13 @@
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-class GradientField extends Field {
+class GradientValue extends Value {
   final String begin;
   final String end;
   // final String stops;
   final List<String> colors;
 
-  GradientField({
+  GradientValue({
     required this.begin,
     required this.end,
     required this.colors,
@@ -20,10 +20,10 @@ class GradientField extends Field {
   @override
   String get type => 'Gradient';
 
-  static Field? tryParse(String value) {
+  static Value? tryParse(String value) {
     final list = value.split(' ');
 
-    return GradientField(
+    return GradientValue(
       begin: 'Alignment.topLeft',
       end: 'Alignment.bottomRight',
       colors: list.sublist(2).map((e) => e.hexToBitInt).toList(),

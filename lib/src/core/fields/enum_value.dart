@@ -1,10 +1,10 @@
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/value.dart';
 
-class EnumField extends Field {
+class EnumValue extends Value {
   final String enumName;
   final String enumType;
 
-  EnumField({
+  EnumValue({
     required this.enumType,
     required this.enumName,
   });

@@ -1,9 +1,9 @@
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/value.dart';
 
-class DimenField extends Field {
+class DimenValue extends Value {
   final String value;
 
-  DimenField({
+  DimenValue({
     required this.value,
   });
 

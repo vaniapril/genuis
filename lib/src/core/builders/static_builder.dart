@@ -1,11 +1,10 @@
 import 'package:genuis/src/core/builders/base/model_builder.dart';
-import 'package:genuis/src/core/data/field.dart';
 import 'package:genuis/src/core/data/node.dart';
 
-class StaticBuilder<T extends Field> {
+class StaticBuilder {
   final String className;
   final String baseTheme;
-  final Folder<T> root;
+  final Folder root;
 
   const StaticBuilder({
     required this.className,
@@ -29,7 +28,7 @@ class StaticBuilder<T extends Field> {
     return buffer;
   }
 
-  void _writeFolder(Folder<T> folder, StringBuffer buffer) {
+  void _writeFolder(Folder folder, StringBuffer buffer) {
     for (final node in folder.folders) {
       _writeFolder(node, buffer);
     }
@@ -37,7 +36,7 @@ class StaticBuilder<T extends Field> {
     _writeModels(folder, buffer);
   }
 
-  void _writeModels(Folder<T> folder, StringBuffer buffer) {
+  void _writeModels(Folder folder, StringBuffer buffer) {
     if (folder.items.isEmpty) {
       return;
     }

@@ -1,10 +1,8 @@
-import 'dart:io';
-
 import 'package:genuis/src/core/builders/static_builder.dart';
 import 'package:genuis/src/core/data/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
-import 'package:genuis/src/core/fields/dimen_field.dart';
+import 'package:genuis/src/core/fields/dimen_value.dart';
 import 'package:genuis/src/core/x_generator.dart';
 
 class DimensGenerator extends XGenerator {
@@ -27,18 +25,27 @@ class DimensGenerator extends XGenerator {
 
   @override
   String generate() {
-    final rootNode = NodesParser<String>(
+    final rootNode = NodesParser(
       path: fullPath,
       parser: FileParser.json(),
     )
         .parse()
-        .map((e) => NodeItem(name: e.name + toName(e.value), value: DimenField(value: e.value)));
+        .map((e) => Item(
+              name: e.sequence.last + toName(e.value),
+              values: {'base': DimenValue(value: e.value)},
+              path: [],
+            ))
+        .toList();
 
     StringBuffer buffer = StaticBuilder(
       baseTheme: 'base',
       className: 'UIDimens',
       //baseHasLerp: false, // TODO(IvanPrylepski): lerp (T c1, T c2, double t)
-      root: rootNode,
+      root: Folder(
+        name: '',
+        items: rootNode,
+        path: [],
+      ),
     ).code();
 
     return buffer.toString();

@@ -7,16 +7,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset_shadow;
 import 'tokens.ui.dart';
 
-class UICardsShadows extends ThemeExtension<UICardsShadows> {
+class UIShadowsCards extends ThemeExtension<UIShadowsCards> {
   final BoxShadow neomorphism;
   final BoxShadow popUp;
   final BoxShadow inputActive;
 
-  const UICardsShadows({required this.neomorphism, required this.popUp, required this.inputActive});
+  const UIShadowsCards({required this.neomorphism, required this.popUp, required this.inputActive});
 
   @override
-  UICardsShadows copyWith({BoxShadow? neomorphism, BoxShadow? popUp, BoxShadow? inputActive}) {
-    return UICardsShadows(
+  UIShadowsCards copyWith({BoxShadow? neomorphism, BoxShadow? popUp, BoxShadow? inputActive}) {
+    return UIShadowsCards(
       neomorphism: neomorphism ?? this.neomorphism,
       popUp: popUp ?? this.popUp,
       inputActive: inputActive ?? this.inputActive,
@@ -24,16 +24,16 @@ class UICardsShadows extends ThemeExtension<UICardsShadows> {
   }
 
   @override
-  UICardsShadows lerp(ThemeExtension<UICardsShadows>? other, double t) {
-    if (other is! UICardsShadows) return this;
-    return UICardsShadows(
+  UIShadowsCards lerp(ThemeExtension<UIShadowsCards>? other, double t) {
+    if (other is! UIShadowsCards) return this;
+    return UIShadowsCards(
       neomorphism: BoxShadow.lerp(neomorphism, other.neomorphism, t) ?? other.neomorphism,
       popUp: BoxShadow.lerp(popUp, other.popUp, t) ?? other.popUp,
       inputActive: BoxShadow.lerp(inputActive, other.inputActive, t) ?? other.inputActive,
     );
   }
 
-  static final UICardsShadows light = UICardsShadows(
+  static final UIShadowsCards light = UIShadowsCards(
     neomorphism: BoxShadow(
       color: Tokens.primaryNeutral200.value,
       spreadRadius: 0,
@@ -54,7 +54,7 @@ class UICardsShadows extends ThemeExtension<UICardsShadows> {
       inset: true,
     ),
   );
-  static final UICardsShadows dark = UICardsShadows(
+  static final UIShadowsCards dark = UIShadowsCards(
     neomorphism: BoxShadow(
       color: Tokens.primaryNeutral800.value,
       spreadRadius: 0,
@@ -78,12 +78,12 @@ class UICardsShadows extends ThemeExtension<UICardsShadows> {
 }
 
 class UIShadows extends ThemeExtension<UIShadows> {
-  final UICardsShadows cards;
+  final UIShadowsCards cards;
 
   const UIShadows({required this.cards});
 
   @override
-  UIShadows copyWith({UICardsShadows? cards}) {
+  UIShadows copyWith({UIShadowsCards? cards}) {
     return UIShadows(cards: cards ?? this.cards);
   }
 
@@ -93,6 +93,26 @@ class UIShadows extends ThemeExtension<UIShadows> {
     return UIShadows(cards: cards.lerp(other.cards, t));
   }
 
-  static final UIShadows light = UIShadows(cards: UICardsShadows.light);
-  static final UIShadows dark = UIShadows(cards: UICardsShadows.dark);
+  static final UIShadows light = UIShadows(cards: UIShadowsCards.light);
+  static final UIShadows dark = UIShadows(cards: UIShadowsCards.dark);
+}
+
+class UI extends ThemeExtension<UI> {
+  final UIShadows shadows;
+
+  const UI({required this.shadows});
+
+  @override
+  UI copyWith({UIShadows? shadows}) {
+    return UI(shadows: shadows ?? this.shadows);
+  }
+
+  @override
+  UI lerp(ThemeExtension<UI>? other, double t) {
+    if (other is! UI) return this;
+    return UI(shadows: shadows.lerp(other.shadows, t));
+  }
+
+  static final UI light = UI(shadows: UIShadows.light);
+  static final UI dark = UI(shadows: UIShadows.dark);
 }

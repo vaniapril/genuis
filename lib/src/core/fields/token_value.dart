@@ -1,11 +1,11 @@
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/value.dart';
 
-class TokenField extends Field {
+class TokenValue extends Value {
   final String tokenName;
   final String tokenType;
   final String valueType;
 
-  TokenField({
+  TokenValue({
     required this.tokenType,
     required this.tokenName,
     required this.valueType,

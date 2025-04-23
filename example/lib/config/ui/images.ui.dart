@@ -6,31 +6,31 @@
 import 'package:flutter/material.dart';
 
 enum Images {
-  // background
-  backgroundBook('${_base}background/book.jpg'),
-  backgroundCat('${_base}background/cat.jpg'),
-  backgroundFlowers('${_base}background/flowers.jpg'),
+  // UI/images/background
+  uIImagesBackgroundBook('${_base}Images.backgroundBook.value'),
+  uIImagesBackgroundCat('${_base}Images.backgroundCat.value'),
+  uIImagesBackgroundFlowers('${_base}Images.backgroundFlowers.value'),
 
-  // logo
-  logoAbstract('${_base}logo/abstract.svg');
+  // UI/images/logo
+  uIImagesLogoAbstract('${_base}Images.logoAbstract.value');
 
-  static const String _base = 'packages/assets/images/';
+  static const String _base = 'assets/images/';
 
   const Images(this.value);
 
   final String value;
 }
 
-class UIBackgroundImages extends ThemeExtension<UIBackgroundImages> {
+class UIImagesBackground extends ThemeExtension<UIImagesBackground> {
   final String book;
   final String cat;
   final String flowers;
 
-  const UIBackgroundImages({required this.book, required this.cat, required this.flowers});
+  const UIImagesBackground({required this.book, required this.cat, required this.flowers});
 
   @override
-  UIBackgroundImages copyWith({String? book, String? cat, String? flowers}) {
-    return UIBackgroundImages(
+  UIImagesBackground copyWith({String? book, String? cat, String? flowers}) {
+    return UIImagesBackground(
       book: book ?? this.book,
       cat: cat ?? this.cat,
       flowers: flowers ?? this.flowers,
@@ -38,49 +38,49 @@ class UIBackgroundImages extends ThemeExtension<UIBackgroundImages> {
   }
 
   @override
-  UIBackgroundImages lerp(ThemeExtension<UIBackgroundImages>? other, double t) {
-    if (other is! UIBackgroundImages) return this;
-    return UIBackgroundImages(
+  UIImagesBackground lerp(ThemeExtension<UIImagesBackground>? other, double t) {
+    if (other is! UIImagesBackground) return this;
+    return UIImagesBackground(
       book: t < 0.5 ? book : other.book,
       cat: t < 0.5 ? cat : other.cat,
       flowers: t < 0.5 ? flowers : other.flowers,
     );
   }
 
-  static final UIBackgroundImages base = UIBackgroundImages(
+  static final UIImagesBackground base = UIImagesBackground(
     book: Images.backgroundBook.value,
     cat: Images.backgroundCat.value,
     flowers: Images.backgroundFlowers.value,
   );
 }
 
-class UILogoImages extends ThemeExtension<UILogoImages> {
+class UIImagesLogo extends ThemeExtension<UIImagesLogo> {
   final String abstract;
 
-  const UILogoImages({required this.abstract});
+  const UIImagesLogo({required this.abstract});
 
   @override
-  UILogoImages copyWith({String? abstract}) {
-    return UILogoImages(abstract: abstract ?? this.abstract);
+  UIImagesLogo copyWith({String? abstract}) {
+    return UIImagesLogo(abstract: abstract ?? this.abstract);
   }
 
   @override
-  UILogoImages lerp(ThemeExtension<UILogoImages>? other, double t) {
-    if (other is! UILogoImages) return this;
-    return UILogoImages(abstract: t < 0.5 ? abstract : other.abstract);
+  UIImagesLogo lerp(ThemeExtension<UIImagesLogo>? other, double t) {
+    if (other is! UIImagesLogo) return this;
+    return UIImagesLogo(abstract: t < 0.5 ? abstract : other.abstract);
   }
 
-  static final UILogoImages base = UILogoImages(abstract: Images.logoAbstract.value);
+  static final UIImagesLogo base = UIImagesLogo(abstract: Images.logoAbstract.value);
 }
 
 class UIImages extends ThemeExtension<UIImages> {
-  final UIBackgroundImages background;
-  final UILogoImages logo;
+  final UIImagesBackground background;
+  final UIImagesLogo logo;
 
   const UIImages({required this.background, required this.logo});
 
   @override
-  UIImages copyWith({UIBackgroundImages? background, UILogoImages? logo}) {
+  UIImages copyWith({UIImagesBackground? background, UIImagesLogo? logo}) {
     return UIImages(background: background ?? this.background, logo: logo ?? this.logo);
   }
 
@@ -94,7 +94,26 @@ class UIImages extends ThemeExtension<UIImages> {
   }
 
   static final UIImages base = UIImages(
-    background: UIBackgroundImages.base,
-    logo: UILogoImages.base,
+    background: UIImagesBackground.base,
+    logo: UIImagesLogo.base,
   );
+}
+
+class UI extends ThemeExtension<UI> {
+  final UIImages images;
+
+  const UI({required this.images});
+
+  @override
+  UI copyWith({UIImages? images}) {
+    return UI(images: images ?? this.images);
+  }
+
+  @override
+  UI lerp(ThemeExtension<UI>? other, double t) {
+    if (other is! UI) return this;
+    return UI(images: images.lerp(other.images, t));
+  }
+
+  static final UI base = UI(images: UIImages.base);
 }

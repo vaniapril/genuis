@@ -1,162 +1,101 @@
 import 'dart:io';
 
-import 'package:genuis/src/core/data/model.dart';
+import 'package:genuis/src/core/data/sequence.dart';
 import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/data/value.dart';
 import 'package:genuis/src/utils/list_extension.dart';
 
-class ModelsParser<N, M> {
+class ModelsParser {
   static const _baseTheme = 'base';
 
-  final NodeFolder<N> folder;
+  final List<Sequence> sequences;
   final List<String> themes;
 
-  final M Function(N value) mapper;
+  final Value Function(String value) mapper;
 
   ModelsParser({
-    required this.folder,
+    required this.sequences,
     required this.themes,
     required this.mapper,
   });
 
-  ModelFolder<M> parse() {
-    final root = parseFolder(folder);
-    return ModelFolder<M>(
-      name: '',
-      themes: root.themes,
-      models: switch (root) {
-        ModelFolder<M> folder => folder.models,
-        ModelItem<M> item => [item],
-      },
+  Folder parse() {
+    final root = Folder(
+      name: 'UI',
+      path: [],
     );
+
+    for (final sequence in sequences) {
+      _addSequences(root, sequence);
+    }
+
+    updateThemes(root);
+
+    return root;
   }
 
-  Model<M> parseFolder(NodeFolder<N> folder) {
-    if (folder.folders.length == 1 &&
-        folder.items.isEmpty &&
-        folder.name == folder.folders.first.name) {
-      return parseFolder(folder.folders.first);
-    }
+  bool updateThemes(Folder folder) {
+    bool hasTheme = false;
 
-    if (folder.isTheme(themes)) {
-      // TODO(IvanPrylepski): refactor
-      final themed = parseThemedFolders(
-        {
-          for (final theme in themes)
-            theme: NodeFolder(
-              name: folder.name,
-              nodes: folder.folders.firstWhere((e) => e.name == theme).nodes,
-            ),
-        },
-      );
-      return ModelFolder<M>(
-        name: themed.name,
-        themes: themed.themes,
-        models: [
-          ...themed.models,
-          ...folder.folders.where((e) => !themes.contains(e.name)).map(
-                (e) => parseFolder(e),
-              ),
-          ...folder.items.map(
-            (e) => ModelItem(
-              name: e.name,
-              themes: [_baseTheme],
-              values: {
-                _baseTheme: mapper(e.value),
-              },
-            ),
-          )
-        ],
-      );
-    }
-
-    if (folder.isNodeTheme(themes)) {
-      // TODO(IvanPrylepski): refactor
-
-      return ModelItem(
-        name: folder.name,
-        themes: [...themes],
-        values: {
-          for (final theme in themes)
-            theme: mapper(folder.items.firstWhere((e) => e.name == theme).value),
-        },
-      );
-    }
-
-    final models = <Model<M>>[];
-
-    for (final node in folder.nodes) {
-      switch (node) {
-        case NodeFolder<N>():
-          models.add(
-            parseFolder(node),
-          );
-        case NodeItem<N>():
-          models.add(
-            ModelItem(
-              name: node.name,
-              themes: [_baseTheme],
-              values: {
-                _baseTheme: mapper(node.value),
-              },
-            ),
-          );
+    for (final e in folder.folders) {
+      if (updateThemes(e)) {
+        hasTheme = true;
       }
     }
 
-    return ModelFolder<M>(
-      name: folder.name,
-      themes: models.where((e) => e.themes.isEqualIgnoreOrder(themes)).firstOrNull?.themes ??
-          [_baseTheme],
-      models: models,
-    );
+    for (final e in folder.items) {
+      if (e.values.keys.toList().isEqualIgnoreOrder(themes)) {
+        hasTheme = true;
+      }
+    }
+
+    folder.themes = hasTheme ? themes : [_baseTheme];
+
+    return hasTheme;
   }
 
-  ModelFolder<M> parseThemedFolders(Map<String, NodeFolder<N>> folders) {
-    if (folders.isEmpty) {
-      throw 'Theme Folder is empty!';
-    }
+  void _addSequences(Folder root, Sequence sequence) {
+    List<String> path = [];
+    String? theme;
+    String? name;
 
-    final folder = folders.values.first;
-
-    for (final other in folders.values) {
-      if (!folder.isEqual(other)) {
-        throw '${folder.name} are not equal: ${folder.notEqual(other)}';
+    for (final element in sequence.sequence) {
+      if (themes.contains(element)) {
+        if (theme != null) {
+          throw 'Multiple themes in sequence: ${sequence.sequence.join(', ')}';
+        }
+        theme = element;
+      } else {
+        if (name != null) {
+          path.add(name);
+        }
+        name = element;
       }
     }
 
-    if (folder.isTheme(themes)) {
-      throw 'Theme Folder inside another Theme folder!';
-    }
+    Folder folder = root;
 
-    final models = <Model<M>>[];
-
-    for (final node in folder.nodes) {
-      switch (node) {
-        case NodeFolder<N>():
-          models.add(parseThemedFolders(
-            folders.map(
-              (key, value) => MapEntry(
-                key,
-                value.folders.firstWhere((e) => e.name == node.name),
-              ),
-            ),
-          ));
-        case NodeItem<N>():
-          models.add(ModelItem(
-            name: node.name,
-            themes: themes,
-            values: folders.map(
-              (key, value) =>
-                  MapEntry(key, mapper(value.items.firstWhere((e) => e.name == node.name).value)),
-            ),
-          ));
+    for (final name in path) {
+      Folder? subFolder = folder.folders.firstWhereOrNull((e) => e.name == name);
+      if (subFolder == null) {
+        subFolder = Folder(
+          name: name,
+          path: [...folder.path, folder.name],
+        );
+        folder.folders.add(subFolder);
       }
+      folder = subFolder;
     }
 
-    return ModelFolder<M>(
-      name: folder.name,
-      themes: themes,
-      models: models,
-    );
+    Item? item = folder.items.firstWhereOrNull((e) => e.name == name);
+    if (item == null) {
+      item = Item(
+        name: name!,
+        path: [...folder.path, folder.name],
+      );
+      folder.items.add(item);
+    }
+
+    item.values[theme ?? _baseTheme] = mapper(sequence.value);
   }
 }

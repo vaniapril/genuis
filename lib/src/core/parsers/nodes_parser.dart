@@ -1,38 +1,36 @@
 import 'dart:io';
 
-import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/data/sequence.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/utils/directory_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-class NodesParser<T> {
+class NodesParser {
   final String path;
-  final FileParser<T> parser;
+  final FileParser parser;
 
   NodesParser({
     required this.parser,
     required this.path,
   });
 
-  NodeFolder<T> parse() {
-    return _parseDirectory(Directory(path));
+  List<Sequence> parse() {
+    final directory = Directory(path);
+    return _parseDirectory([directory.name.pathCamelCase.named], directory);
   }
 
-  NodeFolder<T> _parseDirectory(Directory directory) {
-    final folder = NodeFolder<T>(
-      name: directory.name.pathCamelCase,
-      nodes: [],
-    );
+  List<Sequence> _parseDirectory(List<String> path, Directory directory) {
+    List<Sequence> sequences = [];
 
     for (final entity in directory.listSync()) {
       if (entity is Directory) {
-        folder.addWithMerge([_parseDirectory(entity)]);
+        sequences.addAll(_parseDirectory([...path, entity.name], entity));
       }
       if (entity is File) {
-        folder.addWithMerge(parser.parse(entity));
+        sequences.addAll(parser.parse(path, entity));
       }
     }
 
-    return folder;
+    return sequences;
   }
 }

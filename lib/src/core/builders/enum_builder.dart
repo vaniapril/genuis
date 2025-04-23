@@ -1,14 +1,13 @@
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/builders/base/model_builder.dart';
 import 'package:genuis/src/core/data/node.dart';
 import 'package:genuis/src/utils/string_extension.dart';
-import 'package:genuis/src/core/builders/base/model_builder.dart';
 
-class EnumBuilder<T extends Field> {
+class EnumBuilder {
   final String basePath;
   final String valueName;
   final String valueType;
   final String enumName;
-  final Folder<T> root;
+  final Folder root;
 
   const EnumBuilder({
     required this.basePath,
@@ -38,7 +37,7 @@ class EnumBuilder<T extends Field> {
     return buffer;
   }
 
-  void _writeFolder(Folder<T> folder, StringBuffer buffer) {
+  void _writeFolder(Folder folder, StringBuffer buffer) {
     for (final node in folder.folders) {
       _writeFolder(node, buffer);
     }
@@ -46,7 +45,7 @@ class EnumBuilder<T extends Field> {
     _writeModels(folder, buffer);
   }
 
-  void _writeModels(Folder<T> folder, StringBuffer buffer) {
+  void _writeModels(Folder folder, StringBuffer buffer) {
     if (folder.items.isEmpty) {
       return;
     }
@@ -60,11 +59,11 @@ class EnumBuilder<T extends Field> {
     }
   }
 
-  String _enumName(Item<T> model) {
+  String _enumName(Item model) {
     return '${model.path.map((e) => e.upperFirst).join()}${model.name.upperFirst}'.lowerFirst;
   }
 
-  String _comment(Folder<T> folder) {
+  String _comment(Folder folder) {
     return [...folder.path, folder.name].where((e) => e.isNotEmpty).join('/');
   }
 }

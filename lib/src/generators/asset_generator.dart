@@ -1,13 +1,11 @@
 import 'package:genuis/src/core/builders/theme_extension_builder.dart';
 import 'package:genuis/src/core/builders/enum_builder.dart';
-import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/fields/token_value.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/core/x_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
-
-import '../core/fields/token_field.dart';
 
 class AssetGenerator extends XGenerator {
   final String folder;
@@ -25,15 +23,15 @@ class AssetGenerator extends XGenerator {
 
   @override
   String generate() {
-    final rootNode = NodesParser(
+    final sequences = NodesParser(
       path: fullPath,
       parser: FileParser.asset(fullPath),
     ).parse();
 
-    final rootModel = ModelsParser(
-      folder: rootNode,
+    final root = ModelsParser(
+      sequences: sequences,
       themes: config.xGens.themes,
-      mapper: (value) => TokenField(
+      mapper: (value) => TokenValue(
         tokenType: folder.upperFirst,
         valueType: 'String',
         tokenName: value.withoutExtension.pathCamelCase,
@@ -45,7 +43,7 @@ class AssetGenerator extends XGenerator {
       valueType: 'String',
       basePath: '$path/',
       enumName: folder.upperFirst,
-      root: NodeFolder(name: '', nodes: rootNode.nodes),
+      root: root,
     ).code();
 
     buffer.writeln(
@@ -55,7 +53,7 @@ class AssetGenerator extends XGenerator {
         typePostfix: folder.upperFirst,
         baseTheme: 'base',
         //baseHasLerp: false, // TODO(IvanPrylepski): lerp (T c1, T c2, double t)
-        root: rootModel,
+        root: root,
       ).code(),
     );
 

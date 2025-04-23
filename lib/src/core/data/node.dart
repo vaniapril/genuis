@@ -1,6 +1,6 @@
-import 'package:genuis/src/utils/list_extension.dart';
+import 'package:genuis/src/core/data/value.dart';
 
-sealed class Node<N> {
+sealed class Node {
   final String name;
   final List<String> path;
 
@@ -10,50 +10,36 @@ sealed class Node<N> {
   });
 }
 
-class Item<N> extends Node<N> {
-  final Map<String, N> values;
+class Item extends Node {
+  final Map<String, Value> values;
 
-  const Item({
+  Item({
     required super.name,
-    required this.values,
     required super.path,
-  });
+    Map<String, Value>? values,
+  }) : values = values ?? {};
 
   @override
-  String toString() => '{name: $name, value: $values}';
+  String toString() => '{name: $name, path: $path, value: $values}';
 }
 
-class Folder<N> extends Node<N> {
-  final List<Folder<N>> _folders;
-  final List<Item<N>> _items;
-  final List<String> _themes;
+class Folder extends Node {
+  List<Folder> folders;
+  List<Item> items;
+  List<String> themes;
 
-  List<Folder<N>> get folders => _folders;
-  List<Item<N>> get items => _items;
-  List<String> get themes => _themes;
-  List<Node<N>> get nodes => [..._folders, ..._items];
-
-  const Folder({
+  Folder({
     required super.name,
     required super.path,
-    required List<Folder<N>> folders,
-    required List<Item<N>> items,
-    required List<String> themes,
-  })  : _folders = folders,
-        _items = items,
-        _themes = themes;
+    List<Folder>? folders,
+    List<Item>? items,
+    List<String>? themes,
+  })  : folders = folders ?? [],
+        items = items ?? [],
+        themes = themes ?? [];
 
-  bool isEqual(Folder<N> other) {
-    final folderNames = folders.map((e) => e.name).toList();
-    final itemNames = items.map((e) => e.name).toList();
-
-    final otherFolderNames = other.folders.map((e) => e.name).toList();
-    final otherItemNames = other.items.map((e) => e.name).toList();
-
-    return folderNames.isEqualIgnoreOrder(otherFolderNames) &&
-        itemNames.isEqualIgnoreOrder(otherItemNames);
-  }
+  List<Node> get nodes => [...folders, ...items];
 
   @override
-  String toString() => '{name: $name, folders: $folders, items: $items}';
+  String toString() => '{name: $name, path: $path, folders: $folders, items: $items}';
 }

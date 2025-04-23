@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-class UIBlurs extends ThemeExtension<UIBlurs> {
+class UIBlursBlurs extends ThemeExtension<UIBlursBlurs> {
   final ImageFilter blur2;
   final ImageFilter blur4;
   final ImageFilter blur8;
@@ -14,7 +14,7 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
   final ImageFilter blur32;
   final ImageFilter blur64;
 
-  const UIBlurs({
+  const UIBlursBlurs({
     required this.blur2,
     required this.blur4,
     required this.blur8,
@@ -24,7 +24,7 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
   });
 
   @override
-  UIBlurs copyWith({
+  UIBlursBlurs copyWith({
     ImageFilter? blur2,
     ImageFilter? blur4,
     ImageFilter? blur8,
@@ -32,7 +32,7 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
     ImageFilter? blur32,
     ImageFilter? blur64,
   }) {
-    return UIBlurs(
+    return UIBlursBlurs(
       blur2: blur2 ?? this.blur2,
       blur4: blur4 ?? this.blur4,
       blur8: blur8 ?? this.blur8,
@@ -43,9 +43,9 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
   }
 
   @override
-  UIBlurs lerp(ThemeExtension<UIBlurs>? other, double t) {
-    if (other is! UIBlurs) return this;
-    return UIBlurs(
+  UIBlursBlurs lerp(ThemeExtension<UIBlursBlurs>? other, double t) {
+    if (other is! UIBlursBlurs) return this;
+    return UIBlursBlurs(
       blur2: t < 0.5 ? blur2 : other.blur2,
       blur4: t < 0.5 ? blur4 : other.blur4,
       blur8: t < 0.5 ? blur8 : other.blur8,
@@ -55,7 +55,7 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
     );
   }
 
-  static final UIBlurs base = UIBlurs(
+  static final UIBlursBlurs base = UIBlursBlurs(
     blur2: ImageFilter.blur(sigmaX: 0.125 / 2, sigmaY: 0.125 / 2),
     blur4: ImageFilter.blur(sigmaX: 0.25 / 2, sigmaY: 0.25 / 2),
     blur8: ImageFilter.blur(sigmaX: 0.5 / 2, sigmaY: 0.5 / 2),
@@ -63,4 +63,42 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
     blur32: ImageFilter.blur(sigmaX: 2 / 2, sigmaY: 2 / 2),
     blur64: ImageFilter.blur(sigmaX: 4 / 2, sigmaY: 4 / 2),
   );
+}
+
+class UIBlurs extends ThemeExtension<UIBlurs> {
+  final UIBlursBlurs blurs;
+
+  const UIBlurs({required this.blurs});
+
+  @override
+  UIBlurs copyWith({UIBlursBlurs? blurs}) {
+    return UIBlurs(blurs: blurs ?? this.blurs);
+  }
+
+  @override
+  UIBlurs lerp(ThemeExtension<UIBlurs>? other, double t) {
+    if (other is! UIBlurs) return this;
+    return UIBlurs(blurs: blurs.lerp(other.blurs, t));
+  }
+
+  static final UIBlurs base = UIBlurs(blurs: UIBlursBlurs.base);
+}
+
+class UI extends ThemeExtension<UI> {
+  final UIBlurs blurs;
+
+  const UI({required this.blurs});
+
+  @override
+  UI copyWith({UIBlurs? blurs}) {
+    return UI(blurs: blurs ?? this.blurs);
+  }
+
+  @override
+  UI lerp(ThemeExtension<UI>? other, double t) {
+    if (other is! UI) return this;
+    return UI(blurs: blurs.lerp(other.blurs, t));
+  }
+
+  static final UI base = UI(blurs: UIBlurs.base);
 }

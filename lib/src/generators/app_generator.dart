@@ -1,8 +1,7 @@
 import 'package:genuis/src/core/builders/theme_extension_builder.dart';
-import 'package:genuis/src/core/data/model.dart';
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/data/value.dart';
 import 'package:genuis/src/core/x_generator.dart';
-import 'package:genuis/src/utils/string_extension.dart';
 
 // TODO(IvanPrylepski): refactor all
 class AppGenerator extends XGenerator {
@@ -35,26 +34,31 @@ class AppGenerator extends XGenerator {
   String generate() {
     final themed = ['colors', 'shadows'];
 
-    final rootModel = ModelFolder(
-      themes: config.xGens.themes,
+    final root = Folder(
       name: 'UI',
-      models: [
+      path: [],
+    );
+
+    root.themes = config.xGens.themes;
+
+    root.folders.addAll(
+      [
         for (final generator in generators)
-          ModelFolder<Field>(
+          Folder(
             name: generator.name,
             themes: themed.contains(generator.name) ? config.xGens.themes : [],
-            models: [],
+            path: ['UI'],
             // values: themed.contains(generator.name)
             //     ? {
             //         for (final theme in config.xGens.themes)
-            //           theme: ThemeField(
+            //           theme: ThemeValue(
             //             ttype: 'UI${generator.name.upperFirst}',
             //             ccode: 'UI${generator.name.upperFirst}.$theme',
             //           )
             //       }
             //     : {
             //         for (final theme in config.xGens.themes)
-            //           theme: ThemeField(
+            //           theme: ThemeValue(
             //             ttype: 'UI${generator.name.upperFirst}',
             //             ccode: 'UI${generator.name.upperFirst}.base',
             //           ),
@@ -69,7 +73,7 @@ class AppGenerator extends XGenerator {
       typePostfix: '',
       baseTheme: 'base',
       //baseHasLerp: false, // TODO(IvanPrylepski): lerp (T c1, T c2, double t)
-      root: rootModel,
+      root: root,
 
       // TODO(IvanPrylepski): refactor
       additions: '''
@@ -83,11 +87,11 @@ class AppGenerator extends XGenerator {
   }
 }
 
-class ThemeField extends Field {
+class ThemeValue extends Value {
   final String ttype;
   final String ccode;
 
-  ThemeField({
+  ThemeValue({
     required this.ttype,
     required this.ccode,
   });

@@ -1,13 +1,12 @@
-import 'package:genuis/src/core/data/field.dart';
-import 'package:genuis/src/core/fields/color_tween_field.dart';
-import 'package:genuis/src/core/fields/enum_field.dart';
-import 'package:genuis/src/core/fields/token_field.dart';
+import 'package:genuis/src/core/data/value.dart';
+import 'package:genuis/src/core/fields/color_tween_value.dart';
+import 'package:genuis/src/core/fields/token_value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-class ColorField extends Field {
+class ColorValue extends Value {
   final String hex;
 
-  ColorField({
+  ColorValue({
     required this.hex,
   });
 
@@ -17,14 +16,14 @@ class ColorField extends Field {
   @override
   String get type => 'Color';
 
-  static Field? tryParse(String value) {
+  static Value? tryParse(String value) {
     final list = value.split(' ');
     if (list.isEmpty || list.length > 2) {
       // TODO(IvanPrylepski): error
     }
 
     if (list.first.startsWith('\$')) {
-      return TokenField(
+      return TokenValue(
         tokenType: 'Tokens',
         valueType: 'Color',
         tokenName: list.first.substring(1).pathCamelCase,
@@ -36,13 +35,13 @@ class ColorField extends Field {
     }
 
     if (list.length == 1) {
-      return ColorField(
+      return ColorValue(
         hex: list.first.hexToBitInt,
       );
     }
 
     if (list.length == 2) {
-      return ColorTweenField(
+      return ColorTweenValue(
         beginHex: list[0].hexToBitInt,
         endHex: list[1].hexToBitInt,
       );

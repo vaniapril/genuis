@@ -1,9 +1,9 @@
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/value.dart';
 
-class BlurField extends Field {
+class BlurValue extends Value {
   final String sigma;
 
-  BlurField({
+  BlurValue({
     required this.sigma,
   });
 
@@ -13,10 +13,10 @@ class BlurField extends Field {
   @override
   String get type => 'ImageFilter';
 
-  static Field? tryParse(String value) {
+  static Value? tryParse(String value) {
     final list = value.split(' ');
 
-    return BlurField(
+    return BlurValue(
       sigma: list[0].replaceAll('px', ''),
     );
   }

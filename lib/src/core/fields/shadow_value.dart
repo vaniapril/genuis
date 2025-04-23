@@ -1,7 +1,7 @@
-import 'package:genuis/src/core/data/field.dart';
+import 'package:genuis/src/core/data/value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-class ShadowField extends Field {
+class ShadowValue extends Value {
   final String color;
   final String spread;
   final String blur;
@@ -9,7 +9,7 @@ class ShadowField extends Field {
   final String dy;
   final bool inset;
 
-  ShadowField({
+  ShadowValue({
     required this.color,
     required this.spread,
     required this.blur,
@@ -25,12 +25,12 @@ class ShadowField extends Field {
   @override
   String get type => 'BoxShadow';
 
-  static Field? tryParse(String value) {
+  static Value? tryParse(String value) {
     final list = value.split(' ');
 
     // TODO(IvanPrylepski): refactor
 
-    return ShadowField(
+    return ShadowValue(
       color: list[0].startsWith('\$')
           ? 'Tokens.${list[0].substring(1).pathCamelCase}.value'
           : 'Color(${list[0].hexToBitInt})',

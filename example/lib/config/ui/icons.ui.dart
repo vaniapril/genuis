@@ -6,73 +6,74 @@
 import 'package:flutter/material.dart';
 
 enum Icons {
-  // filled/shopping
-  filledShoppingCard('${_base}filled/shopping-card.svg'),
+  // UI/icons/filled/shopping
+  uIIconsFilledShoppingCard('${_base}Icons.filledShoppingCard.value'),
 
-  // filled
-  filledBandAid('${_base}filled/band_aid.svg'),
-  filledCar('${_base}filled/car.svg'),
-  filledCloud('${_base}filled/cloud.svg'),
-  filledComment('${_base}filled/comment.svg'),
-  filledCompass('${_base}filled/compass.svg'),
-  filledFilmCamera('${_base}filled/film_camera.svg'),
-  filledMagnifyingGlass('${_base}filled/magnifying_glass.svg'),
-  filledMedKit('${_base}filled/med_kit.svg'),
-  filledPencil('${_base}filled/pencil.svg'),
-  filledPhoto('${_base}filled/photo.svg'),
-  filledPill('${_base}filled/pill.svg'),
-  filledRibbon('${_base}filled/ribbon.svg'),
-  filledRocket('${_base}filled/rocket.svg'),
-  filledTreeDecidious('${_base}filled/tree_decidious.svg'),
-  filledTreeEvergreen('${_base}filled/tree_evergreen.svg'),
+  // UI/icons/filled
+  uIIconsFilledBandAid('${_base}Icons.filledBandAid.value'),
+  uIIconsFilledCar('${_base}Icons.filledCar.value'),
+  uIIconsFilledCloud('${_base}Icons.filledCloud.value'),
+  uIIconsFilledComment('${_base}Icons.filledComment.value'),
+  uIIconsFilledCompass('${_base}Icons.filledCompass.value'),
+  uIIconsFilledFilmCamera('${_base}Icons.filledFilmCamera.value'),
+  uIIconsFilledMagnifyingGlass('${_base}Icons.filledMagnifyingGlass.value'),
+  uIIconsFilledMedKit('${_base}Icons.filledMedKit.value'),
+  uIIconsFilledPencil('${_base}Icons.filledPencil.value'),
+  uIIconsFilledPhoto('${_base}Icons.filledPhoto.value'),
+  uIIconsFilledPill('${_base}Icons.filledPill.value'),
+  uIIconsFilledRibbon('${_base}Icons.filledRibbon.value'),
+  uIIconsFilledRocket('${_base}Icons.filledRocket.value'),
+  uIIconsFilledTreeDecidious('${_base}Icons.filledTreeDecidious.value'),
+  uIIconsFilledTreeEvergreen('${_base}Icons.filledTreeEvergreen.value'),
 
-  // outlined
-  outlinedBellClose('${_base}outlined/bell_close.svg'),
-  outlinedBellOff('${_base}outlined/bell_off.svg'),
-  outlinedBuilding('${_base}outlined/building.svg'),
-  outlinedCalendar('${_base}outlined/calendar.svg'),
-  outlinedCalendarDays('${_base}outlined/calendar_days.svg'),
-  outlinedCarAuto('${_base}outlined/car_auto.svg'),
-  outlinedChat('${_base}outlined/chat.svg'),
-  outlinedChatAdd('${_base}outlined/chat_add.svg'),
-  outlinedCloud('${_base}outlined/cloud.svg'),
-  outlinedCloudAdd('${_base}outlined/cloud_add.svg'),
-  outlinedCupcake('${_base}outlined/cupcake.svg'),
-  outlinedFileBlank('${_base}outlined/file_blank.svg'),
-  outlinedFolder('${_base}outlined/folder.svg'),
-  outlinedHamburgerLg('${_base}outlined/hamburger_lg.svg'),
-  outlinedHeadphones('${_base}outlined/headphones.svg'),
-  outlinedHouse('${_base}outlined/house.svg');
+  // UI/icons/outlined
+  uIIconsOutlinedBellClose('${_base}Icons.outlinedBellClose.value'),
+  uIIconsOutlinedBellOff('${_base}Icons.outlinedBellOff.value'),
+  uIIconsOutlinedBuilding('${_base}Icons.outlinedBuilding.value'),
+  uIIconsOutlinedCalendar('${_base}Icons.outlinedCalendar.value'),
+  uIIconsOutlinedCalendarDays('${_base}Icons.outlinedCalendarDays.value'),
+  uIIconsOutlinedCarAuto('${_base}Icons.outlinedCarAuto.value'),
+  uIIconsOutlinedChat('${_base}Icons.outlinedChat.value'),
+  uIIconsOutlinedChatAdd('${_base}Icons.outlinedChatAdd.value'),
+  uIIconsOutlinedCloud('${_base}Icons.outlinedCloud.value'),
+  uIIconsOutlinedCloudAdd('${_base}Icons.outlinedCloudAdd.value'),
+  uIIconsOutlinedCupcake('${_base}Icons.outlinedCupcake.value'),
+  uIIconsOutlinedFileBlank('${_base}Icons.outlinedFileBlank.value'),
+  uIIconsOutlinedFolder('${_base}Icons.outlinedFolder.value'),
+  uIIconsOutlinedHamburgerLg('${_base}Icons.outlinedHamburgerLg.value'),
+  uIIconsOutlinedHeadphones('${_base}Icons.outlinedHeadphones.value'),
+  uIIconsOutlinedHouse('${_base}Icons.outlinedHouse.value');
 
-  static const String _base = 'packages/assets/icons/';
+  static const String _base = 'assets/icons/';
 
   const Icons(this.value);
 
   final String value;
 }
 
-class UIFilledShoppingIcons extends ThemeExtension<UIFilledShoppingIcons> {
+class UIIconsFilledShopping extends ThemeExtension<UIIconsFilledShopping> {
   final String card;
 
-  const UIFilledShoppingIcons({required this.card});
+  const UIIconsFilledShopping({required this.card});
 
   @override
-  UIFilledShoppingIcons copyWith({String? card}) {
-    return UIFilledShoppingIcons(card: card ?? this.card);
+  UIIconsFilledShopping copyWith({String? card}) {
+    return UIIconsFilledShopping(card: card ?? this.card);
   }
 
   @override
-  UIFilledShoppingIcons lerp(ThemeExtension<UIFilledShoppingIcons>? other, double t) {
-    if (other is! UIFilledShoppingIcons) return this;
-    return UIFilledShoppingIcons(card: t < 0.5 ? card : other.card);
+  UIIconsFilledShopping lerp(ThemeExtension<UIIconsFilledShopping>? other, double t) {
+    if (other is! UIIconsFilledShopping) return this;
+    return UIIconsFilledShopping(card: t < 0.5 ? card : other.card);
   }
 
-  static final UIFilledShoppingIcons base = UIFilledShoppingIcons(
+  static final UIIconsFilledShopping base = UIIconsFilledShopping(
     card: Icons.filledShoppingCard.value,
   );
 }
 
-class UIFilledIcons extends ThemeExtension<UIFilledIcons> {
+class UIIconsFilled extends ThemeExtension<UIIconsFilled> {
+  final UIIconsFilledShopping shopping;
   final String bandAid;
   final String car;
   final String cloud;
@@ -86,11 +87,11 @@ class UIFilledIcons extends ThemeExtension<UIFilledIcons> {
   final String pill;
   final String ribbon;
   final String rocket;
-  final UIFilledShoppingIcons shopping;
   final String treeDecidious;
   final String treeEvergreen;
 
-  const UIFilledIcons({
+  const UIIconsFilled({
+    required this.shopping,
     required this.bandAid,
     required this.car,
     required this.cloud,
@@ -104,13 +105,13 @@ class UIFilledIcons extends ThemeExtension<UIFilledIcons> {
     required this.pill,
     required this.ribbon,
     required this.rocket,
-    required this.shopping,
     required this.treeDecidious,
     required this.treeEvergreen,
   });
 
   @override
-  UIFilledIcons copyWith({
+  UIIconsFilled copyWith({
+    UIIconsFilledShopping? shopping,
     String? bandAid,
     String? car,
     String? cloud,
@@ -124,11 +125,11 @@ class UIFilledIcons extends ThemeExtension<UIFilledIcons> {
     String? pill,
     String? ribbon,
     String? rocket,
-    UIFilledShoppingIcons? shopping,
     String? treeDecidious,
     String? treeEvergreen,
   }) {
-    return UIFilledIcons(
+    return UIIconsFilled(
+      shopping: shopping ?? this.shopping,
       bandAid: bandAid ?? this.bandAid,
       car: car ?? this.car,
       cloud: cloud ?? this.cloud,
@@ -142,16 +143,16 @@ class UIFilledIcons extends ThemeExtension<UIFilledIcons> {
       pill: pill ?? this.pill,
       ribbon: ribbon ?? this.ribbon,
       rocket: rocket ?? this.rocket,
-      shopping: shopping ?? this.shopping,
       treeDecidious: treeDecidious ?? this.treeDecidious,
       treeEvergreen: treeEvergreen ?? this.treeEvergreen,
     );
   }
 
   @override
-  UIFilledIcons lerp(ThemeExtension<UIFilledIcons>? other, double t) {
-    if (other is! UIFilledIcons) return this;
-    return UIFilledIcons(
+  UIIconsFilled lerp(ThemeExtension<UIIconsFilled>? other, double t) {
+    if (other is! UIIconsFilled) return this;
+    return UIIconsFilled(
+      shopping: shopping.lerp(other.shopping, t),
       bandAid: t < 0.5 ? bandAid : other.bandAid,
       car: t < 0.5 ? car : other.car,
       cloud: t < 0.5 ? cloud : other.cloud,
@@ -165,13 +166,13 @@ class UIFilledIcons extends ThemeExtension<UIFilledIcons> {
       pill: t < 0.5 ? pill : other.pill,
       ribbon: t < 0.5 ? ribbon : other.ribbon,
       rocket: t < 0.5 ? rocket : other.rocket,
-      shopping: shopping.lerp(other.shopping, t),
       treeDecidious: t < 0.5 ? treeDecidious : other.treeDecidious,
       treeEvergreen: t < 0.5 ? treeEvergreen : other.treeEvergreen,
     );
   }
 
-  static final UIFilledIcons base = UIFilledIcons(
+  static final UIIconsFilled base = UIIconsFilled(
+    shopping: UIIconsFilledShopping.base,
     bandAid: Icons.filledBandAid.value,
     car: Icons.filledCar.value,
     cloud: Icons.filledCloud.value,
@@ -185,13 +186,12 @@ class UIFilledIcons extends ThemeExtension<UIFilledIcons> {
     pill: Icons.filledPill.value,
     ribbon: Icons.filledRibbon.value,
     rocket: Icons.filledRocket.value,
-    shopping: UIFilledShoppingIcons.base,
     treeDecidious: Icons.filledTreeDecidious.value,
     treeEvergreen: Icons.filledTreeEvergreen.value,
   );
 }
 
-class UIOutlinedIcons extends ThemeExtension<UIOutlinedIcons> {
+class UIIconsOutlined extends ThemeExtension<UIIconsOutlined> {
   final String bellClose;
   final String bellOff;
   final String building;
@@ -209,7 +209,7 @@ class UIOutlinedIcons extends ThemeExtension<UIOutlinedIcons> {
   final String headphones;
   final String house;
 
-  const UIOutlinedIcons({
+  const UIIconsOutlined({
     required this.bellClose,
     required this.bellOff,
     required this.building,
@@ -229,7 +229,7 @@ class UIOutlinedIcons extends ThemeExtension<UIOutlinedIcons> {
   });
 
   @override
-  UIOutlinedIcons copyWith({
+  UIIconsOutlined copyWith({
     String? bellClose,
     String? bellOff,
     String? building,
@@ -247,7 +247,7 @@ class UIOutlinedIcons extends ThemeExtension<UIOutlinedIcons> {
     String? headphones,
     String? house,
   }) {
-    return UIOutlinedIcons(
+    return UIIconsOutlined(
       bellClose: bellClose ?? this.bellClose,
       bellOff: bellOff ?? this.bellOff,
       building: building ?? this.building,
@@ -268,9 +268,9 @@ class UIOutlinedIcons extends ThemeExtension<UIOutlinedIcons> {
   }
 
   @override
-  UIOutlinedIcons lerp(ThemeExtension<UIOutlinedIcons>? other, double t) {
-    if (other is! UIOutlinedIcons) return this;
-    return UIOutlinedIcons(
+  UIIconsOutlined lerp(ThemeExtension<UIIconsOutlined>? other, double t) {
+    if (other is! UIIconsOutlined) return this;
+    return UIIconsOutlined(
       bellClose: t < 0.5 ? bellClose : other.bellClose,
       bellOff: t < 0.5 ? bellOff : other.bellOff,
       building: t < 0.5 ? building : other.building,
@@ -290,7 +290,7 @@ class UIOutlinedIcons extends ThemeExtension<UIOutlinedIcons> {
     );
   }
 
-  static final UIOutlinedIcons base = UIOutlinedIcons(
+  static final UIIconsOutlined base = UIIconsOutlined(
     bellClose: Icons.outlinedBellClose.value,
     bellOff: Icons.outlinedBellOff.value,
     building: Icons.outlinedBuilding.value,
@@ -311,13 +311,13 @@ class UIOutlinedIcons extends ThemeExtension<UIOutlinedIcons> {
 }
 
 class UIIcons extends ThemeExtension<UIIcons> {
-  final UIFilledIcons filled;
-  final UIOutlinedIcons outlined;
+  final UIIconsFilled filled;
+  final UIIconsOutlined outlined;
 
   const UIIcons({required this.filled, required this.outlined});
 
   @override
-  UIIcons copyWith({UIFilledIcons? filled, UIOutlinedIcons? outlined}) {
+  UIIcons copyWith({UIIconsFilled? filled, UIIconsOutlined? outlined}) {
     return UIIcons(filled: filled ?? this.filled, outlined: outlined ?? this.outlined);
   }
 
@@ -330,5 +330,24 @@ class UIIcons extends ThemeExtension<UIIcons> {
     );
   }
 
-  static final UIIcons base = UIIcons(filled: UIFilledIcons.base, outlined: UIOutlinedIcons.base);
+  static final UIIcons base = UIIcons(filled: UIIconsFilled.base, outlined: UIIconsOutlined.base);
+}
+
+class UI extends ThemeExtension<UI> {
+  final UIIcons icons;
+
+  const UI({required this.icons});
+
+  @override
+  UI copyWith({UIIcons? icons}) {
+    return UI(icons: icons ?? this.icons);
+  }
+
+  @override
+  UI lerp(ThemeExtension<UI>? other, double t) {
+    if (other is! UI) return this;
+    return UI(icons: icons.lerp(other.icons, t));
+  }
+
+  static final UI base = UI(icons: UIIcons.base);
 }
