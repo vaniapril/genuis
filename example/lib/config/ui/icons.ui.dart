@@ -1,48 +1,64 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: Gens - Icons generator
+// Generator: GenUIs - Icons generator
 // **************************************************************************
 
 import 'package:flutter/material.dart';
 
 enum Icons {
-  // UI/icons/filled/shopping
-  uIIconsFilledShoppingCard('${_base}Icons.filledShoppingCard.value'),
+  // icons/filled/shopping
+  filledShoppingCard('${_base}filled/shopping-card.svg'),
 
-  // UI/icons/filled
-  uIIconsFilledBandAid('${_base}Icons.filledBandAid.value'),
-  uIIconsFilledCar('${_base}Icons.filledCar.value'),
-  uIIconsFilledCloud('${_base}Icons.filledCloud.value'),
-  uIIconsFilledComment('${_base}Icons.filledComment.value'),
-  uIIconsFilledCompass('${_base}Icons.filledCompass.value'),
-  uIIconsFilledFilmCamera('${_base}Icons.filledFilmCamera.value'),
-  uIIconsFilledMagnifyingGlass('${_base}Icons.filledMagnifyingGlass.value'),
-  uIIconsFilledMedKit('${_base}Icons.filledMedKit.value'),
-  uIIconsFilledPencil('${_base}Icons.filledPencil.value'),
-  uIIconsFilledPhoto('${_base}Icons.filledPhoto.value'),
-  uIIconsFilledPill('${_base}Icons.filledPill.value'),
-  uIIconsFilledRibbon('${_base}Icons.filledRibbon.value'),
-  uIIconsFilledRocket('${_base}Icons.filledRocket.value'),
-  uIIconsFilledTreeDecidious('${_base}Icons.filledTreeDecidious.value'),
-  uIIconsFilledTreeEvergreen('${_base}Icons.filledTreeEvergreen.value'),
+  // icons/filled
+  filledBandAid('${_base}filled/band_aid.svg'),
+  filledCar('${_base}filled/car.svg'),
+  filledCloud('${_base}filled/cloud.svg'),
+  filledComment('${_base}filled/comment.svg'),
+  filledCompass('${_base}filled/compass.svg'),
+  filledFilmCamera('${_base}filled/film_camera.svg'),
+  filledMagnifyingGlass('${_base}filled/magnifying_glass.svg'),
+  filledMedKit('${_base}filled/med_kit.svg'),
+  filledPencil('${_base}filled/pencil.svg'),
+  filledPhoto('${_base}filled/photo.svg'),
+  filledPill('${_base}filled/pill.svg'),
+  filledRibbon('${_base}filled/ribbon.svg'),
+  filledRocket('${_base}filled/rocket.svg'),
+  filledTreeDecidious('${_base}filled/tree_decidious.svg'),
+  filledTreeEvergreen('${_base}filled/tree_evergreen.svg'),
 
-  // UI/icons/outlined
-  uIIconsOutlinedBellClose('${_base}Icons.outlinedBellClose.value'),
-  uIIconsOutlinedBellOff('${_base}Icons.outlinedBellOff.value'),
-  uIIconsOutlinedBuilding('${_base}Icons.outlinedBuilding.value'),
-  uIIconsOutlinedCalendar('${_base}Icons.outlinedCalendar.value'),
-  uIIconsOutlinedCalendarDays('${_base}Icons.outlinedCalendarDays.value'),
-  uIIconsOutlinedCarAuto('${_base}Icons.outlinedCarAuto.value'),
-  uIIconsOutlinedChat('${_base}Icons.outlinedChat.value'),
-  uIIconsOutlinedChatAdd('${_base}Icons.outlinedChatAdd.value'),
-  uIIconsOutlinedCloud('${_base}Icons.outlinedCloud.value'),
-  uIIconsOutlinedCloudAdd('${_base}Icons.outlinedCloudAdd.value'),
-  uIIconsOutlinedCupcake('${_base}Icons.outlinedCupcake.value'),
-  uIIconsOutlinedFileBlank('${_base}Icons.outlinedFileBlank.value'),
-  uIIconsOutlinedFolder('${_base}Icons.outlinedFolder.value'),
-  uIIconsOutlinedHamburgerLg('${_base}Icons.outlinedHamburgerLg.value'),
-  uIIconsOutlinedHeadphones('${_base}Icons.outlinedHeadphones.value'),
-  uIIconsOutlinedHouse('${_base}Icons.outlinedHouse.value');
+  // icons/outlined
+  outlinedBellCloseDark('${_base}outlined/dark/bell_close.svg'),
+  outlinedBellCloseLight('${_base}outlined/light/bell_close.svg'),
+  outlinedBellOffDark('${_base}outlined/dark/bell_off.svg'),
+  outlinedBellOffLight('${_base}outlined/light/bell_off.svg'),
+  outlinedBuildingDark('${_base}outlined/dark/building.svg'),
+  outlinedBuildingLight('${_base}outlined/light/building.svg'),
+  outlinedCalendarDark('${_base}outlined/dark/calendar.svg'),
+  outlinedCalendarLight('${_base}outlined/light/calendar.svg'),
+  outlinedCalendarDaysDark('${_base}outlined/dark/calendar_days.svg'),
+  outlinedCalendarDaysLight('${_base}outlined/light/calendar_days.svg'),
+  outlinedCarAutoDark('${_base}outlined/dark/car_auto.svg'),
+  outlinedCarAutoLight('${_base}outlined/light/car_auto.svg'),
+  outlinedChatDark('${_base}outlined/dark/chat.svg'),
+  outlinedChatLight('${_base}outlined/light/chat.svg'),
+  outlinedChatAddDark('${_base}outlined/dark/chat_add.svg'),
+  outlinedChatAddLight('${_base}outlined/light/chat_add.svg'),
+  outlinedCloudDark('${_base}outlined/dark/cloud.svg'),
+  outlinedCloudLight('${_base}outlined/light/cloud.svg'),
+  outlinedCloudAddDark('${_base}outlined/dark/cloud_add.svg'),
+  outlinedCloudAddLight('${_base}outlined/light/cloud_add.svg'),
+  outlinedCupcakeDark('${_base}outlined/dark/cupcake.svg'),
+  outlinedCupcakeLight('${_base}outlined/light/cupcake.svg'),
+  outlinedFileBlankDark('${_base}outlined/dark/file_blank.svg'),
+  outlinedFileBlankLight('${_base}outlined/light/file_blank.svg'),
+  outlinedFolderDark('${_base}outlined/dark/folder.svg'),
+  outlinedFolderLight('${_base}outlined/light/folder.svg'),
+  outlinedHamburgerLgDark('${_base}outlined/dark/hamburger_lg.svg'),
+  outlinedHamburgerLgLight('${_base}outlined/light/hamburger_lg.svg'),
+  outlinedHeadphonesDark('${_base}outlined/dark/headphones.svg'),
+  outlinedHeadphonesLight('${_base}outlined/light/headphones.svg'),
+  outlinedHouseDark('${_base}outlined/dark/house.svg'),
+  outlinedHouseLight('${_base}outlined/light/house.svg');
 
   static const String _base = 'assets/icons/';
 
@@ -290,23 +306,41 @@ class UIIconsOutlined extends ThemeExtension<UIIconsOutlined> {
     );
   }
 
-  static final UIIconsOutlined base = UIIconsOutlined(
-    bellClose: Icons.outlinedBellClose.value,
-    bellOff: Icons.outlinedBellOff.value,
-    building: Icons.outlinedBuilding.value,
-    calendar: Icons.outlinedCalendar.value,
-    calendarDays: Icons.outlinedCalendarDays.value,
-    carAuto: Icons.outlinedCarAuto.value,
-    chat: Icons.outlinedChat.value,
-    chatAdd: Icons.outlinedChatAdd.value,
-    cloud: Icons.outlinedCloud.value,
-    cloudAdd: Icons.outlinedCloudAdd.value,
-    cupcake: Icons.outlinedCupcake.value,
-    fileBlank: Icons.outlinedFileBlank.value,
-    folder: Icons.outlinedFolder.value,
-    hamburgerLg: Icons.outlinedHamburgerLg.value,
-    headphones: Icons.outlinedHeadphones.value,
-    house: Icons.outlinedHouse.value,
+  static final UIIconsOutlined dark = UIIconsOutlined(
+    bellClose: Icons.outlinedBellCloseDark.value,
+    bellOff: Icons.outlinedBellOffDark.value,
+    building: Icons.outlinedBuildingDark.value,
+    calendar: Icons.outlinedCalendarDark.value,
+    calendarDays: Icons.outlinedCalendarDaysDark.value,
+    carAuto: Icons.outlinedCarAutoDark.value,
+    chat: Icons.outlinedChatDark.value,
+    chatAdd: Icons.outlinedChatAddDark.value,
+    cloud: Icons.outlinedCloudDark.value,
+    cloudAdd: Icons.outlinedCloudAddDark.value,
+    cupcake: Icons.outlinedCupcakeDark.value,
+    fileBlank: Icons.outlinedFileBlankDark.value,
+    folder: Icons.outlinedFolderDark.value,
+    hamburgerLg: Icons.outlinedHamburgerLgDark.value,
+    headphones: Icons.outlinedHeadphonesDark.value,
+    house: Icons.outlinedHouseDark.value,
+  );
+  static final UIIconsOutlined light = UIIconsOutlined(
+    bellClose: Icons.outlinedBellCloseLight.value,
+    bellOff: Icons.outlinedBellOffLight.value,
+    building: Icons.outlinedBuildingLight.value,
+    calendar: Icons.outlinedCalendarLight.value,
+    calendarDays: Icons.outlinedCalendarDaysLight.value,
+    carAuto: Icons.outlinedCarAutoLight.value,
+    chat: Icons.outlinedChatLight.value,
+    chatAdd: Icons.outlinedChatAddLight.value,
+    cloud: Icons.outlinedCloudLight.value,
+    cloudAdd: Icons.outlinedCloudAddLight.value,
+    cupcake: Icons.outlinedCupcakeLight.value,
+    fileBlank: Icons.outlinedFileBlankLight.value,
+    folder: Icons.outlinedFolderLight.value,
+    hamburgerLg: Icons.outlinedHamburgerLgLight.value,
+    headphones: Icons.outlinedHeadphonesLight.value,
+    house: Icons.outlinedHouseLight.value,
   );
 }
 
@@ -330,24 +364,6 @@ class UIIcons extends ThemeExtension<UIIcons> {
     );
   }
 
-  static final UIIcons base = UIIcons(filled: UIIconsFilled.base, outlined: UIIconsOutlined.base);
-}
-
-class UI extends ThemeExtension<UI> {
-  final UIIcons icons;
-
-  const UI({required this.icons});
-
-  @override
-  UI copyWith({UIIcons? icons}) {
-    return UI(icons: icons ?? this.icons);
-  }
-
-  @override
-  UI lerp(ThemeExtension<UI>? other, double t) {
-    if (other is! UI) return this;
-    return UI(icons: icons.lerp(other.icons, t));
-  }
-
-  static final UI base = UI(icons: UIIcons.base);
+  static final UIIcons dark = UIIcons(filled: UIIconsFilled.base, outlined: UIIconsOutlined.dark);
+  static final UIIcons light = UIIcons(filled: UIIconsFilled.base, outlined: UIIconsOutlined.light);
 }

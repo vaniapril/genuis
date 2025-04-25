@@ -4,7 +4,6 @@ import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/core/x_generator.dart';
-import 'package:genuis/src/utils/string_extension.dart';
 
 class ConfigGenerator extends XGenerator {
   final String folder;
@@ -40,9 +39,9 @@ class ConfigGenerator extends XGenerator {
     ).parse();
 
     final rootModel = ModelsParser(
-      sequences: rootNode,
-      themes: config.xGens.themes,
-      mapper: (value) {
+      root: rootNode,
+      prefix: 'UI',
+      mapper: (value, {theme}) {
         final element = tryParse(value);
 
         if (element != null) {
@@ -55,9 +54,6 @@ class ConfigGenerator extends XGenerator {
 
     StringBuffer buffer = ThemeExtensionBuilder(
       baseHasLerp: baseHasLerp,
-      typePrefix: 'UI',
-      typePostfix: folder.upperFirst,
-      baseTheme: 'base',
       //baseHasLerp: false, // TODO(IvanPrylepski): lerp (T c1, T c2, double t)
       root: rootModel,
     ).code();

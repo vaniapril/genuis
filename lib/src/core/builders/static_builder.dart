@@ -1,10 +1,9 @@
-import 'package:genuis/src/core/builders/base/model_builder.dart';
-import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/data/code_entity.dart';
 
 class StaticBuilder {
   final String className;
   final String baseTheme;
-  final Folder root;
+  final Class root;
 
   const StaticBuilder({
     required this.className,
@@ -28,27 +27,27 @@ class StaticBuilder {
     return buffer;
   }
 
-  void _writeFolder(Folder folder, StringBuffer buffer) {
-    for (final node in folder.folders) {
+  void _writeFolder(Class folder, StringBuffer buffer) {
+    for (final node in folder.classes) {
       _writeFolder(node, buffer);
     }
 
     _writeModels(folder, buffer);
   }
 
-  void _writeModels(Folder folder, StringBuffer buffer) {
-    if (folder.items.isEmpty) {
+  void _writeModels(Class folder, StringBuffer buffer) {
+    if (folder.fields.isEmpty) {
       return;
     }
     buffer.writeln();
     buffer.writeln('  // ${_comment(folder)}');
 
-    for (final item in folder.items) {
+    for (final item in folder.fields) {
       buffer.writeln("static const ${item.type} ${item.name} = ${item.value('base')};");
     }
   }
 
-  String _comment(Folder folder) {
+  String _comment(Class folder) {
     return folder.path.where((e) => e.isNotEmpty).join('/');
   }
 }

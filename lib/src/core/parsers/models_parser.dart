@@ -1,101 +1,174 @@
 import 'dart:io';
 
-import 'package:genuis/src/core/data/sequence.dart';
+import 'package:genuis/src/core/data/code_entity.dart';
 import 'package:genuis/src/core/data/node.dart';
 import 'package:genuis/src/core/data/value.dart';
-import 'package:genuis/src/utils/list_extension.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class ModelsParser {
   static const _baseTheme = 'base';
+  static const _themes = ['light', 'dark'];
 
-  final List<Sequence> sequences;
-  final List<String> themes;
+  final Folder root;
+  final String prefix;
 
-  final Value Function(String value) mapper;
+  final Value Function(String value, {String? theme}) mapper;
 
   ModelsParser({
-    required this.sequences,
-    required this.themes,
+    required this.root,
     required this.mapper,
+    required this.prefix,
   });
 
-  Folder parse() {
-    final root = Folder(
-      name: 'UI',
-      path: [],
-    );
+  Class parse() {
+    final entity = parseFolder([], root);
 
-    for (final sequence in sequences) {
-      _addSequences(root, sequence);
-    }
+    final rootClass =
+        entity is Class ? entity : throw 'Unexpected entity type: ${entity.runtimeType}';
 
-    updateThemes(root);
-
-    return root;
+    return mergeClasses([rootClass]);
   }
 
-  bool updateThemes(Folder folder) {
-    bool hasTheme = false;
+  CodeEntity parseFolder(List<String> path, Folder folder, {String? theme}) {
+    List<CodeEntity> entities = [];
+    final Map<String, Value> values = {};
 
-    for (final e in folder.folders) {
-      if (updateThemes(e)) {
-        hasTheme = true;
-      }
-    }
-
-    for (final e in folder.items) {
-      if (e.values.keys.toList().isEqualIgnoreOrder(themes)) {
-        hasTheme = true;
-      }
-    }
-
-    folder.themes = hasTheme ? themes : [_baseTheme];
-
-    return hasTheme;
-  }
-
-  void _addSequences(Folder root, Sequence sequence) {
-    List<String> path = [];
-    String? theme;
-    String? name;
-
-    for (final element in sequence.sequence) {
-      if (themes.contains(element)) {
+    for (final element in folder.nodes) {
+      if (_themes.contains(element.name)) {
         if (theme != null) {
-          throw 'Multiple themes in sequence: ${sequence.sequence.join(', ')}';
+          throw 'Multiple themes in folder: ${path.join(', ')}';
         }
-        theme = element;
+
+        if (element is Folder) {
+          entities.addAll(
+            element.folders.map(
+              (e) => parseFolder(
+                [...path, folder.name],
+                e,
+                theme: element.name,
+              ),
+            ),
+          );
+          entities.addAll(
+            element.items.map(
+              (e) {
+                final value = mapper(e.value, theme: element.name);
+                // TODO(IvanPrylepski): refactor
+                return Field(
+                  name: e.name,
+                  path: [...path, folder.name],
+                  type: value.type,
+                  values: {element.name: value},
+                );
+              },
+            ),
+          );
+        }
+        if (element is Item) {
+          values[element.name] = mapper(element.value, theme: element.name);
+        }
       } else {
-        if (name != null) {
-          path.add(name);
+        if (element is Folder) {
+          entities.add(
+            parseFolder(
+              [...path, folder.name],
+              element,
+              theme: theme,
+            ),
+          );
         }
-        name = element;
+        if (element is Item) {
+          final value = mapper(element.value, theme: theme ?? _baseTheme);
+          entities.add(
+            Field(
+              name: element.name,
+              path: [...path, folder.name],
+              type: value.type,
+              values: {theme ?? _baseTheme: value},
+            ),
+          );
+        }
       }
     }
 
-    Folder folder = root;
-
-    for (final name in path) {
-      Folder? subFolder = folder.folders.firstWhereOrNull((e) => e.name == name);
-      if (subFolder == null) {
-        subFolder = Folder(
-          name: name,
-          path: [...folder.path, folder.name],
-        );
-        folder.folders.add(subFolder);
-      }
-      folder = subFolder;
-    }
-
-    Item? item = folder.items.firstWhereOrNull((e) => e.name == name);
-    if (item == null) {
-      item = Item(
-        name: name!,
-        path: [...folder.path, folder.name],
+    if (values.isNotEmpty) {
+      return Field(
+        name: folder.name,
+        path: [...path, folder.name],
+        type: values.values.first.type,
+        values: values,
       );
-      folder.items.add(item);
     }
 
-    item.values[theme ?? _baseTheme] = mapper(sequence.value);
+    final Set<String> themes = {};
+
+    for (final e in entities) {
+      if (e is Class) {
+        themes.addAll(e.themes);
+      }
+      if (e is Field) {
+        themes.addAll(e.values.keys);
+      }
+    }
+
+    themes.remove(_baseTheme);
+
+    return Class(
+      name: folder.name,
+      path: path,
+      classes: entities.whereType<Class>().toList(),
+      fields: entities.whereType<Field>().toList(),
+      themes: themes.isEmpty ? [_baseTheme] : themes.toList(),
+      type: [prefix, ...path, folder.name].join('_').pathCamelCase.upperFirst,
+    );
+  }
+
+  Class mergeClasses(List<Class> entities) {
+    final Map<String, List<Class>> classesMap = {};
+    final Map<String, List<Field>> fieldsMap = {};
+
+    for (final entity in entities) {
+      for (final e in entity.classes) {
+        classesMap[e.name] ??= [];
+        classesMap[e.name]?.add(e);
+      }
+
+      for (final e in entity.fields) {
+        fieldsMap[e.name] ??= [];
+        fieldsMap[e.name]?.add(e);
+      }
+    }
+
+    final classes = classesMap.values.map((e) => mergeClasses(e)).toList();
+    final fields = fieldsMap.values.map((e) => mergeFields(e)).toList();
+
+    final Set<String> themes = {
+      for (final e in classes) ...e.themes,
+      for (final e in fields) ...e.values.keys,
+    };
+
+    themes.remove(_baseTheme);
+
+    return Class(
+      name: entities.first.name,
+      path: entities.first.path,
+      classes: classes,
+      fields: fields,
+      themes: themes.isEmpty ? [_baseTheme] : themes.toList(),
+      type: entities.first.type,
+    );
+  }
+
+  Field mergeFields(List<Field> entities) {
+    final Map<String, Value> map = {
+      for (final entity in entities) ...entity.values,
+    };
+
+    return Field(
+      name: entities.first.name,
+      path: entities.first.path,
+      type: entities.first.type,
+      values: map,
+    );
   }
 }

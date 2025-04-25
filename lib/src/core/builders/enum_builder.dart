@@ -1,13 +1,12 @@
-import 'package:genuis/src/core/builders/base/model_builder.dart';
-import 'package:genuis/src/core/data/node.dart';
-import 'package:genuis/src/utils/string_extension.dart';
+import 'package:genuis/src/core/data/code_entity.dart';
+import 'package:genuis/src/utils/map_extension.dart';
 
 class EnumBuilder {
   final String basePath;
   final String valueName;
   final String valueType;
   final String enumName;
-  final Folder root;
+  final Class root;
 
   const EnumBuilder({
     required this.basePath,
@@ -37,33 +36,31 @@ class EnumBuilder {
     return buffer;
   }
 
-  void _writeFolder(Folder folder, StringBuffer buffer) {
-    for (final node in folder.folders) {
+  void _writeFolder(Class folder, StringBuffer buffer) {
+    for (final node in folder.classes) {
       _writeFolder(node, buffer);
     }
 
     _writeModels(folder, buffer);
   }
 
-  void _writeModels(Folder folder, StringBuffer buffer) {
-    if (folder.items.isEmpty) {
+  void _writeModels(Class folder, StringBuffer buffer) {
+    if (folder.fields.isEmpty) {
       return;
     }
     buffer.writeln();
     buffer.writeln('  // ${_comment(folder)}');
 
-    for (final item in folder.items) {
-      basePath.isEmpty
-          ? buffer.writeln("${_enumName(item)}(${item.value('base')}),")
-          : buffer.writeln("${_enumName(item)}('\${_base}${item.value('base')}'),");
+    for (final item in folder.fields) {
+      for (final (theme, value) in item.values.iterable) {
+        basePath.isEmpty
+            ? buffer.writeln("${item.enumName(theme)}(${value.value}),")
+            : buffer.writeln("${item.enumName(theme)}('\${_base}${value.value}'),");
+      }
     }
   }
 
-  String _enumName(Item model) {
-    return '${model.path.map((e) => e.upperFirst).join()}${model.name.upperFirst}'.lowerFirst;
-  }
-
-  String _comment(Folder folder) {
+  String _comment(Class folder) {
     return [...folder.path, folder.name].where((e) => e.isNotEmpty).join('/');
   }
 }

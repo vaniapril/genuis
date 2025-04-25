@@ -19,7 +19,7 @@ class XBuilder extends Builder {
     return '''
 
 // **************************************************************************
-// Generator: Gens - ${name.upperFirst} generator
+// Generator: GenUIs - ${name.upperFirst} generator
 // **************************************************************************
 
 ''';

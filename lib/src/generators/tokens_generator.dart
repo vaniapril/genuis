@@ -1,6 +1,6 @@
 import 'package:genuis/src/core/builders/enum_builder.dart';
+import 'package:genuis/src/core/data/code_entity.dart';
 import 'package:genuis/src/core/data/value.dart';
-import 'package:genuis/src/core/data/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/core/x_generator.dart';
@@ -35,21 +35,29 @@ class TokensGenerator extends XGenerator {
     final rootNode = NodesParser(
       path: fullPath,
       parser: parser,
-    )
-        .parse()
-        .map((e) => Item(
-              name: e.sequence.last,
-              values: {'base': tryParse(e.value)!},
-              path: [],
-            ))
-        .toList();
+    ).parse().items.map((e) {
+      final value = tryParse(e.value)!;
+      return Field(
+        name: e.name,
+        type: value.type,
+        values: {'base': value},
+        path: [],
+      );
+    }).toList();
 
     StringBuffer buffer = EnumBuilder(
       valueName: 'value',
       valueType: 'Color',
       basePath: '',
       enumName: folder.upperFirst,
-      root: Folder(name: '', items: rootNode, path: []),
+      root: Class(
+        name: '',
+        type: folder.upperFirst,
+        fields: rootNode,
+        classes: [],
+        path: [],
+        themes: ['base'],
+      ),
     ).code();
 
     return buffer.toString();

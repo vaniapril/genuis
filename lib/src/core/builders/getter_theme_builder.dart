@@ -1,16 +1,12 @@
-import 'package:genuis/src/core/builders/base/model_builder.dart';
-import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/data/code_entity.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-class GetterThemeBuilder extends ModelBuilder {
-  final Folder root;
+class GetterThemeBuilder {
+  final Class root;
 
   final String? additions;
 
   const GetterThemeBuilder({
-    required super.baseTheme,
-    required super.typePrefix,
-    required super.typePostfix,
     required this.root,
     this.additions,
   });
@@ -21,8 +17,8 @@ class GetterThemeBuilder extends ModelBuilder {
     return buffer;
   }
 
-  void _writeFolder(Folder folder, StringBuffer buffer) {
-    for (final model in folder.folders) {
+  void _writeFolder(Class folder, StringBuffer buffer) {
+    for (final model in folder.classes) {
       _writeFolder(model, buffer);
     }
 
@@ -35,7 +31,7 @@ class GetterThemeBuilder extends ModelBuilder {
     }
   }
 
-  void _writeMainClass(Folder folder, StringBuffer buffer) {
+  void _writeMainClass(Class folder, StringBuffer buffer) {
     buffer.writeln('abstract class ${folder.type} {');
     _writeThemesInMain(folder, buffer);
     buffer.writeln();
@@ -50,7 +46,7 @@ class GetterThemeBuilder extends ModelBuilder {
     buffer.writeln('}');
   }
 
-  void _writeThemesInMain(Folder folder, StringBuffer buffer) {
+  void _writeThemesInMain(Class folder, StringBuffer buffer) {
     for (final theme in folder.themes) {
       buffer.writeln(
         'static const ${folder.type} $theme = _${theme.upperFirst}${folder.type}();',
@@ -58,13 +54,13 @@ class GetterThemeBuilder extends ModelBuilder {
     }
   }
 
-  void _writeGettersInMain(Folder folder, StringBuffer buffer) {
+  void _writeGettersInMain(Class folder, StringBuffer buffer) {
     for (final model in folder.nodes) {
       buffer.writeln('${model.type} get ${model.name};');
     }
   }
 
-  void _writeThemeClass(Folder folder, String theme, StringBuffer buffer) {
+  void _writeThemeClass(Class folder, String theme, StringBuffer buffer) {
     buffer.writeln(
       'class _${theme.upperFirst}${folder.type} extends ${folder.type} {',
     );
@@ -74,7 +70,7 @@ class GetterThemeBuilder extends ModelBuilder {
     buffer.writeln('}');
   }
 
-  void _writeGettersInTheme(Folder folder, String theme, StringBuffer buffer) {
+  void _writeGettersInTheme(Class folder, String theme, StringBuffer buffer) {
     for (final model in folder.nodes) {
       buffer.writeln('@override');
       buffer.writeln(

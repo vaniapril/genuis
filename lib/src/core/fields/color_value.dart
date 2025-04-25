@@ -26,6 +26,7 @@ class ColorValue extends Value {
       return TokenValue(
         tokenType: 'Tokens',
         valueType: 'Color',
+        tokenValue: list.first,
         tokenName: list.first.substring(1).pathCamelCase,
       );
     }

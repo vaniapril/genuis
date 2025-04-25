@@ -1,12 +1,12 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: Gens - Colors generator
+// Generator: GenUIs - Colors generator
 // **************************************************************************
 
 import 'package:flutter/material.dart';
 import 'tokens.ui.dart';
 
-class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding> {
+class UIColorsOnboarding extends ThemeExtension<UIColorsOnboarding> {
   final Color bg;
   final Color color1;
   final Color color2;
@@ -14,7 +14,7 @@ class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding
   final Color color4;
   final Color stroke;
 
-  const UIColorsPrimaryOnboarding({
+  const UIColorsOnboarding({
     required this.bg,
     required this.color1,
     required this.color2,
@@ -24,7 +24,7 @@ class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding
   });
 
   @override
-  UIColorsPrimaryOnboarding copyWith({
+  UIColorsOnboarding copyWith({
     Color? bg,
     Color? color1,
     Color? color2,
@@ -32,7 +32,7 @@ class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding
     Color? color4,
     Color? stroke,
   }) {
-    return UIColorsPrimaryOnboarding(
+    return UIColorsOnboarding(
       bg: bg ?? this.bg,
       color1: color1 ?? this.color1,
       color2: color2 ?? this.color2,
@@ -43,9 +43,9 @@ class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding
   }
 
   @override
-  UIColorsPrimaryOnboarding lerp(ThemeExtension<UIColorsPrimaryOnboarding>? other, double t) {
-    if (other is! UIColorsPrimaryOnboarding) return this;
-    return UIColorsPrimaryOnboarding(
+  UIColorsOnboarding lerp(ThemeExtension<UIColorsOnboarding>? other, double t) {
+    if (other is! UIColorsOnboarding) return this;
+    return UIColorsOnboarding(
       bg: Color.lerp(bg, other.bg, t) ?? other.bg,
       color1: Color.lerp(color1, other.color1, t) ?? other.color1,
       color2: Color.lerp(color2, other.color2, t) ?? other.color2,
@@ -55,7 +55,7 @@ class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding
     );
   }
 
-  static final UIColorsPrimaryOnboarding light = UIColorsPrimaryOnboarding(
+  static final UIColorsOnboarding light = UIColorsOnboarding(
     bg: Tokens.primaryBaseWhite.value,
     color1: Color(0x1f2858ef),
     color2: Color(0x0f2858ef),
@@ -63,7 +63,7 @@ class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding
     color4: Color(0x002858ef),
     stroke: Tokens.primaryNeutral25.value,
   );
-  static final UIColorsPrimaryOnboarding dark = UIColorsPrimaryOnboarding(
+  static final UIColorsOnboarding dark = UIColorsOnboarding(
     bg: Tokens.primaryBaseBlack.value,
     color1: Color(0xcc010101),
     color2: Color(0x99010101),
@@ -73,8 +73,8 @@ class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding
   );
 }
 
-class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
-  final UIColorsPrimaryOnboarding onboarding;
+class UIColors extends ThemeExtension<UIColors> {
+  final UIColorsOnboarding onboarding;
   final Color error;
   final Color alertNotification;
   final Color brand;
@@ -92,7 +92,7 @@ class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
   final Color tertiary;
   final Color scroll;
 
-  const UIColorsPrimary({
+  const UIColors({
     required this.onboarding,
     required this.error,
     required this.alertNotification,
@@ -113,8 +113,8 @@ class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
   });
 
   @override
-  UIColorsPrimary copyWith({
-    UIColorsPrimaryOnboarding? onboarding,
+  UIColors copyWith({
+    UIColorsOnboarding? onboarding,
     Color? error,
     Color? alertNotification,
     Color? brand,
@@ -132,7 +132,7 @@ class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
     Color? tertiary,
     Color? scroll,
   }) {
-    return UIColorsPrimary(
+    return UIColors(
       onboarding: onboarding ?? this.onboarding,
       error: error ?? this.error,
       alertNotification: alertNotification ?? this.alertNotification,
@@ -154,9 +154,9 @@ class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
   }
 
   @override
-  UIColorsPrimary lerp(ThemeExtension<UIColorsPrimary>? other, double t) {
-    if (other is! UIColorsPrimary) return this;
-    return UIColorsPrimary(
+  UIColors lerp(ThemeExtension<UIColors>? other, double t) {
+    if (other is! UIColors) return this;
+    return UIColors(
       onboarding: onboarding.lerp(other.onboarding, t),
       error: Color.lerp(error, other.error, t) ?? other.error,
       alertNotification:
@@ -181,8 +181,8 @@ class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
     );
   }
 
-  static final UIColorsPrimary light = UIColorsPrimary(
-    onboarding: UIColorsPrimaryOnboarding.light,
+  static final UIColors light = UIColors(
+    onboarding: UIColorsOnboarding.light,
     error: Tokens.primaryError500.value,
     alertNotification: Tokens.transparencyWhite80.value,
     brand: Tokens.primaryBrand300.value,
@@ -200,8 +200,8 @@ class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
     tertiary: Tokens.primaryNeutral300.value,
     scroll: Tokens.transparencyBlack20.value,
   );
-  static final UIColorsPrimary dark = UIColorsPrimary(
-    onboarding: UIColorsPrimaryOnboarding.dark,
+  static final UIColors dark = UIColors(
+    onboarding: UIColorsOnboarding.dark,
     error: Tokens.primaryError600.value,
     alertNotification: Tokens.transparencyBlack80.value,
     brand: Tokens.primaryBrand300.value,
@@ -219,74 +219,4 @@ class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
     tertiary: Tokens.primaryNeutral800.value,
     scroll: Tokens.transparencyWhite20.value,
   );
-}
-
-class UIColorsSecondary extends ThemeExtension<UIColorsSecondary> {
-  final Color error;
-
-  const UIColorsSecondary({required this.error});
-
-  @override
-  UIColorsSecondary copyWith({Color? error}) {
-    return UIColorsSecondary(error: error ?? this.error);
-  }
-
-  @override
-  UIColorsSecondary lerp(ThemeExtension<UIColorsSecondary>? other, double t) {
-    if (other is! UIColorsSecondary) return this;
-    return UIColorsSecondary(error: Color.lerp(error, other.error, t) ?? other.error);
-  }
-
-  static final UIColorsSecondary light = UIColorsSecondary(error: Tokens.primaryError500.value);
-  static final UIColorsSecondary dark = UIColorsSecondary(error: Tokens.primaryError600.value);
-}
-
-class UIColors extends ThemeExtension<UIColors> {
-  final UIColorsPrimary primary;
-  final UIColorsSecondary secondary;
-
-  const UIColors({required this.primary, required this.secondary});
-
-  @override
-  UIColors copyWith({UIColorsPrimary? primary, UIColorsSecondary? secondary}) {
-    return UIColors(primary: primary ?? this.primary, secondary: secondary ?? this.secondary);
-  }
-
-  @override
-  UIColors lerp(ThemeExtension<UIColors>? other, double t) {
-    if (other is! UIColors) return this;
-    return UIColors(
-      primary: primary.lerp(other.primary, t),
-      secondary: secondary.lerp(other.secondary, t),
-    );
-  }
-
-  static final UIColors light = UIColors(
-    primary: UIColorsPrimary.light,
-    secondary: UIColorsSecondary.light,
-  );
-  static final UIColors dark = UIColors(
-    primary: UIColorsPrimary.dark,
-    secondary: UIColorsSecondary.dark,
-  );
-}
-
-class UI extends ThemeExtension<UI> {
-  final UIColors colors;
-
-  const UI({required this.colors});
-
-  @override
-  UI copyWith({UIColors? colors}) {
-    return UI(colors: colors ?? this.colors);
-  }
-
-  @override
-  UI lerp(ThemeExtension<UI>? other, double t) {
-    if (other is! UI) return this;
-    return UI(colors: colors.lerp(other.colors, t));
-  }
-
-  static final UI light = UI(colors: UIColors.light);
-  static final UI dark = UI(colors: UIColors.dark);
 }

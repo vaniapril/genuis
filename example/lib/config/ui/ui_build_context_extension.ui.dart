@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: Gens - Ui_build_context_extension generator
+// Generator: GenUIs - Ui_build_context_extension generator
 // **************************************************************************
 
 import 'package:flutter/material.dart';

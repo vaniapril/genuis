@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:genuis/src/core/builders/theme_extension_builder.dart';
 import 'package:genuis/src/core/builders/enum_builder.dart';
 import 'package:genuis/src/core/fields/token_value.dart';
@@ -23,19 +25,27 @@ class AssetGenerator extends XGenerator {
 
   @override
   String generate() {
-    final sequences = NodesParser(
+    final rootNode = NodesParser(
       path: fullPath,
       parser: FileParser.asset(fullPath),
     ).parse();
 
     final root = ModelsParser(
-      sequences: sequences,
-      themes: config.xGens.themes,
-      mapper: (value) => TokenValue(
-        tokenType: folder.upperFirst,
-        valueType: 'String',
-        tokenName: value.withoutExtension.pathCamelCase,
-      ),
+      root: rootNode,
+      prefix: 'UI',
+      mapper: (value, {theme}) {
+        final name =
+            '${value.withoutExtension.pathCamelCase.replaceAll(theme?.upperFirst ?? '-', '')}${theme != null && theme != 'base' ? theme.upperFirst : ''}';
+
+        stdout.writeln('M: {$name} $theme');
+
+        return TokenValue(
+          tokenType: folder.upperFirst,
+          valueType: 'String',
+          tokenValue: value,
+          tokenName: name,
+        );
+      },
     ).parse();
 
     StringBuffer buffer = EnumBuilder(
@@ -49,9 +59,6 @@ class AssetGenerator extends XGenerator {
     buffer.writeln(
       ThemeExtensionBuilder(
         baseHasLerp: false,
-        typePrefix: 'UI',
-        typePostfix: folder.upperFirst,
-        baseTheme: 'base',
         //baseHasLerp: false, // TODO(IvanPrylepski): lerp (T c1, T c2, double t)
         root: root,
       ).code(),

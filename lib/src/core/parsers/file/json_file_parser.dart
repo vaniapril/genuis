@@ -1,27 +1,30 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:genuis/src/core/data/sequence.dart';
+import 'package:genuis/src/core/data/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/utils/file_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class JsonFileParser extends FileParser<String> {
-  List<Sequence> _parseJson(List<String> path, Map<String, dynamic> json) {
-    List<Sequence> sequences = [];
+  List<Node> _parseJson(Map<String, dynamic> json) {
+    List<Node> nodes = [];
 
     for (final key in json.keys) {
       final entity = json[key];
       if (entity is Map<String, dynamic>) {
-        sequences.addAll(_parseJson([...path, key.pathCamelCase.named], entity));
+        nodes.add(Folder(
+          name: key.pathCamelCase.named,
+          nodes: _parseJson(entity),
+        ));
         continue;
       }
       if (entity is List) {
         // TODO(IvanPrylepski):
-        sequences.addAll(
+        nodes.addAll(
           entity.map(
-            (e) => Sequence(
-              sequence: [...path, key.pathCamelCase.named],
+            (e) => Item(
+              name: e.toString(),
               value: e.toString(),
             ),
           ),
@@ -29,8 +32,8 @@ class JsonFileParser extends FileParser<String> {
         continue;
       }
       if (entity is String || entity is int || entity is double) {
-        sequences.add(Sequence(
-          sequence: [...path, key.pathCamelCase.named],
+        nodes.add(Item(
+          name: key.pathCamelCase.named,
           value: entity.toString(),
         ));
         continue;
@@ -39,19 +42,17 @@ class JsonFileParser extends FileParser<String> {
       throw 'Wrong jsonElement type: ${entity.name.local}';
     }
 
-    return sequences;
+    return nodes;
   }
 
   @override
-  List<Sequence> parse(List<String> path, File file) {
+  List<Node> parse(File file) {
     if (!file.isJson) return [];
 
     try {
       final root = json.decode(file.readAsStringSync());
 
-      return root is List
-          ? _parseJson(path, {file.name.pathCamelCase.named: root})
-          : _parseJson([...path, file.name.pathCamelCase.named], root);
+      return root is List ? _parseJson({file.name.pathCamelCase.named: root}) : _parseJson(root);
     } catch (e) {
       throw '\n${file.path} - $e';
     }

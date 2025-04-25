@@ -1,18 +1,18 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: Gens - Images generator
+// Generator: GenUIs - Images generator
 // **************************************************************************
 
 import 'package:flutter/material.dart';
 
 enum Images {
-  // UI/images/background
-  uIImagesBackgroundBook('${_base}Images.backgroundBook.value'),
-  uIImagesBackgroundCat('${_base}Images.backgroundCat.value'),
-  uIImagesBackgroundFlowers('${_base}Images.backgroundFlowers.value'),
+  // images/background
+  backgroundBook('${_base}background/book.jpg'),
+  backgroundCat('${_base}background/cat.jpg'),
+  backgroundFlowers('${_base}background/flowers.jpg'),
 
-  // UI/images/logo
-  uIImagesLogoAbstract('${_base}Images.logoAbstract.value');
+  // images/logo
+  logoAbstract('${_base}logo/abstract.svg');
 
   static const String _base = 'assets/images/';
 
@@ -97,23 +97,4 @@ class UIImages extends ThemeExtension<UIImages> {
     background: UIImagesBackground.base,
     logo: UIImagesLogo.base,
   );
-}
-
-class UI extends ThemeExtension<UI> {
-  final UIImages images;
-
-  const UI({required this.images});
-
-  @override
-  UI copyWith({UIImages? images}) {
-    return UI(images: images ?? this.images);
-  }
-
-  @override
-  UI lerp(ThemeExtension<UI>? other, double t) {
-    if (other is! UI) return this;
-    return UI(images: images.lerp(other.images, t));
-  }
-
-  static final UI base = UI(images: UIImages.base);
 }

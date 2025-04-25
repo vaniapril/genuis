@@ -1,7 +1,8 @@
 import 'package:genuis/src/core/builders/theme_extension_builder.dart';
-import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/data/code_entity.dart';
 import 'package:genuis/src/core/data/value.dart';
 import 'package:genuis/src/core/x_generator.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 // TODO(IvanPrylepski): refactor all
 class AppGenerator extends XGenerator {
@@ -34,20 +35,20 @@ class AppGenerator extends XGenerator {
   String generate() {
     final themed = ['colors', 'shadows'];
 
-    final root = Folder(
+    final root = Class(
       name: 'UI',
+      type: 'UI',
       path: [],
-    );
-
-    root.themes = config.xGens.themes;
-
-    root.folders.addAll(
-      [
+      themes: config.xGens.themes,
+      classes: [
         for (final generator in generators)
-          Folder(
+          Class(
             name: generator.name,
-            themes: themed.contains(generator.name) ? config.xGens.themes : [],
+            themes: themed.contains(generator.name) ? config.xGens.themes : ['base'],
+            type: 'UI${generator.name.upperFirst}',
             path: ['UI'],
+            classes: [],
+            fields: [],
             // values: themed.contains(generator.name)
             //     ? {
             //         for (final theme in config.xGens.themes)
@@ -65,13 +66,11 @@ class AppGenerator extends XGenerator {
             //       },
           ),
       ],
+      fields: [],
     );
 
     StringBuffer buffer = ThemeExtensionBuilder(
       baseHasLerp: true,
-      typePrefix: '',
-      typePostfix: '',
-      baseTheme: 'base',
       //baseHasLerp: false, // TODO(IvanPrylepski): lerp (T c1, T c2, double t)
       root: root,
 
