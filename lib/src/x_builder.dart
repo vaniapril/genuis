@@ -3,7 +3,7 @@ import 'package:dart_style/dart_style.dart';
 import 'package:path/path.dart';
 import 'package:source_gen/source_gen.dart';
 import 'package:genuis/src/core/x_generator.dart';
-import 'package:genuis/src/pubspec/pubspec.dart';
+import 'package:genuis/src/config/pubspec.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class XBuilder extends Builder {

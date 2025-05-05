@@ -16,7 +16,7 @@ import 'package:genuis/src/generators/asset_generator.dart';
 import 'package:genuis/src/generators/config_generator.dart';
 import 'package:genuis/src/generators/dimens_generator.dart';
 import 'package:genuis/src/generators/tokens_generator.dart';
-import 'package:genuis/src/pubspec/pubspec.dart';
+import 'package:genuis/src/config/pubspec.dart';
 import 'package:genuis/src/utils/directory_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 import 'package:genuis/src/x_builder.dart';

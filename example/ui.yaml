@@ -1,0 +1,46 @@
+path: assets/
+
+themes:
+  - light
+  - dark
+
+use_default_theme: false
+use_theme_extensions: true
+
+tokens:
+  - colors:
+    path: colors.json
+    type: Color
+    enum: false
+
+  - heights:
+    path: heights.json
+    type: num
+    enum: false
+
+modules:
+  - blurs:
+    path: blurs/
+    type: blur
+
+  - fonts:
+    path: fonts/
+    type: font
+    extensions:
+      - colors
+
+  - shadows:
+    path: shadows/
+    type: shadow
+
+  - icons:
+    path: icons/
+    type: file
+    enum: true
+    extensions:
+      - colors
+
+  - images:
+    path: images/
+    type: file
+    enum: false
