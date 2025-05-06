@@ -1,35 +1,17 @@
 import 'package:genuis/src/core/builders/theme_extension_builder.dart';
-import 'package:genuis/src/core/data/code_entity.dart';
-import 'package:genuis/src/core/data/value.dart';
-import 'package:genuis/src/core/x_generator.dart';
+import 'package:genuis/src/core/data/code/code_entity.dart';
+import 'package:genuis/src/core/data/value/value.dart';
+import 'package:genuis/src/genuis_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 // TODO(IvanPrylepski): refactor all
-class AppGenerator extends XGenerator {
-  final List<XGenerator> generators;
-
-  const AppGenerator(
-    super.pubspec,
+class ClassGenerator extends GenuisGenerator {
+  const ClassGenerator(
     super.config,
-    this.generators,
   );
 
   @override
-  String get name => 'ui';
-
-  @override
-  String get ignores => '';
-
-  @override
-  String get imports =>
-      generators.map((e) => 'import \'${e.name}.ui.dart\';').join('\n') +
-      // "import 'package:core/core.dart';" +
-      "import 'package:flutter/material.dart';" +
-      '\n' +
-      '\n' +
-      // generators.map((e) => 'export \'${e.name}.ui.dart\';').join('\n') +
-      // "export 'dimens.ui.dart';" +
-      "export 'ui_build_context_extension.ui.dart';";
+  String get name => config.className;
 
   @override
   String generate() {
@@ -39,12 +21,12 @@ class AppGenerator extends XGenerator {
       name: 'UI',
       type: 'UI',
       path: [],
-      themes: config.xGens.themes,
+      themes: config.themes,
       classes: [
-        for (final generator in generators)
+        for (final generator in config.modules)
           Class(
             name: generator.name,
-            themes: themed.contains(generator.name) ? config.xGens.themes : ['base'],
+            themes: themed.contains(generator.name) ? config.themes : ['base'],
             type: 'UI${generator.name.upperFirst}',
             path: ['UI'],
             classes: [],
@@ -81,6 +63,15 @@ class AppGenerator extends XGenerator {
   }
 ''',
     ).code();
+
+    buffer.write(config.modules.map((e) => 'import \'${e.name}.ui.dart\';').join('\n') +
+        // "import 'package:core/core.dart';" +
+        "import 'package:flutter/material.dart';" +
+        '\n' +
+        '\n' +
+        // generators.map((e) => 'export \'${e.name}.ui.dart\';').join('\n') +
+        // "export 'dimens.ui.dart';" +
+        "export 'ui_build_context_extension.ui.dart';");
 
     return buffer.toString();
   }

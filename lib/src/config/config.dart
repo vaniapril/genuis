@@ -11,6 +11,8 @@ class Config {
   bool themeExtensions;
   bool fromToJson;
   int lineLength;
+  String className;
+  String separator;
 
   List<Token> tokens;
   List<Module> modules;
@@ -23,6 +25,8 @@ class Config {
     required this.themeExtensions,
     required this.fromToJson,
     required this.lineLength,
+    required this.separator,
+    required this.className,
     required this.tokens,
     required this.modules,
   });
@@ -43,6 +47,8 @@ class Config {
       themeExtensions: map['theme_extensions'],
       fromToJson: map['from_to_json'],
       lineLength: map['line_length'],
+      className: map['class_name'],
+      separator: map['separator'],
       tokens: map['tokens'].map((e) => Token.fromYaml(e)).toList(),
       modules: map['tokens'].map((e) => Module.fromYaml(e)).toList(),
     );

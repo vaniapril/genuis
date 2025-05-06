@@ -1,9 +1,9 @@
 import 'package:genuis/src/core/builders/static_builder.dart';
-import 'package:genuis/src/core/data/code_entity.dart';
+import 'package:genuis/src/core/data/code/code_entity.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/core/fields/dimen_value.dart';
-import 'package:genuis/src/core/x_generator.dart';
+import 'package:genuis/src/genuis_generator.dart';
 
 class DimensGenerator extends XGenerator {
   const DimensGenerator(super.pubspec, super.config);

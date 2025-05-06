@@ -1,4 +1,4 @@
-import 'package:genuis/src/core/data/code_entity.dart';
+import 'package:genuis/src/core/data/code/code_entity.dart';
 
 class StaticBuilder {
   final String className;

@@ -1,13 +1,11 @@
-import 'package:genuis/src/core/data/code_entity.dart';
+import 'package:genuis/src/core/data/code/code_entity.dart';
 
 class ThemeExtensionBuilder {
-  final bool baseHasLerp;
   final Class root;
 
   final String? additions;
 
   const ThemeExtensionBuilder({
-    required this.baseHasLerp,
     required this.root,
     this.additions,
   });
@@ -79,17 +77,9 @@ class ThemeExtensionBuilder {
     buffer.writeln('if (other is! ${folder.type}) return this;');
     buffer.writeln('return ${folder.type}(');
     for (final model in folder.nodes) {
-      final hasLerp = model is Class || (model is Field && baseHasLerp);
-
-      if (model is Class) {
-        buffer.writeln(
-          '${model.name}:${hasLerp ? '${model.name}.lerp(other.${model.name}, t)' : 't < 0.5 ? ${model.name} : other.${model.name}'},',
-        );
-      } else {
-        buffer.writeln(
-          '${model.name}:${hasLerp ? '${model.type}.lerp(${model.name}, other.${model.name}, t) ?? other.${model.name}' : 't < 0.5 ? ${model.name} : other.${model.name}'},',
-        );
-      }
+      buffer.writeln(
+        '${model.name}:${model.lerpCode(model.name, 'other.${model.name}')}',
+      );
     }
     buffer.writeln(');');
     buffer.writeln('}');

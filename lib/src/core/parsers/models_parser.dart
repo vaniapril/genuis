@@ -1,6 +1,6 @@
-import 'package:genuis/src/core/data/code_entity.dart';
+import 'package:genuis/src/core/data/code/code_entity.dart';
 import 'package:genuis/src/core/data/node.dart';
-import 'package:genuis/src/core/data/value.dart';
+import 'package:genuis/src/core/data/value/value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class ModelsParser {
@@ -117,7 +117,7 @@ class ModelsParser {
       classes: entities.whereType<Class>().toList(),
       fields: entities.whereType<Field>().toList(),
       themes: themes.isEmpty ? [_baseTheme] : themes.toList(),
-      type: [prefix, ...path, folder.name].join('_').pathCamelCase.upperFirst,
+      type: [prefix, ...path, folder.name].join('_').camelCase.upperFirst,
     );
   }
 

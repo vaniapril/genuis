@@ -1,9 +1,9 @@
 import 'package:genuis/src/core/builders/enum_builder.dart';
-import 'package:genuis/src/core/data/code_entity.dart';
-import 'package:genuis/src/core/data/value.dart';
+import 'package:genuis/src/core/data/code/code_entity.dart';
+import 'package:genuis/src/core/data/value/value.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
-import 'package:genuis/src/core/x_generator.dart';
+import 'package:genuis/src/genuis_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class TokensGenerator extends XGenerator {
@@ -20,12 +20,6 @@ class TokensGenerator extends XGenerator {
     this.parser, {
     this.additionImport = '',
   });
-
-  @override
-  String get name => folder;
-
-  @override
-  String get ignores => '';
 
   @override
   String get imports => "import 'package:flutter/material.dart';$additionImport";

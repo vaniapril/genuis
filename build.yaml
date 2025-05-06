@@ -1,7 +1,7 @@
 targets:
   $default:
     builders:
-      x_gen:
+      genuis:
         enabled: true
 
 builders:
@@ -11,6 +11,3 @@ builders:
     build_extensions: { '$package$': ['.ui.dart'] }
     auto_apply: dependents
     build_to: source
-
-
-    

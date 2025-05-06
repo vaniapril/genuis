@@ -9,16 +9,21 @@ extension StringExtension on String {
 
   String get forwardSlash => replaceAll('\\', '/');
 
-  String get pathCamelCase => replaceAll('/', '_')
-      .replaceAll(' ', '_')
-      .replaceAll('%', '_')
-      .replaceAll('-', '_')
-      .split('_')
+  String get camelCase => toLowerCase()
+      .replaceAll(RegExp(r'[`~!@#$%^&*()-_=/\\]'), ' ')
+      .split(' ')
+      .where((e) => e.isNotEmpty)
       .map((e) => e.upperFirst)
       .join()
       .lowerFirst;
 
-  String get named => this == 'default' ? '${this}_' : this;
+  String get snakeCase => toLowerCase()
+      .replaceAll(RegExp(r'[`~!@#$%^&*()-_=/\\]'), ' ')
+      .split(' ')
+      .where((e) => e.isNotEmpty)
+      .join('_');
+
+  String get named => keywords.contains(this) ? '${this}_' : this;
 
   String get hexToBitInt {
     String source = replaceFirst('#', '');
@@ -27,3 +32,41 @@ extension StringExtension on String {
     return '0x$source';
   }
 }
+
+const keywords = [
+  'assert',
+  'await',
+  'break',
+  'case',
+  'catch',
+  'class',
+  'const',
+  'continue',
+  'default',
+  'do',
+  'else',
+  'enum',
+  'extends',
+  'false',
+  'final',
+  'var',
+  'final',
+  'finally',
+  'for',
+  'if',
+  'in',
+  'is',
+  'new',
+  'null',
+  'rethrow',
+  'return',
+  'switch',
+  'throw',
+  'true',
+  'try',
+  'var',
+  'void',
+  'with',
+  'while',
+  'yield',
+];

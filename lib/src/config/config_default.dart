@@ -11,6 +11,8 @@ final defaultConfig = Config(
   themeExtensions: true,
   fromToJson: true,
   lineLength: 100,
+  className: 'UI',
+  separator: '-',
   tokens: [],
   modules: [
     Module(

@@ -1,9 +1,9 @@
 import 'package:genuis/src/core/builders/theme_extension_builder.dart';
-import 'package:genuis/src/core/data/value.dart';
+import 'package:genuis/src/core/data/value/value.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
-import 'package:genuis/src/core/x_generator.dart';
+import 'package:genuis/src/genuis_generator.dart';
 
 class ConfigGenerator extends XGenerator {
   final String folder;
@@ -61,3 +61,6 @@ class ConfigGenerator extends XGenerator {
     return buffer.toString();
   }
 }
+
+
+import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset_shadow; import 'tokens.ui.dart';

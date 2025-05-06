@@ -1,15 +1,13 @@
-import 'package:genuis/src/core/data/code_entity.dart';
+import 'package:genuis/src/core/data/code/code_entity.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 
 class EnumBuilder {
-  final String basePath;
   final String valueName;
   final String valueType;
   final String enumName;
   final Class root;
 
   const EnumBuilder({
-    required this.basePath,
     required this.enumName,
     required this.valueName,
     required this.valueType,
@@ -24,10 +22,6 @@ class EnumBuilder {
     final String strLines = lines.toString();
     buffer.writeln(strLines.replaceFirst(',', ';', strLines.length - 3));
 
-    if (basePath.isNotEmpty) {
-      buffer.writeln();
-      buffer.writeln("static const $valueType _base = '$basePath';");
-    }
     buffer.writeln();
     buffer.writeln('const $enumName(this.$valueName);');
     buffer.writeln();
@@ -53,9 +47,7 @@ class EnumBuilder {
 
     for (final item in folder.fields) {
       for (final (theme, value) in item.values.iterable) {
-        basePath.isEmpty
-            ? buffer.writeln("${item.enumName(theme)}(${value.value}),")
-            : buffer.writeln("${item.enumName(theme)}('\${_base}${value.value}'),");
+        buffer.writeln("${item.enumName(theme)}(${value.code}),");
       }
     }
   }
