@@ -9,7 +9,7 @@ import 'package:genuis/src/core/fields/color_value.dart';
 import 'package:genuis/src/core/fields/font_value.dart';
 import 'package:genuis/src/core/fields/gradient_value.dart';
 import 'package:genuis/src/core/fields/shadow_value.dart';
-import 'package:genuis/src/core/parsers/file/file_parser.dart';
+import 'package:genuis/src/core/parsers/file/asset_file_parser.dart';
 import 'package:genuis/src/genuis_generator.dart';
 import 'package:genuis/src/generators/build_context_extension_generator.dart';
 import 'package:genuis/src/generators/class_generator.dart';

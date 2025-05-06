@@ -3,10 +3,23 @@ import 'dart:io';
 
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
-import 'package:genuis/src/utils/file_extension.dart';
+import 'package:genuis/src/utils/file_system_entity_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-class JsonFileParser extends FileParser<String> {
+class JsonFileParser extends FileParser {
+  @override
+  List<Node> parse(File file) {
+    if (!file.isJson) return [];
+
+    try {
+      final root = json.decode(file.readAsStringSync());
+
+      return root is List ? _parseJson({'': root}) : _parseJson(root);
+    } catch (e) {
+      throw '\n${file.path} - $e';
+    }
+  }
+
   List<Node> _parseJson(Map<String, dynamic> json) {
     List<Node> nodes = [];
 
@@ -14,7 +27,7 @@ class JsonFileParser extends FileParser<String> {
       final entity = json[key];
       if (entity is Map<String, dynamic>) {
         nodes.add(Folder(
-          name: key.pathCamelCase.named,
+          name: key.camelCase.named,
           nodes: _parseJson(entity),
         ));
         continue;
@@ -33,7 +46,7 @@ class JsonFileParser extends FileParser<String> {
       }
       if (entity is String || entity is int || entity is double) {
         nodes.add(Item(
-          name: key.pathCamelCase.named,
+          name: key.camelCase.named,
           value: entity.toString(),
         ));
         continue;
@@ -43,18 +56,5 @@ class JsonFileParser extends FileParser<String> {
     }
 
     return nodes;
-  }
-
-  @override
-  List<Node> parse(File file) {
-    if (!file.isJson) return [];
-
-    try {
-      final root = json.decode(file.readAsStringSync());
-
-      return root is List ? _parseJson({file.name.pathCamelCase.named: root}) : _parseJson(root);
-    } catch (e) {
-      throw '\n${file.path} - $e';
-    }
   }
 }

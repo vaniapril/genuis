@@ -1,21 +1,19 @@
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class ModelsParser {
-  static const _baseTheme = 'base';
-  static const _themes = ['light', 'dark'];
-
+  final Config config;
   final Folder root;
-  final String prefix;
 
   final Value Function(String value, {String? theme}) mapper;
 
   ModelsParser({
+    required this.config,
     required this.root,
     required this.mapper,
-    required this.prefix,
   });
 
   Class parse() {
@@ -32,7 +30,7 @@ class ModelsParser {
     final Map<String, Value> values = {};
 
     for (final element in folder.nodes) {
-      if (_themes.contains(element.name)) {
+      if (config.themes.contains(element.name)) {
         if (theme != null) {
           throw 'Multiple themes in folder: ${path.join(', ')}';
         }
@@ -55,7 +53,7 @@ class ModelsParser {
                 return Field(
                   name: e.name,
                   path: [...path, folder.name],
-                  type: value.type,
+                  valueType: value.type,
                   values: {element.name: value},
                 );
               },
@@ -76,13 +74,13 @@ class ModelsParser {
           );
         }
         if (element is Item) {
-          final value = mapper(element.value, theme: theme ?? _baseTheme);
+          final value = mapper(element.value, theme: theme ?? config.baseTheme);
           entities.add(
             Field(
               name: element.name,
               path: [...path, folder.name],
-              type: value.type,
-              values: {theme ?? _baseTheme: value},
+              valueType: value.type,
+              values: {theme ?? config.baseTheme: value},
             ),
           );
         }
@@ -93,7 +91,7 @@ class ModelsParser {
       return Field(
         name: folder.name,
         path: [...path, folder.name],
-        type: values.values.first.type,
+        valueType: values.values.first.type,
         values: values,
       );
     }
@@ -109,15 +107,15 @@ class ModelsParser {
       }
     }
 
-    themes.remove(_baseTheme);
+    themes.remove(config.baseTheme);
 
     return Class(
       name: folder.name,
       path: path,
       classes: entities.whereType<Class>().toList(),
       fields: entities.whereType<Field>().toList(),
-      themes: themes.isEmpty ? [_baseTheme] : themes.toList(),
-      type: [prefix, ...path, folder.name].join('_').camelCase.upperFirst,
+      themes: themes.isEmpty ? [config.baseTheme] : themes.toList(),
+      classType: [config.prefix, ...path, folder.name].join('_').camelCase.upperFirst,
     );
   }
 
@@ -145,15 +143,15 @@ class ModelsParser {
       for (final e in fields) ...e.values.keys,
     };
 
-    themes.remove(_baseTheme);
+    themes.remove(config.baseTheme);
 
     return Class(
       name: entities.first.name,
       path: entities.first.path,
       classes: classes,
       fields: fields,
-      themes: themes.isEmpty ? [_baseTheme] : themes.toList(),
-      type: entities.first.type,
+      themes: themes.isEmpty ? [config.baseTheme] : themes.toList(),
+      classType: entities.first.type,
     );
   }
 
@@ -165,7 +163,7 @@ class ModelsParser {
     return Field(
       name: entities.first.name,
       path: entities.first.path,
-      type: entities.first.type,
+      valueType: entities.first.valueType,
       values: map,
     );
   }

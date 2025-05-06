@@ -2,15 +2,17 @@ import 'dart:io';
 
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
-import 'package:genuis/src/utils/directory_extension.dart';
+import 'package:genuis/src/utils/file_system_entity_extension.dart';
+import 'package:genuis/src/utils/string_extension.dart';
+import 'package:path/path.dart';
 
 class NodesParser {
+  final FileParser? fileParser;
   final String path;
-  final FileParser parser;
 
   NodesParser({
-    required this.parser,
     required this.path,
+    this.fileParser,
   });
 
   Folder parse() {
@@ -48,7 +50,22 @@ class NodesParser {
         );
       }
       if (entity is File) {
-        nodes.addAll(parser.parse(entity));
+        final names = entity.name.split('-').map((e) => e.camelCase.named).toList();
+
+        if (fileParser != null) {
+          nodes.addAll(fileParser?.parse(entity) ?? []);
+        } else {
+          Node node = Item(
+            name: names.last,
+            value: relative(entity.path, from: path).forwardSlash,
+          );
+
+          for (final name in names.sublist(0, names.length - 1)) {
+            node = Folder(name: name, nodes: [node]);
+          }
+
+          nodes.add(node);
+        }
       }
     }
 

@@ -27,7 +27,8 @@ modules:
     path: fonts/
     type: font
     extensions:
-      - colors
+      - colors:
+        type: getter
 
   - shadows:
     path: shadows/
@@ -36,9 +37,10 @@ modules:
   - icons:
     path: icons/
     type: file
-    enum: true
     extensions:
-      - colors
+      - tokens:
+        type: enum
+        name: Icons
 
   - images:
     path: images/

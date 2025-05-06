@@ -1,10 +1,10 @@
 import 'package:genuis/src/core/data/code/value_type.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 
-class BlurValue extends Value {
+class ColorValue extends Value {
   final String hex;
 
-  const BlurValue({
+  const ColorValue({
     required this.hex,
   });
 

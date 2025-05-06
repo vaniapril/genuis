@@ -13,6 +13,8 @@ final defaultConfig = Config(
   lineLength: 100,
   className: 'UI',
   separator: '-',
+  prefix: 'UI',
+  baseTheme: 'base',
   tokens: [],
   modules: [
     Module(

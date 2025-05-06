@@ -13,6 +13,8 @@ class Config {
   int lineLength;
   String className;
   String separator;
+  String prefix;
+  String baseTheme;
 
   List<Token> tokens;
   List<Module> modules;
@@ -26,6 +28,8 @@ class Config {
     required this.fromToJson,
     required this.lineLength,
     required this.separator,
+    required this.prefix,
+    required this.baseTheme,
     required this.className,
     required this.tokens,
     required this.modules,
@@ -49,6 +53,8 @@ class Config {
       lineLength: map['line_length'],
       className: map['class_name'],
       separator: map['separator'],
+      prefix: map['prefix'],
+      baseTheme: map['base_theme'],
       tokens: map['tokens'].map((e) => Token.fromYaml(e)).toList(),
       modules: map['tokens'].map((e) => Module.fromYaml(e)).toList(),
     );

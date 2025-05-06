@@ -1,7 +1,7 @@
 import 'package:genuis/src/core/builders/enum_builder.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/code/value.dart';
-import 'package:genuis/src/core/parsers/file/file_parser.dart';
+import 'package:genuis/src/core/parsers/file/asset_file_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/genuis_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
