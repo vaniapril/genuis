@@ -1,5 +1,5 @@
-import 'package:genuis/src/core/data/value/value.dart';
-import 'package:genuis/src/core/data/value/value_type.dart';
+import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/core/data/code/value_type.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 part 'class.dart';

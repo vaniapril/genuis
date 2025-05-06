@@ -1,10 +1,10 @@
-import 'package:genuis/src/core/data/value/value_type.dart';
-import 'package:genuis/src/core/data/value/values/blur_value.dart';
-import 'package:genuis/src/core/data/value/values/gradient_value.dart';
-import 'package:genuis/src/core/data/value/values/num_value.dart';
-import 'package:genuis/src/core/data/value/values/shadow_value.dart';
-import 'package:genuis/src/core/data/value/values/text_style_value.dart';
-import 'package:genuis/src/core/data/value/values/token_value.dart';
+import 'package:genuis/src/core/data/code/value_type.dart';
+import 'package:genuis/src/core/data/code/values/blur_value.dart';
+import 'package:genuis/src/core/data/code/values/gradient_value.dart';
+import 'package:genuis/src/core/data/code/values/num_value.dart';
+import 'package:genuis/src/core/data/code/values/shadow_value.dart';
+import 'package:genuis/src/core/data/code/values/text_style_value.dart';
+import 'package:genuis/src/core/data/code/values/token_value.dart';
 import 'package:genuis/src/core/fields/color_value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 

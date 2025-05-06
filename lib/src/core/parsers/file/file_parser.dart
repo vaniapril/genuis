@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:genuis/src/core/data/node.dart';
+import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/parsers/file/asset_file_parser.dart';
 import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
 import 'package:genuis/src/core/parsers/file/xml_file_parser.dart';

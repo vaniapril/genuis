@@ -1,19 +1,4 @@
-sealed class Node {
-  final String name;
-
-  const Node({
-    required this.name,
-  });
-}
-
-class Item extends Node {
-  final String value;
-
-  Item({
-    required super.name,
-    required this.value,
-  });
-}
+part of 'node.dart';
 
 class Folder extends Node {
   final List<Folder> folders;
