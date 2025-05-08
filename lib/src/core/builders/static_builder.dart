@@ -3,15 +3,13 @@ import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 class StaticBuilder {
   final String className;
   final String baseTheme;
-  final Class root;
 
   const StaticBuilder({
     required this.className,
     required this.baseTheme,
-    required this.root,
   });
 
-  StringBuffer code() {
+  StringBuffer write(Class root, StringBuffer buffer) {
     final StringBuffer buffer = StringBuffer();
     buffer.writeln('class $className {');
 

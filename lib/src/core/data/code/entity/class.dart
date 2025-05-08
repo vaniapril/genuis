@@ -19,4 +19,15 @@ class Class extends CodeEntity {
 
   @override
   String toString() => '{name: $name, path: $path, folders: $classes, items: $fields}';
+
+  Class map(Field Function(Field value) mapper) {
+    return Class(
+      name: name,
+      path: path,
+      classType: classType,
+      themes: themes,
+      classes: classes.map((e) => e.map(mapper)).toList(),
+      fields: fields.map((e) => mapper(e)).toList(),
+    );
+  }
 }

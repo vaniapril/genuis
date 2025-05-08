@@ -1,58 +1,26 @@
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/builders/enum_builder.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/core/data/code/value.dart';
-import 'package:genuis/src/core/parsers/file/asset_file_parser.dart';
-import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/genuis_generator.dart';
-import 'package:genuis/src/utils/string_extension.dart';
 
-class TokensGenerator extends XGenerator {
-  final String folder;
-  final Value? Function(String) tryParse;
-  final String additionImport;
-  final FileParser<String> parser;
+class TokensGenerator extends GenuisGenerator {
+  final Token token;
+  final Class tree;
 
-  const TokensGenerator(
-    super.pubspec,
-    super.config,
-    this.folder,
-    this.tryParse,
-    this.parser, {
-    this.additionImport = '',
+  const TokensGenerator({
+    required super.config,
+    required this.token,
+    required this.tree,
   });
 
   @override
-  String get imports => "import 'package:flutter/material.dart';$additionImport";
+  String get name => token.name;
 
   @override
   String generate() {
-    final rootNode = NodesParser(
-      path: fullPath,
-      parser: parser,
-    ).parse().items.map((e) {
-      final value = tryParse(e.value)!;
-      return Field(
-        name: e.name,
-        type: value.type,
-        values: {'base': value},
-        path: [],
-      );
-    }).toList();
+    StringBuffer buffer = StringBuffer();
 
-    StringBuffer buffer = EnumBuilder(
-      valueName: 'value',
-      valueType: 'Color',
-      basePath: '',
-      enumName: folder.upperFirst,
-      root: Class(
-        name: '',
-        type: folder.upperFirst,
-        fields: rootNode,
-        classes: [],
-        path: [],
-        themes: ['base'],
-      ),
-    ).code();
+    const EnumBuilder(valueName: '', valueType: '').write(tree, buffer);
 
     return buffer.toString();
   }

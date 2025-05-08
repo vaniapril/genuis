@@ -13,7 +13,7 @@ import 'package:genuis/src/core/parsers/file/asset_file_parser.dart';
 import 'package:genuis/src/genuis_generator.dart';
 import 'package:genuis/src/generators/build_context_extension_generator.dart';
 import 'package:genuis/src/generators/class_generator.dart';
-import 'package:genuis/src/generators/asset_generator.dart';
+import 'package:genuis/src/generators/module_generator.dart';
 import 'package:genuis/src/generators/config_generator.dart';
 import 'package:genuis/src/generators/dimens_generator.dart';
 import 'package:genuis/src/generators/tokens_generator.dart';

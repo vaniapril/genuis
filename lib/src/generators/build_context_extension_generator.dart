@@ -2,9 +2,9 @@ import 'package:genuis/src/genuis_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class BuildContextExtensionGenerator extends GenuisGenerator {
-  const BuildContextExtensionGenerator(
-    super.config,
-  );
+  const BuildContextExtensionGenerator({
+    required super.config,
+  });
 
   @override
   String get name => 'ui_build_context_extension';

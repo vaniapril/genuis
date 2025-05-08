@@ -2,28 +2,23 @@ import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 
 class EnumBuilder {
-  final String valueName;
   final String valueType;
-  final String enumName;
-  final Class root;
+  final String valueName;
 
   const EnumBuilder({
-    required this.enumName,
     required this.valueName,
     required this.valueType,
-    required this.root,
   });
 
-  StringBuffer code() {
-    final StringBuffer buffer = StringBuffer();
-    buffer.writeln('enum $enumName {');
+  StringBuffer write(Class root, StringBuffer buffer) {
+    buffer.writeln('enum ${root.classType} {');
     final StringBuffer lines = StringBuffer();
     _writeFolder(root, lines);
     final String strLines = lines.toString();
     buffer.writeln(strLines.replaceFirst(',', ';', strLines.length - 3));
 
     buffer.writeln();
-    buffer.writeln('const $enumName(this.$valueName);');
+    buffer.writeln('const ${root.classType}(this.$valueName);');
     buffer.writeln();
     buffer.writeln('final $valueType $valueName;');
     buffer.writeln('}');

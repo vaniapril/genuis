@@ -1,16 +1,9 @@
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 
 class ThemeExtensionBuilder {
-  final Class root;
+  const ThemeExtensionBuilder();
 
-  final String? additions;
-
-  const ThemeExtensionBuilder({
-    required this.root,
-    this.additions,
-  });
-
-  StringBuffer code() {
+  StringBuffer write(Class root, StringBuffer buffer) {
     final StringBuffer buffer = StringBuffer();
 
     _writeFolder(root, buffer);
@@ -25,10 +18,10 @@ class ThemeExtensionBuilder {
       }
     }
     buffer.writeln('class ${folder.type} extends ThemeExtension<${folder.type}> {');
-    if (additions != null) {
-      buffer.writeln(additions);
-      buffer.writeln();
-    }
+    // if (additions != null) {
+    //   buffer.writeln(additions);
+    //   buffer.writeln();
+    // }
     _writeFields(folder, buffer);
     buffer.writeln();
     _writeConstructor(folder, buffer);

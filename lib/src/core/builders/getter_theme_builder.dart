@@ -2,17 +2,9 @@ import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GetterThemeBuilder {
-  final Class root;
+  const GetterThemeBuilder();
 
-  final String? additions;
-
-  const GetterThemeBuilder({
-    required this.root,
-    this.additions,
-  });
-
-  StringBuffer code() {
-    final StringBuffer buffer = StringBuffer();
+  StringBuffer write(Class root, StringBuffer buffer) {
     _writeFolder(root, buffer);
     return buffer;
   }
@@ -35,10 +27,10 @@ class GetterThemeBuilder {
     buffer.writeln('abstract class ${folder.type} {');
     _writeThemesInMain(folder, buffer);
     buffer.writeln();
-    if (additions != null) {
-      buffer.writeln(additions!);
-      buffer.writeln();
-    }
+    // if (additions != null) {
+    //   buffer.writeln(additions!);
+    //   buffer.writeln();
+    // }
 
     buffer.writeln('const ${folder.type}._();');
     buffer.writeln();
