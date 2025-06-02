@@ -1,14 +1,14 @@
-import 'package:genuis/src/config/config.dart';
+import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class ModelsParser {
-  final Config config;
+  final GenuisConfig config;
   final Folder root;
 
-  final Value Function(String value, {String? theme}) mapper;
+  final Value Function(String value) mapper;
 
   ModelsParser({
     required this.config,
@@ -48,7 +48,7 @@ class ModelsParser {
           entities.addAll(
             element.items.map(
               (e) {
-                final value = mapper(e.value, theme: element.name);
+                final value = mapper(e.value);
                 // TODO(IvanPrylepski): refactor
                 return Field(
                   name: e.name,
@@ -61,7 +61,7 @@ class ModelsParser {
           );
         }
         if (element is Item) {
-          values[element.name] = mapper(element.value, theme: element.name);
+          values[element.name] = mapper(element.value);
         }
       } else {
         if (element is Folder) {
@@ -74,7 +74,7 @@ class ModelsParser {
           );
         }
         if (element is Item) {
-          final value = mapper(element.value, theme: theme ?? config.baseTheme);
+          final value = mapper(element.value);
           entities.add(
             Field(
               name: element.name,

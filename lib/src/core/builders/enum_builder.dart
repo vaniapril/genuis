@@ -15,7 +15,9 @@ class EnumBuilder {
     final StringBuffer lines = StringBuffer();
     _writeFolder(root, lines);
     final String strLines = lines.toString();
-    buffer.writeln(strLines.replaceFirst(',', ';', strLines.length - 3));
+    if (strLines.isNotEmpty) {
+      buffer.writeln(strLines.replaceFirst(',', ';', strLines.length - 3));
+    }
 
     buffer.writeln();
     buffer.writeln('const ${root.classType}(this.$valueName);');

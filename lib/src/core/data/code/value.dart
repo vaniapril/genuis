@@ -24,7 +24,7 @@ abstract class Value {
     );
   }
 
-  Value parseToken(String value, (String, Value) Function(String name) findToken) {
+  static Value parseToken(String value, (String, Value) Function(String name) findToken) {
     final list = value.split(' ');
 
     final name = list.first.substring(1).camelCase;
@@ -37,7 +37,7 @@ abstract class Value {
     );
   }
 
-  Value parseColor(String value) {
+  static Value parseColor(String value) {
     final list = value.split(' ');
     if (list.isEmpty || list.length > 2) {
       // TODO(IvanPrylepski): error
@@ -52,13 +52,13 @@ abstract class Value {
     );
   }
 
-  Value parseNum(String value) {
+  static Value parseNum(String value) {
     return NumValue(
       value: value,
     );
   }
 
-  Value parseFont(String value) {
+  static Value parseFont(String value) {
     final family = value.substring(0, value.indexOf("'", 1) + 1);
 
     final list = value.substring(value.indexOf("'", 1) + 2).split(' ');
@@ -77,7 +77,7 @@ abstract class Value {
     );
   }
 
-  Value parseGradient(String value) {
+  static Value parseGradient(String value) {
     final list = value.split(' ');
 
     return GradientValue(
@@ -87,7 +87,7 @@ abstract class Value {
     );
   }
 
-  Value parseShadow(String value) {
+  static Value parseShadow(String value) {
     final list = value.split(' ');
 
     // TODO(IvanPrylepski): refactor

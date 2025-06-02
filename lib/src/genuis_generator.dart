@@ -1,7 +1,7 @@
-import 'package:genuis/src/config/config.dart';
+import 'package:genuis/src/config/yaml/genuis_config.dart';
 
 abstract class GenuisGenerator {
-  final Config config;
+  final GenuisConfig config;
 
   const GenuisGenerator({
     required this.config,

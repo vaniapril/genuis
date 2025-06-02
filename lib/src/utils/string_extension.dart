@@ -10,7 +10,7 @@ extension StringExtension on String {
   String get forwardSlash => replaceAll('\\', '/');
 
   String get camelCase => toLowerCase()
-      .replaceAll(RegExp(r'[`~!@#$%^&*()-_=/\\]'), ' ')
+      .replaceAll(RegExp('[^A-Za-z0-9]'), ' ')
       .split(' ')
       .where((e) => e.isNotEmpty)
       .map((e) => e.upperFirst)
@@ -18,8 +18,9 @@ extension StringExtension on String {
       .lowerFirst;
 
   String get snakeCase => toLowerCase()
-      .replaceAll(RegExp(r'[`~!@#$%^&*()-_=/\\]'), ' ')
+      .replaceAll(RegExp('[^A-Za-z0-9]'), ' ')
       .split(' ')
+      .map((e) => e.toLowerCase())
       .where((e) => e.isNotEmpty)
       .join('_');
 

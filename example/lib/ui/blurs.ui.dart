@@ -6,7 +6,7 @@
 import 'package:flutter/material.dart';
 import 'dart:ui';
 
-class UIBlurs extends ThemeExtension<UIBlurs> {
+class UiBlurs extends ThemeExtension<UiBlurs> {
   final ImageFilter blur2;
   final ImageFilter blur4;
   final ImageFilter blur8;
@@ -14,7 +14,7 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
   final ImageFilter blur32;
   final ImageFilter blur64;
 
-  const UIBlurs({
+  const UiBlurs({
     required this.blur2,
     required this.blur4,
     required this.blur8,
@@ -24,7 +24,7 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
   });
 
   @override
-  UIBlurs copyWith({
+  UiBlurs copyWith({
     ImageFilter? blur2,
     ImageFilter? blur4,
     ImageFilter? blur8,
@@ -32,7 +32,7 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
     ImageFilter? blur32,
     ImageFilter? blur64,
   }) {
-    return UIBlurs(
+    return UiBlurs(
       blur2: blur2 ?? this.blur2,
       blur4: blur4 ?? this.blur4,
       blur8: blur8 ?? this.blur8,
@@ -43,19 +43,19 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
   }
 
   @override
-  UIBlurs lerp(ThemeExtension<UIBlurs>? other, double t) {
-    if (other is! UIBlurs) return this;
-    return UIBlurs(
-      blur2: t < 0.5 ? blur2 : other.blur2,
-      blur4: t < 0.5 ? blur4 : other.blur4,
-      blur8: t < 0.5 ? blur8 : other.blur8,
-      blur16: t < 0.5 ? blur16 : other.blur16,
-      blur32: t < 0.5 ? blur32 : other.blur32,
-      blur64: t < 0.5 ? blur64 : other.blur64,
+  UiBlurs lerp(ThemeExtension<UiBlurs>? other, double t) {
+    if (other is! UiBlurs) return this;
+    return UiBlurs(
+      blur2: blur2.lerp(other.blur2, t),
+      blur4: blur4.lerp(other.blur4, t),
+      blur8: blur8.lerp(other.blur8, t),
+      blur16: blur16.lerp(other.blur16, t),
+      blur32: blur32.lerp(other.blur32, t),
+      blur64: blur64.lerp(other.blur64, t),
     );
   }
 
-  static final UIBlurs base = UIBlurs(
+  static final UiBlurs base = UiBlurs(
     blur2: ImageFilter.blur(sigmaX: 0.125 / 2, sigmaY: 0.125 / 2),
     blur4: ImageFilter.blur(sigmaX: 0.25 / 2, sigmaY: 0.25 / 2),
     blur8: ImageFilter.blur(sigmaX: 0.5 / 2, sigmaY: 0.5 / 2),

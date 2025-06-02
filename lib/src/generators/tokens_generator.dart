@@ -1,10 +1,10 @@
-import 'package:genuis/src/config/config.dart';
+import 'package:genuis/src/config/yaml/token_config.dart';
 import 'package:genuis/src/core/builders/enum_builder.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/genuis_generator.dart';
 
 class TokensGenerator extends GenuisGenerator {
-  final Token token;
+  final TokenConfig token;
   final Class tree;
 
   const TokensGenerator({

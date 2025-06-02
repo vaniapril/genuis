@@ -1,0 +1,43 @@
+genuis:
+  assets: assets/
+  output: lib/ui/
+  themes:
+    - light
+    - dark
+  defaultTheme: false
+  themeExtensions: true
+  fromToJson: true
+  lineLength: 100
+  className: UI
+  separator: /-
+  prefix: UI
+  baseTheme: base
+  # tokens:
+  modules:
+    blurs:
+      path: blurs/
+      type: blur
+    colors:
+      path: colors/
+      type: color,
+    fonts:
+      path: fonts/
+      type: font,
+      extensions:
+        - colors
+    icons:
+      path: icons/
+      type: asset
+      extensions:
+        - colors
+        - enums
+    images:
+      path: images/
+      type: asset,
+      extensions:
+        - enums
+    shadows:
+      path: shadows/
+      type: shadow
+      extensions:
+        - colors

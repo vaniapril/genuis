@@ -11,4 +11,9 @@ class Folder extends Node {
     List<Node>? nodes,
   })  : folders = nodes?.whereType<Folder>().toList() ?? [],
         items = nodes?.whereType<Item>().toList() ?? [];
+
+  @override
+  String toString() {
+    return '{name: $name, items: $items, folders: $folders}';
+  }
 }

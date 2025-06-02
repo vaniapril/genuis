@@ -7,4 +7,9 @@ class Item extends Node {
     required super.name,
     required this.value,
   });
+
+  @override
+  String toString() {
+    return '{name: $name, value: $value}';
+  }
 }

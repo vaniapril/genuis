@@ -3,6 +3,7 @@ enum ValueType {
   color,
   int,
   double,
+  string,
   textStyle,
   boxShadow,
   linearGradient,
@@ -13,6 +14,7 @@ enum ValueType {
         color => 'Color',
         int => 'int',
         double => 'double',
+        string => 'String',
         textStyle => 'TextStyle',
         boxShadow => 'BoxShadow',
         linearGradient => 'LinearGradient',
@@ -20,9 +22,9 @@ enum ValueType {
       };
 
   String lerpCode(String arg1, String arg2) => switch (this) {
-        imageFilter => 'ImageFilter.lerp($arg1, $arg2, t)',
+        // imageFilter => 'ImageFilter.lerp($arg1, $arg2, t)',
         int || double => '$arg1*(1 - t) + $arg2*t',
-        color || textStyle || boxShadow || linearGradient => '$arg1.lerp($arg2, t)',
+        color || textStyle || boxShadow || linearGradient || imageFilter => '$arg1.lerp($arg2, t)',
         _ => 't < 0.5 ? $arg1 : $arg2',
       };
 }

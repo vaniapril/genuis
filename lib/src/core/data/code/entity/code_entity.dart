@@ -28,7 +28,7 @@ sealed class CodeEntity {
   String lerpCode(String arg1, String arg2) {
     final node = this;
     return switch (node) {
-      Field() => node.lerpCode(arg1, arg2),
+      Field() => node.valueType.lerpCode(arg1, arg2),
       Class() => '$arg1.lerp($arg2, t)',
     };
   }

@@ -3,12 +3,8 @@ import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 class ThemeExtensionBuilder {
   const ThemeExtensionBuilder();
 
-  StringBuffer write(Class root, StringBuffer buffer) {
-    final StringBuffer buffer = StringBuffer();
-
+  void write(Class root, StringBuffer buffer) {
     _writeFolder(root, buffer);
-
-    return buffer;
   }
 
   void _writeFolder(Class folder, StringBuffer buffer) {
@@ -71,7 +67,7 @@ class ThemeExtensionBuilder {
     buffer.writeln('return ${folder.type}(');
     for (final model in folder.nodes) {
       buffer.writeln(
-        '${model.name}:${model.lerpCode(model.name, 'other.${model.name}')}',
+        '${model.name}:${model.lerpCode(model.name, 'other.${model.name}')},',
       );
     }
     buffer.writeln(');');

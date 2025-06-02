@@ -3,65 +3,95 @@ library x_gens;
 import 'dart:io';
 
 import 'package:build/build.dart';
-import 'package:genuis/src/config/config.dart';
-import 'package:genuis/src/core/fields/blur_value.dart';
-import 'package:genuis/src/core/fields/color_value.dart';
-import 'package:genuis/src/core/fields/font_value.dart';
-import 'package:genuis/src/core/fields/gradient_value.dart';
-import 'package:genuis/src/core/fields/shadow_value.dart';
-import 'package:genuis/src/core/parsers/file/asset_file_parser.dart';
-import 'package:genuis/src/genuis_generator.dart';
+import 'package:genuis/src/config/config_default.dart';
+import 'package:genuis/src/config/yaml/type_config.dart';
+import 'package:genuis/src/core/data/code/entity/code_entity.dart';
+import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/core/data/code/values/string_value.dart';
+import 'package:genuis/src/core/data/node/node.dart';
+import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
+import 'package:genuis/src/core/parsers/models_parser.dart';
+import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/generators/build_context_extension_generator.dart';
 import 'package:genuis/src/generators/class_generator.dart';
 import 'package:genuis/src/generators/module_generator.dart';
-import 'package:genuis/src/generators/config_generator.dart';
-import 'package:genuis/src/generators/dimens_generator.dart';
 import 'package:genuis/src/generators/tokens_generator.dart';
-import 'package:genuis/src/utils/directory_extension.dart';
-import 'package:genuis/src/utils/string_extension.dart';
 import 'package:genuis/src/genuis_builder.dart';
-import 'package:source_gen/source_gen.dart';
 
 Builder build(BuilderOptions options) {
-  final pubspecFile = File('pubspec.yaml');
   final uiFile = File('ui.yaml');
 
-  final config = Config.fromYamlFile(uiFile);
+  final config = defaultConfig; // Config.fromYamlFile(uiFile);
 
-  final modules = config.modules.map((e) => ModuleGenerator(config, e));
-  final tokens = config.tokens.map((e) => TokenGenerator(config, e));
-
-
-final rootNode = NodesParser(
-      path: fullPath,
-      parser: FileParser.asset(fullPath),
+  final tokens = config.tokens.map((e) {
+    Folder node = NodesParser(
+      path: config.assets + e.path,
+      fileParser: e.type != TypeConfig.asset ? JsonFileParser() : null,
     ).parse();
 
-    final root = ModelsParser(
-      root: rootNode,
-      prefix: 'UI',
-      mapper: (value, {theme}) {
-        final name =
-            '${value.withoutExtension.pathCamelCase.replaceAll(theme?.upperFirst ?? '-', '')}${theme != null && theme != 'base' ? theme.upperFirst : ''}';
-
-        stdout.writeln('M: {$name} $theme');
-
-        return TokenValue(
-          tokenType: folder.upperFirst,
-          valueType: 'String',
-          tokenValue: value,
-          tokenName: name,
-        );
+    Class tree = ModelsParser(
+      config: config,
+      root: node,
+      mapper: switch (e.type) {
+        TypeConfig.blur => Value.parseBlur,
+        TypeConfig.color => Value.parseColor,
+        TypeConfig.font => Value.parseFont,
+        TypeConfig.shadow => Value.parseShadow,
+        TypeConfig.asset => (value) => StringValue(value: value),
       },
     ).parse();
 
+    return (token: e, tree: tree);
+  });
+  final modules = config.modules.map((e) {
+    Folder node = NodesParser(
+      path: config.assets + e.path,
+      fileParser: e.type != TypeConfig.asset ? JsonFileParser() : null,
+    ).parse();
+
+    Class tree = ModelsParser(
+      config: config,
+      root: node,
+      mapper: switch (e.type) {
+        TypeConfig.blur => Value.parseBlur,
+        TypeConfig.color => Value.parseColor,
+        TypeConfig.font => Value.parseFont,
+        TypeConfig.shadow => Value.parseShadow,
+        TypeConfig.asset => (value) => StringValue(value: value),
+      },
+    ).parse();
+
+    return (model: e, tree: tree);
+  });
+
   return GenuisBuilder(
-    [
-      ...modules,
-      ...tokens,
-      AppBuildContextExtensionGenerator(pubspec, config, generators),
-      AppGenerator(pubspec, config, generators),
+    config: config,
+    generators: [
+      ...modules.map((e) => ModuleGenerator(config: config, module: e.model, tree: e.tree)),
+      ...tokens.map((e) => TokensGenerator(config: config, token: e.token, tree: e.tree)),
+      BuildContextExtensionGenerator(config: config),
+      ClassGenerator(
+        config: config,
+        tree: Class(
+          name: 'ui',
+          path: [],
+          classType: config.className,
+          themes: config.themes,
+          classes: modules
+              .map(
+                (e) => Class(
+                  name: e.tree.name,
+                  path: [],
+                  classType: e.tree.classType,
+                  themes: e.tree.themes,
+                  classes: [],
+                  fields: [],
+                ),
+              )
+              .toList(),
+          fields: [],
+        ),
+      ),
     ],
-    config,
   );
 }
