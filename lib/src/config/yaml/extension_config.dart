@@ -1,12 +1,21 @@
-enum ExtensionConfig {
-  colors,
-  enums;
+import 'package:yaml/yaml.dart';
 
-  static ExtensionConfig from(String value) {
-    return switch (value) {
-      'colors' => ExtensionConfig.colors,
-      'enums' => ExtensionConfig.enums,
+sealed class ExtensionConfig {
+  static ExtensionConfig from(YamlMap map) {
+    return switch (map['name']) {
+      'colors' => ColorsExtensionConfig(),
+      'enums' => EnumsExtensionConfig(name: map['type']),
       _ => throw 'Unexpected extension',
     };
   }
+}
+
+class ColorsExtensionConfig extends ExtensionConfig {}
+
+class EnumsExtensionConfig extends ExtensionConfig {
+  final String name;
+
+  EnumsExtensionConfig({
+    required this.name,
+  });
 }

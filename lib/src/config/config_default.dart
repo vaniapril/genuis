@@ -1,7 +1,7 @@
 import 'package:genuis/src/config/yaml/extension_config.dart';
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/config/yaml/module_config.dart';
-import 'package:genuis/src/config/yaml/type_config.dart';
+import 'package:genuis/src/config/yaml/module_type_config.dart';
 
 final defaultConfig = GenuisConfig(
   assets: 'assets/',
@@ -23,46 +23,52 @@ final defaultConfig = GenuisConfig(
     ModuleConfig(
       name: 'blurs',
       path: 'blurs/',
-      type: TypeConfig.blur,
+      type: ModuleTypeConfig.blur,
       extensions: [],
     ),
     ModuleConfig(
       name: 'colors',
       path: 'colors/',
-      type: TypeConfig.color,
+      type: ModuleTypeConfig.color,
       extensions: [],
     ),
     ModuleConfig(
       name: 'fonts',
       path: 'fonts/',
-      type: TypeConfig.font,
+      type: ModuleTypeConfig.font,
       extensions: [
-        ExtensionConfig.colors,
+        ColorsExtensionConfig(),
       ],
     ),
     ModuleConfig(
       name: 'icons',
       path: 'icons/',
-      type: TypeConfig.asset,
+      type: ModuleTypeConfig.asset,
       extensions: [
-        ExtensionConfig.colors,
-        ExtensionConfig.enums,
+        ColorsExtensionConfig(),
+        EnumsExtensionConfig(
+          name: 'Icons',
+        ),
       ],
     ),
     ModuleConfig(
       name: 'images',
       path: 'images/',
-      type: TypeConfig.asset,
+      type: ModuleTypeConfig.asset,
       extensions: [
-        ExtensionConfig.enums,
+        EnumsExtensionConfig(
+          name: 'Images',
+        ),
       ],
     ),
     ModuleConfig(
       name: 'shadows',
       path: 'shadows/',
-      type: TypeConfig.shadow,
+      type: ModuleTypeConfig.shadow,
       extensions: [
-        ExtensionConfig.colors,
+        EnumsExtensionConfig(
+          name: 'Shadows',
+        ),
       ],
     ),
   ],

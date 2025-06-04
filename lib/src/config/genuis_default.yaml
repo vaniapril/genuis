@@ -9,7 +9,7 @@ genuis:
   fromToJson: true
   lineLength: 100
   className: UI
-  separator: /-
+  separator: "-"
   prefix: UI
   baseTheme: base
   # tokens:

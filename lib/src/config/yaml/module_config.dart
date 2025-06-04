@@ -1,11 +1,11 @@
 import 'package:genuis/src/config/yaml/extension_config.dart';
-import 'package:genuis/src/config/yaml/type_config.dart';
+import 'package:genuis/src/config/yaml/module_type_config.dart';
 import 'package:yaml/yaml.dart';
 
 class ModuleConfig {
   String name;
   String path;
-  TypeConfig type;
+  ModuleTypeConfig type;
   List<ExtensionConfig> extensions;
 
   ModuleConfig({

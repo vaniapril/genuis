@@ -4,6 +4,7 @@ import 'package:genuis/src/core/data/code/values/color_value.dart';
 import 'package:genuis/src/core/data/code/values/gradient_value.dart';
 import 'package:genuis/src/core/data/code/values/num_value.dart';
 import 'package:genuis/src/core/data/code/values/shadow_value.dart';
+import 'package:genuis/src/core/data/code/values/string_value.dart';
 import 'package:genuis/src/core/data/code/values/text_style_value.dart';
 import 'package:genuis/src/core/data/code/values/token_value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
@@ -106,6 +107,12 @@ abstract class Value {
       blur: blur,
       spread: spread,
       inset: inset,
+    );
+  }
+
+  static Value parseAsset(String value) {
+    return StringValue(
+      value: value,
     );
   }
 }

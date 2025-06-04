@@ -1,10 +1,10 @@
-import 'package:genuis/src/config/yaml/type_config.dart';
+import 'package:genuis/src/config/yaml/module_type_config.dart';
 import 'package:yaml/yaml.dart';
 
 class TokenConfig {
   String name;
   String path;
-  TypeConfig type;
+  ModuleTypeConfig type;
   bool useEnum;
 
   TokenConfig({
