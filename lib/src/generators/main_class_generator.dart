@@ -3,7 +3,7 @@ import 'package:genuis/src/config/yaml/token_config.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/token.dart';
-import 'package:genuis/src/core/writers/theme_extension_builder.dart';
+import 'package:genuis/src/core/writers/theme_extension_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/genuis_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
@@ -36,7 +36,7 @@ class MainClassGenerator extends GenuisGenerator {
         // "export 'dimens.ui.dart';" +
 
         config.tokens.map((e) => 'export \'token_${e.name}.ui.dart\';').join('\n') +
-        "export 'ui_build_context_extension.ui.dart';";
+        "export 'build_context_extension.ui.dart';";
 
     StringBuffer buffer = StringBuffer();
 
@@ -96,14 +96,9 @@ class MainClassGenerator extends GenuisGenerator {
     //   fields: [],
     // );
 
-    const ThemeExtensionBuilder().write(
-      tree,
+    ThemeExtensionWriter(config: config).writeMainClass(
       buffer,
-      additions: '''
-  factory UI.of(BuildContext context) {
-    return Theme.of(context).extension<UI>() ?? UI.dark;
-  }
-''',
+      tree,
     );
     return buffer.toString();
   }

@@ -1,13 +1,18 @@
+import 'package:genuis/src/core/data/module.dart';
+import 'package:genuis/src/core/writers/build_context_extension_writer.dart';
 import 'package:genuis/src/genuis_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class BuildContextExtensionGenerator extends GenuisGenerator {
+  final List<Module> modules;
+
   const BuildContextExtensionGenerator({
     required super.config,
+    required this.modules,
   });
 
   @override
-  String get name => 'ui_build_context_extension';
+  String get name => 'build_context_extension';
 
   @override
   String generate() {
@@ -15,9 +20,7 @@ class BuildContextExtensionGenerator extends GenuisGenerator {
     buffer.writeln("import 'package:flutter/material.dart';");
     buffer.writeln("import '${config.className.snakeCase}.ui.dart';");
 
-    buffer.writeln('extension UIBuildContextExtension on BuildContext {');
-    buffer.writeln('${config.className} get ui => ${config.className}.of(this);');
-    buffer.writeln('}');
+    BuildContextExtensionWriter(config: config).write(buffer, modules);
 
     return buffer.toString();
   }

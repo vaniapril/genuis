@@ -14,6 +14,7 @@ class GenuisConfig {
   bool fromToJson;
   int lineLength;
   String className;
+  String ui;
   String separator;
   String prefix;
   String baseTheme;
@@ -33,6 +34,7 @@ class GenuisConfig {
     required this.prefix,
     required this.baseTheme,
     required this.className,
+    required this.ui,
     required this.tokens,
     required this.modules,
   });
@@ -54,6 +56,7 @@ class GenuisConfig {
       fromToJson: map['from_to_json'],
       lineLength: map['line_length'],
       className: map['class_name'],
+      ui: map['ui'],
       separator: map['separator'],
       prefix: map['prefix'],
       baseTheme: map['base_theme'],

@@ -65,7 +65,7 @@ Builder build(BuilderOptions options) {
     generators: [
       ...modules.map((e) => ModuleGenerator(config: config, module: e)),
       ...tokens.map((e) => TokensGenerator(config: config, token: e)),
-      BuildContextExtensionGenerator(config: config),
+      BuildContextExtensionGenerator(config: config, modules: modules),
       MainClassGenerator(
         config: config,
         modules: modules,

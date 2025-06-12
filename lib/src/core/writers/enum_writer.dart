@@ -1,21 +1,24 @@
+import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 
-class EnumBuilder {
+class EnumWriter {
+  final GenuisConfig config;
   final String valueType;
   final String valueName;
 
-  const EnumBuilder({
+  const EnumWriter({
+    required this.config,
     required this.valueName,
     required this.valueType,
   });
 
-  StringBuffer write(Class root, StringBuffer buffer) {
+  StringBuffer write(StringBuffer buffer, Class root) {
     if (root.fields.isEmpty) return buffer;
 
     buffer.writeln('enum ${root.classType} {');
     final StringBuffer lines = StringBuffer();
-    _writeFolder(root, lines);
+    _writeClassWithSubclasses(lines, root);
     final String strLines = lines.toString();
     if (strLines.isNotEmpty) {
       buffer.writeln(strLines.replaceFirst(',', ';', strLines.length - 3));
@@ -29,15 +32,15 @@ class EnumBuilder {
     return buffer;
   }
 
-  void _writeFolder(Class folder, StringBuffer buffer) {
+  void _writeClassWithSubclasses(StringBuffer buffer, Class folder) {
     for (final node in folder.classes) {
-      _writeFolder(node, buffer);
+      _writeClassWithSubclasses(buffer, node);
     }
 
-    _writeModels(folder, buffer);
+    _writeFields(buffer, folder);
   }
 
-  void _writeModels(Class folder, StringBuffer buffer) {
+  void _writeFields(StringBuffer buffer, Class folder) {
     if (folder.fields.isEmpty) {
       return;
     }

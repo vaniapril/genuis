@@ -1,39 +1,32 @@
+import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
+import 'package:genuis/src/utils/map_extension.dart';
 
 class StaticBuilder {
-  final String className;
-  final String baseTheme;
+  final GenuisConfig config;
 
   const StaticBuilder({
-    required this.className,
-    required this.baseTheme,
+    required this.config,
   });
 
-  StringBuffer write(Class root, StringBuffer buffer) {
+  StringBuffer write(StringBuffer buffer, Class root) {
     final StringBuffer buffer = StringBuffer();
-    buffer.writeln('class $className {');
-
+    buffer.writeln('abstract class ${root.classType} {');
     buffer.writeln();
-    //buffer.writeln("static const $className _instance = $className._();");
-    //buffer.writeln("static const $className $baseTheme = _instance;");
-    //buffer.writeln();
-    //buffer.writeln('const $className._();');
-    //buffer.writeln('factory $className() => _instance;');
-    buffer.writeln();
-    _writeFolder(root, buffer);
+    _writeClassWithSubclasses(buffer, root);
     buffer.writeln('}');
     return buffer;
   }
 
-  void _writeFolder(Class folder, StringBuffer buffer) {
+  void _writeClassWithSubclasses(StringBuffer buffer, Class folder) {
     for (final node in folder.classes) {
-      _writeFolder(node, buffer);
+      _writeClassWithSubclasses(buffer, node);
     }
 
-    _writeModels(folder, buffer);
+    _writeFieldsInClass(buffer, folder);
   }
 
-  void _writeModels(Class folder, StringBuffer buffer) {
+  void _writeFieldsInClass(StringBuffer buffer, Class folder) {
     if (folder.fields.isEmpty) {
       return;
     }
@@ -41,11 +34,13 @@ class StaticBuilder {
     buffer.writeln('  // ${_comment(folder)}');
 
     for (final item in folder.fields) {
-      buffer.writeln("static const ${item.type} ${item.name} = ${item.value('base')};");
+      for (final (theme, value) in item.values.iterable) {
+        buffer.writeln("static const ${item.type} ${item.enumName(theme)} = $value;");
+      }
     }
   }
 
   String _comment(Class folder) {
-    return folder.path.where((e) => e.isNotEmpty).join('/');
+    return [...folder.path, folder.name].where((e) => e.isNotEmpty).join('/');
   }
 }

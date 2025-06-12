@@ -16,6 +16,7 @@ final defaultConfig = GenuisConfig(
   fromToJson: true,
   lineLength: 100,
   className: 'UI',
+  ui: 'ui',
   separator: '-',
   prefix: 'UI',
   baseTheme: 'base',

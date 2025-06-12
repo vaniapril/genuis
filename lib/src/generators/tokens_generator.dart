@@ -1,6 +1,6 @@
 import 'package:genuis/src/config/yaml/token_config.dart';
 import 'package:genuis/src/core/data/token.dart';
-import 'package:genuis/src/core/writers/enum_builder.dart';
+import 'package:genuis/src/core/writers/enum_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/genuis_generator.dart';
 
@@ -22,16 +22,17 @@ class TokensGenerator extends GenuisGenerator {
 
     buffer.writeln("import 'package:flutter/material.dart';");
 
-    EnumBuilder(valueName: 'value', valueType: token.fields.first.type).write(
-        Class(
-          name: name,
-          path: [],
-          classType: token.config.name,
-          themes: [],
-          classes: [],
-          fields: token.fields,
-        ),
-        buffer);
+    EnumWriter(config: config, valueName: 'value', valueType: token.fields.first.type).write(
+      buffer,
+      Class(
+        name: name,
+        path: [],
+        classType: token.config.name,
+        themes: [],
+        classes: [],
+        fields: token.fields,
+      ),
+    );
 
     return buffer.toString();
   }
