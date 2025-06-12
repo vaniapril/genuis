@@ -3,21 +3,21 @@ import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 class ThemeExtensionBuilder {
   const ThemeExtensionBuilder();
 
-  void write(Class root, StringBuffer buffer) {
-    _writeFolder(root, buffer);
+  void write(Class root, StringBuffer buffer, {String? additions}) {
+    _writeFolder(root, buffer, additions: additions);
   }
 
-  void _writeFolder(Class folder, StringBuffer buffer) {
+  void _writeFolder(Class folder, StringBuffer buffer, {String? additions}) {
     for (final model in folder.classes) {
       if (model.nodes.isNotEmpty) {
         _writeFolder(model, buffer);
       }
     }
     buffer.writeln('class ${folder.type} extends ThemeExtension<${folder.type}> {');
-    // if (additions != null) {
-    //   buffer.writeln(additions);
-    //   buffer.writeln();
-    // }
+    if (additions != null) {
+      buffer.writeln(additions);
+      buffer.writeln();
+    }
     _writeFields(folder, buffer);
     buffer.writeln();
     _writeConstructor(folder, buffer);

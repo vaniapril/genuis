@@ -24,6 +24,8 @@ class ModuleGenerator extends GenuisGenerator {
     StringBuffer buffer = StringBuffer();
 
     buffer.writeln("import 'package:flutter/material.dart';");
+    buffer.writeln("import '${config.className}.ui.dart';");
+    buffer.writeln("import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset_shadow;");
     buffer.writeln("import 'dart:ui';");
 
     Class root = module.rootClass;
@@ -35,6 +37,8 @@ class ModuleGenerator extends GenuisGenerator {
 
       root = module.rootClass.map(
         (field) {
+          fields.add(field);
+
           return Field(
             name: field.name,
             path: field.path,
@@ -45,7 +49,7 @@ class ModuleGenerator extends GenuisGenerator {
                   key,
                   TokenValue(
                     tokenType: enumsExtension.name,
-                    tokenName: field.name + key,
+                    tokenName: '${field.enumName(key)}.value',
                     innerValue: value,
                   ),
                 );
@@ -55,7 +59,7 @@ class ModuleGenerator extends GenuisGenerator {
         },
       );
 
-      const EnumBuilder(valueName: '', valueType: '').write(
+      EnumBuilder(valueName: 'value', valueType: fields.first.valueType).write(
         Class(
           name: root.name,
           path: [],

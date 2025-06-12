@@ -1,5 +1,4 @@
 import 'package:genuis/src/core/data/code/value.dart';
-import 'package:genuis/src/core/data/code/value_type.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 part 'class.dart';
@@ -12,7 +11,7 @@ sealed class CodeEntity {
   String value(String theme) {
     final node = this;
     return switch (node) {
-      Field() => node.values[theme]?.code ?? node.values['base']?.code ?? 'null',
+      Field() => node.values[theme]?.toString() ?? node.values['base']?.toString() ?? 'null',
       Class() => '${node.type}.${node.themes.contains(theme) ? theme : 'base'}',
     };
   }
@@ -20,7 +19,7 @@ sealed class CodeEntity {
   String get type {
     final node = this;
     return switch (node) {
-      Field() => node.valueType.typeCode,
+      Field() => node.valueType,
       Class() => node.classType,
     };
   }
@@ -28,7 +27,8 @@ sealed class CodeEntity {
   String lerpCode(String arg1, String arg2) {
     final node = this;
     return switch (node) {
-      Field() => node.valueType.lerpCode(arg1, arg2),
+      //todo without first
+      Field() => node.values.values.first.lerpCode(arg1, arg2),
       Class() => '$arg1.lerp($arg2, t)',
     };
   }

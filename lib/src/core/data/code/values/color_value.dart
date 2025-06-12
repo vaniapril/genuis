@@ -1,16 +1,19 @@
-import 'package:genuis/src/core/data/code/value_type.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 
 class ColorValue extends Value {
   final String hex;
 
   const ColorValue({
+    super.flags = const [],
     required this.hex,
   });
 
   @override
-  String get code => 'Color($hex)';
+  String lerpCode(String arg1, String arg2) => 'Color.lerp($arg1, $arg2, t) ?? $arg2';
 
   @override
-  ValueType get type => ValueType.color;
+  String get type => 'Color';
+
+  @override
+  String toString() => 'Color($hex)';
 }

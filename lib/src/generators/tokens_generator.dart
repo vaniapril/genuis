@@ -13,13 +13,25 @@ class TokensGenerator extends GenuisGenerator {
   });
 
   @override
-  String get name => token.config.name;
+  // TODO(IvanPrylepski): rename to fineName
+  String get name => 'token_${token.config.name}';
 
   @override
   String generate() {
     StringBuffer buffer = StringBuffer();
 
-    const EnumBuilder(valueName: '', valueType: '').write(token.fields, buffer);
+    buffer.writeln("import 'package:flutter/material.dart';");
+
+    EnumBuilder(valueName: 'value', valueType: token.fields.first.type).write(
+        Class(
+          name: name,
+          path: [],
+          classType: token.config.name,
+          themes: [],
+          classes: [],
+          fields: token.fields,
+        ),
+        buffer);
 
     return buffer.toString();
   }

@@ -11,6 +11,8 @@ class EnumBuilder {
   });
 
   StringBuffer write(Class root, StringBuffer buffer) {
+    if (root.fields.isEmpty) return buffer;
+
     buffer.writeln('enum ${root.classType} {');
     final StringBuffer lines = StringBuffer();
     _writeFolder(root, lines);
@@ -44,7 +46,7 @@ class EnumBuilder {
 
     for (final item in folder.fields) {
       for (final (theme, value) in item.values.iterable) {
-        buffer.writeln("${item.enumName(theme)}(${value.code}),");
+        buffer.writeln("${item.enumName(theme)}($value),");
       }
     }
   }

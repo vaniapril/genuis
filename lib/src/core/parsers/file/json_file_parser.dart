@@ -14,7 +14,7 @@ class JsonFileParser extends FileParser {
     try {
       final root = json.decode(file.readAsStringSync());
 
-      return root is List ? _parseJson({'': root}) : _parseJson(root);
+      return root is List ? _parseJson({file.name.camelCase: root}) : _parseJson(root);
     } catch (e) {
       throw '\n${file.path} - $e';
     }
@@ -37,7 +37,7 @@ class JsonFileParser extends FileParser {
         nodes.addAll(
           entity.map(
             (e) => Item(
-              name: e.toString(),
+              name: key + e.toString(),
               value: e.toString(),
             ),
           ),

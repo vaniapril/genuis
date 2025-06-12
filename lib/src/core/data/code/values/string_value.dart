@@ -1,4 +1,3 @@
-import 'package:genuis/src/core/data/code/value_type.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 
 class StringValue extends Value {
@@ -9,8 +8,8 @@ class StringValue extends Value {
   });
 
   @override
-  String get code => "'$value'";
+  String get type => 'String';
 
   @override
-  ValueType get type => ValueType.color;
+  String toString() => "'$value'";
 }

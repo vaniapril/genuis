@@ -1,5 +1,6 @@
 import 'package:genuis/src/config/yaml/module_config.dart';
 import 'package:genuis/src/config/yaml/token_config.dart';
+import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/token.dart';
 import 'package:genuis/src/core/writers/theme_extension_builder.dart';
@@ -26,12 +27,15 @@ class MainClassGenerator extends GenuisGenerator {
     final themed = ['colors', 'shadows'];
 
     final imports = config.modules.map((e) => 'import \'${e.name}.ui.dart\';').join('\n') +
+        config.tokens.map((e) => 'import \'token_${e.name}.ui.dart\';').join('\n') +
         // "import 'package:core/core.dart';" +
         "import 'package:flutter/material.dart';" +
         '\n' +
         '\n' +
         // generators.map((e) => 'export \'${e.name}.ui.dart\';').join('\n') +
         // "export 'dimens.ui.dart';" +
+
+        config.tokens.map((e) => 'export \'token_${e.name}.ui.dart\';').join('\n') +
         "export 'ui_build_context_extension.ui.dart';";
 
     StringBuffer buffer = StringBuffer();
@@ -46,10 +50,10 @@ class MainClassGenerator extends GenuisGenerator {
       classes: modules
           .map(
             (e) => Class(
-              name: e.tree.name,
+              name: e.config.name,
               path: [],
-              classType: e.tree.classType,
-              themes: e.tree.themes,
+              classType: e.rootClass.classType,
+              themes: e.rootClass.themes,
               classes: [],
               fields: [],
             ),
@@ -92,16 +96,15 @@ class MainClassGenerator extends GenuisGenerator {
     //   fields: [],
     // );
 
-    const ThemeExtensionBuilder().write(tree, buffer);
-
-    buffer.writeln(
-      '''
+    const ThemeExtensionBuilder().write(
+      tree,
+      buffer,
+      additions: '''
   factory UI.of(BuildContext context) {
     return Theme.of(context).extension<UI>() ?? UI.dark;
   }
 ''',
     );
-
     return buffer.toString();
   }
 }

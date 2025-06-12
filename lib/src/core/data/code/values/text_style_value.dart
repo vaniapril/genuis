@@ -1,12 +1,11 @@
-import 'package:genuis/src/core/data/code/value_type.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 
 class TextStyleValue extends Value {
-  final String family;
-  final String weight;
-  final String size;
-  final String height;
-  final String? spacing;
+  final Value family;
+  final Value weight;
+  final Value size;
+  final Value height;
+  final Value? spacing;
 
   const TextStyleValue({
     required this.family,
@@ -17,9 +16,12 @@ class TextStyleValue extends Value {
   });
 
   @override
-  String get code =>
-      'const TextStyle(fontFamily: $family, fontWeight: FontWeight.w$weight, fontSize: $size, height: $height / $size,${spacing != null ? 'letterSpacing: $spacing,' : ''})';
+  String lerpCode(String arg1, String arg2) => 'TextStyle.lerp($arg1, $arg2, t) ?? $arg2';
 
   @override
-  ValueType get type => ValueType.textStyle;
+  String get type => 'TextStyle';
+
+  @override
+  String toString() =>
+      'const TextStyle(fontFamily: $family, fontWeight: FontWeight.w$weight, fontSize: $size, height: $height / $size, ${spacing != null ? 'letterSpacing: $spacing,' : ''})';
 }

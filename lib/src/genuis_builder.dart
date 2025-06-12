@@ -32,7 +32,7 @@ class GenuisBuilder extends Builder {
       buildStep.writeAsString(
         _output(
           buildStep,
-          join(config.output, '${generator.name}.ui.dart'),
+          join(config.output, '${generator.name.snakeCase}.ui.dart'),
         ),
         DartFormatter(
           pageWidth: config.lineLength,

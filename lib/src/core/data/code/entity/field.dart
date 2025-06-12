@@ -1,7 +1,7 @@
 part of 'code_entity.dart';
 
 class Field extends CodeEntity {
-  final ValueType valueType;
+  final String valueType;
   final Map<String, Value> values;
 
   String enumName(String theme) {

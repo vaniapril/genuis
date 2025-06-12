@@ -1,4 +1,3 @@
-import 'package:genuis/src/core/data/code/value_type.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 
 class TokenValue extends Value {
@@ -7,14 +6,18 @@ class TokenValue extends Value {
   final Value innerValue;
 
   const TokenValue({
+    super.flags = const [],
     required this.tokenType,
     required this.tokenName,
     required this.innerValue,
   });
 
   @override
-  String get code => '$tokenType.$tokenName';
+  String lerpCode(String arg1, String arg2) => innerValue.lerpCode(arg1, arg2);
 
   @override
-  ValueType get type => innerValue.type;
+  String get type => innerValue.type;
+
+  @override
+  String toString() => '$tokenType.$tokenName';
 }

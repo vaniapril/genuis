@@ -6,14 +6,13 @@ import 'package:build/build.dart';
 import 'package:genuis/src/config/config_default.dart';
 import 'package:genuis/src/config/yaml/module_type_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/core/data/code/value.dart';
-import 'package:genuis/src/core/data/code/values/string_value.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/data/token.dart';
 import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
 import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
+import 'package:genuis/src/core/parsers/value_parser.dart';
 import 'package:genuis/src/generators/build_context_extension_generator.dart';
 import 'package:genuis/src/generators/main_class_generator.dart';
 import 'package:genuis/src/generators/module_generator.dart';
@@ -31,16 +30,14 @@ Builder build(BuilderOptions options) {
       fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
     ).parse();
 
+    final valueParser = ValueParser(
+      type: e.type,
+    );
+
     Class tree = ModelsParser(
       config: config,
       root: node,
-      mapper: switch (e.type) {
-        ModuleTypeConfig.blur => Value.parseBlur,
-        ModuleTypeConfig.color => Value.parseColor,
-        ModuleTypeConfig.font => Value.parseFont,
-        ModuleTypeConfig.shadow => Value.parseShadow,
-        ModuleTypeConfig.asset => Value.parseAsset,
-      },
+      mapper: (value) => valueParser.parse(value),
     ).parse();
 
     return Token(config: e, fields: tree.fields);
@@ -52,16 +49,12 @@ Builder build(BuilderOptions options) {
       fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
     ).parse();
 
+    final valueParser = ValueParser(type: e.type, tokens: tokens);
+
     Class tree = ModelsParser(
       config: config,
       root: node,
-      mapper: switch (e.type) {
-        ModuleTypeConfig.blur => Value.parseBlur,
-        ModuleTypeConfig.color => Value.parseColor,
-        ModuleTypeConfig.font => Value.parseFont,
-        ModuleTypeConfig.shadow => Value.parseShadow,
-        ModuleTypeConfig.asset => Value.parseAsset,
-      },
+      mapper: (value) => valueParser.parse(value),
     ).parse();
 
     return Module(config: e, rootClass: tree);

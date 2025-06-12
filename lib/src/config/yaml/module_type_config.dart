@@ -3,7 +3,8 @@ enum ModuleTypeConfig {
   color,
   font,
   asset,
-  shadow;
+  shadow,
+  number;
 
   static ModuleTypeConfig from(String value) {
     return switch (value) {
@@ -12,6 +13,7 @@ enum ModuleTypeConfig {
       'font' => ModuleTypeConfig.font,
       'asset' => ModuleTypeConfig.asset,
       'shadow' => ModuleTypeConfig.shadow,
+      'number' => ModuleTypeConfig.number,
       _ => throw 'Unexpected type',
     };
   }

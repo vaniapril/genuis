@@ -1,16 +1,15 @@
-import 'package:genuis/src/core/data/code/value_type.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 
 class BlurValue extends Value {
-  final String sigma;
+  final Value sigma;
 
   const BlurValue({
     required this.sigma,
   });
 
   @override
-  String get code => 'ImageFilter.blur(sigmaX: $sigma / 2, sigmaY: $sigma / 2,)';
+  String get type => 'ImageFilter';
 
   @override
-  ValueType get type => ValueType.imageFilter;
+  String toString() => 'ImageFilter.blur(sigmaX: $sigma / 2, sigmaY: $sigma / 2,)';
 }

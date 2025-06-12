@@ -4,6 +4,8 @@
 // **************************************************************************
 
 import 'package:flutter/material.dart';
+import 'UI.ui.dart';
+import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset_shadow;
 import 'dart:ui';
 
 class UiBlurs extends ThemeExtension<UiBlurs> {
@@ -46,21 +48,21 @@ class UiBlurs extends ThemeExtension<UiBlurs> {
   UiBlurs lerp(ThemeExtension<UiBlurs>? other, double t) {
     if (other is! UiBlurs) return this;
     return UiBlurs(
-      blur2: blur2.lerp(other.blur2, t),
-      blur4: blur4.lerp(other.blur4, t),
-      blur8: blur8.lerp(other.blur8, t),
-      blur16: blur16.lerp(other.blur16, t),
-      blur32: blur32.lerp(other.blur32, t),
-      blur64: blur64.lerp(other.blur64, t),
+      blur2: t < 0.5 ? blur2 : other.blur2,
+      blur4: t < 0.5 ? blur4 : other.blur4,
+      blur8: t < 0.5 ? blur8 : other.blur8,
+      blur16: t < 0.5 ? blur16 : other.blur16,
+      blur32: t < 0.5 ? blur32 : other.blur32,
+      blur64: t < 0.5 ? blur64 : other.blur64,
     );
   }
 
   static final UiBlurs base = UiBlurs(
-    blur2: ImageFilter.blur(sigmaX: 0.125 / 2, sigmaY: 0.125 / 2),
-    blur4: ImageFilter.blur(sigmaX: 0.25 / 2, sigmaY: 0.25 / 2),
+    blur2: ImageFilter.blur(sigmaX: 0.1 / 2, sigmaY: 0.1 / 2),
+    blur4: ImageFilter.blur(sigmaX: 0.3 / 2, sigmaY: 0.3 / 2),
     blur8: ImageFilter.blur(sigmaX: 0.5 / 2, sigmaY: 0.5 / 2),
-    blur16: ImageFilter.blur(sigmaX: 1 / 2, sigmaY: 1 / 2),
-    blur32: ImageFilter.blur(sigmaX: 2 / 2, sigmaY: 2 / 2),
-    blur64: ImageFilter.blur(sigmaX: 4 / 2, sigmaY: 4 / 2),
+    blur16: ImageFilter.blur(sigmaX: 1.0 / 2, sigmaY: 1.0 / 2),
+    blur32: ImageFilter.blur(sigmaX: 2.0 / 2, sigmaY: 2.0 / 2),
+    blur64: ImageFilter.blur(sigmaX: 4.0 / 2, sigmaY: 4.0 / 2),
   );
 }

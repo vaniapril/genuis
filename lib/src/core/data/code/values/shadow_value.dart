@@ -1,12 +1,11 @@
-import 'package:genuis/src/core/data/code/value_type.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 
 class ShadowValue extends Value {
   final Value color;
-  final String spread;
-  final String blur;
-  final String dx;
-  final String dy;
+  final Value spread;
+  final Value blur;
+  final Value dx;
+  final Value dy;
   final bool inset;
 
   ShadowValue({
@@ -19,9 +18,12 @@ class ShadowValue extends Value {
   });
 
   @override
-  String get code =>
-      '${inset ? 'inset_shadow.' : ''}BoxShadow(color: ${color.code}, spreadRadius: $spread, blurRadius: $blur, offset: Offset($dx, $dy),${inset ? 'inset: true,' : ''})';
+  String lerpCode(String arg1, String arg2) => '${inset ? 'inset_shadow.' : ''}BoxShadow.lerp($arg1, $arg2, t) ?? $arg2';
 
   @override
-  ValueType get type => ValueType.boxShadow;
+  String get type => '${inset ? 'inset_shadow.' : ''}BoxShadow';
+
+  @override
+  String toString() =>
+      '${inset ? 'inset_shadow.' : ''}BoxShadow(color: $color, spreadRadius: $spread, blurRadius: $blur, offset: Offset($dx, $dy),${inset ? 'inset: true,' : ''})';
 }
