@@ -25,8 +25,6 @@ class ModuleGenerator extends GenuisGenerator {
 
     buffer.writeln("import 'package:flutter/material.dart';");
     buffer.writeln("import '${config.className}.ui.dart';");
-    buffer.writeln(
-        "import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset_shadow;");
     buffer.writeln("import 'dart:ui';");
 
     Class root = module.rootClass;

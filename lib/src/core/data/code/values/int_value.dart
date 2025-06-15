@@ -14,5 +14,8 @@ class IntValue extends Value {
   String get type => 'int';
 
   @override
+  List<String> get imports => [];
+  
+  @override
   String toString() => value;
 }

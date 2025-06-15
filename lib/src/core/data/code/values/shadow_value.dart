@@ -1,4 +1,5 @@
 import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/utils/imports.dart';
 
 class ShadowValue extends Value {
   final Value color;
@@ -18,10 +19,16 @@ class ShadowValue extends Value {
   });
 
   @override
-  String lerpCode(String arg1, String arg2) => '${inset ? 'inset_shadow.' : ''}BoxShadow.lerp($arg1, $arg2, t) ?? $arg2';
+  String lerpCode(String arg1, String arg2) =>
+      '${inset ? 'inset_shadow.' : ''}BoxShadow.lerp($arg1, $arg2, t) ?? $arg2';
 
   @override
   String get type => '${inset ? 'inset_shadow.' : ''}BoxShadow';
+
+  @override
+  List<String> get imports => [
+        inset ? Imports.flutterInsetShadow : Imports.material,
+      ];
 
   @override
   String toString() =>

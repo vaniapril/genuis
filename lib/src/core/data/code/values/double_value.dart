@@ -14,5 +14,8 @@ class DoubleValue extends Value {
   String get type => 'double';
 
   @override
+  List<String> get imports => [];
+
+  @override
   String toString() => value.toStringAsFixed(1);
 }

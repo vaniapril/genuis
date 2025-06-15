@@ -1,4 +1,5 @@
 import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/utils/imports.dart';
 
 class TextStyleValue extends Value {
   final Value family;
@@ -20,6 +21,11 @@ class TextStyleValue extends Value {
 
   @override
   String get type => 'TextStyle';
+
+  @override
+  List<String> get imports => [
+        Imports.material,
+      ];
 
   @override
   String toString() =>

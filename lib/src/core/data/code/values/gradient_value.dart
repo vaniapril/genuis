@@ -1,4 +1,5 @@
 import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/utils/imports.dart';
 
 class GradientValue extends Value {
   final Value begin;
@@ -17,6 +18,11 @@ class GradientValue extends Value {
 
   @override
   String get type => 'LinearGradient';
+
+  @override
+  List<String> get imports => [
+        Imports.material,
+      ];
 
   @override
   String toString() =>

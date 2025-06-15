@@ -1,4 +1,5 @@
 import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/utils/imports.dart';
 
 class ColorValue extends Value {
   final String hex;
@@ -13,6 +14,11 @@ class ColorValue extends Value {
 
   @override
   String get type => 'Color';
+
+  @override
+  List<String> get imports => [
+        Imports.material,
+      ];
 
   @override
   String toString() => 'Color($hex)';

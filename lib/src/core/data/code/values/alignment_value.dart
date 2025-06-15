@@ -1,5 +1,6 @@
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/core/data/code/values/double_value.dart';
+import 'package:genuis/src/utils/imports.dart';
 
 class AlignmentValue extends Value {
   final Value x;
@@ -12,6 +13,11 @@ class AlignmentValue extends Value {
 
   @override
   String get type => 'ImageFilter';
+
+  @override
+  List<String> get imports => [
+        Imports.material,
+      ];
 
   @override
   String toString() => switch ((x, y)) {

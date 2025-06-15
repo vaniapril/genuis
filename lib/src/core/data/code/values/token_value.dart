@@ -19,5 +19,8 @@ class TokenValue extends Value {
   String get type => innerValue.type;
 
   @override
+  List<String> get imports => innerValue.imports;
+
+  @override
   String toString() => '$tokenType.$tokenName';
 }

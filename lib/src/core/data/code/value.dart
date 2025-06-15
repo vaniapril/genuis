@@ -6,5 +6,6 @@ abstract class Value {
   });
 
   String get type;
+  List<String> get imports;
   String lerpCode(String arg1, String arg2) => 't < 0.5 ? $arg1 : $arg2';
 }
