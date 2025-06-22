@@ -1,14 +1,14 @@
 {
     "error": {
-        "light": "$colors.primary_error_500",
+        "light": "$colors.primary_error_500 fonts:error",
         "dark": "$colors.primary_error_600"
     },
     "alert_notification": {
-        "light": "$colors.transparency_white_80",
+        "light": "$colors.transparency_white_80 icons",
         "dark": "$colors.transparency_black_80"
     },
     "brand": {
-        "light": "$colors.primary_brand_300",
+        "light": "$colors.primary_brand_300 icons:active",
         "dark": "$colors.primary_brand_300"
     },
     "chat_message": {

@@ -3,6 +3,8 @@
 // Generator: GenUIs - UI generator
 // **************************************************************************
 
+// ignore_for_file: unused_import
+
 import 'blurs.ui.dart';
 import 'colors.ui.dart';
 import 'fonts.ui.dart';
@@ -13,21 +15,23 @@ import 'token_colors.ui.dart';
 import 'token_heights.ui.dart';
 import 'package:flutter/material.dart';
 
+export 'blurs.ui.dart';
+export 'colors.ui.dart';
+export 'fonts.ui.dart';
+export 'icons.ui.dart';
+export 'images.ui.dart';
+export 'shadows.ui.dart';
 export 'token_colors.ui.dart';
 export 'token_heights.ui.dart';
-export 'ui_build_context_extension.ui.dart';
+export 'build_context_extension.ui.dart';
 
 class UI extends ThemeExtension<UI> {
-  factory UI.of(BuildContext context) {
-    return Theme.of(context).extension<UI>() ?? UI.dark;
-  }
-
-  final UiBlurs blurs;
-  final UiColors colors;
-  final UiFonts fonts;
-  final UiIcons icons;
-  final UiImages images;
-  final UiShadows shadows;
+  final UIBlurs blurs;
+  final UIColors colors;
+  final UIFonts fonts;
+  final UIIcons icons;
+  final UIImages images;
+  final UIShadows shadows;
 
   const UI({
     required this.blurs,
@@ -40,12 +44,12 @@ class UI extends ThemeExtension<UI> {
 
   @override
   UI copyWith({
-    UiBlurs? blurs,
-    UiColors? colors,
-    UiFonts? fonts,
-    UiIcons? icons,
-    UiImages? images,
-    UiShadows? shadows,
+    UIBlurs? blurs,
+    UIColors? colors,
+    UIFonts? fonts,
+    UIIcons? icons,
+    UIImages? images,
+    UIShadows? shadows,
   }) {
     return UI(
       blurs: blurs ?? this.blurs,
@@ -71,19 +75,23 @@ class UI extends ThemeExtension<UI> {
   }
 
   static final UI light = UI(
-    blurs: UiBlurs.base,
-    colors: UiColors.light,
-    fonts: UiFonts.base,
-    icons: UiIcons.light,
-    images: UiImages.base,
-    shadows: UiShadows.light,
+    blurs: UIBlurs.base,
+    colors: UIColors.light,
+    fonts: UIFonts.light,
+    icons: UIIcons.light,
+    images: UIImages.base,
+    shadows: UIShadows.light,
   );
   static final UI dark = UI(
-    blurs: UiBlurs.base,
-    colors: UiColors.dark,
-    fonts: UiFonts.base,
-    icons: UiIcons.dark,
-    images: UiImages.base,
-    shadows: UiShadows.dark,
+    blurs: UIBlurs.base,
+    colors: UIColors.dark,
+    fonts: UIFonts.dark,
+    icons: UIIcons.dark,
+    images: UIImages.base,
+    shadows: UIShadows.dark,
   );
+
+  factory UI.of(BuildContext context) {
+    return Theme.of(context).extension<UI>() ?? UI.light;
+  }
 }

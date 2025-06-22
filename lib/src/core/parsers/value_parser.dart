@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:genuis/src/config/yaml/module_type_config.dart';
+import 'package:genuis/src/core/data/code/flag.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/core/data/code/values/alignment_value.dart';
 import 'package:genuis/src/core/data/code/values/blur_value.dart';
@@ -57,7 +58,23 @@ class ValueParser {
     };
   }
 
-  TokenValue _parseToken<T extends Value>(String arg, {List<String> flags = const []}) {
+  Flag _parseFlag(String arg) {
+    if (arg.contains(':')) {
+      final name = arg.substring(0, arg.indexOf(':'));
+      final value = arg.substring(arg.indexOf(':') + 1);
+
+      return Flag(
+        name: name,
+        value: value,
+      );
+    } else {
+      return Flag(
+        name: arg,
+      );
+    }
+  }
+
+  TokenValue _parseToken<T extends Value>(String arg, {List<Flag> flags = const []}) {
     arg = arg.substring(1);
 
     final tokenName = arg.substring(0, arg.indexOf('.'));
@@ -68,7 +85,7 @@ class ValueParser {
     for (final field in token.fields) {
       if (field.name == name) {
         return TokenValue(
-          tokenType: token.config.name,
+          tokenType: token.config.classType,
           // TODO(IvanPrylepski): name.value ???
           tokenName: token.config.useEnum ? '$name.value' : name,
           innerValue: field.values.values.first,
@@ -97,7 +114,7 @@ class ValueParser {
   Value _parseColor(List<String> args) {
     if (args.isEmpty) throw 'Invalid color args: $args';
 
-    final flags = args.sublist(1);
+    final flags = args.sublist(1).map((e) => _parseFlag(e)).toList();
 
     if (args[0].startsWith('\$')) {
       return _parseToken<ColorValue>(args[0], flags: flags);

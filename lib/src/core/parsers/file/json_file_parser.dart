@@ -7,6 +7,10 @@ import 'package:genuis/src/utils/file_system_entity_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class JsonFileParser extends FileParser {
+
+  @override
+  bool canParse(File file) => file.isJson;
+
   @override
   List<Node> parse(File file) {
     if (!file.isJson) return [];

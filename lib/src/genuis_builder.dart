@@ -26,6 +26,7 @@ class GenuisBuilder extends Builder {
 // Generator: GenUIs - ${generator.name.upperFirst} generator
 // **************************************************************************
 ''');
+      buffer.writeln('// ignore_for_file: unused_import');
       buffer.writeln();
       buffer.write(generator.generate());
 

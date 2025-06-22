@@ -1,4 +1,3 @@
-import 'package:genuis/src/config/yaml/token_config.dart';
 import 'package:genuis/src/core/data/token.dart';
 import 'package:genuis/src/core/writers/enum_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
@@ -27,7 +26,7 @@ class TokensGenerator extends GenuisGenerator {
       Class(
         name: name,
         path: [],
-        classType: token.config.name,
+        classType: token.config.classType,
         themes: [],
         classes: [],
         fields: token.fields,

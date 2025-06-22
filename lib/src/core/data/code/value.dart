@@ -1,5 +1,7 @@
+import 'package:genuis/src/core/data/code/flag.dart';
+
 abstract class Value {
-  final List<String> flags;
+  final List<Flag> flags;
 
   const Value({
     this.flags = const [],

@@ -4,9 +4,11 @@ import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 class Module {
   final ModuleConfig config;
   final Class rootClass;
+  final Map<String, Field> colors;
 
   Module({
     required this.config,
     required this.rootClass,
+    required this.colors,
   });
 }

@@ -3,96 +3,12 @@
 // Generator: GenUIs - Colors generator
 // **************************************************************************
 
+// ignore_for_file: unused_import
+
+import 'ui.ui.dart';
 import 'package:flutter/material.dart';
-import 'UI.ui.dart';
-import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset_shadow;
-import 'dart:ui';
 
-class UiColorsOnboarding extends ThemeExtension<UiColorsOnboarding> {
-  final Color bg;
-  final Color color1;
-  final Color color2;
-  final Color color3;
-  final Color color4;
-  final Color stroke;
-
-  const UiColorsOnboarding({
-    required this.bg,
-    required this.color1,
-    required this.color2,
-    required this.color3,
-    required this.color4,
-    required this.stroke,
-  });
-
-  @override
-  UiColorsOnboarding copyWith({
-    Color? bg,
-    Color? color1,
-    Color? color2,
-    Color? color3,
-    Color? color4,
-    Color? stroke,
-  }) {
-    return UiColorsOnboarding(
-      bg: bg ?? this.bg,
-      color1: color1 ?? this.color1,
-      color2: color2 ?? this.color2,
-      color3: color3 ?? this.color3,
-      color4: color4 ?? this.color4,
-      stroke: stroke ?? this.stroke,
-    );
-  }
-
-  @override
-  UiColorsOnboarding lerp(ThemeExtension<UiColorsOnboarding>? other, double t) {
-    if (other is! UiColorsOnboarding) return this;
-    return UiColorsOnboarding(
-      bg: Color.lerp(bg, other.bg, t) ?? other.bg,
-      color1: Color.lerp(color1, other.color1, t) ?? other.color1,
-      color2: Color.lerp(color2, other.color2, t) ?? other.color2,
-      color3: Color.lerp(color3, other.color3, t) ?? other.color3,
-      color4: Color.lerp(color4, other.color4, t) ?? other.color4,
-      stroke: Color.lerp(stroke, other.stroke, t) ?? other.stroke,
-    );
-  }
-
-  static final UiColorsOnboarding light = UiColorsOnboarding(
-    bg: colors.primaryBaseWhite.value,
-    color1: Color(0x1f2858ef),
-    color2: Color(0x0f2858ef),
-    color3: Color(0x052858ef),
-    color4: Color(0x002858ef),
-    stroke: colors.primaryNeutral25.value,
-  );
-  static final UiColorsOnboarding dark = UiColorsOnboarding(
-    bg: colors.primaryBaseBlack.value,
-    color1: Color(0xcc010101),
-    color2: Color(0x99010101),
-    color3: Color(0x66010101),
-    color4: Color(0x33010101),
-    stroke: colors.primaryNeutral800.value,
-  );
-}
-
-class UiColors extends ThemeExtension<UiColors> {
-  final UiColorsOnboarding onboarding;
-  final Color error;
-  final Color alertNotification;
-  final Color brand;
-  final Color chatMessage;
-  final Color divider;
-  final Color navbar;
-  final Color primaryBlack;
-  final Color whiteConst;
-  final Color primaryPressed;
-  final Color primaryWhite;
-  final Color secondary;
-  final Color secondaryPressed;
-  final Color selectedPrimary;
-  final Color selectedSecondary;
-  final Color tertiary;
-  final Color scroll;
+class UIColorsKeywords extends ThemeExtension<UIColorsKeywords> {
   final Color abstract_;
   final Color as_;
   final Color assert_;
@@ -162,24 +78,7 @@ class UiColors extends ThemeExtension<UiColors> {
   final Color while_;
   final Color yield_;
 
-  const UiColors({
-    required this.onboarding,
-    required this.error,
-    required this.alertNotification,
-    required this.brand,
-    required this.chatMessage,
-    required this.divider,
-    required this.navbar,
-    required this.primaryBlack,
-    required this.whiteConst,
-    required this.primaryPressed,
-    required this.primaryWhite,
-    required this.secondary,
-    required this.secondaryPressed,
-    required this.selectedPrimary,
-    required this.selectedSecondary,
-    required this.tertiary,
-    required this.scroll,
+  const UIColorsKeywords({
     required this.abstract_,
     required this.as_,
     required this.assert_,
@@ -251,24 +150,7 @@ class UiColors extends ThemeExtension<UiColors> {
   });
 
   @override
-  UiColors copyWith({
-    UiColorsOnboarding? onboarding,
-    Color? error,
-    Color? alertNotification,
-    Color? brand,
-    Color? chatMessage,
-    Color? divider,
-    Color? navbar,
-    Color? primaryBlack,
-    Color? whiteConst,
-    Color? primaryPressed,
-    Color? primaryWhite,
-    Color? secondary,
-    Color? secondaryPressed,
-    Color? selectedPrimary,
-    Color? selectedSecondary,
-    Color? tertiary,
-    Color? scroll,
+  UIColorsKeywords copyWith({
     Color? abstract_,
     Color? as_,
     Color? assert_,
@@ -338,24 +220,7 @@ class UiColors extends ThemeExtension<UiColors> {
     Color? while_,
     Color? yield_,
   }) {
-    return UiColors(
-      onboarding: onboarding ?? this.onboarding,
-      error: error ?? this.error,
-      alertNotification: alertNotification ?? this.alertNotification,
-      brand: brand ?? this.brand,
-      chatMessage: chatMessage ?? this.chatMessage,
-      divider: divider ?? this.divider,
-      navbar: navbar ?? this.navbar,
-      primaryBlack: primaryBlack ?? this.primaryBlack,
-      whiteConst: whiteConst ?? this.whiteConst,
-      primaryPressed: primaryPressed ?? this.primaryPressed,
-      primaryWhite: primaryWhite ?? this.primaryWhite,
-      secondary: secondary ?? this.secondary,
-      secondaryPressed: secondaryPressed ?? this.secondaryPressed,
-      selectedPrimary: selectedPrimary ?? this.selectedPrimary,
-      selectedSecondary: selectedSecondary ?? this.selectedSecondary,
-      tertiary: tertiary ?? this.tertiary,
-      scroll: scroll ?? this.scroll,
+    return UIColorsKeywords(
       abstract_: abstract_ ?? this.abstract_,
       as_: as_ ?? this.as_,
       assert_: assert_ ?? this.assert_,
@@ -428,30 +293,9 @@ class UiColors extends ThemeExtension<UiColors> {
   }
 
   @override
-  UiColors lerp(ThemeExtension<UiColors>? other, double t) {
-    if (other is! UiColors) return this;
-    return UiColors(
-      onboarding: onboarding.lerp(other.onboarding, t),
-      error: Color.lerp(error, other.error, t) ?? other.error,
-      alertNotification:
-          Color.lerp(alertNotification, other.alertNotification, t) ?? other.alertNotification,
-      brand: Color.lerp(brand, other.brand, t) ?? other.brand,
-      chatMessage: Color.lerp(chatMessage, other.chatMessage, t) ?? other.chatMessage,
-      divider: Color.lerp(divider, other.divider, t) ?? other.divider,
-      navbar: Color.lerp(navbar, other.navbar, t) ?? other.navbar,
-      primaryBlack: Color.lerp(primaryBlack, other.primaryBlack, t) ?? other.primaryBlack,
-      whiteConst: Color.lerp(whiteConst, other.whiteConst, t) ?? other.whiteConst,
-      primaryPressed: Color.lerp(primaryPressed, other.primaryPressed, t) ?? other.primaryPressed,
-      primaryWhite: Color.lerp(primaryWhite, other.primaryWhite, t) ?? other.primaryWhite,
-      secondary: Color.lerp(secondary, other.secondary, t) ?? other.secondary,
-      secondaryPressed:
-          Color.lerp(secondaryPressed, other.secondaryPressed, t) ?? other.secondaryPressed,
-      selectedPrimary:
-          Color.lerp(selectedPrimary, other.selectedPrimary, t) ?? other.selectedPrimary,
-      selectedSecondary:
-          Color.lerp(selectedSecondary, other.selectedSecondary, t) ?? other.selectedSecondary,
-      tertiary: Color.lerp(tertiary, other.tertiary, t) ?? other.tertiary,
-      scroll: Color.lerp(scroll, other.scroll, t) ?? other.scroll,
+  UIColorsKeywords lerp(ThemeExtension<UIColorsKeywords>? other, double t) {
+    if (other is! UIColorsKeywords) return this;
+    return UIColorsKeywords(
       abstract_: Color.lerp(abstract_, other.abstract_, t) ?? other.abstract_,
       as_: Color.lerp(as_, other.as_, t) ?? other.as_,
       assert_: Color.lerp(assert_, other.assert_, t) ?? other.assert_,
@@ -523,24 +367,7 @@ class UiColors extends ThemeExtension<UiColors> {
     );
   }
 
-  static final UiColors light = UiColors(
-    onboarding: UiColorsOnboarding.light,
-    error: colors.primaryError500.value,
-    alertNotification: colors.transparencyWhite80.value,
-    brand: colors.primaryBrand300.value,
-    chatMessage: colors.primaryNeutral100.value,
-    divider: colors.primaryNeutral100.value,
-    navbar: colors.primaryBaseWhite.value,
-    primaryBlack: colors.primaryBaseBlack.value,
-    whiteConst: colors.primaryBaseWhite.value,
-    primaryPressed: colors.primaryNeutral50.value,
-    primaryWhite: colors.primaryBaseWhite.value,
-    secondary: colors.primaryNeutral50.value,
-    secondaryPressed: colors.primaryNeutral100.value,
-    selectedPrimary: colors.primaryBrand25.value,
-    selectedSecondary: colors.primarySuccess50.value,
-    tertiary: colors.primaryNeutral300.value,
-    scroll: colors.transparencyBlack20.value,
+  static final UIColorsKeywords base = UIColorsKeywords(
     abstract_: Color(0xFF000001),
     as_: Color(0xFF000002),
     assert_: Color(0xFF000003),
@@ -610,91 +437,281 @@ class UiColors extends ThemeExtension<UiColors> {
     while_: Color(0xFF000067),
     yield_: Color(0xFF000068),
   );
-  static final UiColors dark = UiColors(
-    onboarding: UiColorsOnboarding.dark,
-    error: colors.primaryError600.value,
-    alertNotification: colors.transparencyBlack80.value,
-    brand: colors.primaryBrand300.value,
-    chatMessage: colors.primaryNeutral900.value,
-    divider: colors.primaryNeutral900.value,
-    navbar: colors.primaryNeutral900.value,
-    primaryBlack: colors.primaryBaseWhite.value,
-    whiteConst: colors.primaryBaseWhite.value,
-    primaryPressed: colors.primaryNeutral900.value,
-    primaryWhite: colors.primaryBaseBlack.value,
-    secondary: colors.primaryNeutral900.value,
-    secondaryPressed: colors.primaryNeutral800.value,
-    selectedPrimary: colors.primaryBrand950.value,
-    selectedSecondary: colors.primarySuccess950.value,
-    tertiary: colors.primaryNeutral800.value,
-    scroll: colors.transparencyWhite20.value,
-    abstract_: Color(0xFF000001),
-    as_: Color(0xFF000002),
-    assert_: Color(0xFF000003),
-    async_: Color(0xFF000004),
-    await_: Color(0xFF000005),
-    base_: Color(0xFF000006),
-    break_: Color(0xFF000007),
-    case_: Color(0xFF000008),
-    catch_: Color(0xFF000009),
-    class_: Color(0xFF000010),
-    const_: Color(0xFF000011),
-    continue_: Color(0xFF000012),
-    covariant_: Color(0xFF000013),
-    default_: Color(0xFF000014),
-    deferred_: Color(0xFF000015),
-    do_: Color(0xFF000016),
-    dynamic_: Color(0xFF000017),
-    else_: Color(0xFF000018),
-    enum_: Color(0xFF000019),
-    export_: Color(0xFF000020),
-    extends_: Color(0xFF000021),
-    extension_: Color(0xFF000022),
-    external_: Color(0xFF000023),
-    factory_: Color(0xFF000024),
-    false_: Color(0xFF000025),
-    final_: Color(0xFF000026),
-    finally_: Color(0xFF000027),
-    for_: Color(0xFF000028),
-    function_: Color(0xFF000029),
-    get_: Color(0xFF000030),
-    hide_: Color(0xFF000031),
-    if_: Color(0xFF000032),
-    implements_: Color(0xFF000033),
-    import_: Color(0xFF000034),
-    in_: Color(0xFF000035),
-    interface_: Color(0xFF000036),
-    is_: Color(0xFF000037),
-    late_: Color(0xFF000038),
-    library_: Color(0xFF000039),
-    mixin_: Color(0xFF000040),
-    new_: Color(0xFF000041),
-    null_: Color(0xFF000042),
-    of_: Color(0xFF000043),
-    on_: Color(0xFF000044),
-    operator_: Color(0xFF000045),
-    part_: Color(0xFF000046),
-    required_: Color(0xFF000047),
-    rethrow_: Color(0xFF000048),
-    return_: Color(0xFF000049),
-    sealed_: Color(0xFF000050),
-    set_: Color(0xFF000051),
-    show_: Color(0xFF000052),
-    static_: Color(0xFF000053),
-    super_: Color(0xFF000054),
-    switch_: Color(0xFF000055),
-    sync_: Color(0xFF000056),
-    this_: Color(0xFF000057),
-    throw_: Color(0xFF000058),
-    true_: Color(0xFF000059),
-    try_: Color(0xFF000060),
-    type_: Color(0xFF000061),
-    typedef_: Color(0xFF000062),
-    var_: Color(0xFF000063),
-    void_: Color(0xFF000064),
-    when_: Color(0xFF000065),
-    with_: Color(0xFF000066),
-    while_: Color(0xFF000067),
-    yield_: Color(0xFF000068),
+}
+
+class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding> {
+  final Color bg;
+  final Color color1;
+  final Color color2;
+  final Color color3;
+  final Color color4;
+  final Color stroke;
+
+  const UIColorsPrimaryOnboarding({
+    required this.bg,
+    required this.color1,
+    required this.color2,
+    required this.color3,
+    required this.color4,
+    required this.stroke,
+  });
+
+  @override
+  UIColorsPrimaryOnboarding copyWith({
+    Color? bg,
+    Color? color1,
+    Color? color2,
+    Color? color3,
+    Color? color4,
+    Color? stroke,
+  }) {
+    return UIColorsPrimaryOnboarding(
+      bg: bg ?? this.bg,
+      color1: color1 ?? this.color1,
+      color2: color2 ?? this.color2,
+      color3: color3 ?? this.color3,
+      color4: color4 ?? this.color4,
+      stroke: stroke ?? this.stroke,
+    );
+  }
+
+  @override
+  UIColorsPrimaryOnboarding lerp(ThemeExtension<UIColorsPrimaryOnboarding>? other, double t) {
+    if (other is! UIColorsPrimaryOnboarding) return this;
+    return UIColorsPrimaryOnboarding(
+      bg: Color.lerp(bg, other.bg, t) ?? other.bg,
+      color1: Color.lerp(color1, other.color1, t) ?? other.color1,
+      color2: Color.lerp(color2, other.color2, t) ?? other.color2,
+      color3: Color.lerp(color3, other.color3, t) ?? other.color3,
+      color4: Color.lerp(color4, other.color4, t) ?? other.color4,
+      stroke: Color.lerp(stroke, other.stroke, t) ?? other.stroke,
+    );
+  }
+
+  static final UIColorsPrimaryOnboarding light = UIColorsPrimaryOnboarding(
+    bg: UColors.primaryBaseWhite.value,
+    color1: Color(0x1f2858ef),
+    color2: Color(0x0f2858ef),
+    color3: Color(0x052858ef),
+    color4: Color(0x002858ef),
+    stroke: UColors.primaryNeutral25.value,
+  );
+  static final UIColorsPrimaryOnboarding dark = UIColorsPrimaryOnboarding(
+    bg: UColors.primaryBaseBlack.value,
+    color1: Color(0xcc010101),
+    color2: Color(0x99010101),
+    color3: Color(0x66010101),
+    color4: Color(0x33010101),
+    stroke: UColors.primaryNeutral800.value,
+  );
+}
+
+class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
+  final UIColorsPrimaryOnboarding onboarding;
+  final Color error;
+  final Color alertNotification;
+  final Color brand;
+  final Color chatMessage;
+  final Color divider;
+  final Color navbar;
+  final Color primaryBlack;
+  final Color whiteConst;
+  final Color primaryPressed;
+  final Color primaryWhite;
+  final Color secondary;
+  final Color secondaryPressed;
+  final Color selectedPrimary;
+  final Color selectedSecondary;
+  final Color tertiary;
+  final Color scroll;
+
+  const UIColorsPrimary({
+    required this.onboarding,
+    required this.error,
+    required this.alertNotification,
+    required this.brand,
+    required this.chatMessage,
+    required this.divider,
+    required this.navbar,
+    required this.primaryBlack,
+    required this.whiteConst,
+    required this.primaryPressed,
+    required this.primaryWhite,
+    required this.secondary,
+    required this.secondaryPressed,
+    required this.selectedPrimary,
+    required this.selectedSecondary,
+    required this.tertiary,
+    required this.scroll,
+  });
+
+  @override
+  UIColorsPrimary copyWith({
+    UIColorsPrimaryOnboarding? onboarding,
+    Color? error,
+    Color? alertNotification,
+    Color? brand,
+    Color? chatMessage,
+    Color? divider,
+    Color? navbar,
+    Color? primaryBlack,
+    Color? whiteConst,
+    Color? primaryPressed,
+    Color? primaryWhite,
+    Color? secondary,
+    Color? secondaryPressed,
+    Color? selectedPrimary,
+    Color? selectedSecondary,
+    Color? tertiary,
+    Color? scroll,
+  }) {
+    return UIColorsPrimary(
+      onboarding: onboarding ?? this.onboarding,
+      error: error ?? this.error,
+      alertNotification: alertNotification ?? this.alertNotification,
+      brand: brand ?? this.brand,
+      chatMessage: chatMessage ?? this.chatMessage,
+      divider: divider ?? this.divider,
+      navbar: navbar ?? this.navbar,
+      primaryBlack: primaryBlack ?? this.primaryBlack,
+      whiteConst: whiteConst ?? this.whiteConst,
+      primaryPressed: primaryPressed ?? this.primaryPressed,
+      primaryWhite: primaryWhite ?? this.primaryWhite,
+      secondary: secondary ?? this.secondary,
+      secondaryPressed: secondaryPressed ?? this.secondaryPressed,
+      selectedPrimary: selectedPrimary ?? this.selectedPrimary,
+      selectedSecondary: selectedSecondary ?? this.selectedSecondary,
+      tertiary: tertiary ?? this.tertiary,
+      scroll: scroll ?? this.scroll,
+    );
+  }
+
+  @override
+  UIColorsPrimary lerp(ThemeExtension<UIColorsPrimary>? other, double t) {
+    if (other is! UIColorsPrimary) return this;
+    return UIColorsPrimary(
+      onboarding: onboarding.lerp(other.onboarding, t),
+      error: Color.lerp(error, other.error, t) ?? other.error,
+      alertNotification:
+          Color.lerp(alertNotification, other.alertNotification, t) ?? other.alertNotification,
+      brand: Color.lerp(brand, other.brand, t) ?? other.brand,
+      chatMessage: Color.lerp(chatMessage, other.chatMessage, t) ?? other.chatMessage,
+      divider: Color.lerp(divider, other.divider, t) ?? other.divider,
+      navbar: Color.lerp(navbar, other.navbar, t) ?? other.navbar,
+      primaryBlack: Color.lerp(primaryBlack, other.primaryBlack, t) ?? other.primaryBlack,
+      whiteConst: Color.lerp(whiteConst, other.whiteConst, t) ?? other.whiteConst,
+      primaryPressed: Color.lerp(primaryPressed, other.primaryPressed, t) ?? other.primaryPressed,
+      primaryWhite: Color.lerp(primaryWhite, other.primaryWhite, t) ?? other.primaryWhite,
+      secondary: Color.lerp(secondary, other.secondary, t) ?? other.secondary,
+      secondaryPressed:
+          Color.lerp(secondaryPressed, other.secondaryPressed, t) ?? other.secondaryPressed,
+      selectedPrimary:
+          Color.lerp(selectedPrimary, other.selectedPrimary, t) ?? other.selectedPrimary,
+      selectedSecondary:
+          Color.lerp(selectedSecondary, other.selectedSecondary, t) ?? other.selectedSecondary,
+      tertiary: Color.lerp(tertiary, other.tertiary, t) ?? other.tertiary,
+      scroll: Color.lerp(scroll, other.scroll, t) ?? other.scroll,
+    );
+  }
+
+  static final UIColorsPrimary light = UIColorsPrimary(
+    onboarding: UIColorsPrimaryOnboarding.light,
+    error: UColors.primaryError500.value,
+    alertNotification: UColors.transparencyWhite80.value,
+    brand: UColors.primaryBrand300.value,
+    chatMessage: UColors.primaryNeutral100.value,
+    divider: UColors.primaryNeutral100.value,
+    navbar: UColors.primaryBaseWhite.value,
+    primaryBlack: UColors.primaryBaseBlack.value,
+    whiteConst: UColors.primaryBaseWhite.value,
+    primaryPressed: UColors.primaryNeutral50.value,
+    primaryWhite: UColors.primaryBaseWhite.value,
+    secondary: UColors.primaryNeutral50.value,
+    secondaryPressed: UColors.primaryNeutral100.value,
+    selectedPrimary: UColors.primaryBrand25.value,
+    selectedSecondary: UColors.primarySuccess50.value,
+    tertiary: UColors.primaryNeutral300.value,
+    scroll: UColors.transparencyBlack20.value,
+  );
+  static final UIColorsPrimary dark = UIColorsPrimary(
+    onboarding: UIColorsPrimaryOnboarding.dark,
+    error: UColors.primaryError600.value,
+    alertNotification: UColors.transparencyBlack80.value,
+    brand: UColors.primaryBrand300.value,
+    chatMessage: UColors.primaryNeutral900.value,
+    divider: UColors.primaryNeutral900.value,
+    navbar: UColors.primaryNeutral900.value,
+    primaryBlack: UColors.primaryBaseWhite.value,
+    whiteConst: UColors.primaryBaseWhite.value,
+    primaryPressed: UColors.primaryNeutral900.value,
+    primaryWhite: UColors.primaryBaseBlack.value,
+    secondary: UColors.primaryNeutral900.value,
+    secondaryPressed: UColors.primaryNeutral800.value,
+    selectedPrimary: UColors.primaryBrand950.value,
+    selectedSecondary: UColors.primarySuccess950.value,
+    tertiary: UColors.primaryNeutral800.value,
+    scroll: UColors.transparencyWhite20.value,
+  );
+}
+
+class UIColorsSecondary extends ThemeExtension<UIColorsSecondary> {
+  final Color error;
+
+  const UIColorsSecondary({required this.error});
+
+  @override
+  UIColorsSecondary copyWith({Color? error}) {
+    return UIColorsSecondary(error: error ?? this.error);
+  }
+
+  @override
+  UIColorsSecondary lerp(ThemeExtension<UIColorsSecondary>? other, double t) {
+    if (other is! UIColorsSecondary) return this;
+    return UIColorsSecondary(error: Color.lerp(error, other.error, t) ?? other.error);
+  }
+
+  static final UIColorsSecondary light = UIColorsSecondary(error: UColors.primaryError500.value);
+  static final UIColorsSecondary dark = UIColorsSecondary(error: UColors.primaryError600.value);
+}
+
+class UIColors extends ThemeExtension<UIColors> {
+  final UIColorsKeywords keywords;
+  final UIColorsPrimary primary;
+  final UIColorsSecondary secondary;
+
+  const UIColors({required this.keywords, required this.primary, required this.secondary});
+
+  @override
+  UIColors copyWith({
+    UIColorsKeywords? keywords,
+    UIColorsPrimary? primary,
+    UIColorsSecondary? secondary,
+  }) {
+    return UIColors(
+      keywords: keywords ?? this.keywords,
+      primary: primary ?? this.primary,
+      secondary: secondary ?? this.secondary,
+    );
+  }
+
+  @override
+  UIColors lerp(ThemeExtension<UIColors>? other, double t) {
+    if (other is! UIColors) return this;
+    return UIColors(
+      keywords: keywords.lerp(other.keywords, t),
+      primary: primary.lerp(other.primary, t),
+      secondary: secondary.lerp(other.secondary, t),
+    );
+  }
+
+  static final UIColors light = UIColors(
+    keywords: UIColorsKeywords.base,
+    primary: UIColorsPrimary.light,
+    secondary: UIColorsSecondary.light,
+  );
+  static final UIColors dark = UIColors(
+    keywords: UIColorsKeywords.base,
+    primary: UIColorsPrimary.dark,
+    secondary: UIColorsSecondary.dark,
   );
 }

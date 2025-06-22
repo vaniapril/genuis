@@ -34,7 +34,7 @@ class MainClassGenerator extends GenuisGenerator {
         '\n' +
         // generators.map((e) => 'export \'${e.name}.ui.dart\';').join('\n') +
         // "export 'dimens.ui.dart';" +
-
+        config.modules.map((e) => 'export \'${e.name}.ui.dart\';').join('\n') +
         config.tokens.map((e) => 'export \'token_${e.name}.ui.dart\';').join('\n') +
         "export 'build_context_extension.ui.dart';";
 

@@ -3,9 +3,11 @@
 // Generator: GenUIs - Token_colors generator
 // **************************************************************************
 
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 
-enum colors {
+enum UColors {
   // token_colors
   primaryBaseBlack(Color(0xFF090909)),
   primaryBaseBrand(Color(0xFF2858ef)),
@@ -146,7 +148,7 @@ enum colors {
   transparencyWhite80(Color(0xccfdfdfd)),
   transparencyWhite90(Color(0xe5fdfdfd));
 
-  const colors(this.value);
+  const UColors(this.value);
 
   final Color value;
 }

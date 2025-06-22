@@ -24,12 +24,14 @@ final defaultConfig = GenuisConfig(
     // TODO(IvanPrylepski): remove tokens
     TokenConfig(
       name: 'colors',
+      classType: 'UColors',
       path: 'colors.json',
       type: ModuleTypeConfig.color,
       useEnum: true,
     ),
     TokenConfig(
       name: 'heights',
+      classType: 'UHeights',
       path: 'heights.json',
       type: ModuleTypeConfig.number,
       useEnum: true,
@@ -63,7 +65,7 @@ final defaultConfig = GenuisConfig(
       extensions: [
         ColorsExtensionConfig(),
         EnumsExtensionConfig(
-          name: 'Icons',
+          name: 'UIcons',
         ),
       ],
     ),
@@ -73,7 +75,7 @@ final defaultConfig = GenuisConfig(
       type: ModuleTypeConfig.asset,
       extensions: [
         EnumsExtensionConfig(
-          name: 'Images',
+          name: 'UImages',
         ),
       ],
     ),

@@ -1,11 +1,13 @@
-library x_gens;
+library genuis;
 
 import 'dart:io';
 
 import 'package:build/build.dart';
 import 'package:genuis/src/config/config_default.dart';
+import 'package:genuis/src/config/yaml/extension_config.dart';
 import 'package:genuis/src/config/yaml/module_type_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
+import 'package:genuis/src/core/data/code/flag.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/data/token.dart';
@@ -18,6 +20,7 @@ import 'package:genuis/src/generators/main_class_generator.dart';
 import 'package:genuis/src/generators/module_generator.dart';
 import 'package:genuis/src/generators/tokens_generator.dart';
 import 'package:genuis/src/genuis_builder.dart';
+import 'package:genuis/src/utils/list_extension.dart';
 
 Builder build(BuilderOptions options) {
   final uiFile = File('ui.yaml');
@@ -43,7 +46,7 @@ Builder build(BuilderOptions options) {
     return Token(config: e, fields: tree.fields);
   }).toList();
 
-  final modules = config.modules.map((e) {
+  var modules = config.modules.map((e) {
     Folder node = NodesParser(
       path: config.assets + e.path,
       fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
@@ -57,7 +60,42 @@ Builder build(BuilderOptions options) {
       mapper: (value) => valueParser.parse(value),
     ).parse();
 
-    return Module(config: e, rootClass: tree);
+    return Module(config: e, rootClass: tree, colors: {});
+  }).toList();
+
+  final colors = modules.where((e) => e.config.type == ModuleTypeConfig.color).toList();
+
+  modules = modules.map((module) {
+    final colorExtension = module.config.extensions.whereType<ColorsExtensionConfig>().firstOrNull;
+
+    if (colorExtension != null) {
+      Map<String, Field> fields = {};
+
+      for (final color in colors) {
+        color.rootClass.forEach((field) {
+          final Flag? flag = [for (final e in field.values.values) ...e.flags]
+              .firstWhereOrNull((e) => e.name == module.config.name);
+          if (flag != null) {
+            fields[flag.value ?? field.name] = field;
+          }
+        });
+      }
+
+      module = Module(
+        config: module.config,
+        rootClass: Class(
+          name: module.rootClass.name,
+          path: module.rootClass.path,
+          classType: module.rootClass.classType,
+          themes: config.themes,
+          classes: module.rootClass.classes,
+          fields: module.rootClass.fields,
+        ),
+        colors: fields,
+      );
+    }
+
+    return module;
   }).toList();
 
   return GenuisBuilder(

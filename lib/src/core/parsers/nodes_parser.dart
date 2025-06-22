@@ -28,10 +28,14 @@ class NodesParser {
     final file = File(path);
 
     if (file.existsSync()) {
-      return Folder(
-        name: file.name,
-        nodes: _parseFile(file).map(reduce).toList(),
-      );
+      final node = reduce(_parseFile(file));
+
+      return node is Folder
+          ? node
+          : Folder(
+              name: file.name,
+              nodes: [node],
+            );
     }
 
     throw 'File or directory not found at $path';
@@ -62,34 +66,28 @@ class NodesParser {
           ),
         );
       }
-      if (entity is File) {
-        nodes.addAll(_parseFile(entity));
+      if (entity is File && (fileParser?.canParse(entity) ?? true)) {
+        nodes.add(_parseFile(entity));
       }
     }
 
     return nodes;
   }
 
-  List<Node> _parseFile(File file) {
-    List<Node> nodes = [];
-
+  Node _parseFile(File file) {
     final names = file.name.split('-').map((e) => e.camelCase.named).toList();
 
-    if (fileParser != null) {
-      nodes.addAll(fileParser?.parse(file) ?? []);
-    } else {
-      Node node = Item(
-        name: names.last,
-        value: relative(file.path, from: path).forwardSlash,
-      );
+    Node node = fileParser != null
+        ? Folder(name: names.last, nodes: fileParser?.parse(file) ?? [])
+        : Item(
+            name: names.last,
+            value: relative(file.path, from: path).forwardSlash,
+          );
 
-      for (final name in names.sublist(0, names.length - 1)) {
-        node = Folder(name: name, nodes: [node]);
-      }
-
-      nodes.add(node);
+    for (final name in names.sublist(0, names.length - 1)) {
+      node = Folder(name: name, nodes: [node]);
     }
 
-    return nodes;
+    return node;
   }
 }

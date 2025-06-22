@@ -14,6 +14,7 @@ class BlurValue extends Value {
   @override
   List<String> get imports => [
         Imports.material,
+        Imports.dartUi,
       ];
 
   @override

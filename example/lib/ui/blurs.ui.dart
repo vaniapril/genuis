@@ -3,12 +3,13 @@
 // Generator: GenUIs - Blurs generator
 // **************************************************************************
 
+// ignore_for_file: unused_import
+
+import 'ui.ui.dart';
 import 'package:flutter/material.dart';
-import 'UI.ui.dart';
-import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset_shadow;
 import 'dart:ui';
 
-class UiBlurs extends ThemeExtension<UiBlurs> {
+class UIBlursBlurs extends ThemeExtension<UIBlursBlurs> {
   final ImageFilter blur2;
   final ImageFilter blur4;
   final ImageFilter blur8;
@@ -16,7 +17,7 @@ class UiBlurs extends ThemeExtension<UiBlurs> {
   final ImageFilter blur32;
   final ImageFilter blur64;
 
-  const UiBlurs({
+  const UIBlursBlurs({
     required this.blur2,
     required this.blur4,
     required this.blur8,
@@ -26,7 +27,7 @@ class UiBlurs extends ThemeExtension<UiBlurs> {
   });
 
   @override
-  UiBlurs copyWith({
+  UIBlursBlurs copyWith({
     ImageFilter? blur2,
     ImageFilter? blur4,
     ImageFilter? blur8,
@@ -34,7 +35,7 @@ class UiBlurs extends ThemeExtension<UiBlurs> {
     ImageFilter? blur32,
     ImageFilter? blur64,
   }) {
-    return UiBlurs(
+    return UIBlursBlurs(
       blur2: blur2 ?? this.blur2,
       blur4: blur4 ?? this.blur4,
       blur8: blur8 ?? this.blur8,
@@ -45,9 +46,9 @@ class UiBlurs extends ThemeExtension<UiBlurs> {
   }
 
   @override
-  UiBlurs lerp(ThemeExtension<UiBlurs>? other, double t) {
-    if (other is! UiBlurs) return this;
-    return UiBlurs(
+  UIBlursBlurs lerp(ThemeExtension<UIBlursBlurs>? other, double t) {
+    if (other is! UIBlursBlurs) return this;
+    return UIBlursBlurs(
       blur2: t < 0.5 ? blur2 : other.blur2,
       blur4: t < 0.5 ? blur4 : other.blur4,
       blur8: t < 0.5 ? blur8 : other.blur8,
@@ -57,7 +58,7 @@ class UiBlurs extends ThemeExtension<UiBlurs> {
     );
   }
 
-  static final UiBlurs base = UiBlurs(
+  static final UIBlursBlurs base = UIBlursBlurs(
     blur2: ImageFilter.blur(sigmaX: 0.1 / 2, sigmaY: 0.1 / 2),
     blur4: ImageFilter.blur(sigmaX: 0.3 / 2, sigmaY: 0.3 / 2),
     blur8: ImageFilter.blur(sigmaX: 0.5 / 2, sigmaY: 0.5 / 2),
@@ -65,4 +66,23 @@ class UiBlurs extends ThemeExtension<UiBlurs> {
     blur32: ImageFilter.blur(sigmaX: 2.0 / 2, sigmaY: 2.0 / 2),
     blur64: ImageFilter.blur(sigmaX: 4.0 / 2, sigmaY: 4.0 / 2),
   );
+}
+
+class UIBlurs extends ThemeExtension<UIBlurs> {
+  final UIBlursBlurs blurs;
+
+  const UIBlurs({required this.blurs});
+
+  @override
+  UIBlurs copyWith({UIBlursBlurs? blurs}) {
+    return UIBlurs(blurs: blurs ?? this.blurs);
+  }
+
+  @override
+  UIBlurs lerp(ThemeExtension<UIBlurs>? other, double t) {
+    if (other is! UIBlurs) return this;
+    return UIBlurs(blurs: blurs.lerp(other.blurs, t));
+  }
+
+  static final UIBlurs base = UIBlurs(blurs: UIBlursBlurs.base);
 }

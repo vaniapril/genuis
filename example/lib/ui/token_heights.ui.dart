@@ -3,9 +3,11 @@
 // Generator: GenUIs - Token_heights generator
 // **************************************************************************
 
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 
-enum heights {
+enum UHeights {
   // token_heights
   heights1(1.0),
   heights2(2.0),
@@ -17,7 +19,7 @@ enum heights {
   heights8(8.0),
   heights9(9.0);
 
-  const heights(this.value);
+  const UHeights(this.value);
 
   final double value;
 }
