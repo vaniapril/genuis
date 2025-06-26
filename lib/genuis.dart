@@ -1,113 +1,33 @@
 library genuis;
 
-import 'dart:io';
+// import 'dart:io';
 
 import 'package:build/build.dart';
 import 'package:genuis/src/config/config_default.dart';
-import 'package:genuis/src/config/yaml/extension_config.dart';
-import 'package:genuis/src/config/yaml/module_type_config.dart';
-import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/core/data/code/flag.dart';
-import 'package:genuis/src/core/data/module.dart';
-import 'package:genuis/src/core/data/node/node.dart';
-import 'package:genuis/src/core/data/token.dart';
-import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
-import 'package:genuis/src/core/parsers/models_parser.dart';
-import 'package:genuis/src/core/parsers/nodes_parser.dart';
-import 'package:genuis/src/core/parsers/value_parser.dart';
+import 'package:genuis/src/core/genuis_core.dart';
 import 'package:genuis/src/generators/build_context_extension_generator.dart';
 import 'package:genuis/src/generators/main_class_generator.dart';
 import 'package:genuis/src/generators/module_generator.dart';
 import 'package:genuis/src/generators/tokens_generator.dart';
 import 'package:genuis/src/genuis_builder.dart';
-import 'package:genuis/src/utils/list_extension.dart';
 
 Builder build(BuilderOptions options) {
-  final uiFile = File('ui.yaml');
+  // final uiFile = File('ui.yaml');
 
   final config = defaultConfig; // Config.fromYamlFile(uiFile);
 
-  final tokens = config.tokens.map((e) {
-    Folder node = NodesParser(
-      path: config.assets + e.path,
-      fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
-    ).parse();
-
-    final valueParser = ValueParser(
-      type: e.type,
-    );
-
-    Class tree = ModelsParser(
-      config: config,
-      root: node,
-      mapper: (value) => valueParser.parse(value),
-    ).parse();
-
-    return Token(config: e, fields: tree.fields);
-  }).toList();
-
-  var modules = config.modules.map((e) {
-    Folder node = NodesParser(
-      path: config.assets + e.path,
-      fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
-    ).parse();
-
-    final valueParser = ValueParser(type: e.type, tokens: tokens);
-
-    Class tree = ModelsParser(
-      config: config,
-      root: node,
-      mapper: (value) => valueParser.parse(value),
-    ).parse();
-
-    return Module(config: e, rootClass: tree, colors: {});
-  }).toList();
-
-  final colors = modules.where((e) => e.config.type == ModuleTypeConfig.color).toList();
-
-  modules = modules.map((module) {
-    final colorExtension = module.config.extensions.whereType<ColorsExtensionConfig>().firstOrNull;
-
-    if (colorExtension != null) {
-      Map<String, Field> fields = {};
-
-      for (final color in colors) {
-        color.rootClass.forEach((field) {
-          final Flag? flag = [for (final e in field.values.values) ...e.flags]
-              .firstWhereOrNull((e) => e.name == module.config.name);
-          if (flag != null) {
-            fields[flag.value ?? field.name] = field;
-          }
-        });
-      }
-
-      module = Module(
-        config: module.config,
-        rootClass: Class(
-          name: module.rootClass.name,
-          path: module.rootClass.path,
-          classType: module.rootClass.classType,
-          themes: config.themes,
-          classes: module.rootClass.classes,
-          fields: module.rootClass.fields,
-        ),
-        colors: fields,
-      );
-    }
-
-    return module;
-  }).toList();
+  final core = GenuisCore(config: config);
 
   return GenuisBuilder(
     config: config,
     generators: [
-      ...modules.map((e) => ModuleGenerator(config: config, module: e)),
-      ...tokens.map((e) => TokensGenerator(config: config, token: e)),
-      BuildContextExtensionGenerator(config: config, modules: modules),
+      ...core.modules.map((e) => ModuleGenerator(config: config, module: e)),
+      ...core.tokens.map((e) => TokensGenerator(config: config, token: e)),
+      BuildContextExtensionGenerator(config: config, modules: core.modules),
       MainClassGenerator(
         config: config,
-        modules: modules,
-        tokens: tokens,
+        modules: core.modules,
+        tokens: core.tokens,
       ),
     ],
   );

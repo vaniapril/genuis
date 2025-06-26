@@ -1,13 +1,12 @@
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 
-abstract class GenuisGenerator {
+abstract class FileGenerator {
   final GenuisConfig config;
 
-  const GenuisGenerator({
+  const FileGenerator({
     required this.config,
   });
 
-  String get name;
-
+  String get fileName;
   String generate();
 }

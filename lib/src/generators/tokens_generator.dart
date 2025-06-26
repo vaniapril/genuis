@@ -1,9 +1,9 @@
 import 'package:genuis/src/core/data/token.dart';
 import 'package:genuis/src/core/writers/enum_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/genuis_generator.dart';
+import 'package:genuis/src/generators/file_generator.dart';
 
-class TokensGenerator extends GenuisGenerator {
+class TokensGenerator extends FileGenerator {
   final Token token;
 
   const TokensGenerator({
@@ -12,8 +12,7 @@ class TokensGenerator extends GenuisGenerator {
   });
 
   @override
-  // TODO(IvanPrylepski): rename to fineName
-  String get name => 'token_${token.config.name}';
+  String get fileName => token.fileName;
 
   @override
   String generate() {
@@ -24,7 +23,7 @@ class TokensGenerator extends GenuisGenerator {
     EnumWriter(config: config, valueName: 'value', valueType: token.fields.first.type).write(
       buffer,
       Class(
-        name: name,
+        name: fileName,
         path: [],
         classType: token.config.classType,
         themes: [],

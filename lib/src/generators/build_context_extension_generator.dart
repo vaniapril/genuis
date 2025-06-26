@@ -1,9 +1,9 @@
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/writers/build_context_extension_writer.dart';
-import 'package:genuis/src/genuis_generator.dart';
+import 'package:genuis/src/generators/file_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-class BuildContextExtensionGenerator extends GenuisGenerator {
+class BuildContextExtensionGenerator extends FileGenerator {
   final List<Module> modules;
 
   const BuildContextExtensionGenerator({
@@ -12,7 +12,7 @@ class BuildContextExtensionGenerator extends GenuisGenerator {
   });
 
   @override
-  String get name => 'build_context_extension';
+  String get fileName => 'build_context_extension';
 
   @override
   String generate() {

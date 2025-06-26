@@ -3,12 +3,12 @@ import 'package:dart_style/dart_style.dart';
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:path/path.dart';
 import 'package:source_gen/source_gen.dart';
-import 'package:genuis/src/genuis_generator.dart';
+import 'package:genuis/src/generators/file_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GenuisBuilder extends Builder {
   final GenuisConfig config;
-  final List<GenuisGenerator> generators;
+  final List<FileGenerator> generators;
 
   GenuisBuilder({
     required this.config,
@@ -23,7 +23,7 @@ class GenuisBuilder extends Builder {
       buffer.writeln(defaultFileHeader);
       buffer.writeln('''
 // **************************************************************************
-// Generator: GenUIs - ${generator.name.upperFirst} generator
+// Generator: GenUIs - ${generator.fileName.upperFirst} generator
 // **************************************************************************
 ''');
       buffer.writeln('// ignore_for_file: unused_import');
@@ -33,7 +33,7 @@ class GenuisBuilder extends Builder {
       buildStep.writeAsString(
         _output(
           buildStep,
-          join(config.output, '${generator.name.snakeCase}.ui.dart'),
+          join(config.output, '${generator.fileName.snakeCase}.ui.dart'),
         ),
         DartFormatter(
           pageWidth: config.lineLength,
@@ -55,7 +55,7 @@ class GenuisBuilder extends Builder {
     return {
       r'$package$': [
         for (final name in [
-          for (final generator in generators) '${generator.name.snakeCase}.ui.dart',
+          for (final generator in generators) '${generator.fileName.snakeCase}.ui.dart',
         ])
           join(config.output, name).forwardSlash,
       ],

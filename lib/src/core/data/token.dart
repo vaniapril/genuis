@@ -9,4 +9,6 @@ class Token {
     required this.config,
     required this.fields,
   });
+
+  String get fileName => 'token_${config.name}';
 }
