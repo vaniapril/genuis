@@ -17,6 +17,7 @@ Builder build(BuilderOptions options) {
   final config = defaultConfig; // Config.fromYamlFile(uiFile);
 
   final core = GenuisCore(config: config);
+  core.process();
 
   return GenuisBuilder(
     config: config,

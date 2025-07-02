@@ -5,8 +5,8 @@
 
 // ignore_for_file: unused_import
 
-import 'ui.ui.dart';
 import 'package:flutter/material.dart';
+import 'token_colors.ui.dart';
 
 class UIColorsKeywords extends ThemeExtension<UIColorsKeywords> {
   final Color abstract_;

@@ -20,9 +20,12 @@ class GradientValue extends Value {
   String get type => 'LinearGradient';
 
   @override
-  List<String> get imports => [
+  Set<String> get imports => {
         Imports.material,
-      ];
+        ...begin.imports,
+        ...end.imports,
+        ...colors.expand((e) => e.imports),
+      };
 
   @override
   String toString() =>

@@ -26,9 +26,14 @@ class ShadowValue extends Value {
   String get type => '${inset ? 'inset_shadow.' : ''}BoxShadow';
 
   @override
-  List<String> get imports => [
+  Set<String> get imports => {
         inset ? Imports.flutterInsetShadow : Imports.material,
-      ];
+        ...color.imports,
+        ...spread.imports,
+        ...blur.imports,
+        ...dx.imports,
+        ...dy.imports,
+      };
 
   @override
   String toString() =>

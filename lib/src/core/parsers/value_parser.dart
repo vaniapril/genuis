@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:genuis/src/config/yaml/module_type_config.dart';
 import 'package:genuis/src/core/data/code/flag.dart';
 import 'package:genuis/src/core/data/code/value.dart';
@@ -90,6 +88,7 @@ class ValueParser {
           tokenName: token.config.useEnum ? '$name.value' : name,
           innerValue: field.values.values.first,
           flags: flags,
+          additionalImports: token.import,
         );
       }
     }

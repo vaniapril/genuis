@@ -27,9 +27,12 @@ class ModuleGenerator extends FileGenerator {
     Class root = module.rootClass;
 
     final Set<String> imports = {
-      "import '${config.className.toLowerCase()}.ui.dart';",
       if (config.themeExtensions) Imports.material,
+      //Todo colors modules import
+      if (module.config.extensions.any((e) => e is ColorsExtensionConfig))
+        "import '${config.className.toLowerCase()}.ui.dart';"
     };
+
     root.forEach(
       (e) => imports.addAll({
         for (final value in e.values.values) ...value.imports,

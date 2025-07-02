@@ -19,10 +19,10 @@ class ColoredValue extends Value {
   String get type => coloredType;
 
   @override
-  List<String> get imports => [
+  Set<String> get imports => {
         Imports.material,
         ...innerValue.imports,
-      ];
+      };
 
   @override
   String toString() => '$coloredType(UI.$theme, $innerValue)';

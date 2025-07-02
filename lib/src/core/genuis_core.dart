@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:genuis/src/config/yaml/extension_config.dart';
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/config/yaml/module_type_config.dart';
@@ -52,7 +54,7 @@ class GenuisCore {
       return Module(config: e, rootClass: tree);
     }).toList();
 
-    final colorModules = modules.where((e) => e.config.type == ModuleTypeConfig.color).toList();
+    final colorModules = rawModules.where((e) => e.config.type == ModuleTypeConfig.color).toList();
 
     return rawModules
         .map((module) {

@@ -15,9 +15,11 @@ class AlignmentValue extends Value {
   String get type => 'ImageFilter';
 
   @override
-  List<String> get imports => [
+  Set<String> get imports => {
         Imports.material,
-      ];
+        ...x.imports,
+        ...y.imports,
+      };
 
   @override
   String toString() => switch ((x, y)) {

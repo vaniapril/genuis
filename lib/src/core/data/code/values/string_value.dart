@@ -11,7 +11,7 @@ class StringValue extends Value {
   String get type => 'String';
 
   @override
-  List<String> get imports => [];
+  Set<String> get imports => {};
 
   @override
   String toString() => "'$value'";

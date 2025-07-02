@@ -1,6 +1,7 @@
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/core/data/code/values/colored_value.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
@@ -19,6 +20,8 @@ class ColorExtensionWriter {
     //todo refactor
     Value? type;
     module.rootClass.forEach((e) => type = e.values.values.first);
+    final coloredType = type;
+    type = coloredType is ColoredValue ? coloredType.innerValue : type;
 
     buffer.writeln('class $themedClassName {');
     buffer.writeln('final ${type?.type} value;');
@@ -31,9 +34,12 @@ class ColorExtensionWriter {
       buffer.writeln('required Color $name,');
     }
     buffer.writeln('required this.value,');
-    buffer.writeln('}) :');
-    for (final (index, name) in fields.keys.indexed) {
-      buffer.writeln('_$name = $name${index == fields.length - 1 ? '' : ','}');
+    buffer.writeln('})');
+    if (fields.isNotEmpty) {
+      buffer.writeln(':');
+      for (final (index, name) in fields.keys.indexed) {
+        buffer.writeln('_$name = $name${index == fields.length - 1 ? '' : ','}');
+      }
     }
     buffer.writeln(';');
 

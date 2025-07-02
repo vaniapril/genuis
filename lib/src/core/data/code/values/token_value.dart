@@ -4,12 +4,14 @@ class TokenValue extends Value {
   final String tokenType;
   final String tokenName;
   final Value innerValue;
+  final String? additionalImports;
 
   const TokenValue({
     super.flags = const [],
     required this.tokenType,
     required this.tokenName,
     required this.innerValue,
+    this.additionalImports,
   });
 
   @override
@@ -19,7 +21,10 @@ class TokenValue extends Value {
   String get type => innerValue.type;
 
   @override
-  List<String> get imports => innerValue.imports;
+  Set<String> get imports => {
+        ...innerValue.imports,
+        additionalImports ?? '',
+      };
 
   @override
   String toString() => '$tokenType.$tokenName';

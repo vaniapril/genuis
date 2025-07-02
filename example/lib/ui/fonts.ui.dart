@@ -5,8 +5,8 @@
 
 // ignore_for_file: unused_import
 
-import 'ui.ui.dart';
 import 'package:flutter/material.dart';
+import 'ui.ui.dart';
 
 class ThemedTextStyle extends TextStyle {
   final Color _error;

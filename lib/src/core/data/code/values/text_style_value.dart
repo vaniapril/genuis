@@ -23,9 +23,14 @@ class TextStyleValue extends Value {
   String get type => 'TextStyle';
 
   @override
-  List<String> get imports => [
+  Set<String> get imports => {
         Imports.material,
-      ];
+        ...family.imports,
+        ...weight.imports,
+        ...size.imports,
+        ...height.imports,
+        ...spacing?.imports ?? {},
+      };
 
   @override
   String toString() =>

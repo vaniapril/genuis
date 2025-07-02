@@ -12,10 +12,11 @@ class BlurValue extends Value {
   String get type => 'ImageFilter';
 
   @override
-  List<String> get imports => [
+  Set<String> get imports => {
         Imports.material,
         Imports.dartUi,
-      ];
+        ...sigma.imports,
+      };
 
   @override
   String toString() => 'ImageFilter.blur(sigmaX: $sigma / 2, sigmaY: $sigma / 2,)';

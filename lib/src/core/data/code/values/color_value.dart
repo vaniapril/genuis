@@ -16,9 +16,9 @@ class ColorValue extends Value {
   String get type => 'Color';
 
   @override
-  List<String> get imports => [
+  Set<String> get imports => {
         Imports.material,
-      ];
+      };
 
   @override
   String toString() => 'Color($hex)';
