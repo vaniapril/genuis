@@ -1,7 +1,7 @@
 import 'package:genuis/src/core/data/token.dart';
 import 'package:genuis/src/core/writers/enum_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/generators/file_generator.dart';
+import 'package:genuis/src/core/generators/file_generator.dart';
 
 class TokensGenerator extends FileGenerator {
   final Token token;

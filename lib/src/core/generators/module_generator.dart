@@ -6,7 +6,7 @@ import 'package:genuis/src/core/writers/enum_writer.dart';
 import 'package:genuis/src/core/writers/getter_theme_writer.dart';
 import 'package:genuis/src/core/writers/theme_extension_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/generators/file_generator.dart';
+import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/utils/imports.dart';
 
 class ModuleGenerator extends FileGenerator {

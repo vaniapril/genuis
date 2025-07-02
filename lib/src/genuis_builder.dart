@@ -3,7 +3,7 @@ import 'package:dart_style/dart_style.dart';
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:path/path.dart';
 import 'package:source_gen/source_gen.dart';
-import 'package:genuis/src/generators/file_generator.dart';
+import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GenuisBuilder extends Builder {

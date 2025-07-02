@@ -2,7 +2,7 @@ import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/token.dart';
 import 'package:genuis/src/core/writers/theme_extension_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/generators/file_generator.dart';
+import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 // TODO(IvanPrylepski): refactor all

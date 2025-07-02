@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:genuis/src/config/yaml/extension_config.dart';
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/config/yaml/module_type_config.dart';
@@ -11,6 +9,11 @@ import 'package:genuis/src/core/data/code/values/token_value.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/data/token.dart';
+import 'package:genuis/src/core/generators/build_context_extension_generator.dart';
+import 'package:genuis/src/core/generators/file_generator.dart';
+import 'package:genuis/src/core/generators/main_class_generator.dart';
+import 'package:genuis/src/core/generators/module_generator.dart';
+import 'package:genuis/src/core/generators/tokens_generator.dart';
 import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
 import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
@@ -23,18 +26,28 @@ class GenuisCore {
 
   GenuisCore({
     required this.config,
-  });
+  }) {
+    _init();
+  }
 
   List<Module> _modules = [];
   List<Token> _tokens = [];
 
-  List<Module> get modules => _modules;
-  List<Token> get tokens => _tokens;
-
-  void process() {
+  void _init() {
     _tokens = _processTokens();
     _modules = _processModules();
   }
+
+  List<FileGenerator> get generators => [
+        ..._modules.map((e) => ModuleGenerator(config: config, module: e)),
+        ..._tokens.map((e) => TokensGenerator(config: config, token: e)),
+        BuildContextExtensionGenerator(config: config, modules: _modules),
+        MainClassGenerator(
+          config: config,
+          modules: _modules,
+          tokens: _tokens,
+        ),
+      ];
 
   List<Module> _processModules() {
     var rawModules = config.modules.map((e) {
@@ -43,7 +56,7 @@ class GenuisCore {
         fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
       ).parse();
 
-      final valueParser = ValueParser(type: e.type, tokens: tokens);
+      final valueParser = ValueParser(type: e.type, tokens: _tokens);
 
       Class tree = ModelsParser(
         config: config,
