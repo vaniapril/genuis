@@ -1,28 +1,29 @@
 import 'package:genuis/src/config/yaml/module_type_config.dart';
+import 'package:genuis/src/config/yaml/token_extension_type_config.dart';
 import 'package:yaml/yaml.dart';
 
 class TokenConfig {
   String name;
-  String classType;
-  String path;
   ModuleTypeConfig type;
-  bool useEnum;
+  String path;
+  String className;
+  TokenExtensionTypeConfig classType;
 
   TokenConfig({
     required this.name,
-    required this.classType,
+    required this.className,
     required this.path,
     required this.type,
-    required this.useEnum,
+    required this.classType,
   });
 
   factory TokenConfig.fromYaml(YamlMap map) {
     return TokenConfig(
       name: map['name'],
-      classType: map['class_type'],
+      className: map['class_name'],
       path: map['path'],
       type: map['type'],
-      useEnum: map['use_enum'],
+      classType: map['class_type'],
     );
   }
 }

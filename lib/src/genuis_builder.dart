@@ -33,10 +33,10 @@ class GenuisBuilder extends Builder {
       buildStep.writeAsString(
         _output(
           buildStep,
-          join(config.output, '${generator.fileName.snakeCase}.ui.dart'),
+          join(config.outputPath, '${generator.fileName.snakeCase}.ui.dart'),
         ),
         DartFormatter(
-          pageWidth: config.lineLength,
+          pageWidth: config.dartLineLength,
           languageVersion: DartFormatter.latestLanguageVersion,
         ).format(buffer.toString()),
       );
@@ -57,7 +57,7 @@ class GenuisBuilder extends Builder {
         for (final name in [
           for (final generator in generators) '${generator.fileName.snakeCase}.ui.dart',
         ])
-          join(config.output, name).forwardSlash,
+          join(config.outputPath, name).forwardSlash,
       ],
     };
   }

@@ -25,7 +25,7 @@ class TokensGenerator extends FileGenerator {
       Class(
         name: fileName,
         path: [],
-        classType: token.config.classType,
+        classType: token.config.className,
         themes: [],
         classes: [],
         fields: token.fields,

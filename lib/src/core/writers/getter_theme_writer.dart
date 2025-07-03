@@ -27,7 +27,7 @@ class GetterThemeWriter {
 
   void _writeMainInheritedWidgetClass(StringBuffer buffer, Class mainClass) {
     buffer.writeln('class ${mainClass.type}Widget extends InheritedWidget {');
-    buffer.writeln('final ${mainClass.type} ${config.ui};');
+    buffer.writeln('final ${mainClass.type} ${config.mainGetterName};');
     buffer.writeln();
     buffer.writeln('const  ${mainClass.type}Widget({');
     buffer.writeln('super.key,');

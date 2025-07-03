@@ -1,40 +1,38 @@
-import 'package:genuis/src/config/yaml/extension_config.dart';
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/config/yaml/module_config.dart';
 import 'package:genuis/src/config/yaml/module_type_config.dart';
 import 'package:genuis/src/config/yaml/token_config.dart';
+import 'package:genuis/src/config/yaml/token_extension_type_config.dart';
 
 final defaultConfig = GenuisConfig(
-  assets: 'assets/',
-  output: 'lib/ui/',
+  assetsPath: 'assets/',
+  outputPath: 'lib/ui/',
   themes: [
     'light',
     'dark',
   ],
   defaultTheme: false,
   themeExtensions: true,
-  fromToJson: true,
-  lineLength: 100,
-  className: 'UI',
-  ui: 'ui',
-  separator: '-',
-  prefix: 'UI',
+  fromJsonMethod: true,
+  dartLineLength: 100,
+  mainClassName: 'UI',
+  mainGetterName: 'ui',
   baseTheme: 'base',
   tokens: [
     // TODO(IvanPrylepski): remove tokens
     TokenConfig(
       name: 'colors',
-      classType: 'UColors',
       path: 'colors.json',
       type: ModuleTypeConfig.color,
-      useEnum: true,
+      className: 'UColors',
+      classType: TokenExtensionTypeConfig.enum_,
     ),
     TokenConfig(
       name: 'heights',
-      classType: 'UHeights',
+      className: 'UHeights',
       path: 'heights.json',
       type: ModuleTypeConfig.number,
-      useEnum: true,
+      classType: TokenExtensionTypeConfig.static_,
     ),
   ],
   modules: [
@@ -42,48 +40,61 @@ final defaultConfig = GenuisConfig(
       name: 'blurs',
       path: 'blurs/',
       type: ModuleTypeConfig.blur,
-      extensions: [],
+      tokenExtension: null,
+      tokenClassName: '',
+      colorExtension: false,
+      colorExtensionClassName: '',
+      optional: true,
     ),
     ModuleConfig(
       name: 'colors',
       path: 'colors/',
       type: ModuleTypeConfig.color,
-      extensions: [],
+      tokenExtension: null,
+      tokenClassName: '',
+      colorExtension: false,
+      colorExtensionClassName: '',
+      optional: true,
     ),
     ModuleConfig(
       name: 'fonts',
       path: 'fonts/',
       type: ModuleTypeConfig.font,
-      extensions: [
-        ColorsExtensionConfig(),
-      ],
+      tokenExtension: null,
+      tokenClassName: '',
+      colorExtension: true,
+      colorExtensionClassName: '',
+      optional: true,
     ),
     ModuleConfig(
       name: 'icons',
       path: 'icons/',
       type: ModuleTypeConfig.asset,
-      extensions: [
-        ColorsExtensionConfig(),
-        EnumsExtensionConfig(
-          name: 'UIcons',
-        ),
-      ],
+      tokenExtension: TokenExtensionTypeConfig.enum_,
+      tokenClassName: 'UIcons',
+      colorExtension: true,
+      colorExtensionClassName: '',
+      optional: true,
     ),
     ModuleConfig(
       name: 'images',
       path: 'images/',
       type: ModuleTypeConfig.asset,
-      extensions: [
-        EnumsExtensionConfig(
-          name: 'UImages',
-        ),
-      ],
+      tokenExtension: TokenExtensionTypeConfig.static_,
+      tokenClassName: 'UImages',
+      colorExtension: false,
+      colorExtensionClassName: '',
+      optional: true,
     ),
     ModuleConfig(
       name: 'shadows',
       path: 'shadows/',
       type: ModuleTypeConfig.shadow,
-      extensions: [],
+      tokenExtension: null,
+      tokenClassName: '',
+      colorExtension: false,
+      colorExtensionClassName: '',
+      optional: true,
     ),
   ],
 );

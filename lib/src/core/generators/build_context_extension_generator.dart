@@ -18,7 +18,7 @@ class BuildContextExtensionGenerator extends FileGenerator {
   String generate() {
     final buffer = StringBuffer();
     buffer.writeln("import 'package:flutter/material.dart';");
-    buffer.writeln("import '${config.className.snakeCase}.ui.dart';");
+    buffer.writeln("import '${config.mainClassName.snakeCase}.ui.dart';");
 
     BuildContextExtensionWriter(config: config).write(buffer, modules);
 

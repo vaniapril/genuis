@@ -1,4 +1,3 @@
-import 'package:genuis/src/config/yaml/extension_config.dart';
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/config/yaml/module_type_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
@@ -52,7 +51,7 @@ class GenuisCore {
   List<Module> _processModules() {
     var rawModules = config.modules.map((e) {
       Folder node = NodesParser(
-        path: config.assets + e.path,
+        path: config.assetsPath + e.path,
         fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
       ).parse();
 
@@ -71,10 +70,7 @@ class GenuisCore {
 
     return rawModules
         .map((module) {
-          final colorExtension =
-              module.config.extensions.whereType<ColorsExtensionConfig>().firstOrNull;
-
-          if (colorExtension != null) {
+          if (module.config.colorExtension) {
             Map<String, Field> fields = {};
 
             for (final colorModule in colorModules) {
@@ -108,11 +104,10 @@ class GenuisCore {
   }
 
   Module _processModule(Module module) {
-    final enumsExtension = module.config.extensions.whereType<EnumsExtensionConfig>().firstOrNull;
     Class root = module.rootClass;
     List<Field> enumFields = [];
 
-    if (enumsExtension != null) {
+    if (module.config.tokenExtension != null) {
       root = root.map(
         (field) {
           enumFields.add(field);
@@ -126,7 +121,7 @@ class GenuisCore {
                 return MapEntry(
                   key,
                   TokenValue(
-                    tokenType: enumsExtension.name,
+                    tokenType: module.config.tokenClassName,
                     tokenName: '${field.enumName(key)}.value',
                     innerValue: value,
                   ),
@@ -138,9 +133,7 @@ class GenuisCore {
       );
     }
 
-    final colorsExtension = module.config.extensions.whereType<ColorsExtensionConfig>().firstOrNull;
-
-    if (colorsExtension != null) {
+    if (module.config.colorExtension) {
       root = root.map(
         (field) {
           return Field(
@@ -180,7 +173,7 @@ class GenuisCore {
   List<Token> _processTokens() {
     return config.tokens.map((e) {
       Folder node = NodesParser(
-        path: config.assets + e.path,
+        path: config.assetsPath + e.path,
         fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
       ).parse();
 

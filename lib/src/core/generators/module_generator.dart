@@ -1,4 +1,3 @@
-import 'package:genuis/src/config/yaml/extension_config.dart';
 import 'package:genuis/src/config/yaml/module_type_config.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/writers/color_extension_writer.dart';
@@ -29,8 +28,7 @@ class ModuleGenerator extends FileGenerator {
     final Set<String> imports = {
       if (config.themeExtensions) Imports.material,
       //Todo colors modules import
-      if (module.config.extensions.any((e) => e is ColorsExtensionConfig))
-        "import '${config.className.toLowerCase()}.ui.dart';"
+      if (module.config.colorExtension) "import '${config.mainClassName.toLowerCase()}.ui.dart';"
     };
 
     root.forEach(
@@ -43,15 +41,14 @@ class ModuleGenerator extends FileGenerator {
       buffer.writeln(import);
     }
 
-    final enumsExtension = module.config.extensions.whereType<EnumsExtensionConfig>().firstOrNull;
-    if (enumsExtension != null) {
+    if (module.config.tokenExtension != null) {
       EnumWriter(config: config, valueName: 'value', valueType: module.enumFields.first.valueType)
           .write(
         buffer,
         Class(
           name: root.name,
           path: [],
-          classType: enumsExtension.name,
+          classType: module.config.tokenClassName,
           themes: [],
           classes: [],
           fields: module.enumFields,
@@ -59,8 +56,7 @@ class ModuleGenerator extends FileGenerator {
       );
     }
 
-    final colorsExtension = module.config.extensions.whereType<ColorsExtensionConfig>().firstOrNull;
-    if (colorsExtension != null) {
+    if (module.config.colorExtension) {
       switch (module.config.type) {
         case ModuleTypeConfig.font:
           ColorExtensionWriter(config: config).writeTextStyleExtensionClass(buffer, module.colors);

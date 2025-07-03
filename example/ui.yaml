@@ -1,5 +1,4 @@
-path: assets/
-
+asset_path: assets/
 themes:
   - light
   - dark
@@ -9,27 +8,29 @@ use_theme_extensions: true
 
 tokens:
   - colors:
+    type: color
     path: colors.json
-    type: Color
-    enum: false
+    class_name: UIColors
+    enum: true
+    value_name: value
 
   - heights:
+    type: number
     path: heights.json
-    type: num
-    enum: false
+    class_name: Heights
 
 modules:
   - blurs:
-    path: blurs/
     type: blur
+    path: blurs/
   
   - colors:
-    path: colors/
     type: color
+    path: colors/
 
   - fonts:
-    path: fonts/
     type: font
+    path: fonts/
     extensions:
       - colors:
         type: getter

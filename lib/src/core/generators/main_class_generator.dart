@@ -17,7 +17,7 @@ class MainClassGenerator extends FileGenerator {
   });
 
   @override
-  String get fileName => config.className.snakeCase;
+  String get fileName => config.mainClassName.snakeCase;
 
   @override
   String generate() {
@@ -40,7 +40,7 @@ class MainClassGenerator extends FileGenerator {
     final tree = Class(
       name: 'ui',
       path: [],
-      classType: config.className,
+      classType: config.mainClassName,
       themes: config.themes,
       classes: modules
           .map(

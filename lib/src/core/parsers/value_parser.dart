@@ -1,4 +1,5 @@
 import 'package:genuis/src/config/yaml/module_type_config.dart';
+import 'package:genuis/src/config/yaml/token_extension_type_config.dart';
 import 'package:genuis/src/core/data/code/flag.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/core/data/code/values/alignment_value.dart';
@@ -83,9 +84,9 @@ class ValueParser {
     for (final field in token.fields) {
       if (field.name == name) {
         return TokenValue(
-          tokenType: token.config.classType,
+          tokenType: token.config.className,
           // TODO(IvanPrylepski): name.value ???
-          tokenName: token.config.useEnum ? '$name.value' : name,
+          tokenName: token.config.classType == TokenExtensionTypeConfig.enum_ ? '$name.value' : name,
           innerValue: field.values.values.first,
           flags: flags,
           additionalImports: token.import,

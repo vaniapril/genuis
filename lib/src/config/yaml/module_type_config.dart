@@ -14,6 +14,7 @@ enum ModuleTypeConfig {
       'asset' => ModuleTypeConfig.asset,
       'shadow' => ModuleTypeConfig.shadow,
       'number' => ModuleTypeConfig.number,
+      // TODO(IvanPrylepski): Exception
       _ => throw 'Unexpected type',
     };
   }
