@@ -7,7 +7,7 @@
 
 import 'package:flutter/material.dart';
 
-enum UColors {
+enum AppColors {
   // token_colors
   primaryBaseBlack(Color(0xFF090909)),
   primaryBaseBrand(Color(0xFF2858ef)),
@@ -148,7 +148,7 @@ enum UColors {
   transparencyWhite80(Color(0xccfdfdfd)),
   transparencyWhite90(Color(0xe5fdfdfd));
 
-  const UColors(this.value);
+  const AppColors(this.value);
 
   final Color value;
 }

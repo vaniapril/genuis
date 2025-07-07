@@ -1,5 +1,6 @@
-import 'package:genuis/src/config/yaml/genuis_config.dart';
-import 'package:genuis/src/config/yaml/module_type_config.dart';
+import 'package:genuis/src/config/genuis_config.dart';
+import 'package:genuis/src/config/types/element_type.dart';
+import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/code/flag.dart';
 import 'package:genuis/src/core/data/code/value.dart';
@@ -52,7 +53,7 @@ class GenuisCore {
     var rawModules = config.modules.map((e) {
       Folder node = NodesParser(
         path: config.assetsPath + e.path,
-        fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
+        fileParser: e.type != ElementType.asset ? JsonFileParser() : null,
       ).parse();
 
       final valueParser = ValueParser(type: e.type, tokens: _tokens);
@@ -66,7 +67,7 @@ class GenuisCore {
       return Module(config: e, rootClass: tree);
     }).toList();
 
-    final colorModules = rawModules.where((e) => e.config.type == ModuleTypeConfig.color).toList();
+    final colorModules = rawModules.where((e) => e.config.type == ElementType.color).toList();
 
     return rawModules
         .map((module) {
@@ -85,14 +86,7 @@ class GenuisCore {
 
             module = Module(
               config: module.config,
-              rootClass: Class(
-                name: module.rootClass.name,
-                path: module.rootClass.path,
-                classType: module.rootClass.classType,
-                themes: config.themes,
-                classes: module.rootClass.classes,
-                fields: module.rootClass.fields,
-              ),
+              rootClass: module.rootClass,
               colors: fields,
             );
           }
@@ -107,7 +101,7 @@ class GenuisCore {
     Class root = module.rootClass;
     List<Field> enumFields = [];
 
-    if (module.config.tokenExtension != null) {
+    if (module.config.tokenExtensionClassType != null) {
       root = root.map(
         (field) {
           enumFields.add(field);
@@ -121,8 +115,10 @@ class GenuisCore {
                 return MapEntry(
                   key,
                   TokenValue(
-                    tokenType: module.config.tokenClassName,
-                    tokenName: '${field.enumName(key)}.value',
+                    tokenType: module.config.tokenExtensionClassName,
+                    // TODO(vaniapril): name
+                    tokenName:
+                        '${field.enumName(key)}${module.config.tokenExtensionClassType == TokenClassType.enum_ ? '.value' : ''}',
                     innerValue: value,
                   ),
                 );
@@ -134,25 +130,30 @@ class GenuisCore {
     }
 
     if (module.config.colorExtension) {
+      var colorThemesSet = {
+        for (final themes in module.colors.values.map((e) => e.values.keys)) ...themes
+      };
+
+      colorThemesSet.remove('base');
+      final colorThemes = colorThemesSet.isEmpty ? ['base'] : colorThemesSet.toList();
+
       root = root.map(
         (field) {
+          final type = switch (module.config.type) {
+            ElementType.font => 'ThemedTextStyle',
+            ElementType.asset => 'Themed${module.config.name.upperFirst}',
+            // TODO(vaniapril): error
+            _ => throw 'Unknown module type: ${module.config.type}'
+          };
+
           return Field(
             name: field.name,
             path: field.path,
-            valueType: switch (module.config.type) {
-              ModuleTypeConfig.font => 'ThemedTextStyle',
-              ModuleTypeConfig.asset => 'Themed${module.config.name.upperFirst}',
-              _ => throw 'Unknown module type: ${module.config.type}'
-            },
-            //todo colors themes
+            valueType: type,
             values: {
-              for (final theme in config.themes)
+              for (final theme in colorThemes)
                 theme: ColoredValue(
-                  coloredType: switch (module.config.type) {
-                    ModuleTypeConfig.font => 'ThemedTextStyle',
-                    ModuleTypeConfig.asset => 'Themed${module.config.name.upperFirst}',
-                    _ => throw 'Unknown module type: ${module.config.type}'
-                  },
+                  coloredType: type,
                   theme: theme,
                   innerValue: field.values[theme] ?? field.values.values.first,
                 )
@@ -174,7 +175,7 @@ class GenuisCore {
     return config.tokens.map((e) {
       Folder node = NodesParser(
         path: config.assetsPath + e.path,
-        fileParser: e.type != ModuleTypeConfig.asset ? JsonFileParser() : null,
+        fileParser: e.type != ElementType.asset ? JsonFileParser() : null,
       ).parse();
 
       final valueParser = ValueParser(

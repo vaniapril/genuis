@@ -13,29 +13,29 @@ main_getter_name: ui
 
 tokens:
   - colors:
-    type: color
-    path: colors.json
-    class_name: UIColors
-    class_type: static
-    value_name: value
+      type: color
+      path: colors.json
+      class_name: UIColors
+      class_type: static
+      value_name: value
 
 modules:
   - colors:
-    type: color
-    path: colors/
-    optional: true
+      type: color
+      path: colors/
+      optional: true
 
   - fonts:
-    type: font
-    path: fonts/
-    color_extension: true
-    optional: true
+      type: font
+      path: fonts/
+      color_extension: true
+      optional: true
 
   - icons:
-    type: asset
-    path: icons/
-    token_extension_class_type: enum
-    token_class_name: Icons
-    color_extension: true
-    color_extension_class_name: ColoredIcon
-    optional: true
+      type: asset
+      path: icons/
+      token_extension_class_type: enum
+      token_class_name: Icons
+      color_extension: true
+      color_extension_class_name: ColoredIcon
+      optional: true

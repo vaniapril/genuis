@@ -1,4 +1,4 @@
-import 'package:genuis/src/config/yaml/genuis_config.dart';
+import 'package:genuis/src/config/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/core/data/code/values/colored_value.dart';
@@ -17,7 +17,7 @@ class ColorExtensionWriter {
     final themedClassName = 'Themed${module.config.name.upperFirst}';
     final coloredClassName = 'Colored${module.config.name.upperFirst}';
 
-    //todo refactor
+    // TODO(vaniapril): refactor
     Value? type;
     module.rootClass.forEach((e) => type = e.values.values.first);
     final coloredType = type;

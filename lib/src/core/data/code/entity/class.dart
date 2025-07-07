@@ -29,7 +29,7 @@ class Class extends CodeEntity {
       for (final e in fields) ...e.values.keys,
     };
 
-    //todo refactor base
+    // TODO(vaniapril): refactor base
     themes.remove('base');
 
     return Class(

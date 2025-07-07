@@ -7,16 +7,12 @@
 
 import 'package:flutter/material.dart';
 
-enum UImages {
+abstract class AppImages {
   // images
-  backgroundBook('background/book.jpg'),
-  backgroundCat('background/cat.jpg'),
-  backgroundFlowers('background/flowers.jpg'),
-  logoAbstract_('logo/abstract.svg');
-
-  const UImages(this.value);
-
-  final String value;
+  static const String backgroundBook = 'background/book.jpg';
+  static const String backgroundCat = 'background/cat.jpg';
+  static const String backgroundFlowers = 'background/flowers.jpg';
+  static const String logoAbstract_ = 'logo/abstract.svg';
 }
 
 class UIImagesBackground extends ThemeExtension<UIImagesBackground> {
@@ -46,9 +42,9 @@ class UIImagesBackground extends ThemeExtension<UIImagesBackground> {
   }
 
   static final UIImagesBackground base = UIImagesBackground(
-    book: UImages.backgroundBook.value,
-    cat: UImages.backgroundCat.value,
-    flowers: UImages.backgroundFlowers.value,
+    book: AppImages.backgroundBook,
+    cat: AppImages.backgroundCat,
+    flowers: AppImages.backgroundFlowers,
   );
 }
 
@@ -68,7 +64,7 @@ class UIImagesLogo extends ThemeExtension<UIImagesLogo> {
     return UIImagesLogo(abstract_: t < 0.5 ? abstract_ : other.abstract_);
   }
 
-  static final UIImagesLogo base = UIImagesLogo(abstract_: UImages.logoAbstract_.value);
+  static final UIImagesLogo base = UIImagesLogo(abstract_: AppImages.logoAbstract_);
 }
 
 class UIImages extends ThemeExtension<UIImages> {

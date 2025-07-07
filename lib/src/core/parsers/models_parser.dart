@@ -1,4 +1,4 @@
-import 'package:genuis/src/config/yaml/genuis_config.dart';
+import 'package:genuis/src/config/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/data/code/value.dart';
@@ -49,7 +49,7 @@ class ModelsParser {
             element.items.map(
               (e) {
                 final value = mapper(e.value);
-                // TODO(IvanPrylepski): refactor
+                // TODO(vaniapril): refactor
                 return Field(
                   name: e.name,
                   path: [...path, folder.name],

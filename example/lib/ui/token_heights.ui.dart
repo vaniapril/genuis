@@ -7,19 +7,15 @@
 
 import 'package:flutter/material.dart';
 
-enum UHeights {
+abstract class AppHeights {
   // token_heights
-  heights1(1.0),
-  heights2(2.0),
-  heights3(3.0),
-  heights4(4.0),
-  heights5(5.0),
-  heights6(6.0),
-  heights7(7.0),
-  heights8(8.0),
-  heights9(9.0);
-
-  const UHeights(this.value);
-
-  final double value;
+  static const double heights1 = 1.0;
+  static const double heights2 = 2.0;
+  static const double heights3 = 3.0;
+  static const double heights4 = 4.0;
+  static const double heights5 = 5.0;
+  static const double heights6 = 6.0;
+  static const double heights7 = 7.0;
+  static const double heights8 = 8.0;
+  static const double heights9 = 9.0;
 }

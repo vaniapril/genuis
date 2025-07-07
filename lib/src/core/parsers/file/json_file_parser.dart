@@ -37,7 +37,7 @@ class JsonFileParser extends FileParser {
         continue;
       }
       if (entity is List) {
-        // TODO(IvanPrylepski):
+        // TODO(vaniapril):
         nodes.addAll(
           entity.map(
             (e) => Item(

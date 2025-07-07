@@ -1,4 +1,5 @@
-import 'package:genuis/src/config/yaml/module_type_config.dart';
+import 'package:genuis/src/config/types/element_type.dart';
+import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/writers/module/color_extension_writer.dart';
 import 'package:genuis/src/core/writers/token/enum_token_writer.dart';
@@ -6,6 +7,7 @@ import 'package:genuis/src/core/writers/module/getter_module_writer.dart';
 import 'package:genuis/src/core/writers/module/theme_extension_module_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
+import 'package:genuis/src/core/writers/token/static_token_writer.dart';
 import 'package:genuis/src/utils/imports.dart';
 
 class ModuleGenerator extends FileGenerator {
@@ -27,7 +29,7 @@ class ModuleGenerator extends FileGenerator {
 
     final Set<String> imports = {
       if (config.themeExtensions) Imports.material,
-      //Todo colors modules import
+      // TODO(vaniapril): colors modules import
       if (module.config.colorExtension) "import '${config.mainClassName.toLowerCase()}.ui.dart';"
     };
 
@@ -41,29 +43,49 @@ class ModuleGenerator extends FileGenerator {
       buffer.writeln(import);
     }
 
-    if (module.config.tokenExtension != null) {
-      EnumTokenWriter(
-              config: config, valueName: 'value', valueType: module.enumFields.first.valueType)
-          .write(
-        buffer,
-        Class(
-          name: root.name,
-          path: [],
-          classType: module.config.tokenClassName,
-          themes: [],
-          classes: [],
-          fields: module.enumFields,
-        ),
-      );
+    if (module.config.tokenExtensionClassType != null) {
+      switch (module.config.tokenExtensionClassType) {
+        case TokenClassType.enum_:
+          EnumTokenWriter(
+                  config: config, valueName: 'value', valueType: module.enumFields.first.valueType)
+              .write(
+            buffer,
+            // TODO(valiapril): without class
+            Class(
+              name: root.name,
+              path: [],
+              classType: module.config.tokenExtensionClassName,
+              themes: [],
+              classes: [],
+              fields: module.enumFields,
+            ),
+          );
+          break;
+        case TokenClassType.static_:
+          StaticTokenWriter(config: config).write(
+            buffer,
+            Class(
+              name: root.name,
+              path: [],
+              classType: module.config.tokenExtensionClassName,
+              themes: [],
+              classes: [],
+              fields: module.enumFields,
+            ),
+          );
+          break;
+        default:
+          throw 'Unknown module type: ${module.config.tokenExtensionClassType}';
+      }
     }
 
     if (module.config.colorExtension) {
       switch (module.config.type) {
-        case ModuleTypeConfig.font:
+        case ElementType.font:
           ColorExtensionWriter(config: config).writeTextStyleExtensionClass(buffer, module.colors);
           break;
 
-        case ModuleTypeConfig.asset:
+        case ElementType.asset:
           ColorExtensionWriter(config: config)
               .writeAssetExtensionClass(buffer, module, module.colors);
           break;

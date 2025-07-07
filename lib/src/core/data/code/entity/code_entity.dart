@@ -27,7 +27,7 @@ sealed class CodeEntity {
   String lerpCode(String arg1, String arg2) {
     final node = this;
     return switch (node) {
-      //todo without first
+      // TODO(vaniapril): without first
       Field() => node.values.values.first.lerpCode(arg1, arg2),
       Class() => '$arg1.lerp($arg2, t)',
     };

@@ -489,20 +489,20 @@ class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding
   }
 
   static final UIColorsPrimaryOnboarding light = UIColorsPrimaryOnboarding(
-    bg: UColors.primaryBaseWhite.value,
+    bg: AppColors.primaryBaseWhite.value,
     color1: Color(0x1f2858ef),
     color2: Color(0x0f2858ef),
     color3: Color(0x052858ef),
     color4: Color(0x002858ef),
-    stroke: UColors.primaryNeutral25.value,
+    stroke: AppColors.primaryNeutral25.value,
   );
   static final UIColorsPrimaryOnboarding dark = UIColorsPrimaryOnboarding(
-    bg: UColors.primaryBaseBlack.value,
+    bg: AppColors.primaryBaseBlack.value,
     color1: Color(0xcc010101),
     color2: Color(0x99010101),
     color3: Color(0x66010101),
     color4: Color(0x33010101),
-    stroke: UColors.primaryNeutral800.value,
+    stroke: AppColors.primaryNeutral800.value,
   );
 }
 
@@ -616,41 +616,41 @@ class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
 
   static final UIColorsPrimary light = UIColorsPrimary(
     onboarding: UIColorsPrimaryOnboarding.light,
-    error: UColors.primaryError500.value,
-    alertNotification: UColors.transparencyWhite80.value,
-    brand: UColors.primaryBrand300.value,
-    chatMessage: UColors.primaryNeutral100.value,
-    divider: UColors.primaryNeutral100.value,
-    navbar: UColors.primaryBaseWhite.value,
-    primaryBlack: UColors.primaryBaseBlack.value,
-    whiteConst: UColors.primaryBaseWhite.value,
-    primaryPressed: UColors.primaryNeutral50.value,
-    primaryWhite: UColors.primaryBaseWhite.value,
-    secondary: UColors.primaryNeutral50.value,
-    secondaryPressed: UColors.primaryNeutral100.value,
-    selectedPrimary: UColors.primaryBrand25.value,
-    selectedSecondary: UColors.primarySuccess50.value,
-    tertiary: UColors.primaryNeutral300.value,
-    scroll: UColors.transparencyBlack20.value,
+    error: AppColors.primaryError500.value,
+    alertNotification: AppColors.transparencyWhite80.value,
+    brand: AppColors.primaryBrand300.value,
+    chatMessage: AppColors.primaryNeutral100.value,
+    divider: AppColors.primaryNeutral100.value,
+    navbar: AppColors.primaryBaseWhite.value,
+    primaryBlack: AppColors.primaryBaseBlack.value,
+    whiteConst: AppColors.primaryBaseWhite.value,
+    primaryPressed: AppColors.primaryNeutral50.value,
+    primaryWhite: AppColors.primaryBaseWhite.value,
+    secondary: AppColors.primaryNeutral50.value,
+    secondaryPressed: AppColors.primaryNeutral100.value,
+    selectedPrimary: AppColors.primaryBrand25.value,
+    selectedSecondary: AppColors.primarySuccess50.value,
+    tertiary: AppColors.primaryNeutral300.value,
+    scroll: AppColors.transparencyBlack20.value,
   );
   static final UIColorsPrimary dark = UIColorsPrimary(
     onboarding: UIColorsPrimaryOnboarding.dark,
-    error: UColors.primaryError600.value,
-    alertNotification: UColors.transparencyBlack80.value,
-    brand: UColors.primaryBrand300.value,
-    chatMessage: UColors.primaryNeutral900.value,
-    divider: UColors.primaryNeutral900.value,
-    navbar: UColors.primaryNeutral900.value,
-    primaryBlack: UColors.primaryBaseWhite.value,
-    whiteConst: UColors.primaryBaseWhite.value,
-    primaryPressed: UColors.primaryNeutral900.value,
-    primaryWhite: UColors.primaryBaseBlack.value,
-    secondary: UColors.primaryNeutral900.value,
-    secondaryPressed: UColors.primaryNeutral800.value,
-    selectedPrimary: UColors.primaryBrand950.value,
-    selectedSecondary: UColors.primarySuccess950.value,
-    tertiary: UColors.primaryNeutral800.value,
-    scroll: UColors.transparencyWhite20.value,
+    error: AppColors.primaryError600.value,
+    alertNotification: AppColors.transparencyBlack80.value,
+    brand: AppColors.primaryBrand300.value,
+    chatMessage: AppColors.primaryNeutral900.value,
+    divider: AppColors.primaryNeutral900.value,
+    navbar: AppColors.primaryNeutral900.value,
+    primaryBlack: AppColors.primaryBaseWhite.value,
+    whiteConst: AppColors.primaryBaseWhite.value,
+    primaryPressed: AppColors.primaryNeutral900.value,
+    primaryWhite: AppColors.primaryBaseBlack.value,
+    secondary: AppColors.primaryNeutral900.value,
+    secondaryPressed: AppColors.primaryNeutral800.value,
+    selectedPrimary: AppColors.primaryBrand950.value,
+    selectedSecondary: AppColors.primarySuccess950.value,
+    tertiary: AppColors.primaryNeutral800.value,
+    scroll: AppColors.transparencyWhite20.value,
   );
 }
 
@@ -670,8 +670,8 @@ class UIColorsSecondary extends ThemeExtension<UIColorsSecondary> {
     return UIColorsSecondary(error: Color.lerp(error, other.error, t) ?? other.error);
   }
 
-  static final UIColorsSecondary light = UIColorsSecondary(error: UColors.primaryError500.value);
-  static final UIColorsSecondary dark = UIColorsSecondary(error: UColors.primaryError600.value);
+  static final UIColorsSecondary light = UIColorsSecondary(error: AppColors.primaryError500.value);
+  static final UIColorsSecondary dark = UIColorsSecondary(error: AppColors.primaryError600.value);
 }
 
 class UIColors extends ThemeExtension<UIColors> {

@@ -42,13 +42,13 @@ class UIShadowsCards extends ThemeExtension<UIShadowsCards> {
 
   static final UIShadowsCards light = UIShadowsCards(
     neomorphism: BoxShadow(
-      color: UColors.primaryNeutral200.value,
+      color: AppColors.primaryNeutral200.value,
       spreadRadius: 0.0,
       blurRadius: 0.0,
       offset: Offset(0.0, 1.0),
     ),
     popUp: BoxShadow(
-      color: UColors.transparencyBlack10.value,
+      color: AppColors.transparencyBlack10.value,
       spreadRadius: 0.0,
       blurRadius: 32.0,
       offset: Offset(0.0, 0.0),
@@ -63,13 +63,13 @@ class UIShadowsCards extends ThemeExtension<UIShadowsCards> {
   );
   static final UIShadowsCards dark = UIShadowsCards(
     neomorphism: BoxShadow(
-      color: UColors.primaryNeutral800.value,
+      color: AppColors.primaryNeutral800.value,
       spreadRadius: 0.0,
       blurRadius: 0.0,
       offset: Offset(0.0, 1.0),
     ),
     popUp: BoxShadow(
-      color: UColors.transparencyBlack90.value,
+      color: AppColors.transparencyBlack90.value,
       spreadRadius: 0.0,
       blurRadius: 32.0,
       offset: Offset(0.0, 0.0),

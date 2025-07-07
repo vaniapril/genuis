@@ -1,5 +1,5 @@
-import 'package:genuis/src/config/yaml/module_type_config.dart';
-import 'package:genuis/src/config/yaml/token_extension_type_config.dart';
+import 'package:genuis/src/config/types/element_type.dart';
+import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/data/code/flag.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/core/data/code/values/alignment_value.dart';
@@ -16,7 +16,7 @@ import 'package:genuis/src/core/data/token.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class ValueParser {
-  final ModuleTypeConfig type;
+  final ElementType type;
   final List<Token> tokens;
 
   ValueParser({
@@ -48,12 +48,12 @@ class ValueParser {
     final args = _split(value);
 
     return switch (type) {
-      ModuleTypeConfig.blur => _parseBlur(args),
-      ModuleTypeConfig.color => _parseColor(args),
-      ModuleTypeConfig.font => _parseFont(args),
-      ModuleTypeConfig.shadow => _parseShadow(args),
-      ModuleTypeConfig.asset => _parseAsset(args),
-      ModuleTypeConfig.number => _parseNumber(args),
+      ElementType.blur => _parseBlur(args),
+      ElementType.color => _parseColor(args),
+      ElementType.font => _parseFont(args),
+      ElementType.shadow => _parseShadow(args),
+      ElementType.asset => _parseAsset(args),
+      ElementType.number => _parseNumber(args),
     };
   }
 
@@ -85,8 +85,9 @@ class ValueParser {
       if (field.name == name) {
         return TokenValue(
           tokenType: token.config.className,
-          // TODO(IvanPrylepski): name.value ???
-          tokenName: token.config.classType == TokenExtensionTypeConfig.enum_ ? '$name.value' : name,
+          // TODO(vaniapril): name.value ???
+          tokenName:
+              token.config.classType == TokenClassType.enum_ ? '$name.value' : name,
           innerValue: field.values.values.first,
           flags: flags,
           additionalImports: token.import,
@@ -209,7 +210,7 @@ class ValueParser {
 
     return TextStyleValue(
       family: family,
-      //todo: check 100,200,300,400,500,600,700,800,900
+      // TODO(vaniapril): check 100,200,300,400,500,600,700,800,900
       weight: weight,
       size: size,
       height: height,

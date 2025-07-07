@@ -1,4 +1,4 @@
-import 'package:genuis/src/config/yaml/genuis_config.dart';
+import 'package:genuis/src/config/genuis_config.dart';
 import 'package:genuis/src/core/data/module.dart';
 
 class BuildContextExtensionWriter {

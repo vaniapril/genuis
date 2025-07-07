@@ -5,7 +5,7 @@ import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-// TODO(IvanPrylepski): refactor all
+// TODO(vaniapril): refactor all
 class MainClassGenerator extends FileGenerator {
   final List<Module> modules;
   final List<Token> tokens;

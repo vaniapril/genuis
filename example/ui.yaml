@@ -1,53 +1,57 @@
-asset_path: assets/
+assets_path: assets/
+output_path: lib/ui/
 themes:
   - light
   - dark
-
-use_default_theme: false
-use_theme_extensions: true
+base_theme: base
+default_theme: false
+theme_extensions: true
+from_json_method: false
+dart_line_length: 100
+main_class_name: UI
+main_getter_name: ui
 
 tokens:
   - colors:
-    type: color
-    path: colors.json
-    class_name: UIColors
-    enum: true
-    value_name: value
-
+      type: color
+      path: colors.json
+      class_name: AppColors
+      class_type: enum
+      value_name: value
   - heights:
-    type: number
-    path: heights.json
-    class_name: Heights
+      type: number
+      path: heights.json
+      class_name: AppHeights
+      value_name: value
 
 modules:
   - blurs:
-    type: blur
-    path: blurs/
+      type: blur
+      path: blurs/
   
   - colors:
-    type: color
-    path: colors/
+      type: color
+      path: colors/
 
   - fonts:
-    type: font
-    path: fonts/
-    extensions:
-      - colors:
-        type: getter
-
-  - shadows:
-    path: shadows/
-    type: shadow
+      type: font
+      path: fonts/
+      color_extension: true
 
   - icons:
-    path: icons/
-    type: file
-    extensions:
-      - tokens:
-        type: enum
-        name: Icons
-
+      type: asset
+      path: icons/
+      token_extension_class_type: enum
+      token_extension_class_name: AppIcons
+      color_extension: true
+      color_extension_class_name: ColoredIcon
+  
   - images:
-    path: images/
-    type: file
-    enum: false
+      type: asset
+      path: images/
+      token_extension_class_type: static
+      token_extension_class_name: AppImages
+
+  - shadows:
+      type: shadow
+      path: shadows/

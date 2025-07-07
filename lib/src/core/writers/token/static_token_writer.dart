@@ -1,21 +1,19 @@
-import 'package:genuis/src/config/yaml/genuis_config.dart';
+import 'package:genuis/src/config/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 
 class StaticTokenWriter {
   final GenuisConfig config;
 
-  const StaticTokenWriter ({
+  const StaticTokenWriter({
     required this.config,
   });
 
-  StringBuffer write(StringBuffer buffer, Class root) {
-    final StringBuffer buffer = StringBuffer();
+  void write(StringBuffer buffer, Class root) {
     buffer.writeln('abstract class ${root.classType} {');
     buffer.writeln();
     _writeClassWithSubclasses(buffer, root);
     buffer.writeln('}');
-    return buffer;
   }
 
   void _writeClassWithSubclasses(StringBuffer buffer, Class folder) {
