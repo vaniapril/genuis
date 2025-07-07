@@ -2,10 +2,10 @@ import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-class GetterThemeWriter {
+class GetterModuleWriter {
   final GenuisConfig config;
 
-  const GetterThemeWriter({
+  const GetterModuleWriter({
     required this.config,
   });
 

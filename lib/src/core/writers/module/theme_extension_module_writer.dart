@@ -1,10 +1,10 @@
 import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 
-class ThemeExtensionWriter {
+class ThemeExtensionModuleWriter {
   final GenuisConfig config;
 
-  const ThemeExtensionWriter({
+  const ThemeExtensionModuleWriter({
     required this.config,
   });
 

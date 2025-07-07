@@ -1,6 +1,4 @@
 extension StringExtension on String {
-  String get nullable => endsWith('?') ? this : '$this?';
-
   String get upperFirst => isEmpty ? '' : '${this[0].toUpperCase()}${substring(1)}';
 
   String get lowerFirst => isEmpty ? '' : '${this[0].toLowerCase()}${substring(1)}';
@@ -22,7 +20,7 @@ extension StringExtension on String {
       .where((e) => e.isNotEmpty)
       .join('_');
 
-  String get named => keywords.contains(this) ? '${this}_' : this;
+  String get named => _dartKeywords.contains(this) ? '${this}_' : this;
 
   String get hexToBitInt {
     String source = replaceFirst('#', '');
@@ -32,7 +30,7 @@ extension StringExtension on String {
   }
 }
 
-const keywords = [
+const _dartKeywords = [
   'abstract',
   'as',
   'assert',

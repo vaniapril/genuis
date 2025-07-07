@@ -1,9 +1,9 @@
 import 'package:genuis/src/config/yaml/module_type_config.dart';
 import 'package:genuis/src/core/data/module.dart';
-import 'package:genuis/src/core/writers/color_extension_writer.dart';
-import 'package:genuis/src/core/writers/enum_writer.dart';
-import 'package:genuis/src/core/writers/getter_theme_writer.dart';
-import 'package:genuis/src/core/writers/theme_extension_writer.dart';
+import 'package:genuis/src/core/writers/module/color_extension_writer.dart';
+import 'package:genuis/src/core/writers/token/enum_token_writer.dart';
+import 'package:genuis/src/core/writers/module/getter_module_writer.dart';
+import 'package:genuis/src/core/writers/module/theme_extension_module_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/utils/imports.dart';
@@ -42,7 +42,8 @@ class ModuleGenerator extends FileGenerator {
     }
 
     if (module.config.tokenExtension != null) {
-      EnumWriter(config: config, valueName: 'value', valueType: module.enumFields.first.valueType)
+      EnumTokenWriter(
+              config: config, valueName: 'value', valueType: module.enumFields.first.valueType)
           .write(
         buffer,
         Class(
@@ -73,9 +74,9 @@ class ModuleGenerator extends FileGenerator {
     }
 
     if (config.themeExtensions) {
-      ThemeExtensionWriter(config: config).write(buffer, root);
+      ThemeExtensionModuleWriter(config: config).write(buffer, root);
     } else {
-      GetterThemeWriter(config: config).write(buffer, root);
+      GetterModuleWriter(config: config).write(buffer, root);
     }
 
     return buffer.toString();

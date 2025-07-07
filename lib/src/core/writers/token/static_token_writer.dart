@@ -2,32 +2,18 @@ import 'package:genuis/src/config/yaml/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 
-class EnumWriter {
+class StaticTokenWriter {
   final GenuisConfig config;
-  final String valueType;
-  final String valueName;
 
-  const EnumWriter({
+  const StaticTokenWriter ({
     required this.config,
-    required this.valueName,
-    required this.valueType,
   });
 
   StringBuffer write(StringBuffer buffer, Class root) {
-    if (root.fields.isEmpty) return buffer;
-
-    buffer.writeln('enum ${root.classType} {');
-    final StringBuffer lines = StringBuffer();
-    _writeClassWithSubclasses(lines, root);
-    final String strLines = lines.toString();
-    if (strLines.isNotEmpty) {
-      buffer.writeln(strLines.replaceFirst(',', ';', strLines.length - 3));
-    }
-
+    final StringBuffer buffer = StringBuffer();
+    buffer.writeln('abstract class ${root.classType} {');
     buffer.writeln();
-    buffer.writeln('const ${root.classType}(this.$valueName);');
-    buffer.writeln();
-    buffer.writeln('final $valueType $valueName;');
+    _writeClassWithSubclasses(buffer, root);
     buffer.writeln('}');
     return buffer;
   }
@@ -37,10 +23,10 @@ class EnumWriter {
       _writeClassWithSubclasses(buffer, node);
     }
 
-    _writeFields(buffer, folder);
+    _writeFieldsInClass(buffer, folder);
   }
 
-  void _writeFields(StringBuffer buffer, Class folder) {
+  void _writeFieldsInClass(StringBuffer buffer, Class folder) {
     if (folder.fields.isEmpty) {
       return;
     }
@@ -49,7 +35,7 @@ class EnumWriter {
 
     for (final item in folder.fields) {
       for (final (theme, value) in item.values.iterable) {
-        buffer.writeln("${item.enumName(theme)}($value),");
+        buffer.writeln("static const ${item.type} ${item.enumName(theme)} = $value;");
       }
     }
   }
