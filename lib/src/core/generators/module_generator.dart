@@ -31,7 +31,7 @@ class ModuleGenerator extends FileGenerator {
     final Set<String> imports = {
       if (config.classType == GenuisClassType.themeExtension) Imports.material,
       // TODO(vaniapril): colors modules import
-      if (module.config.colorExtension) "import '${config.className.toLowerCase()}.ui.dart';"
+      if (module.config.color) "import '${config.className.toLowerCase()}.ui.dart';"
     };
 
     root.forEach(
@@ -44,14 +44,14 @@ class ModuleGenerator extends FileGenerator {
       buffer.writeln(import);
     }
 
-    if (module.config.tokenExtensionClassType != null) {
-      switch (module.config.tokenExtensionClassType) {
+    if (module.config.tokenClassType != null) {
+      switch (module.config.tokenClassType) {
         case TokenClassType.enum_:
           EnumTokenWriter(
             config: config,
-            className: module.config.tokenExtensionClassName,
+            className: module.config.tokenClassName,
             valueType: module.enumFields.first.valueType,
-            valueName: module.config.tokenExtensionValueName,
+            valueName: module.config.tokenValueName,
           ).write(
             buffer,
             module.enumFields,
@@ -60,18 +60,18 @@ class ModuleGenerator extends FileGenerator {
         case TokenClassType.static_:
           StaticTokenWriter(
             config: config,
-            className: module.config.tokenExtensionClassName,
+            className: module.config.tokenClassName,
           ).write(
             buffer,
             module.enumFields,
           );
           break;
         default:
-          throw 'Unknown module type: ${module.config.tokenExtensionClassType}';
+          throw 'Unknown module type: ${module.config.tokenClassType}';
       }
     }
 
-    if (module.config.colorExtension) {
+    if (module.config.color) {
       switch (module.config.type) {
         case ElementType.font:
           ColorExtensionWriter(config: config).writeTextStyleExtensionClass(buffer, module.colors);

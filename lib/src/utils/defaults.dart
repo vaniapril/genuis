@@ -14,7 +14,7 @@ abstract class Defaults {
   static const configMainGetterName = 'ui';
   static const configBaseTheme = 'base';
   //Module
-  static const configModuleColorExtension = false;
+  static const configModuleColor = false;
   static const configModuleOptional = false;
   //Token
   static const configTokenClassType = TokenClassType.static_;

@@ -36,21 +36,21 @@ modules:
   - fonts:
       type: font
       path: fonts/
-      color_extension: true
+      color: true
 
   - icons:
       type: asset
       path: icons/
-      token_extension_class_type: enum
-      token_extension_class_name: AppIcons
-      color_extension: true
-      color_extension_class_name: ColoredIcon
+      token_class_type: enum
+      token_class_name: AppIcons
+      color: true
+      color_class_name: ColoredIcon
   
   - images:
       type: asset
       path: images/
-      token_extension_class_type: static
-      token_extension_class_name: AppImages
+      token_class_type: static
+      token_class_name: AppImages
 
   - shadows:
       type: shadow

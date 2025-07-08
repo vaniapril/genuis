@@ -7,22 +7,22 @@ class ModuleConfig {
   final String name;
   final String path;
   final ElementType type;
-  final TokenClassType? tokenExtensionClassType;
-  final String tokenExtensionClassName;
-  final String tokenExtensionValueName;
-  final bool colorExtension;
-  final String? colorExtensionClassName;
+  final TokenClassType? tokenClassType;
+  final String tokenClassName;
+  final String tokenValueName;
+  final bool color;
+  final String? colorClassName;
   final bool optional;
 
   ModuleConfig({
     required this.name,
     required this.path,
     required this.type,
-    required this.tokenExtensionClassType,
-    required this.tokenExtensionClassName,
-    required this.tokenExtensionValueName,
-    required this.colorExtension,
-    required this.colorExtensionClassName,
+    required this.tokenClassType,
+    required this.tokenClassName,
+    required this.tokenValueName,
+    required this.color,
+    required this.colorClassName,
     required this.optional,
   });
 
@@ -37,11 +37,11 @@ class ModuleConfig {
       name: name,
       path: _path(config['path']),
       type: _type(config['type']),
-      tokenExtensionClassType: _tokenExtensionClassType(config['token_extension_class_type']),
-      tokenExtensionClassName: _tokenExtensionClassName(config['token_extension_class_name']),
-      tokenExtensionValueName: _tokenExtensionValueName(config['token_extension_value_name']),
-      colorExtension: _colorExtension(config['color_extension']),
-      colorExtensionClassName: _colorExtensionClassName(config['color_extension_class_name']),
+      tokenClassType: _tokenClassType(config['token_class_type']),
+      tokenClassName: _tokenClassName(config['token_class_name']),
+      tokenValueName: _tokenValueName(config['token_value_name']),
+      color: _color(config['color']),
+      colorClassName: _colorClassName(config['color_class_name']),
       optional: _optional(config['optional']),
     );
   }
@@ -60,35 +60,35 @@ class ModuleConfig {
     return type;
   }
 
-  static TokenClassType? _tokenExtensionClassType(dynamic value) {
+  static TokenClassType? _tokenClassType(dynamic value) {
     if (value == null) return null;
-    if (value is! String) throw Exception('token_extension_class_type must be a String');
+    if (value is! String) throw Exception('token_class_type must be a String');
     final type = TokenClassType.tryParse(value);
-    if (type == null) throw Exception('Invalid token_extension_class_type "$type"');
+    if (type == null) throw Exception('Invalid token_class_type "$type"');
     return type;
   }
 
-  static String _tokenExtensionClassName(dynamic value) {
+  static String _tokenClassName(dynamic value) {
     if (value == null) return '';
-    if (value is! String) throw Exception('token_extension_class_name must be a String');
+    if (value is! String) throw Exception('token_class_name must be a String');
     return value;
   }
 
-  static String _tokenExtensionValueName(dynamic value) {
+  static String _tokenValueName(dynamic value) {
     if (value == null) return Defaults.configTokenValueName;
-    if (value is! String) throw Exception('token_extension_value_name must be a String');
+    if (value is! String) throw Exception('token_value_name must be a String');
     return value;
   }
 
-  static bool _colorExtension(dynamic value) {
-    if (value == null) return Defaults.configModuleColorExtension;
-    if (value is! bool) throw Exception('color_extension must be a bool');
+  static bool _color(dynamic value) {
+    if (value == null) return Defaults.configModuleColor;
+    if (value is! bool) throw Exception('color must be a bool');
     return value;
   }
 
-  static String? _colorExtensionClassName(dynamic value) {
+  static String? _colorClassName(dynamic value) {
     if (value == null) return null;
-    if (value is! String) throw Exception('color_extension_class_name must be a String');
+    if (value is! String) throw Exception('color_class_name must be a String');
     return value;
   }
 

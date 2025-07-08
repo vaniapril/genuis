@@ -71,7 +71,7 @@ class GenuisCore {
 
     return rawModules
         .map((module) {
-          if (module.config.colorExtension) {
+          if (module.config.color) {
             Map<String, Field> fields = {};
 
             for (final colorModule in colorModules) {
@@ -101,7 +101,7 @@ class GenuisCore {
     Class root = module.rootClass;
     List<Field> enumFields = [];
 
-    if (module.config.tokenExtensionClassType != null) {
+    if (module.config.tokenClassType != null) {
       root = root.map(
         (field) {
           enumFields.add(field);
@@ -115,10 +115,10 @@ class GenuisCore {
                 return MapEntry(
                   key,
                   TokenValue(
-                    tokenType: module.config.tokenExtensionClassName,
+                    tokenType: module.config.tokenClassName,
                     // TODO(vaniapril): name
                     tokenName:
-                        '${field.enumName(key)}${module.config.tokenExtensionClassType == TokenClassType.enum_ ? '.value' : ''}',
+                        '${field.enumName(key)}${module.config.tokenClassType == TokenClassType.enum_ ? '.value' : ''}',
                     innerValue: value,
                   ),
                 );
@@ -129,7 +129,7 @@ class GenuisCore {
       );
     }
 
-    if (module.config.colorExtension) {
+    if (module.config.color) {
       var colorThemesSet = {
         for (final themes in module.colors.values.map((e) => e.values.keys)) ...themes
       };
