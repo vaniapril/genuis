@@ -1,3 +1,4 @@
+import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
 
 abstract class Defaults {
@@ -6,7 +7,7 @@ abstract class Defaults {
   static const configOutputPath = 'lib/ui/';
   static const configThemes = ['light', 'dark'];
   static const configDefaultTheme = false;
-  static const configThemeExtensions = true;
+  static const configClassType = GenuisClassType.themeExtension;
   static const configFromJsonMethod = true;
   static const configDartLineLength = 100;
   static const configMainClassName = 'UI';

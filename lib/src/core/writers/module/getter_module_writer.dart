@@ -31,8 +31,9 @@ class GetterModuleWriter {
     buffer.writeln();
     buffer.writeln('const  ${mainClass.type}Widget({');
     buffer.writeln('super.key,');
-    buffer.writeln('required this.theme,');
-    buffer.writeln('})');
+    buffer.writeln('required this.${config.mainGetterName},');
+    buffer.writeln('required super.child,');
+    buffer.writeln('});');
     buffer.writeln();
     buffer.writeln('static ${mainClass.type}Widget? of(BuildContext context) {');
     buffer.writeln('return context.dependOnInheritedWidgetOfExactType<${mainClass.type}Widget>();');
@@ -40,14 +41,14 @@ class GetterModuleWriter {
     buffer.writeln();
     buffer.writeln('@override');
     buffer.writeln(
-        'bool updateShouldNotify(${mainClass.type}Widget oldWidget) => theme != oldWidget.theme;');
+        'bool updateShouldNotify(${mainClass.type}Widget oldWidget) => ${config.mainGetterName} != oldWidget.${config.mainGetterName};');
     buffer.writeln('}');
   }
 
   void _writeMainClassFactory(StringBuffer buffer, Class mainClass) {
     buffer.writeln('factory ${mainClass.type}.of(BuildContext context) {');
     buffer.writeln(
-        'return ${mainClass.type}Widget.of(context).theme ?? ${mainClass.type}.${mainClass.themes.first};');
+        'return ${mainClass.type}Widget.of(context)?.${config.mainGetterName} ?? ${mainClass.type}.${mainClass.themes.first};');
     buffer.writeln('}');
   }
 
@@ -101,7 +102,7 @@ class GetterModuleWriter {
   void _writeThemeClassGetters(StringBuffer buffer, Class folder, String theme) {
     for (final model in folder.nodes) {
       buffer.writeln('@override');
-      buffer.writeln('${folder.type} get ${model.name} => ${model.value(theme)};');
+      buffer.writeln('${model.type} get ${model.name} => ${model.value(theme)};');
     }
   }
 }

@@ -1,5 +1,7 @@
+import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/token.dart';
+import 'package:genuis/src/core/writers/module/getter_module_writer.dart';
 import 'package:genuis/src/core/writers/module/theme_extension_module_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
@@ -57,10 +59,19 @@ class MainClassGenerator extends FileGenerator {
       fields: [],
     );
 
-    ThemeExtensionModuleWriter(config: config).writeMainClass(
-      buffer,
-      tree,
-    );
+    switch (config.classType) {
+      case GenuisClassType.themeExtension:
+        ThemeExtensionModuleWriter(config: config).writeMainClass(
+          buffer,
+          tree,
+        );
+      case GenuisClassType.getter:
+        GetterModuleWriter(config: config).writeMainClass(
+          buffer,
+          tree,
+        );
+    }
+
     return buffer.toString();
   }
 }

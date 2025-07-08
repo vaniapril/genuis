@@ -1,4 +1,5 @@
 import 'package:genuis/src/config/types/element_type.dart';
+import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/writers/module/color_extension_writer.dart';
@@ -28,7 +29,7 @@ class ModuleGenerator extends FileGenerator {
     Class root = module.rootClass;
 
     final Set<String> imports = {
-      if (config.themeExtensions) Imports.material,
+      if (config.classType == GenuisClassType.themeExtension) Imports.material,
       // TODO(vaniapril): colors modules import
       if (module.config.colorExtension) "import '${config.mainClassName.toLowerCase()}.ui.dart';"
     };
@@ -74,22 +75,19 @@ class ModuleGenerator extends FileGenerator {
       switch (module.config.type) {
         case ElementType.font:
           ColorExtensionWriter(config: config).writeTextStyleExtensionClass(buffer, module.colors);
-          break;
-
         case ElementType.asset:
           ColorExtensionWriter(config: config)
               .writeAssetExtensionClass(buffer, module, module.colors);
-          break;
-
         default:
           throw 'Unknown module type: ${module.config.type}';
       }
     }
 
-    if (config.themeExtensions) {
-      ThemeExtensionModuleWriter(config: config).write(buffer, root);
-    } else {
-      GetterModuleWriter(config: config).write(buffer, root);
+    switch (config.classType) {
+      case GenuisClassType.themeExtension:
+        ThemeExtensionModuleWriter(config: config).write(buffer, root);
+      case GenuisClassType.getter:
+        GetterModuleWriter(config: config).write(buffer, root);
     }
 
     return buffer.toString();

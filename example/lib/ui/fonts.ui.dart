@@ -5,8 +5,8 @@
 
 // ignore_for_file: unused_import
 
-import 'package:flutter/material.dart';
 import 'ui.ui.dart';
+import 'package:flutter/material.dart';
 
 class ThemedTextStyle extends TextStyle {
   final Color _error;
@@ -51,1014 +51,917 @@ class ThemedTextStyle extends TextStyle {
   TextStyle get error => copyWith(color: _error);
 }
 
-class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle bold;
+abstract class UIFontsManropeLargeTitle {
+  static const UIFontsManropeLargeTitle light = _UIFontsManropeLargeTitleLight();
+  static const UIFontsManropeLargeTitle dark = _UIFontsManropeLargeTitleDark();
 
-  const UIFontsManropeLargeTitle({required this.regular, required this.bold});
+  const UIFontsManropeLargeTitle._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get bold;
+}
+
+class _UIFontsManropeLargeTitleLight extends UIFontsManropeLargeTitle {
+  const _UIFontsManropeLargeTitleLight() : super._();
 
   @override
-  UIFontsManropeLargeTitle copyWith({ThemedTextStyle? regular, ThemedTextStyle? bold}) {
-    return UIFontsManropeLargeTitle(regular: regular ?? this.regular, bold: bold ?? this.bold);
-  }
-
-  @override
-  UIFontsManropeLargeTitle lerp(ThemeExtension<UIFontsManropeLargeTitle>? other, double t) {
-    if (other is! UIFontsManropeLargeTitle) return this;
-    return UIFontsManropeLargeTitle(
-      regular: regular.lerp(other.regular, t),
-      bold: bold.lerp(other.bold, t),
-    );
-  }
-
-  static final UIFontsManropeLargeTitle light = UIFontsManropeLargeTitle(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 34.0,
-        height: 40.0 / 34.0,
-        letterSpacing: 0.4,
-      ),
-    ),
-    bold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w700,
-        fontSize: 34.0,
-        height: 40.0 / 34.0,
-        letterSpacing: 0.4,
-      ),
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 34.0,
+      height: 40.0 / 34.0,
+      letterSpacing: 0.4,
     ),
   );
-  static final UIFontsManropeLargeTitle dark = UIFontsManropeLargeTitle(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 34.0,
-        height: 40.0 / 34.0,
-        letterSpacing: 0.4,
-      ),
-    ),
-    bold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w700,
-        fontSize: 34.0,
-        height: 40.0 / 34.0,
-        letterSpacing: 0.4,
-      ),
+  @override
+  ThemedTextStyle get bold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w700,
+      fontSize: 34.0,
+      height: 40.0 / 34.0,
+      letterSpacing: 0.4,
     ),
   );
 }
 
-class UIFontsManropeTitle1 extends ThemeExtension<UIFontsManropeTitle1> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle bold;
-
-  const UIFontsManropeTitle1({required this.regular, required this.bold});
+class _UIFontsManropeLargeTitleDark extends UIFontsManropeLargeTitle {
+  const _UIFontsManropeLargeTitleDark() : super._();
 
   @override
-  UIFontsManropeTitle1 copyWith({ThemedTextStyle? regular, ThemedTextStyle? bold}) {
-    return UIFontsManropeTitle1(regular: regular ?? this.regular, bold: bold ?? this.bold);
-  }
-
-  @override
-  UIFontsManropeTitle1 lerp(ThemeExtension<UIFontsManropeTitle1>? other, double t) {
-    if (other is! UIFontsManropeTitle1) return this;
-    return UIFontsManropeTitle1(
-      regular: regular.lerp(other.regular, t),
-      bold: bold.lerp(other.bold, t),
-    );
-  }
-
-  static final UIFontsManropeTitle1 light = UIFontsManropeTitle1(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 28.0,
-        height: 34.0 / 28.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    bold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w700,
-        fontSize: 28.0,
-        height: 34.0 / 28.0,
-        letterSpacing: 0.1,
-      ),
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 34.0,
+      height: 40.0 / 34.0,
+      letterSpacing: 0.4,
     ),
   );
-  static final UIFontsManropeTitle1 dark = UIFontsManropeTitle1(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 28.0,
-        height: 34.0 / 28.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    bold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w700,
-        fontSize: 28.0,
-        height: 34.0 / 28.0,
-        letterSpacing: 0.1,
-      ),
+  @override
+  ThemedTextStyle get bold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w700,
+      fontSize: 34.0,
+      height: 40.0 / 34.0,
+      letterSpacing: 0.4,
     ),
   );
 }
 
-class UIFontsManropeTitle2 extends ThemeExtension<UIFontsManropeTitle2> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle bold;
+abstract class UIFontsManropeTitle1 {
+  static const UIFontsManropeTitle1 light = _UIFontsManropeTitle1Light();
+  static const UIFontsManropeTitle1 dark = _UIFontsManropeTitle1Dark();
 
-  const UIFontsManropeTitle2({required this.regular, required this.bold});
+  const UIFontsManropeTitle1._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get bold;
+}
+
+class _UIFontsManropeTitle1Light extends UIFontsManropeTitle1 {
+  const _UIFontsManropeTitle1Light() : super._();
 
   @override
-  UIFontsManropeTitle2 copyWith({ThemedTextStyle? regular, ThemedTextStyle? bold}) {
-    return UIFontsManropeTitle2(regular: regular ?? this.regular, bold: bold ?? this.bold);
-  }
-
-  @override
-  UIFontsManropeTitle2 lerp(ThemeExtension<UIFontsManropeTitle2>? other, double t) {
-    if (other is! UIFontsManropeTitle2) return this;
-    return UIFontsManropeTitle2(
-      regular: regular.lerp(other.regular, t),
-      bold: bold.lerp(other.bold, t),
-    );
-  }
-
-  static final UIFontsManropeTitle2 light = UIFontsManropeTitle2(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 22.0,
-        height: 28.0 / 22.0,
-        letterSpacing: -0.3,
-      ),
-    ),
-    bold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w700,
-        fontSize: 22.0,
-        height: 28.0 / 22.0,
-        letterSpacing: -0.3,
-      ),
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 28.0,
+      height: 34.0 / 28.0,
+      letterSpacing: 0.1,
     ),
   );
-  static final UIFontsManropeTitle2 dark = UIFontsManropeTitle2(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 22.0,
-        height: 28.0 / 22.0,
-        letterSpacing: -0.3,
-      ),
-    ),
-    bold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w700,
-        fontSize: 22.0,
-        height: 28.0 / 22.0,
-        letterSpacing: -0.3,
-      ),
+  @override
+  ThemedTextStyle get bold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w700,
+      fontSize: 28.0,
+      height: 34.0 / 28.0,
+      letterSpacing: 0.1,
     ),
   );
 }
 
-class UIFontsManropeTitle3 extends ThemeExtension<UIFontsManropeTitle3> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle semiBold;
-
-  const UIFontsManropeTitle3({required this.regular, required this.semiBold});
+class _UIFontsManropeTitle1Dark extends UIFontsManropeTitle1 {
+  const _UIFontsManropeTitle1Dark() : super._();
 
   @override
-  UIFontsManropeTitle3 copyWith({ThemedTextStyle? regular, ThemedTextStyle? semiBold}) {
-    return UIFontsManropeTitle3(
-      regular: regular ?? this.regular,
-      semiBold: semiBold ?? this.semiBold,
-    );
-  }
-
-  @override
-  UIFontsManropeTitle3 lerp(ThemeExtension<UIFontsManropeTitle3>? other, double t) {
-    if (other is! UIFontsManropeTitle3) return this;
-    return UIFontsManropeTitle3(
-      regular: regular.lerp(other.regular, t),
-      semiBold: semiBold.lerp(other.semiBold, t),
-    );
-  }
-
-  static final UIFontsManropeTitle3 light = UIFontsManropeTitle3(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 20.0,
-        height: 24.0 / 20.0,
-        letterSpacing: -0.5,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 20.0,
-        height: 24.0 / 20.0,
-        letterSpacing: -0.5,
-      ),
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 28.0,
+      height: 34.0 / 28.0,
+      letterSpacing: 0.1,
     ),
   );
-  static final UIFontsManropeTitle3 dark = UIFontsManropeTitle3(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 20.0,
-        height: 24.0 / 20.0,
-        letterSpacing: -0.5,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 20.0,
-        height: 24.0 / 20.0,
-        letterSpacing: -0.5,
-      ),
+  @override
+  ThemedTextStyle get bold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w700,
+      fontSize: 28.0,
+      height: 34.0 / 28.0,
+      letterSpacing: 0.1,
     ),
   );
 }
 
-class UIFontsManropeHeadline extends ThemeExtension<UIFontsManropeHeadline> {
-  final ThemedTextStyle semiBold;
-  final ThemedTextStyle regular;
+abstract class UIFontsManropeTitle2 {
+  static const UIFontsManropeTitle2 light = _UIFontsManropeTitle2Light();
+  static const UIFontsManropeTitle2 dark = _UIFontsManropeTitle2Dark();
 
-  const UIFontsManropeHeadline({required this.semiBold, required this.regular});
+  const UIFontsManropeTitle2._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get bold;
+}
+
+class _UIFontsManropeTitle2Light extends UIFontsManropeTitle2 {
+  const _UIFontsManropeTitle2Light() : super._();
 
   @override
-  UIFontsManropeHeadline copyWith({ThemedTextStyle? semiBold, ThemedTextStyle? regular}) {
-    return UIFontsManropeHeadline(
-      semiBold: semiBold ?? this.semiBold,
-      regular: regular ?? this.regular,
-    );
-  }
-
-  @override
-  UIFontsManropeHeadline lerp(ThemeExtension<UIFontsManropeHeadline>? other, double t) {
-    if (other is! UIFontsManropeHeadline) return this;
-    return UIFontsManropeHeadline(
-      semiBold: semiBold.lerp(other.semiBold, t),
-      regular: regular.lerp(other.regular, t),
-    );
-  }
-
-  static final UIFontsManropeHeadline light = UIFontsManropeHeadline(
-    semiBold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 17.0,
-        height: 22.0 / 17.0,
-        letterSpacing: -0.4,
-      ),
-    ),
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 17.0,
-        height: 22.0 / 17.0,
-        letterSpacing: -0.4,
-      ),
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 22.0,
+      height: 28.0 / 22.0,
+      letterSpacing: -0.3,
     ),
   );
-  static final UIFontsManropeHeadline dark = UIFontsManropeHeadline(
-    semiBold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 17.0,
-        height: 22.0 / 17.0,
-        letterSpacing: -0.4,
-      ),
-    ),
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 17.0,
-        height: 22.0 / 17.0,
-        letterSpacing: -0.4,
-      ),
+  @override
+  ThemedTextStyle get bold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w700,
+      fontSize: 22.0,
+      height: 28.0 / 22.0,
+      letterSpacing: -0.3,
     ),
   );
 }
 
-class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle medium;
-  final ThemedTextStyle semiBold;
-  final ThemedTextStyle bold;
-
-  const UIFontsManropeBody({
-    required this.regular,
-    required this.medium,
-    required this.semiBold,
-    required this.bold,
-  });
+class _UIFontsManropeTitle2Dark extends UIFontsManropeTitle2 {
+  const _UIFontsManropeTitle2Dark() : super._();
 
   @override
-  UIFontsManropeBody copyWith({
-    ThemedTextStyle? regular,
-    ThemedTextStyle? medium,
-    ThemedTextStyle? semiBold,
-    ThemedTextStyle? bold,
-  }) {
-    return UIFontsManropeBody(
-      regular: regular ?? this.regular,
-      medium: medium ?? this.medium,
-      semiBold: semiBold ?? this.semiBold,
-      bold: bold ?? this.bold,
-    );
-  }
-
-  @override
-  UIFontsManropeBody lerp(ThemeExtension<UIFontsManropeBody>? other, double t) {
-    if (other is! UIFontsManropeBody) return this;
-    return UIFontsManropeBody(
-      regular: regular.lerp(other.regular, t),
-      medium: medium.lerp(other.medium, t),
-      semiBold: semiBold.lerp(other.semiBold, t),
-      bold: bold.lerp(other.bold, t),
-    );
-  }
-
-  static final UIFontsManropeBody light = UIFontsManropeBody(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 16.0,
-        height: 22.0 / 16.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    medium: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w500,
-        fontSize: 16.0,
-        height: 22.0 / 16.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 16.0,
-        height: 22.0 / 16.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    bold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w700,
-        fontSize: 16.0,
-        height: 22.0 / 16.0,
-        letterSpacing: 0.1,
-      ),
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 22.0,
+      height: 28.0 / 22.0,
+      letterSpacing: -0.3,
     ),
   );
-  static final UIFontsManropeBody dark = UIFontsManropeBody(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 16.0,
-        height: 22.0 / 16.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    medium: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w500,
-        fontSize: 16.0,
-        height: 22.0 / 16.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 16.0,
-        height: 22.0 / 16.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    bold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w700,
-        fontSize: 16.0,
-        height: 22.0 / 16.0,
-        letterSpacing: 0.1,
-      ),
+  @override
+  ThemedTextStyle get bold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w700,
+      fontSize: 22.0,
+      height: 28.0 / 22.0,
+      letterSpacing: -0.3,
     ),
   );
 }
 
-class UIFontsManropeCallout extends ThemeExtension<UIFontsManropeCallout> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle semiBold;
+abstract class UIFontsManropeTitle3 {
+  static const UIFontsManropeTitle3 light = _UIFontsManropeTitle3Light();
+  static const UIFontsManropeTitle3 dark = _UIFontsManropeTitle3Dark();
 
-  const UIFontsManropeCallout({required this.regular, required this.semiBold});
+  const UIFontsManropeTitle3._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get semiBold;
+}
+
+class _UIFontsManropeTitle3Light extends UIFontsManropeTitle3 {
+  const _UIFontsManropeTitle3Light() : super._();
 
   @override
-  UIFontsManropeCallout copyWith({ThemedTextStyle? regular, ThemedTextStyle? semiBold}) {
-    return UIFontsManropeCallout(
-      regular: regular ?? this.regular,
-      semiBold: semiBold ?? this.semiBold,
-    );
-  }
-
-  @override
-  UIFontsManropeCallout lerp(ThemeExtension<UIFontsManropeCallout>? other, double t) {
-    if (other is! UIFontsManropeCallout) return this;
-    return UIFontsManropeCallout(
-      regular: regular.lerp(other.regular, t),
-      semiBold: semiBold.lerp(other.semiBold, t),
-    );
-  }
-
-  static final UIFontsManropeCallout light = UIFontsManropeCallout(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 16.0,
-        height: 20.0 / 16.0,
-        letterSpacing: 0.0,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 16.0,
-        height: 20.0 / 16.0,
-        letterSpacing: 0.0,
-      ),
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 20.0,
+      height: 24.0 / 20.0,
+      letterSpacing: -0.5,
     ),
   );
-  static final UIFontsManropeCallout dark = UIFontsManropeCallout(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 16.0,
-        height: 20.0 / 16.0,
-        letterSpacing: 0.0,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 16.0,
-        height: 20.0 / 16.0,
-        letterSpacing: 0.0,
-      ),
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 20.0,
+      height: 24.0 / 20.0,
+      letterSpacing: -0.5,
     ),
   );
 }
 
-class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle medium;
-  final ThemedTextStyle semiBold;
-
-  const UIFontsManropeSubhead({
-    required this.regular,
-    required this.medium,
-    required this.semiBold,
-  });
+class _UIFontsManropeTitle3Dark extends UIFontsManropeTitle3 {
+  const _UIFontsManropeTitle3Dark() : super._();
 
   @override
-  UIFontsManropeSubhead copyWith({
-    ThemedTextStyle? regular,
-    ThemedTextStyle? medium,
-    ThemedTextStyle? semiBold,
-  }) {
-    return UIFontsManropeSubhead(
-      regular: regular ?? this.regular,
-      medium: medium ?? this.medium,
-      semiBold: semiBold ?? this.semiBold,
-    );
-  }
-
-  @override
-  UIFontsManropeSubhead lerp(ThemeExtension<UIFontsManropeSubhead>? other, double t) {
-    if (other is! UIFontsManropeSubhead) return this;
-    return UIFontsManropeSubhead(
-      regular: regular.lerp(other.regular, t),
-      medium: medium.lerp(other.medium, t),
-      semiBold: semiBold.lerp(other.semiBold, t),
-    );
-  }
-
-  static final UIFontsManropeSubhead light = UIFontsManropeSubhead(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 15.0,
-        height: 20.0 / 15.0,
-        letterSpacing: 0.0,
-      ),
-    ),
-    medium: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w500,
-        fontSize: 15.0,
-        height: 20.0 / 15.0,
-        letterSpacing: 0.0,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 15.0,
-        height: 20.0 / 15.0,
-        letterSpacing: 0.0,
-      ),
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 20.0,
+      height: 24.0 / 20.0,
+      letterSpacing: -0.5,
     ),
   );
-  static final UIFontsManropeSubhead dark = UIFontsManropeSubhead(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 15.0,
-        height: 20.0 / 15.0,
-        letterSpacing: 0.0,
-      ),
-    ),
-    medium: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w500,
-        fontSize: 15.0,
-        height: 20.0 / 15.0,
-        letterSpacing: 0.0,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 15.0,
-        height: 20.0 / 15.0,
-        letterSpacing: 0.0,
-      ),
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 20.0,
+      height: 24.0 / 20.0,
+      letterSpacing: -0.5,
     ),
   );
 }
 
-class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle medium;
-  final ThemedTextStyle semiBold;
-  final ThemedTextStyle semiBoldUC;
+abstract class UIFontsManropeHeadline {
+  static const UIFontsManropeHeadline light = _UIFontsManropeHeadlineLight();
+  static const UIFontsManropeHeadline dark = _UIFontsManropeHeadlineDark();
 
-  const UIFontsManropeFootnote({
-    required this.regular,
-    required this.medium,
-    required this.semiBold,
-    required this.semiBoldUC,
-  });
+  const UIFontsManropeHeadline._();
 
-  @override
-  UIFontsManropeFootnote copyWith({
-    ThemedTextStyle? regular,
-    ThemedTextStyle? medium,
-    ThemedTextStyle? semiBold,
-    ThemedTextStyle? semiBoldUC,
-  }) {
-    return UIFontsManropeFootnote(
-      regular: regular ?? this.regular,
-      medium: medium ?? this.medium,
-      semiBold: semiBold ?? this.semiBold,
-      semiBoldUC: semiBoldUC ?? this.semiBoldUC,
-    );
-  }
+  ThemedTextStyle get semiBold;
+  ThemedTextStyle get regular;
+}
+
+class _UIFontsManropeHeadlineLight extends UIFontsManropeHeadline {
+  const _UIFontsManropeHeadlineLight() : super._();
 
   @override
-  UIFontsManropeFootnote lerp(ThemeExtension<UIFontsManropeFootnote>? other, double t) {
-    if (other is! UIFontsManropeFootnote) return this;
-    return UIFontsManropeFootnote(
-      regular: regular.lerp(other.regular, t),
-      medium: medium.lerp(other.medium, t),
-      semiBold: semiBold.lerp(other.semiBold, t),
-      semiBoldUC: semiBoldUC.lerp(other.semiBoldUC, t),
-    );
-  }
-
-  static final UIFontsManropeFootnote light = UIFontsManropeFootnote(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 13.0,
-        height: 16.0 / 13.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    medium: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w500,
-        fontSize: 13.0,
-        height: 16.0 / 13.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 13.0,
-        height: 16.0 / 13.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    semiBoldUC: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 13.0,
-        height: 16.0 / 13.0,
-        letterSpacing: 0.1,
-      ),
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 17.0,
+      height: 22.0 / 17.0,
+      letterSpacing: -0.4,
     ),
   );
-  static final UIFontsManropeFootnote dark = UIFontsManropeFootnote(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 13.0,
-        height: 16.0 / 13.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    medium: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w500,
-        fontSize: 13.0,
-        height: 16.0 / 13.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 13.0,
-        height: 16.0 / 13.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    semiBoldUC: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 13.0,
-        height: 16.0 / 13.0,
-        letterSpacing: 0.1,
-      ),
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 17.0,
+      height: 22.0 / 17.0,
+      letterSpacing: -0.4,
     ),
   );
 }
 
-class UIFontsManropeCaption1 extends ThemeExtension<UIFontsManropeCaption1> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle medium;
-
-  const UIFontsManropeCaption1({required this.regular, required this.medium});
+class _UIFontsManropeHeadlineDark extends UIFontsManropeHeadline {
+  const _UIFontsManropeHeadlineDark() : super._();
 
   @override
-  UIFontsManropeCaption1 copyWith({ThemedTextStyle? regular, ThemedTextStyle? medium}) {
-    return UIFontsManropeCaption1(regular: regular ?? this.regular, medium: medium ?? this.medium);
-  }
-
-  @override
-  UIFontsManropeCaption1 lerp(ThemeExtension<UIFontsManropeCaption1>? other, double t) {
-    if (other is! UIFontsManropeCaption1) return this;
-    return UIFontsManropeCaption1(
-      regular: regular.lerp(other.regular, t),
-      medium: medium.lerp(other.medium, t),
-    );
-  }
-
-  static final UIFontsManropeCaption1 light = UIFontsManropeCaption1(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 12.0,
-        height: 16.0 / 12.0,
-        letterSpacing: 0.4,
-      ),
-    ),
-    medium: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w500,
-        fontSize: 12.0,
-        height: 16.0 / 12.0,
-        letterSpacing: 0.4,
-      ),
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 17.0,
+      height: 22.0 / 17.0,
+      letterSpacing: -0.4,
     ),
   );
-  static final UIFontsManropeCaption1 dark = UIFontsManropeCaption1(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 12.0,
-        height: 16.0 / 12.0,
-        letterSpacing: 0.4,
-      ),
-    ),
-    medium: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w500,
-        fontSize: 12.0,
-        height: 16.0 / 12.0,
-        letterSpacing: 0.4,
-      ),
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 17.0,
+      height: 22.0 / 17.0,
+      letterSpacing: -0.4,
     ),
   );
 }
 
-class UIFontsManropeCaption2 extends ThemeExtension<UIFontsManropeCaption2> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle semiBold;
+abstract class UIFontsManropeBody {
+  static const UIFontsManropeBody light = _UIFontsManropeBodyLight();
+  static const UIFontsManropeBody dark = _UIFontsManropeBodyDark();
 
-  const UIFontsManropeCaption2({required this.regular, required this.semiBold});
+  const UIFontsManropeBody._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get medium;
+  ThemedTextStyle get semiBold;
+  ThemedTextStyle get bold;
+}
+
+class _UIFontsManropeBodyLight extends UIFontsManropeBody {
+  const _UIFontsManropeBodyLight() : super._();
 
   @override
-  UIFontsManropeCaption2 copyWith({ThemedTextStyle? regular, ThemedTextStyle? semiBold}) {
-    return UIFontsManropeCaption2(
-      regular: regular ?? this.regular,
-      semiBold: semiBold ?? this.semiBold,
-    );
-  }
-
-  @override
-  UIFontsManropeCaption2 lerp(ThemeExtension<UIFontsManropeCaption2>? other, double t) {
-    if (other is! UIFontsManropeCaption2) return this;
-    return UIFontsManropeCaption2(
-      regular: regular.lerp(other.regular, t),
-      semiBold: semiBold.lerp(other.semiBold, t),
-    );
-  }
-
-  static final UIFontsManropeCaption2 light = UIFontsManropeCaption2(
-    regular: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 11.0,
-        height: 14.0 / 11.0,
-        letterSpacing: 0.1,
-      ),
-    ),
-    semiBold: ThemedTextStyle(
-      UI.light,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 11.0,
-        height: 14.0 / 11.0,
-        letterSpacing: 0.1,
-      ),
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 16.0,
+      height: 22.0 / 16.0,
+      letterSpacing: 0.1,
     ),
   );
-  static final UIFontsManropeCaption2 dark = UIFontsManropeCaption2(
-    regular: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w400,
-        fontSize: 11.0,
-        height: 14.0 / 11.0,
-        letterSpacing: 0.1,
-      ),
+  @override
+  ThemedTextStyle get medium => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w500,
+      fontSize: 16.0,
+      height: 22.0 / 16.0,
+      letterSpacing: 0.1,
     ),
-    semiBold: ThemedTextStyle(
-      UI.dark,
-      const TextStyle(
-        fontFamily: 'Manrope',
-        fontWeight: FontWeight.w600,
-        fontSize: 11.0,
-        height: 14.0 / 11.0,
-        letterSpacing: 0.1,
-      ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 16.0,
+      height: 22.0 / 16.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get bold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w700,
+      fontSize: 16.0,
+      height: 22.0 / 16.0,
+      letterSpacing: 0.1,
     ),
   );
 }
 
-class UIFontsManrope extends ThemeExtension<UIFontsManrope> {
-  final UIFontsManropeLargeTitle largeTitle;
-  final UIFontsManropeTitle1 title1;
-  final UIFontsManropeTitle2 title2;
-  final UIFontsManropeTitle3 title3;
-  final UIFontsManropeHeadline headline;
-  final UIFontsManropeBody body;
-  final UIFontsManropeCallout callout;
-  final UIFontsManropeSubhead subhead;
-  final UIFontsManropeFootnote footnote;
-  final UIFontsManropeCaption1 caption1;
-  final UIFontsManropeCaption2 caption2;
-
-  const UIFontsManrope({
-    required this.largeTitle,
-    required this.title1,
-    required this.title2,
-    required this.title3,
-    required this.headline,
-    required this.body,
-    required this.callout,
-    required this.subhead,
-    required this.footnote,
-    required this.caption1,
-    required this.caption2,
-  });
+class _UIFontsManropeBodyDark extends UIFontsManropeBody {
+  const _UIFontsManropeBodyDark() : super._();
 
   @override
-  UIFontsManrope copyWith({
-    UIFontsManropeLargeTitle? largeTitle,
-    UIFontsManropeTitle1? title1,
-    UIFontsManropeTitle2? title2,
-    UIFontsManropeTitle3? title3,
-    UIFontsManropeHeadline? headline,
-    UIFontsManropeBody? body,
-    UIFontsManropeCallout? callout,
-    UIFontsManropeSubhead? subhead,
-    UIFontsManropeFootnote? footnote,
-    UIFontsManropeCaption1? caption1,
-    UIFontsManropeCaption2? caption2,
-  }) {
-    return UIFontsManrope(
-      largeTitle: largeTitle ?? this.largeTitle,
-      title1: title1 ?? this.title1,
-      title2: title2 ?? this.title2,
-      title3: title3 ?? this.title3,
-      headline: headline ?? this.headline,
-      body: body ?? this.body,
-      callout: callout ?? this.callout,
-      subhead: subhead ?? this.subhead,
-      footnote: footnote ?? this.footnote,
-      caption1: caption1 ?? this.caption1,
-      caption2: caption2 ?? this.caption2,
-    );
-  }
-
-  @override
-  UIFontsManrope lerp(ThemeExtension<UIFontsManrope>? other, double t) {
-    if (other is! UIFontsManrope) return this;
-    return UIFontsManrope(
-      largeTitle: largeTitle.lerp(other.largeTitle, t),
-      title1: title1.lerp(other.title1, t),
-      title2: title2.lerp(other.title2, t),
-      title3: title3.lerp(other.title3, t),
-      headline: headline.lerp(other.headline, t),
-      body: body.lerp(other.body, t),
-      callout: callout.lerp(other.callout, t),
-      subhead: subhead.lerp(other.subhead, t),
-      footnote: footnote.lerp(other.footnote, t),
-      caption1: caption1.lerp(other.caption1, t),
-      caption2: caption2.lerp(other.caption2, t),
-    );
-  }
-
-  static final UIFontsManrope light = UIFontsManrope(
-    largeTitle: UIFontsManropeLargeTitle.light,
-    title1: UIFontsManropeTitle1.light,
-    title2: UIFontsManropeTitle2.light,
-    title3: UIFontsManropeTitle3.light,
-    headline: UIFontsManropeHeadline.light,
-    body: UIFontsManropeBody.light,
-    callout: UIFontsManropeCallout.light,
-    subhead: UIFontsManropeSubhead.light,
-    footnote: UIFontsManropeFootnote.light,
-    caption1: UIFontsManropeCaption1.light,
-    caption2: UIFontsManropeCaption2.light,
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 16.0,
+      height: 22.0 / 16.0,
+      letterSpacing: 0.1,
+    ),
   );
-  static final UIFontsManrope dark = UIFontsManrope(
-    largeTitle: UIFontsManropeLargeTitle.dark,
-    title1: UIFontsManropeTitle1.dark,
-    title2: UIFontsManropeTitle2.dark,
-    title3: UIFontsManropeTitle3.dark,
-    headline: UIFontsManropeHeadline.dark,
-    body: UIFontsManropeBody.dark,
-    callout: UIFontsManropeCallout.dark,
-    subhead: UIFontsManropeSubhead.dark,
-    footnote: UIFontsManropeFootnote.dark,
-    caption1: UIFontsManropeCaption1.dark,
-    caption2: UIFontsManropeCaption2.dark,
+  @override
+  ThemedTextStyle get medium => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w500,
+      fontSize: 16.0,
+      height: 22.0 / 16.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 16.0,
+      height: 22.0 / 16.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get bold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w700,
+      fontSize: 16.0,
+      height: 22.0 / 16.0,
+      letterSpacing: 0.1,
+    ),
   );
 }
 
-class UIFonts extends ThemeExtension<UIFonts> {
-  final UIFontsManrope manrope;
+abstract class UIFontsManropeCallout {
+  static const UIFontsManropeCallout light = _UIFontsManropeCalloutLight();
+  static const UIFontsManropeCallout dark = _UIFontsManropeCalloutDark();
 
-  const UIFonts({required this.manrope});
+  const UIFontsManropeCallout._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get semiBold;
+}
+
+class _UIFontsManropeCalloutLight extends UIFontsManropeCallout {
+  const _UIFontsManropeCalloutLight() : super._();
 
   @override
-  UIFonts copyWith({UIFontsManrope? manrope}) {
-    return UIFonts(manrope: manrope ?? this.manrope);
-  }
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 16.0,
+      height: 20.0 / 16.0,
+      letterSpacing: 0.0,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 16.0,
+      height: 20.0 / 16.0,
+      letterSpacing: 0.0,
+    ),
+  );
+}
+
+class _UIFontsManropeCalloutDark extends UIFontsManropeCallout {
+  const _UIFontsManropeCalloutDark() : super._();
 
   @override
-  UIFonts lerp(ThemeExtension<UIFonts>? other, double t) {
-    if (other is! UIFonts) return this;
-    return UIFonts(manrope: manrope.lerp(other.manrope, t));
-  }
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 16.0,
+      height: 20.0 / 16.0,
+      letterSpacing: 0.0,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 16.0,
+      height: 20.0 / 16.0,
+      letterSpacing: 0.0,
+    ),
+  );
+}
 
-  static final UIFonts light = UIFonts(manrope: UIFontsManrope.light);
-  static final UIFonts dark = UIFonts(manrope: UIFontsManrope.dark);
+abstract class UIFontsManropeSubhead {
+  static const UIFontsManropeSubhead light = _UIFontsManropeSubheadLight();
+  static const UIFontsManropeSubhead dark = _UIFontsManropeSubheadDark();
+
+  const UIFontsManropeSubhead._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get medium;
+  ThemedTextStyle get semiBold;
+}
+
+class _UIFontsManropeSubheadLight extends UIFontsManropeSubhead {
+  const _UIFontsManropeSubheadLight() : super._();
+
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 15.0,
+      height: 20.0 / 15.0,
+      letterSpacing: 0.0,
+    ),
+  );
+  @override
+  ThemedTextStyle get medium => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w500,
+      fontSize: 15.0,
+      height: 20.0 / 15.0,
+      letterSpacing: 0.0,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 15.0,
+      height: 20.0 / 15.0,
+      letterSpacing: 0.0,
+    ),
+  );
+}
+
+class _UIFontsManropeSubheadDark extends UIFontsManropeSubhead {
+  const _UIFontsManropeSubheadDark() : super._();
+
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 15.0,
+      height: 20.0 / 15.0,
+      letterSpacing: 0.0,
+    ),
+  );
+  @override
+  ThemedTextStyle get medium => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w500,
+      fontSize: 15.0,
+      height: 20.0 / 15.0,
+      letterSpacing: 0.0,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 15.0,
+      height: 20.0 / 15.0,
+      letterSpacing: 0.0,
+    ),
+  );
+}
+
+abstract class UIFontsManropeFootnote {
+  static const UIFontsManropeFootnote light = _UIFontsManropeFootnoteLight();
+  static const UIFontsManropeFootnote dark = _UIFontsManropeFootnoteDark();
+
+  const UIFontsManropeFootnote._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get medium;
+  ThemedTextStyle get semiBold;
+  ThemedTextStyle get semiBoldUC;
+}
+
+class _UIFontsManropeFootnoteLight extends UIFontsManropeFootnote {
+  const _UIFontsManropeFootnoteLight() : super._();
+
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 13.0,
+      height: 16.0 / 13.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get medium => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w500,
+      fontSize: 13.0,
+      height: 16.0 / 13.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 13.0,
+      height: 16.0 / 13.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBoldUC => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 13.0,
+      height: 16.0 / 13.0,
+      letterSpacing: 0.1,
+    ),
+  );
+}
+
+class _UIFontsManropeFootnoteDark extends UIFontsManropeFootnote {
+  const _UIFontsManropeFootnoteDark() : super._();
+
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 13.0,
+      height: 16.0 / 13.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get medium => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w500,
+      fontSize: 13.0,
+      height: 16.0 / 13.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 13.0,
+      height: 16.0 / 13.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBoldUC => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 13.0,
+      height: 16.0 / 13.0,
+      letterSpacing: 0.1,
+    ),
+  );
+}
+
+abstract class UIFontsManropeCaption1 {
+  static const UIFontsManropeCaption1 light = _UIFontsManropeCaption1Light();
+  static const UIFontsManropeCaption1 dark = _UIFontsManropeCaption1Dark();
+
+  const UIFontsManropeCaption1._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get medium;
+}
+
+class _UIFontsManropeCaption1Light extends UIFontsManropeCaption1 {
+  const _UIFontsManropeCaption1Light() : super._();
+
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 12.0,
+      height: 16.0 / 12.0,
+      letterSpacing: 0.4,
+    ),
+  );
+  @override
+  ThemedTextStyle get medium => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w500,
+      fontSize: 12.0,
+      height: 16.0 / 12.0,
+      letterSpacing: 0.4,
+    ),
+  );
+}
+
+class _UIFontsManropeCaption1Dark extends UIFontsManropeCaption1 {
+  const _UIFontsManropeCaption1Dark() : super._();
+
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 12.0,
+      height: 16.0 / 12.0,
+      letterSpacing: 0.4,
+    ),
+  );
+  @override
+  ThemedTextStyle get medium => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w500,
+      fontSize: 12.0,
+      height: 16.0 / 12.0,
+      letterSpacing: 0.4,
+    ),
+  );
+}
+
+abstract class UIFontsManropeCaption2 {
+  static const UIFontsManropeCaption2 light = _UIFontsManropeCaption2Light();
+  static const UIFontsManropeCaption2 dark = _UIFontsManropeCaption2Dark();
+
+  const UIFontsManropeCaption2._();
+
+  ThemedTextStyle get regular;
+  ThemedTextStyle get semiBold;
+}
+
+class _UIFontsManropeCaption2Light extends UIFontsManropeCaption2 {
+  const _UIFontsManropeCaption2Light() : super._();
+
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 11.0,
+      height: 14.0 / 11.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.light,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 11.0,
+      height: 14.0 / 11.0,
+      letterSpacing: 0.1,
+    ),
+  );
+}
+
+class _UIFontsManropeCaption2Dark extends UIFontsManropeCaption2 {
+  const _UIFontsManropeCaption2Dark() : super._();
+
+  @override
+  ThemedTextStyle get regular => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w400,
+      fontSize: 11.0,
+      height: 14.0 / 11.0,
+      letterSpacing: 0.1,
+    ),
+  );
+  @override
+  ThemedTextStyle get semiBold => ThemedTextStyle(
+    UI.dark,
+    const TextStyle(
+      fontFamily: 'Manrope',
+      fontWeight: FontWeight.w600,
+      fontSize: 11.0,
+      height: 14.0 / 11.0,
+      letterSpacing: 0.1,
+    ),
+  );
+}
+
+abstract class UIFontsManrope {
+  static const UIFontsManrope light = _UIFontsManropeLight();
+  static const UIFontsManrope dark = _UIFontsManropeDark();
+
+  const UIFontsManrope._();
+
+  UIFontsManropeLargeTitle get largeTitle;
+  UIFontsManropeTitle1 get title1;
+  UIFontsManropeTitle2 get title2;
+  UIFontsManropeTitle3 get title3;
+  UIFontsManropeHeadline get headline;
+  UIFontsManropeBody get body;
+  UIFontsManropeCallout get callout;
+  UIFontsManropeSubhead get subhead;
+  UIFontsManropeFootnote get footnote;
+  UIFontsManropeCaption1 get caption1;
+  UIFontsManropeCaption2 get caption2;
+}
+
+class _UIFontsManropeLight extends UIFontsManrope {
+  const _UIFontsManropeLight() : super._();
+
+  @override
+  UIFontsManropeLargeTitle get largeTitle => UIFontsManropeLargeTitle.light;
+  @override
+  UIFontsManropeTitle1 get title1 => UIFontsManropeTitle1.light;
+  @override
+  UIFontsManropeTitle2 get title2 => UIFontsManropeTitle2.light;
+  @override
+  UIFontsManropeTitle3 get title3 => UIFontsManropeTitle3.light;
+  @override
+  UIFontsManropeHeadline get headline => UIFontsManropeHeadline.light;
+  @override
+  UIFontsManropeBody get body => UIFontsManropeBody.light;
+  @override
+  UIFontsManropeCallout get callout => UIFontsManropeCallout.light;
+  @override
+  UIFontsManropeSubhead get subhead => UIFontsManropeSubhead.light;
+  @override
+  UIFontsManropeFootnote get footnote => UIFontsManropeFootnote.light;
+  @override
+  UIFontsManropeCaption1 get caption1 => UIFontsManropeCaption1.light;
+  @override
+  UIFontsManropeCaption2 get caption2 => UIFontsManropeCaption2.light;
+}
+
+class _UIFontsManropeDark extends UIFontsManrope {
+  const _UIFontsManropeDark() : super._();
+
+  @override
+  UIFontsManropeLargeTitle get largeTitle => UIFontsManropeLargeTitle.dark;
+  @override
+  UIFontsManropeTitle1 get title1 => UIFontsManropeTitle1.dark;
+  @override
+  UIFontsManropeTitle2 get title2 => UIFontsManropeTitle2.dark;
+  @override
+  UIFontsManropeTitle3 get title3 => UIFontsManropeTitle3.dark;
+  @override
+  UIFontsManropeHeadline get headline => UIFontsManropeHeadline.dark;
+  @override
+  UIFontsManropeBody get body => UIFontsManropeBody.dark;
+  @override
+  UIFontsManropeCallout get callout => UIFontsManropeCallout.dark;
+  @override
+  UIFontsManropeSubhead get subhead => UIFontsManropeSubhead.dark;
+  @override
+  UIFontsManropeFootnote get footnote => UIFontsManropeFootnote.dark;
+  @override
+  UIFontsManropeCaption1 get caption1 => UIFontsManropeCaption1.dark;
+  @override
+  UIFontsManropeCaption2 get caption2 => UIFontsManropeCaption2.dark;
+}
+
+abstract class UIFonts {
+  static const UIFonts light = _UIFontsLight();
+  static const UIFonts dark = _UIFontsDark();
+
+  const UIFonts._();
+
+  UIFontsManrope get manrope;
+}
+
+class _UIFontsLight extends UIFonts {
+  const _UIFontsLight() : super._();
+
+  @override
+  UIFontsManrope get manrope => UIFontsManrope.light;
+}
+
+class _UIFontsDark extends UIFonts {
+  const _UIFontsDark() : super._();
+
+  @override
+  UIFontsManrope get manrope => UIFontsManrope.dark;
 }

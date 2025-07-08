@@ -5,8 +5,8 @@
 
 // ignore_for_file: unused_import
 
-import 'package:flutter/material.dart';
 import 'ui.ui.dart';
+import 'package:flutter/material.dart';
 
 enum AppIcons {
   filledShoppingCard('filled/shopping-card.svg'),
@@ -100,327 +100,249 @@ class ColoredIcons {
   const ColoredIcons(this.value, this.color);
 }
 
-class UIIconsFilledShopping extends ThemeExtension<UIIconsFilledShopping> {
-  final ThemedIcons card;
+abstract class UIIconsFilledShopping {
+  static const UIIconsFilledShopping light = _UIIconsFilledShoppingLight();
+  static const UIIconsFilledShopping dark = _UIIconsFilledShoppingDark();
 
-  const UIIconsFilledShopping({required this.card});
+  const UIIconsFilledShopping._();
 
-  @override
-  UIIconsFilledShopping copyWith({ThemedIcons? card}) {
-    return UIIconsFilledShopping(card: card ?? this.card);
-  }
-
-  @override
-  UIIconsFilledShopping lerp(ThemeExtension<UIIconsFilledShopping>? other, double t) {
-    if (other is! UIIconsFilledShopping) return this;
-    return UIIconsFilledShopping(card: card.lerp(other.card, t));
-  }
-
-  static final UIIconsFilledShopping light = UIIconsFilledShopping(
-    card: ThemedIcons(UI.light, AppIcons.filledShoppingCard.value),
-  );
-  static final UIIconsFilledShopping dark = UIIconsFilledShopping(
-    card: ThemedIcons(UI.dark, AppIcons.filledShoppingCard.value),
-  );
+  ThemedIcons get card;
 }
 
-class UIIconsFilled extends ThemeExtension<UIIconsFilled> {
-  final UIIconsFilledShopping shopping;
-  final ThemedIcons bandAid;
-  final ThemedIcons car;
-  final ThemedIcons cloud;
-  final ThemedIcons comment;
-  final ThemedIcons compass;
-  final ThemedIcons filmCamera;
-  final ThemedIcons magnifyingGlass;
-  final ThemedIcons medKit;
-  final ThemedIcons pencil;
-  final ThemedIcons photo;
-  final ThemedIcons pill;
-  final ThemedIcons ribbon;
-  final ThemedIcons rocket;
-  final ThemedIcons treeDecidious;
-  final ThemedIcons treeEvergreen;
-
-  const UIIconsFilled({
-    required this.shopping,
-    required this.bandAid,
-    required this.car,
-    required this.cloud,
-    required this.comment,
-    required this.compass,
-    required this.filmCamera,
-    required this.magnifyingGlass,
-    required this.medKit,
-    required this.pencil,
-    required this.photo,
-    required this.pill,
-    required this.ribbon,
-    required this.rocket,
-    required this.treeDecidious,
-    required this.treeEvergreen,
-  });
+class _UIIconsFilledShoppingLight extends UIIconsFilledShopping {
+  const _UIIconsFilledShoppingLight() : super._();
 
   @override
-  UIIconsFilled copyWith({
-    UIIconsFilledShopping? shopping,
-    ThemedIcons? bandAid,
-    ThemedIcons? car,
-    ThemedIcons? cloud,
-    ThemedIcons? comment,
-    ThemedIcons? compass,
-    ThemedIcons? filmCamera,
-    ThemedIcons? magnifyingGlass,
-    ThemedIcons? medKit,
-    ThemedIcons? pencil,
-    ThemedIcons? photo,
-    ThemedIcons? pill,
-    ThemedIcons? ribbon,
-    ThemedIcons? rocket,
-    ThemedIcons? treeDecidious,
-    ThemedIcons? treeEvergreen,
-  }) {
-    return UIIconsFilled(
-      shopping: shopping ?? this.shopping,
-      bandAid: bandAid ?? this.bandAid,
-      car: car ?? this.car,
-      cloud: cloud ?? this.cloud,
-      comment: comment ?? this.comment,
-      compass: compass ?? this.compass,
-      filmCamera: filmCamera ?? this.filmCamera,
-      magnifyingGlass: magnifyingGlass ?? this.magnifyingGlass,
-      medKit: medKit ?? this.medKit,
-      pencil: pencil ?? this.pencil,
-      photo: photo ?? this.photo,
-      pill: pill ?? this.pill,
-      ribbon: ribbon ?? this.ribbon,
-      rocket: rocket ?? this.rocket,
-      treeDecidious: treeDecidious ?? this.treeDecidious,
-      treeEvergreen: treeEvergreen ?? this.treeEvergreen,
-    );
-  }
-
-  @override
-  UIIconsFilled lerp(ThemeExtension<UIIconsFilled>? other, double t) {
-    if (other is! UIIconsFilled) return this;
-    return UIIconsFilled(
-      shopping: shopping.lerp(other.shopping, t),
-      bandAid: bandAid.lerp(other.bandAid, t),
-      car: car.lerp(other.car, t),
-      cloud: cloud.lerp(other.cloud, t),
-      comment: comment.lerp(other.comment, t),
-      compass: compass.lerp(other.compass, t),
-      filmCamera: filmCamera.lerp(other.filmCamera, t),
-      magnifyingGlass: magnifyingGlass.lerp(other.magnifyingGlass, t),
-      medKit: medKit.lerp(other.medKit, t),
-      pencil: pencil.lerp(other.pencil, t),
-      photo: photo.lerp(other.photo, t),
-      pill: pill.lerp(other.pill, t),
-      ribbon: ribbon.lerp(other.ribbon, t),
-      rocket: rocket.lerp(other.rocket, t),
-      treeDecidious: treeDecidious.lerp(other.treeDecidious, t),
-      treeEvergreen: treeEvergreen.lerp(other.treeEvergreen, t),
-    );
-  }
-
-  static final UIIconsFilled light = UIIconsFilled(
-    shopping: UIIconsFilledShopping.light,
-    bandAid: ThemedIcons(UI.light, AppIcons.filledBandAid.value),
-    car: ThemedIcons(UI.light, AppIcons.filledCar.value),
-    cloud: ThemedIcons(UI.light, AppIcons.filledCloud.value),
-    comment: ThemedIcons(UI.light, AppIcons.filledComment.value),
-    compass: ThemedIcons(UI.light, AppIcons.filledCompass.value),
-    filmCamera: ThemedIcons(UI.light, AppIcons.filledFilmCamera.value),
-    magnifyingGlass: ThemedIcons(UI.light, AppIcons.filledMagnifyingGlass.value),
-    medKit: ThemedIcons(UI.light, AppIcons.filledMedKit.value),
-    pencil: ThemedIcons(UI.light, AppIcons.filledPencil.value),
-    photo: ThemedIcons(UI.light, AppIcons.filledPhoto.value),
-    pill: ThemedIcons(UI.light, AppIcons.filledPill.value),
-    ribbon: ThemedIcons(UI.light, AppIcons.filledRibbon.value),
-    rocket: ThemedIcons(UI.light, AppIcons.filledRocket.value),
-    treeDecidious: ThemedIcons(UI.light, AppIcons.filledTreeDecidious.value),
-    treeEvergreen: ThemedIcons(UI.light, AppIcons.filledTreeEvergreen.value),
-  );
-  static final UIIconsFilled dark = UIIconsFilled(
-    shopping: UIIconsFilledShopping.dark,
-    bandAid: ThemedIcons(UI.dark, AppIcons.filledBandAid.value),
-    car: ThemedIcons(UI.dark, AppIcons.filledCar.value),
-    cloud: ThemedIcons(UI.dark, AppIcons.filledCloud.value),
-    comment: ThemedIcons(UI.dark, AppIcons.filledComment.value),
-    compass: ThemedIcons(UI.dark, AppIcons.filledCompass.value),
-    filmCamera: ThemedIcons(UI.dark, AppIcons.filledFilmCamera.value),
-    magnifyingGlass: ThemedIcons(UI.dark, AppIcons.filledMagnifyingGlass.value),
-    medKit: ThemedIcons(UI.dark, AppIcons.filledMedKit.value),
-    pencil: ThemedIcons(UI.dark, AppIcons.filledPencil.value),
-    photo: ThemedIcons(UI.dark, AppIcons.filledPhoto.value),
-    pill: ThemedIcons(UI.dark, AppIcons.filledPill.value),
-    ribbon: ThemedIcons(UI.dark, AppIcons.filledRibbon.value),
-    rocket: ThemedIcons(UI.dark, AppIcons.filledRocket.value),
-    treeDecidious: ThemedIcons(UI.dark, AppIcons.filledTreeDecidious.value),
-    treeEvergreen: ThemedIcons(UI.dark, AppIcons.filledTreeEvergreen.value),
-  );
+  ThemedIcons get card => ThemedIcons(UI.light, AppIcons.filledShoppingCard.value);
 }
 
-class UIIconsOutlined extends ThemeExtension<UIIconsOutlined> {
-  final ThemedIcons bellClose;
-  final ThemedIcons bellOff;
-  final ThemedIcons building;
-  final ThemedIcons calendar;
-  final ThemedIcons calendarDays;
-  final ThemedIcons carAuto;
-  final ThemedIcons chat;
-  final ThemedIcons chatAdd;
-  final ThemedIcons cloud;
-  final ThemedIcons cloudAdd;
-  final ThemedIcons cupcake;
-  final ThemedIcons fileBlank;
-  final ThemedIcons folder;
-  final ThemedIcons hamburgerLg;
-  final ThemedIcons headphones;
-  final ThemedIcons house;
-
-  const UIIconsOutlined({
-    required this.bellClose,
-    required this.bellOff,
-    required this.building,
-    required this.calendar,
-    required this.calendarDays,
-    required this.carAuto,
-    required this.chat,
-    required this.chatAdd,
-    required this.cloud,
-    required this.cloudAdd,
-    required this.cupcake,
-    required this.fileBlank,
-    required this.folder,
-    required this.hamburgerLg,
-    required this.headphones,
-    required this.house,
-  });
+class _UIIconsFilledShoppingDark extends UIIconsFilledShopping {
+  const _UIIconsFilledShoppingDark() : super._();
 
   @override
-  UIIconsOutlined copyWith({
-    ThemedIcons? bellClose,
-    ThemedIcons? bellOff,
-    ThemedIcons? building,
-    ThemedIcons? calendar,
-    ThemedIcons? calendarDays,
-    ThemedIcons? carAuto,
-    ThemedIcons? chat,
-    ThemedIcons? chatAdd,
-    ThemedIcons? cloud,
-    ThemedIcons? cloudAdd,
-    ThemedIcons? cupcake,
-    ThemedIcons? fileBlank,
-    ThemedIcons? folder,
-    ThemedIcons? hamburgerLg,
-    ThemedIcons? headphones,
-    ThemedIcons? house,
-  }) {
-    return UIIconsOutlined(
-      bellClose: bellClose ?? this.bellClose,
-      bellOff: bellOff ?? this.bellOff,
-      building: building ?? this.building,
-      calendar: calendar ?? this.calendar,
-      calendarDays: calendarDays ?? this.calendarDays,
-      carAuto: carAuto ?? this.carAuto,
-      chat: chat ?? this.chat,
-      chatAdd: chatAdd ?? this.chatAdd,
-      cloud: cloud ?? this.cloud,
-      cloudAdd: cloudAdd ?? this.cloudAdd,
-      cupcake: cupcake ?? this.cupcake,
-      fileBlank: fileBlank ?? this.fileBlank,
-      folder: folder ?? this.folder,
-      hamburgerLg: hamburgerLg ?? this.hamburgerLg,
-      headphones: headphones ?? this.headphones,
-      house: house ?? this.house,
-    );
-  }
-
-  @override
-  UIIconsOutlined lerp(ThemeExtension<UIIconsOutlined>? other, double t) {
-    if (other is! UIIconsOutlined) return this;
-    return UIIconsOutlined(
-      bellClose: bellClose.lerp(other.bellClose, t),
-      bellOff: bellOff.lerp(other.bellOff, t),
-      building: building.lerp(other.building, t),
-      calendar: calendar.lerp(other.calendar, t),
-      calendarDays: calendarDays.lerp(other.calendarDays, t),
-      carAuto: carAuto.lerp(other.carAuto, t),
-      chat: chat.lerp(other.chat, t),
-      chatAdd: chatAdd.lerp(other.chatAdd, t),
-      cloud: cloud.lerp(other.cloud, t),
-      cloudAdd: cloudAdd.lerp(other.cloudAdd, t),
-      cupcake: cupcake.lerp(other.cupcake, t),
-      fileBlank: fileBlank.lerp(other.fileBlank, t),
-      folder: folder.lerp(other.folder, t),
-      hamburgerLg: hamburgerLg.lerp(other.hamburgerLg, t),
-      headphones: headphones.lerp(other.headphones, t),
-      house: house.lerp(other.house, t),
-    );
-  }
-
-  static final UIIconsOutlined light = UIIconsOutlined(
-    bellClose: ThemedIcons(UI.light, AppIcons.outlinedBellCloseLight.value),
-    bellOff: ThemedIcons(UI.light, AppIcons.outlinedBellOffLight.value),
-    building: ThemedIcons(UI.light, AppIcons.outlinedBuildingLight.value),
-    calendar: ThemedIcons(UI.light, AppIcons.outlinedCalendarLight.value),
-    calendarDays: ThemedIcons(UI.light, AppIcons.outlinedCalendarDaysLight.value),
-    carAuto: ThemedIcons(UI.light, AppIcons.outlinedCarAutoLight.value),
-    chat: ThemedIcons(UI.light, AppIcons.outlinedChatLight.value),
-    chatAdd: ThemedIcons(UI.light, AppIcons.outlinedChatAddLight.value),
-    cloud: ThemedIcons(UI.light, AppIcons.outlinedCloudLight.value),
-    cloudAdd: ThemedIcons(UI.light, AppIcons.outlinedCloudAddLight.value),
-    cupcake: ThemedIcons(UI.light, AppIcons.outlinedCupcakeLight.value),
-    fileBlank: ThemedIcons(UI.light, AppIcons.outlinedFileBlankLight.value),
-    folder: ThemedIcons(UI.light, AppIcons.outlinedFolderLight.value),
-    hamburgerLg: ThemedIcons(UI.light, AppIcons.outlinedHamburgerLgLight.value),
-    headphones: ThemedIcons(UI.light, AppIcons.outlinedHeadphonesLight.value),
-    house: ThemedIcons(UI.light, AppIcons.outlinedHouseLight.value),
-  );
-  static final UIIconsOutlined dark = UIIconsOutlined(
-    bellClose: ThemedIcons(UI.dark, AppIcons.outlinedBellCloseDark.value),
-    bellOff: ThemedIcons(UI.dark, AppIcons.outlinedBellOffDark.value),
-    building: ThemedIcons(UI.dark, AppIcons.outlinedBuildingDark.value),
-    calendar: ThemedIcons(UI.dark, AppIcons.outlinedCalendarDark.value),
-    calendarDays: ThemedIcons(UI.dark, AppIcons.outlinedCalendarDaysDark.value),
-    carAuto: ThemedIcons(UI.dark, AppIcons.outlinedCarAutoDark.value),
-    chat: ThemedIcons(UI.dark, AppIcons.outlinedChatDark.value),
-    chatAdd: ThemedIcons(UI.dark, AppIcons.outlinedChatAddDark.value),
-    cloud: ThemedIcons(UI.dark, AppIcons.outlinedCloudDark.value),
-    cloudAdd: ThemedIcons(UI.dark, AppIcons.outlinedCloudAddDark.value),
-    cupcake: ThemedIcons(UI.dark, AppIcons.outlinedCupcakeDark.value),
-    fileBlank: ThemedIcons(UI.dark, AppIcons.outlinedFileBlankDark.value),
-    folder: ThemedIcons(UI.dark, AppIcons.outlinedFolderDark.value),
-    hamburgerLg: ThemedIcons(UI.dark, AppIcons.outlinedHamburgerLgDark.value),
-    headphones: ThemedIcons(UI.dark, AppIcons.outlinedHeadphonesDark.value),
-    house: ThemedIcons(UI.dark, AppIcons.outlinedHouseDark.value),
-  );
+  ThemedIcons get card => ThemedIcons(UI.dark, AppIcons.filledShoppingCard.value);
 }
 
-class UIIcons extends ThemeExtension<UIIcons> {
-  final UIIconsFilled filled;
-  final UIIconsOutlined outlined;
+abstract class UIIconsFilled {
+  static const UIIconsFilled light = _UIIconsFilledLight();
+  static const UIIconsFilled dark = _UIIconsFilledDark();
 
-  const UIIcons({required this.filled, required this.outlined});
+  const UIIconsFilled._();
+
+  UIIconsFilledShopping get shopping;
+  ThemedIcons get bandAid;
+  ThemedIcons get car;
+  ThemedIcons get cloud;
+  ThemedIcons get comment;
+  ThemedIcons get compass;
+  ThemedIcons get filmCamera;
+  ThemedIcons get magnifyingGlass;
+  ThemedIcons get medKit;
+  ThemedIcons get pencil;
+  ThemedIcons get photo;
+  ThemedIcons get pill;
+  ThemedIcons get ribbon;
+  ThemedIcons get rocket;
+  ThemedIcons get treeDecidious;
+  ThemedIcons get treeEvergreen;
+}
+
+class _UIIconsFilledLight extends UIIconsFilled {
+  const _UIIconsFilledLight() : super._();
 
   @override
-  UIIcons copyWith({UIIconsFilled? filled, UIIconsOutlined? outlined}) {
-    return UIIcons(filled: filled ?? this.filled, outlined: outlined ?? this.outlined);
-  }
+  UIIconsFilledShopping get shopping => UIIconsFilledShopping.light;
+  @override
+  ThemedIcons get bandAid => ThemedIcons(UI.light, AppIcons.filledBandAid.value);
+  @override
+  ThemedIcons get car => ThemedIcons(UI.light, AppIcons.filledCar.value);
+  @override
+  ThemedIcons get cloud => ThemedIcons(UI.light, AppIcons.filledCloud.value);
+  @override
+  ThemedIcons get comment => ThemedIcons(UI.light, AppIcons.filledComment.value);
+  @override
+  ThemedIcons get compass => ThemedIcons(UI.light, AppIcons.filledCompass.value);
+  @override
+  ThemedIcons get filmCamera => ThemedIcons(UI.light, AppIcons.filledFilmCamera.value);
+  @override
+  ThemedIcons get magnifyingGlass => ThemedIcons(UI.light, AppIcons.filledMagnifyingGlass.value);
+  @override
+  ThemedIcons get medKit => ThemedIcons(UI.light, AppIcons.filledMedKit.value);
+  @override
+  ThemedIcons get pencil => ThemedIcons(UI.light, AppIcons.filledPencil.value);
+  @override
+  ThemedIcons get photo => ThemedIcons(UI.light, AppIcons.filledPhoto.value);
+  @override
+  ThemedIcons get pill => ThemedIcons(UI.light, AppIcons.filledPill.value);
+  @override
+  ThemedIcons get ribbon => ThemedIcons(UI.light, AppIcons.filledRibbon.value);
+  @override
+  ThemedIcons get rocket => ThemedIcons(UI.light, AppIcons.filledRocket.value);
+  @override
+  ThemedIcons get treeDecidious => ThemedIcons(UI.light, AppIcons.filledTreeDecidious.value);
+  @override
+  ThemedIcons get treeEvergreen => ThemedIcons(UI.light, AppIcons.filledTreeEvergreen.value);
+}
+
+class _UIIconsFilledDark extends UIIconsFilled {
+  const _UIIconsFilledDark() : super._();
 
   @override
-  UIIcons lerp(ThemeExtension<UIIcons>? other, double t) {
-    if (other is! UIIcons) return this;
-    return UIIcons(
-      filled: filled.lerp(other.filled, t),
-      outlined: outlined.lerp(other.outlined, t),
-    );
-  }
+  UIIconsFilledShopping get shopping => UIIconsFilledShopping.dark;
+  @override
+  ThemedIcons get bandAid => ThemedIcons(UI.dark, AppIcons.filledBandAid.value);
+  @override
+  ThemedIcons get car => ThemedIcons(UI.dark, AppIcons.filledCar.value);
+  @override
+  ThemedIcons get cloud => ThemedIcons(UI.dark, AppIcons.filledCloud.value);
+  @override
+  ThemedIcons get comment => ThemedIcons(UI.dark, AppIcons.filledComment.value);
+  @override
+  ThemedIcons get compass => ThemedIcons(UI.dark, AppIcons.filledCompass.value);
+  @override
+  ThemedIcons get filmCamera => ThemedIcons(UI.dark, AppIcons.filledFilmCamera.value);
+  @override
+  ThemedIcons get magnifyingGlass => ThemedIcons(UI.dark, AppIcons.filledMagnifyingGlass.value);
+  @override
+  ThemedIcons get medKit => ThemedIcons(UI.dark, AppIcons.filledMedKit.value);
+  @override
+  ThemedIcons get pencil => ThemedIcons(UI.dark, AppIcons.filledPencil.value);
+  @override
+  ThemedIcons get photo => ThemedIcons(UI.dark, AppIcons.filledPhoto.value);
+  @override
+  ThemedIcons get pill => ThemedIcons(UI.dark, AppIcons.filledPill.value);
+  @override
+  ThemedIcons get ribbon => ThemedIcons(UI.dark, AppIcons.filledRibbon.value);
+  @override
+  ThemedIcons get rocket => ThemedIcons(UI.dark, AppIcons.filledRocket.value);
+  @override
+  ThemedIcons get treeDecidious => ThemedIcons(UI.dark, AppIcons.filledTreeDecidious.value);
+  @override
+  ThemedIcons get treeEvergreen => ThemedIcons(UI.dark, AppIcons.filledTreeEvergreen.value);
+}
 
-  static final UIIcons light = UIIcons(
-    filled: UIIconsFilled.light,
-    outlined: UIIconsOutlined.light,
-  );
-  static final UIIcons dark = UIIcons(filled: UIIconsFilled.dark, outlined: UIIconsOutlined.dark);
+abstract class UIIconsOutlined {
+  static const UIIconsOutlined light = _UIIconsOutlinedLight();
+  static const UIIconsOutlined dark = _UIIconsOutlinedDark();
+
+  const UIIconsOutlined._();
+
+  ThemedIcons get bellClose;
+  ThemedIcons get bellOff;
+  ThemedIcons get building;
+  ThemedIcons get calendar;
+  ThemedIcons get calendarDays;
+  ThemedIcons get carAuto;
+  ThemedIcons get chat;
+  ThemedIcons get chatAdd;
+  ThemedIcons get cloud;
+  ThemedIcons get cloudAdd;
+  ThemedIcons get cupcake;
+  ThemedIcons get fileBlank;
+  ThemedIcons get folder;
+  ThemedIcons get hamburgerLg;
+  ThemedIcons get headphones;
+  ThemedIcons get house;
+}
+
+class _UIIconsOutlinedLight extends UIIconsOutlined {
+  const _UIIconsOutlinedLight() : super._();
+
+  @override
+  ThemedIcons get bellClose => ThemedIcons(UI.light, AppIcons.outlinedBellCloseLight.value);
+  @override
+  ThemedIcons get bellOff => ThemedIcons(UI.light, AppIcons.outlinedBellOffLight.value);
+  @override
+  ThemedIcons get building => ThemedIcons(UI.light, AppIcons.outlinedBuildingLight.value);
+  @override
+  ThemedIcons get calendar => ThemedIcons(UI.light, AppIcons.outlinedCalendarLight.value);
+  @override
+  ThemedIcons get calendarDays => ThemedIcons(UI.light, AppIcons.outlinedCalendarDaysLight.value);
+  @override
+  ThemedIcons get carAuto => ThemedIcons(UI.light, AppIcons.outlinedCarAutoLight.value);
+  @override
+  ThemedIcons get chat => ThemedIcons(UI.light, AppIcons.outlinedChatLight.value);
+  @override
+  ThemedIcons get chatAdd => ThemedIcons(UI.light, AppIcons.outlinedChatAddLight.value);
+  @override
+  ThemedIcons get cloud => ThemedIcons(UI.light, AppIcons.outlinedCloudLight.value);
+  @override
+  ThemedIcons get cloudAdd => ThemedIcons(UI.light, AppIcons.outlinedCloudAddLight.value);
+  @override
+  ThemedIcons get cupcake => ThemedIcons(UI.light, AppIcons.outlinedCupcakeLight.value);
+  @override
+  ThemedIcons get fileBlank => ThemedIcons(UI.light, AppIcons.outlinedFileBlankLight.value);
+  @override
+  ThemedIcons get folder => ThemedIcons(UI.light, AppIcons.outlinedFolderLight.value);
+  @override
+  ThemedIcons get hamburgerLg => ThemedIcons(UI.light, AppIcons.outlinedHamburgerLgLight.value);
+  @override
+  ThemedIcons get headphones => ThemedIcons(UI.light, AppIcons.outlinedHeadphonesLight.value);
+  @override
+  ThemedIcons get house => ThemedIcons(UI.light, AppIcons.outlinedHouseLight.value);
+}
+
+class _UIIconsOutlinedDark extends UIIconsOutlined {
+  const _UIIconsOutlinedDark() : super._();
+
+  @override
+  ThemedIcons get bellClose => ThemedIcons(UI.dark, AppIcons.outlinedBellCloseDark.value);
+  @override
+  ThemedIcons get bellOff => ThemedIcons(UI.dark, AppIcons.outlinedBellOffDark.value);
+  @override
+  ThemedIcons get building => ThemedIcons(UI.dark, AppIcons.outlinedBuildingDark.value);
+  @override
+  ThemedIcons get calendar => ThemedIcons(UI.dark, AppIcons.outlinedCalendarDark.value);
+  @override
+  ThemedIcons get calendarDays => ThemedIcons(UI.dark, AppIcons.outlinedCalendarDaysDark.value);
+  @override
+  ThemedIcons get carAuto => ThemedIcons(UI.dark, AppIcons.outlinedCarAutoDark.value);
+  @override
+  ThemedIcons get chat => ThemedIcons(UI.dark, AppIcons.outlinedChatDark.value);
+  @override
+  ThemedIcons get chatAdd => ThemedIcons(UI.dark, AppIcons.outlinedChatAddDark.value);
+  @override
+  ThemedIcons get cloud => ThemedIcons(UI.dark, AppIcons.outlinedCloudDark.value);
+  @override
+  ThemedIcons get cloudAdd => ThemedIcons(UI.dark, AppIcons.outlinedCloudAddDark.value);
+  @override
+  ThemedIcons get cupcake => ThemedIcons(UI.dark, AppIcons.outlinedCupcakeDark.value);
+  @override
+  ThemedIcons get fileBlank => ThemedIcons(UI.dark, AppIcons.outlinedFileBlankDark.value);
+  @override
+  ThemedIcons get folder => ThemedIcons(UI.dark, AppIcons.outlinedFolderDark.value);
+  @override
+  ThemedIcons get hamburgerLg => ThemedIcons(UI.dark, AppIcons.outlinedHamburgerLgDark.value);
+  @override
+  ThemedIcons get headphones => ThemedIcons(UI.dark, AppIcons.outlinedHeadphonesDark.value);
+  @override
+  ThemedIcons get house => ThemedIcons(UI.dark, AppIcons.outlinedHouseDark.value);
+}
+
+abstract class UIIcons {
+  static const UIIcons light = _UIIconsLight();
+  static const UIIcons dark = _UIIconsDark();
+
+  const UIIcons._();
+
+  UIIconsFilled get filled;
+  UIIconsOutlined get outlined;
+}
+
+class _UIIconsLight extends UIIcons {
+  const _UIIconsLight() : super._();
+
+  @override
+  UIIconsFilled get filled => UIIconsFilled.light;
+  @override
+  UIIconsOutlined get outlined => UIIconsOutlined.light;
+}
+
+class _UIIconsDark extends UIIcons {
+  const _UIIconsDark() : super._();
+
+  @override
+  UIIconsFilled get filled => UIIconsFilled.dark;
+  @override
+  UIIconsOutlined get outlined => UIIconsOutlined.dark;
 }

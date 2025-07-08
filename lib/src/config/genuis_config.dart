@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:genuis/src/config/module_config.dart';
 import 'package:genuis/src/config/token_config.dart';
+import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/utils/defaults.dart';
 import 'package:yaml/yaml.dart';
 
@@ -10,7 +11,7 @@ class GenuisConfig {
   List<String> themes;
   String baseTheme;
   bool defaultTheme;
-  bool themeExtensions;
+  GenuisClassType classType;
   bool fromJsonMethod;
   int dartLineLength;
   String mainClassName;
@@ -24,7 +25,7 @@ class GenuisConfig {
     required this.outputPath,
     required this.themes,
     required this.defaultTheme,
-    required this.themeExtensions,
+    required this.classType,
     required this.fromJsonMethod,
     required this.dartLineLength,
     required this.baseTheme,
@@ -46,7 +47,7 @@ class GenuisConfig {
       outputPath: _outputPath(map['output_path']),
       themes: _themes(map['themes']),
       defaultTheme: _defaultTheme(map['default_theme']),
-      themeExtensions: _themeExtensions(map['theme_extensions']),
+      classType: _classType(map['class_type']),
       fromJsonMethod: _fromJsonMethod(map['from_json_method']),
       dartLineLength: _dartLineLength(map['dart_line_length']),
       mainClassName: _mainClassName(map['main_class_name']),
@@ -84,10 +85,12 @@ class GenuisConfig {
     return value;
   }
 
-  static bool _themeExtensions(dynamic value) {
-    if (value == null) return Defaults.configThemeExtensions;
-    if (value is! bool) throw Exception('theme_extensions must be a bool');
-    return value;
+  static GenuisClassType _classType(dynamic value) {
+    if (value == null) return Defaults.configClassType;
+    if (value is! String) throw Exception('class_type must be a String');
+    final type = GenuisClassType.tryParse(value);
+    if (type == null) throw Exception('Invalid type "$value"');
+    return type;
   }
 
   static bool _fromJsonMethod(dynamic value) {

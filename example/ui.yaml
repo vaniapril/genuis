@@ -5,7 +5,7 @@ themes:
   - dark
 base_theme: base
 default_theme: false
-theme_extensions: true
+class_type: getter
 from_json_method: false
 dart_line_length: 100
 main_class_name: UI
