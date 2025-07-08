@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'ui.ui.dart';
 
 enum AppIcons {
-  // icons
   filledShoppingCard('filled/shopping-card.svg'),
   filledBandAid('filled/band_aid.svg'),
   filledCar('filled/car.svg'),

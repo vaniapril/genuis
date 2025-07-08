@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 
 enum AppColors {
-  // token_colors
   primaryBaseBlack(Color(0xFF090909)),
   primaryBaseBrand(Color(0xFF2858ef)),
   primaryBaseWhite(Color(0xFFfdfdfd)),

@@ -28,6 +28,13 @@ extension StringExtension on String {
     source = source.substring(6) + source.substring(0, 6);
     return '0x$source';
   }
+
+  String replaceLast(Pattern from, String to) {
+    final lastMatch = from.allMatches(this).lastOrNull;
+    if (lastMatch == null) return this;
+
+    return replaceRange(lastMatch.start, lastMatch.end, to);
+  }
 }
 
 const _dartKeywords = [

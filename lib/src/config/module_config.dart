@@ -9,6 +9,7 @@ class ModuleConfig {
   final ElementType type;
   final TokenClassType? tokenExtensionClassType;
   final String tokenExtensionClassName;
+  final String tokenExtensionValueName;
   final bool colorExtension;
   final String? colorExtensionClassName;
   final bool optional;
@@ -19,6 +20,7 @@ class ModuleConfig {
     required this.type,
     required this.tokenExtensionClassType,
     required this.tokenExtensionClassName,
+    required this.tokenExtensionValueName,
     required this.colorExtension,
     required this.colorExtensionClassName,
     required this.optional,
@@ -37,6 +39,7 @@ class ModuleConfig {
       type: _type(config['type']),
       tokenExtensionClassType: _tokenExtensionClassType(config['token_extension_class_type']),
       tokenExtensionClassName: _tokenExtensionClassName(config['token_extension_class_name']),
+      tokenExtensionValueName: _tokenExtensionValueName(config['token_extension_value_name']),
       colorExtension: _colorExtension(config['color_extension']),
       colorExtensionClassName: _colorExtensionClassName(config['color_extension_class_name']),
       optional: _optional(config['optional']),
@@ -68,6 +71,12 @@ class ModuleConfig {
   static String _tokenExtensionClassName(dynamic value) {
     if (value == null) return '';
     if (value is! String) throw Exception('token_extension_class_name must be a String');
+    return value;
+  }
+
+  static String _tokenExtensionValueName(dynamic value) {
+    if (value == null) return Defaults.configTokenValueName;
+    if (value is! String) throw Exception('token_extension_value_name must be a String');
     return value;
   }
 

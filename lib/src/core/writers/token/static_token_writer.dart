@@ -4,41 +4,29 @@ import 'package:genuis/src/utils/map_extension.dart';
 
 class StaticTokenWriter {
   final GenuisConfig config;
+  final String className;
 
   const StaticTokenWriter({
     required this.config,
+    required this.className,
   });
 
-  void write(StringBuffer buffer, Class root) {
-    buffer.writeln('abstract class ${root.classType} {');
-    buffer.writeln();
-    _writeClassWithSubclasses(buffer, root);
+  void write(StringBuffer buffer, List<Field> fields) {
+    buffer.writeln('abstract class $className {');
+    _writeFields(buffer, fields);
     buffer.writeln('}');
   }
 
-  void _writeClassWithSubclasses(StringBuffer buffer, Class folder) {
-    for (final node in folder.classes) {
-      _writeClassWithSubclasses(buffer, node);
-    }
-
-    _writeFieldsInClass(buffer, folder);
-  }
-
-  void _writeFieldsInClass(StringBuffer buffer, Class folder) {
-    if (folder.fields.isEmpty) {
-      return;
-    }
+  void _writeFields(StringBuffer buffer, List<Field> fields) {
     buffer.writeln();
-    buffer.writeln('  // ${_comment(folder)}');
-
-    for (final item in folder.fields) {
-      for (final (theme, value) in item.values.iterable) {
-        buffer.writeln("static const ${item.type} ${item.enumName(theme)} = $value;");
-      }
+    for (final field in fields) {
+      _writeField(buffer, field);
     }
   }
 
-  String _comment(Class folder) {
-    return [...folder.path, folder.name].where((e) => e.isNotEmpty).join('/');
+  void _writeField(StringBuffer buffer, Field field) {
+    for (final (theme, value) in field.values.iterable) {
+      buffer.writeln("static const ${field.type} ${field.enumName(theme)} = $value;");
+    }
   }
 }

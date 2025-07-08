@@ -1,7 +1,6 @@
 import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/data/token.dart';
 import 'package:genuis/src/core/writers/token/enum_token_writer.dart';
-import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/core/writers/token/static_token_writer.dart';
 
@@ -24,30 +23,23 @@ class TokensGenerator extends FileGenerator {
 
     switch (token.config.classType) {
       case TokenClassType.enum_:
-        EnumTokenWriter(config: config, valueName: 'value', valueType: token.fields.first.type)
-            .write(
+        EnumTokenWriter(
+          config: config,
+          className: token.config.className,
+          valueType: token.fields.first.type,
+          valueName: token.config.valueName,
+        ).write(
           buffer,
-          Class(
-            name: fileName,
-            path: [],
-            classType: token.config.className,
-            themes: [],
-            classes: [],
-            fields: token.fields,
-          ),
+          token.fields,
         );
         break;
       case TokenClassType.static_:
-        StaticTokenWriter(config: config).write(
+        StaticTokenWriter(
+          config: config,
+          className: token.config.className,
+        ).write(
           buffer,
-          Class(
-            name: fileName,
-            path: [],
-            classType: token.config.className,
-            themes: [],
-            classes: [],
-            fields: token.fields,
-          ),
+          token.fields,
         );
         break;
       // default:

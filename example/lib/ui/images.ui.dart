@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 
 abstract class AppImages {
-  // images
   static const String backgroundBook = 'background/book.jpg';
   static const String backgroundCat = 'background/cat.jpg';
   static const String backgroundFlowers = 'background/flowers.jpg';

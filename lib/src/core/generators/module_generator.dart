@@ -47,31 +47,22 @@ class ModuleGenerator extends FileGenerator {
       switch (module.config.tokenExtensionClassType) {
         case TokenClassType.enum_:
           EnumTokenWriter(
-                  config: config, valueName: 'value', valueType: module.enumFields.first.valueType)
-              .write(
+            config: config,
+            className: module.config.tokenExtensionClassName,
+            valueType: module.enumFields.first.valueType,
+            valueName: module.config.tokenExtensionValueName,
+          ).write(
             buffer,
-            // TODO(valiapril): without class
-            Class(
-              name: root.name,
-              path: [],
-              classType: module.config.tokenExtensionClassName,
-              themes: [],
-              classes: [],
-              fields: module.enumFields,
-            ),
+            module.enumFields,
           );
           break;
         case TokenClassType.static_:
-          StaticTokenWriter(config: config).write(
+          StaticTokenWriter(
+            config: config,
+            className: module.config.tokenExtensionClassName,
+          ).write(
             buffer,
-            Class(
-              name: root.name,
-              path: [],
-              classType: module.config.tokenExtensionClassName,
-              themes: [],
-              classes: [],
-              fields: module.enumFields,
-            ),
+            module.enumFields,
           );
           break;
         default:

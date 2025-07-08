@@ -8,7 +8,6 @@
 import 'package:flutter/material.dart';
 
 abstract class AppHeights {
-  // token_heights
   static const double heights1 = 1.0;
   static const double heights2 = 2.0;
   static const double heights3 = 3.0;

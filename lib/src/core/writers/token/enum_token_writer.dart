@@ -1,60 +1,50 @@
 import 'package:genuis/src/config/genuis_config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/map_extension.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class EnumTokenWriter {
   final GenuisConfig config;
+  final String className;
   final String valueType;
   final String valueName;
 
   const EnumTokenWriter({
     required this.config,
+    required this.className,
     required this.valueName,
     required this.valueType,
   });
 
-  StringBuffer write(StringBuffer buffer, Class root) {
-    if (root.fields.isEmpty) return buffer;
+  void write(StringBuffer buffer, List<Field> fields) {
+    if (fields.isEmpty) return;
 
-    buffer.writeln('enum ${root.classType} {');
+    buffer.writeln('enum $className {');
     final StringBuffer lines = StringBuffer();
-    _writeClassWithSubclasses(lines, root);
+
+    _writeFields(lines, fields);
     final String strLines = lines.toString();
     if (strLines.isNotEmpty) {
-      buffer.writeln(strLines.replaceFirst(',', ';', strLines.length - 3));
+      buffer.writeln(strLines.replaceLast(',', ';'));
     }
 
     buffer.writeln();
-    buffer.writeln('const ${root.classType}(this.$valueName);');
+    buffer.writeln('const $className(this.$valueName);');
     buffer.writeln();
     buffer.writeln('final $valueType $valueName;');
     buffer.writeln('}');
-    return buffer;
   }
 
-  void _writeClassWithSubclasses(StringBuffer buffer, Class folder) {
-    for (final node in folder.classes) {
-      _writeClassWithSubclasses(buffer, node);
-    }
-
-    _writeFields(buffer, folder);
-  }
-
-  void _writeFields(StringBuffer buffer, Class folder) {
-    if (folder.fields.isEmpty) {
-      return;
-    }
+  void _writeFields(StringBuffer buffer, List<Field> fields) {
     buffer.writeln();
-    buffer.writeln('  // ${_comment(folder)}');
-
-    for (final item in folder.fields) {
-      for (final (theme, value) in item.values.iterable) {
-        buffer.writeln("${item.enumName(theme)}($value),");
-      }
+    for (final field in fields) {
+      _writeField(buffer, field);
     }
   }
 
-  String _comment(Class folder) {
-    return [...folder.path, folder.name].where((e) => e.isNotEmpty).join('/');
+  void _writeField(StringBuffer buffer, Field field) {
+    for (final (theme, value) in field.values.iterable) {
+      buffer.writeln("${field.enumName(theme)}($value),");
+    }
   }
 }
