@@ -31,7 +31,7 @@ class ModuleGenerator extends FileGenerator {
     final Set<String> imports = {
       if (config.classType == GenuisClassType.themeExtension) Imports.material,
       // TODO(vaniapril): colors modules import
-      if (module.config.colorExtension) "import '${config.mainClassName.toLowerCase()}.ui.dart';"
+      if (module.config.colorExtension) "import '${config.className.toLowerCase()}.ui.dart';"
     };
 
     root.forEach(

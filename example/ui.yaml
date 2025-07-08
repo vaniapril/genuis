@@ -5,11 +5,11 @@ themes:
   - dark
 base_theme: base
 default_theme: false
-class_type: getter
+class_type: theme_extension
 from_json_method: false
 dart_line_length: 100
-main_class_name: UI
-main_getter_name: ui
+class_name: UI
+value_name: ui
 
 tokens:
   - colors:

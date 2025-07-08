@@ -9,90 +9,97 @@ import 'package:flutter/material.dart';
 import 'token_colors.ui.dart';
 import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset_shadow;
 
-abstract class UIShadowsCards {
-  static const UIShadowsCards light = _UIShadowsCardsLight();
-  static const UIShadowsCards dark = _UIShadowsCardsDark();
+class UIShadowsCards extends ThemeExtension<UIShadowsCards> {
+  final BoxShadow neomorphism;
+  final BoxShadow popUp;
+  final inset_shadow.BoxShadow inputActive;
 
-  const UIShadowsCards._();
+  const UIShadowsCards({required this.neomorphism, required this.popUp, required this.inputActive});
 
-  BoxShadow get neomorphism;
-  BoxShadow get popUp;
-  inset_shadow.BoxShadow get inputActive;
+  @override
+  UIShadowsCards copyWith({
+    BoxShadow? neomorphism,
+    BoxShadow? popUp,
+    inset_shadow.BoxShadow? inputActive,
+  }) {
+    return UIShadowsCards(
+      neomorphism: neomorphism ?? this.neomorphism,
+      popUp: popUp ?? this.popUp,
+      inputActive: inputActive ?? this.inputActive,
+    );
+  }
+
+  @override
+  UIShadowsCards lerp(ThemeExtension<UIShadowsCards>? other, double t) {
+    if (other is! UIShadowsCards) return this;
+    return UIShadowsCards(
+      neomorphism: BoxShadow.lerp(neomorphism, other.neomorphism, t) ?? other.neomorphism,
+      popUp: BoxShadow.lerp(popUp, other.popUp, t) ?? other.popUp,
+      inputActive:
+          inset_shadow.BoxShadow.lerp(inputActive, other.inputActive, t) ?? other.inputActive,
+    );
+  }
+
+  static final UIShadowsCards light = UIShadowsCards(
+    neomorphism: BoxShadow(
+      color: AppColors.primaryNeutral200.value,
+      spreadRadius: 0.0,
+      blurRadius: 0.0,
+      offset: Offset(0.0, 1.0),
+    ),
+    popUp: BoxShadow(
+      color: AppColors.transparencyBlack10.value,
+      spreadRadius: 0.0,
+      blurRadius: 32.0,
+      offset: Offset(0.0, 0.0),
+    ),
+    inputActive: inset_shadow.BoxShadow(
+      color: Color(0x0d16162e),
+      spreadRadius: 0.0,
+      blurRadius: 2.0,
+      offset: Offset(0.0, 2.0),
+      inset: true,
+    ),
+  );
+  static final UIShadowsCards dark = UIShadowsCards(
+    neomorphism: BoxShadow(
+      color: AppColors.primaryNeutral800.value,
+      spreadRadius: 0.0,
+      blurRadius: 0.0,
+      offset: Offset(0.0, 1.0),
+    ),
+    popUp: BoxShadow(
+      color: AppColors.transparencyBlack90.value,
+      spreadRadius: 0.0,
+      blurRadius: 32.0,
+      offset: Offset(0.0, 0.0),
+    ),
+    inputActive: inset_shadow.BoxShadow(
+      color: Color(0x5c0a0a0a),
+      spreadRadius: 0.0,
+      blurRadius: 2.0,
+      offset: Offset(0.0, 2.0),
+      inset: true,
+    ),
+  );
 }
 
-class _UIShadowsCardsLight extends UIShadowsCards {
-  const _UIShadowsCardsLight() : super._();
+class UIShadows extends ThemeExtension<UIShadows> {
+  final UIShadowsCards cards;
+
+  const UIShadows({required this.cards});
 
   @override
-  BoxShadow get neomorphism => BoxShadow(
-    color: AppColors.primaryNeutral200.value,
-    spreadRadius: 0.0,
-    blurRadius: 0.0,
-    offset: Offset(0.0, 1.0),
-  );
-  @override
-  BoxShadow get popUp => BoxShadow(
-    color: AppColors.transparencyBlack10.value,
-    spreadRadius: 0.0,
-    blurRadius: 32.0,
-    offset: Offset(0.0, 0.0),
-  );
-  @override
-  inset_shadow.BoxShadow get inputActive => inset_shadow.BoxShadow(
-    color: Color(0x0d16162e),
-    spreadRadius: 0.0,
-    blurRadius: 2.0,
-    offset: Offset(0.0, 2.0),
-    inset: true,
-  );
-}
-
-class _UIShadowsCardsDark extends UIShadowsCards {
-  const _UIShadowsCardsDark() : super._();
+  UIShadows copyWith({UIShadowsCards? cards}) {
+    return UIShadows(cards: cards ?? this.cards);
+  }
 
   @override
-  BoxShadow get neomorphism => BoxShadow(
-    color: AppColors.primaryNeutral800.value,
-    spreadRadius: 0.0,
-    blurRadius: 0.0,
-    offset: Offset(0.0, 1.0),
-  );
-  @override
-  BoxShadow get popUp => BoxShadow(
-    color: AppColors.transparencyBlack90.value,
-    spreadRadius: 0.0,
-    blurRadius: 32.0,
-    offset: Offset(0.0, 0.0),
-  );
-  @override
-  inset_shadow.BoxShadow get inputActive => inset_shadow.BoxShadow(
-    color: Color(0x5c0a0a0a),
-    spreadRadius: 0.0,
-    blurRadius: 2.0,
-    offset: Offset(0.0, 2.0),
-    inset: true,
-  );
-}
+  UIShadows lerp(ThemeExtension<UIShadows>? other, double t) {
+    if (other is! UIShadows) return this;
+    return UIShadows(cards: cards.lerp(other.cards, t));
+  }
 
-abstract class UIShadows {
-  static const UIShadows light = _UIShadowsLight();
-  static const UIShadows dark = _UIShadowsDark();
-
-  const UIShadows._();
-
-  UIShadowsCards get cards;
-}
-
-class _UIShadowsLight extends UIShadows {
-  const _UIShadowsLight() : super._();
-
-  @override
-  UIShadowsCards get cards => UIShadowsCards.light;
-}
-
-class _UIShadowsDark extends UIShadows {
-  const _UIShadowsDark() : super._();
-
-  @override
-  UIShadowsCards get cards => UIShadowsCards.dark;
+  static final UIShadows light = UIShadows(cards: UIShadowsCards.light);
+  static final UIShadows dark = UIShadows(cards: UIShadowsCards.dark);
 }

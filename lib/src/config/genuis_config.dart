@@ -14,8 +14,8 @@ class GenuisConfig {
   GenuisClassType classType;
   bool fromJsonMethod;
   int dartLineLength;
-  String mainClassName;
-  String mainGetterName;
+  String className;
+  String valueName;
 
   List<TokenConfig> tokens;
   List<ModuleConfig> modules;
@@ -29,8 +29,8 @@ class GenuisConfig {
     required this.fromJsonMethod,
     required this.dartLineLength,
     required this.baseTheme,
-    required this.mainClassName,
-    required this.mainGetterName,
+    required this.className,
+    required this.valueName,
     required this.tokens,
     required this.modules,
   });
@@ -50,8 +50,8 @@ class GenuisConfig {
       classType: _classType(map['class_type']),
       fromJsonMethod: _fromJsonMethod(map['from_json_method']),
       dartLineLength: _dartLineLength(map['dart_line_length']),
-      mainClassName: _mainClassName(map['main_class_name']),
-      mainGetterName: _mainGetterName(map['main_getter_name']),
+      className: _className(map['class_name']),
+      valueName: _valueName(map['value_name']),
       baseTheme: _baseTheme(map['base_theme']),
       tokens: _tokens(map['tokens']),
       modules: _modules(map['modules']),
@@ -105,15 +105,15 @@ class GenuisConfig {
     return value;
   }
 
-  static String _mainClassName(dynamic value) {
+  static String _className(dynamic value) {
     if (value == null) return Defaults.configMainClassName;
-    if (value is! String) throw Exception('main_class_name must be a string');
+    if (value is! String) throw Exception('class_name must be a string');
     return value;
   }
 
-  static String _mainGetterName(dynamic value) {
+  static String _valueName(dynamic value) {
     if (value == null) return Defaults.configMainGetterName;
-    if (value is! String) throw Exception('main_getter_name must be a string');
+    if (value is! String) throw Exception('value_name must be a string');
     return value;
   }
 

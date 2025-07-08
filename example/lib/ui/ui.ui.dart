@@ -25,67 +25,73 @@ export 'token_colors.ui.dart';
 export 'token_heights.ui.dart';
 export 'build_context_extension.ui.dart';
 
-class UIWidget extends InheritedWidget {
-  final UI ui;
+class UI extends ThemeExtension<UI> {
+  final UIBlurs blurs;
+  final UIColors colors;
+  final UIFonts fonts;
+  final UIIcons icons;
+  final UIImages images;
+  final UIShadows shadows;
 
-  const UIWidget({super.key, required this.ui, required super.child});
+  const UI({
+    required this.blurs,
+    required this.colors,
+    required this.fonts,
+    required this.icons,
+    required this.images,
+    required this.shadows,
+  });
 
-  static UIWidget? of(BuildContext context) {
-    return context.dependOnInheritedWidgetOfExactType<UIWidget>();
+  @override
+  UI copyWith({
+    UIBlurs? blurs,
+    UIColors? colors,
+    UIFonts? fonts,
+    UIIcons? icons,
+    UIImages? images,
+    UIShadows? shadows,
+  }) {
+    return UI(
+      blurs: blurs ?? this.blurs,
+      colors: colors ?? this.colors,
+      fonts: fonts ?? this.fonts,
+      icons: icons ?? this.icons,
+      images: images ?? this.images,
+      shadows: shadows ?? this.shadows,
+    );
   }
 
   @override
-  bool updateShouldNotify(UIWidget oldWidget) => ui != oldWidget.ui;
-}
+  UI lerp(ThemeExtension<UI>? other, double t) {
+    if (other is! UI) return this;
+    return UI(
+      blurs: blurs.lerp(other.blurs, t),
+      colors: colors.lerp(other.colors, t),
+      fonts: fonts.lerp(other.fonts, t),
+      icons: icons.lerp(other.icons, t),
+      images: images.lerp(other.images, t),
+      shadows: shadows.lerp(other.shadows, t),
+    );
+  }
 
-abstract class UI {
-  static const UI light = _UILight();
-  static const UI dark = _UIDark();
-
-  const UI._();
-
-  UIBlurs get blurs;
-  UIColors get colors;
-  UIFonts get fonts;
-  UIIcons get icons;
-  UIImages get images;
-  UIShadows get shadows;
+  static final UI light = UI(
+    blurs: UIBlurs.base,
+    colors: UIColors.light,
+    fonts: UIFonts.light,
+    icons: UIIcons.light,
+    images: UIImages.base,
+    shadows: UIShadows.light,
+  );
+  static final UI dark = UI(
+    blurs: UIBlurs.base,
+    colors: UIColors.dark,
+    fonts: UIFonts.dark,
+    icons: UIIcons.dark,
+    images: UIImages.base,
+    shadows: UIShadows.dark,
+  );
 
   factory UI.of(BuildContext context) {
-    return UIWidget.of(context)?.ui ?? UI.light;
+    return Theme.of(context).extension<UI>() ?? UI.light;
   }
-}
-
-class _UILight extends UI {
-  const _UILight() : super._();
-
-  @override
-  UIBlurs get blurs => UIBlurs.base;
-  @override
-  UIColors get colors => UIColors.light;
-  @override
-  UIFonts get fonts => UIFonts.light;
-  @override
-  UIIcons get icons => UIIcons.light;
-  @override
-  UIImages get images => UIImages.base;
-  @override
-  UIShadows get shadows => UIShadows.light;
-}
-
-class _UIDark extends UI {
-  const _UIDark() : super._();
-
-  @override
-  UIBlurs get blurs => UIBlurs.base;
-  @override
-  UIColors get colors => UIColors.dark;
-  @override
-  UIFonts get fonts => UIFonts.dark;
-  @override
-  UIIcons get icons => UIIcons.dark;
-  @override
-  UIImages get images => UIImages.base;
-  @override
-  UIShadows get shadows => UIShadows.dark;
 }
