@@ -1,0 +1,38 @@
+import 'package:genuis/src/config/types/genuis_class_type.dart';
+import 'package:genuis/src/config/types/token_class_type.dart';
+import 'package:genuis/src/utils/string_extension.dart';
+
+abstract class Defaults {
+  //Config
+  static const assetsPath = 'assets/';
+  static const outputPath = 'lib/ui/';
+  static const themes = ['light', 'dark'];
+  static const defaultTheme = false;
+  static const classType = GenuisClassType.themeExtension;
+  static const fromJsonMethod = true;
+  static const dartLineLength = 100;
+  static const mainClassName = 'UI';
+  static const mainGetterName = 'ui';
+  static const baseTheme = 'base';
+  //Module
+  static const moduleColor = false;
+  static const moduleOptional = false;
+  static String modulePathFrom(String assetPath, String name) {
+    return '$assetPath/$name/';
+  }
+
+  static String moduleTokenClassName(String name) {
+    return '${name}_Token'.named.camelCase;
+  }
+
+  //Token
+  static const tokenClassType = TokenClassType.static_;
+  static const tokenValueName = 'value';
+  static String tokenPathFrom(String assetPath, String name) {
+    return '$assetPath/$name.json';
+  }
+
+  static String tokenClassName(String name) {
+    return name.named.camelCase;
+  }
+}
