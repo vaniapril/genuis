@@ -1,3 +1,4 @@
+import 'package:genuis/src/config/config_parser.dart';
 import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/utils/defaults.dart';
@@ -29,45 +30,12 @@ class TokenConfig {
 
     return TokenConfig(
       name: name,
-      path: _path(config['path']),
-      type: _type(config['type']),
-      classType: _classType(config['class_type']),
-      className: _className(config['class_name']),
-      valueName: _valueName(config['value_name']),
+      path: ConfigParser.get(config, 'path'),
+      type: ConfigParser.getType(config, 'type', ElementType.tryParse),
+      classType: ConfigParser.getType(
+          config, 'class_type', TokenClassType.tryParse, Defaults.configTokenClassType),
+      className: ConfigParser.get(config, 'class_name'),
+      valueName: ConfigParser.get(config, 'value_name', Defaults.configTokenValueName),
     );
-  }
-
-  static String _path(dynamic value) {
-    if (value == null) throw Exception('You must specify "path"');
-    if (value is! String) throw Exception('path must be a list');
-    return value;
-  }
-
-  static ElementType _type(dynamic value) {
-    if (value == null) throw Exception('You must specify "type');
-    if (value is! String) throw Exception('type must be a String');
-    final type = ElementType.tryParse(value);
-    if (type == null) throw Exception('Invalid type "$type"');
-    return type;
-  }
-
-  static TokenClassType _classType(dynamic value) {
-    if (value == null) return Defaults.configTokenClassType;
-    if (value is! String) throw Exception('type must be a String');
-    final type = TokenClassType.tryParse(value);
-    if (type == null) throw Exception('Invalid type "$value"');
-    return type;
-  }
-
-  static String _className(dynamic value) {
-    if (value == null) throw Exception('You must specify "class_name"');
-    if (value is! String) throw Exception('class_name must be a String');
-    return value;
-  }
-
-  static String _valueName(dynamic value) {
-    if (value == null) return Defaults.configTokenValueName;
-    if (value is! String) throw Exception('value_name must be a String');
-    return value;
   }
 }

@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'package:genuis/src/config/config_parser.dart';
 import 'package:genuis/src/config/module_config.dart';
 import 'package:genuis/src/config/token_config.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
@@ -43,84 +44,20 @@ class GenuisConfig {
 
   factory GenuisConfig.fromYaml(YamlMap map) {
     return GenuisConfig(
-      assetsPath: _assetsPath(map['assets_path']),
-      outputPath: _outputPath(map['output_path']),
-      themes: _themes(map['themes']),
-      defaultTheme: _defaultTheme(map['default_theme']),
-      classType: _classType(map['class_type']),
-      fromJsonMethod: _fromJsonMethod(map['from_json_method']),
-      dartLineLength: _dartLineLength(map['dart_line_length']),
-      className: _className(map['class_name']),
-      valueName: _valueName(map['value_name']),
-      baseTheme: _baseTheme(map['base_theme']),
+      assetsPath: ConfigParser.get(map, 'assets_path', Defaults.configAssetsPath),
+      outputPath: ConfigParser.get(map, 'output_path', Defaults.configOutputPath),
+      themes: ConfigParser.getList(map, 'themes', Defaults.configThemes),
+      defaultTheme: ConfigParser.get(map, 'default_theme', Defaults.configDefaultTheme),
+      classType: ConfigParser.getType(
+          map, 'class_type', GenuisClassType.tryParse, Defaults.configClassType),
+      fromJsonMethod: ConfigParser.get(map, 'from_json_method', Defaults.configFromJsonMethod),
+      dartLineLength: ConfigParser.get(map, 'dart_line_length', Defaults.configDartLineLength),
+      className: ConfigParser.get(map, 'class_name', Defaults.configMainClassName),
+      valueName: ConfigParser.get(map, 'value_name', Defaults.configMainGetterName),
+      baseTheme: ConfigParser.get(map, 'base_theme', Defaults.configBaseTheme),
       tokens: _tokens(map['tokens']),
       modules: _modules(map['modules']),
     );
-  }
-
-  static String _assetsPath(dynamic value) {
-    if (value == null) return Defaults.configAssetsPath;
-    if (value is! String) throw Exception('assets_path must be a string');
-    return value;
-  }
-
-  static String _outputPath(dynamic value) {
-    if (value == null) return Defaults.configOutputPath;
-    if (value is! String) throw Exception('output_path must be a string');
-    return value;
-  }
-
-  static List<String> _themes(dynamic value) {
-    if (value == null) return Defaults.configThemes;
-    if (value is! YamlList) throw Exception('themes must be a list');
-    return value.map((e) {
-      if (e is! String) throw Exception('themes must be a list of strings');
-      return e;
-    }).toList();
-  }
-
-  static bool _defaultTheme(dynamic value) {
-    if (value == null) return Defaults.configDefaultTheme;
-    if (value is! bool) throw Exception('default_theme must be a bool');
-    return value;
-  }
-
-  static GenuisClassType _classType(dynamic value) {
-    if (value == null) return Defaults.configClassType;
-    if (value is! String) throw Exception('class_type must be a String');
-    final type = GenuisClassType.tryParse(value);
-    if (type == null) throw Exception('Invalid type "$value"');
-    return type;
-  }
-
-  static bool _fromJsonMethod(dynamic value) {
-    if (value == null) return Defaults.configFromJsonMethod;
-    if (value is! bool) throw Exception('from_json_method must be a bool');
-    return value;
-  }
-
-  static int _dartLineLength(dynamic value) {
-    if (value == null) return Defaults.configDartLineLength;
-    if (value is! int) throw Exception('dart_line_length must be a int');
-    return value;
-  }
-
-  static String _className(dynamic value) {
-    if (value == null) return Defaults.configMainClassName;
-    if (value is! String) throw Exception('class_name must be a string');
-    return value;
-  }
-
-  static String _valueName(dynamic value) {
-    if (value == null) return Defaults.configMainGetterName;
-    if (value is! String) throw Exception('value_name must be a string');
-    return value;
-  }
-
-  static String _baseTheme(dynamic value) {
-    if (value == null) return Defaults.configBaseTheme;
-    if (value is! String) throw Exception('base_theme must be a string');
-    return value;
   }
 
   static List<TokenConfig> _tokens(dynamic value) {
