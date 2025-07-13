@@ -14,7 +14,6 @@ import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/core/generators/main_class_generator.dart';
 import 'package:genuis/src/core/generators/module_generator.dart';
 import 'package:genuis/src/core/generators/tokens_generator.dart';
-import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
 import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/core/parsers/value_parser.dart';
@@ -53,7 +52,7 @@ class GenuisCore {
     var rawModules = config.modules.map((e) {
       Folder node = NodesParser(
         path: config.assetsPath + e.path,
-        fileParser: e.type != ElementType.asset ? JsonFileParser() : null,
+        parseFiles: e.type != ElementType.asset,
       ).parse();
 
       final valueParser = ValueParser(type: e.type, tokens: _tokens);
@@ -175,7 +174,7 @@ class GenuisCore {
     return config.tokens.map((e) {
       Folder node = NodesParser(
         path: config.assetsPath + e.path,
-        fileParser: e.type != ElementType.asset ? JsonFileParser() : null,
+        parseFiles: e.type != ElementType.asset,
       ).parse();
 
       final valueParser = ValueParser(

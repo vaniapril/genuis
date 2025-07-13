@@ -674,23 +674,140 @@ class UIColorsSecondary extends ThemeExtension<UIColorsSecondary> {
   static final UIColorsSecondary dark = UIColorsSecondary(error: AppColors.primaryError600.value);
 }
 
+class UIColorsTertiary extends ThemeExtension<UIColorsTertiary> {
+  final Color blue;
+  final Color blueLight;
+  final Color blueDark;
+  final Color green;
+  final Color greenLight;
+  final Color greenDark;
+  final Color orange;
+  final Color orangeLight;
+  final Color orangeDark;
+  final Color red;
+  final Color redLight;
+  final Color redDark;
+
+  const UIColorsTertiary({
+    required this.blue,
+    required this.blueLight,
+    required this.blueDark,
+    required this.green,
+    required this.greenLight,
+    required this.greenDark,
+    required this.orange,
+    required this.orangeLight,
+    required this.orangeDark,
+    required this.red,
+    required this.redLight,
+    required this.redDark,
+  });
+
+  @override
+  UIColorsTertiary copyWith({
+    Color? blue,
+    Color? blueLight,
+    Color? blueDark,
+    Color? green,
+    Color? greenLight,
+    Color? greenDark,
+    Color? orange,
+    Color? orangeLight,
+    Color? orangeDark,
+    Color? red,
+    Color? redLight,
+    Color? redDark,
+  }) {
+    return UIColorsTertiary(
+      blue: blue ?? this.blue,
+      blueLight: blueLight ?? this.blueLight,
+      blueDark: blueDark ?? this.blueDark,
+      green: green ?? this.green,
+      greenLight: greenLight ?? this.greenLight,
+      greenDark: greenDark ?? this.greenDark,
+      orange: orange ?? this.orange,
+      orangeLight: orangeLight ?? this.orangeLight,
+      orangeDark: orangeDark ?? this.orangeDark,
+      red: red ?? this.red,
+      redLight: redLight ?? this.redLight,
+      redDark: redDark ?? this.redDark,
+    );
+  }
+
+  @override
+  UIColorsTertiary lerp(ThemeExtension<UIColorsTertiary>? other, double t) {
+    if (other is! UIColorsTertiary) return this;
+    return UIColorsTertiary(
+      blue: Color.lerp(blue, other.blue, t) ?? other.blue,
+      blueLight: Color.lerp(blueLight, other.blueLight, t) ?? other.blueLight,
+      blueDark: Color.lerp(blueDark, other.blueDark, t) ?? other.blueDark,
+      green: Color.lerp(green, other.green, t) ?? other.green,
+      greenLight: Color.lerp(greenLight, other.greenLight, t) ?? other.greenLight,
+      greenDark: Color.lerp(greenDark, other.greenDark, t) ?? other.greenDark,
+      orange: Color.lerp(orange, other.orange, t) ?? other.orange,
+      orangeLight: Color.lerp(orangeLight, other.orangeLight, t) ?? other.orangeLight,
+      orangeDark: Color.lerp(orangeDark, other.orangeDark, t) ?? other.orangeDark,
+      red: Color.lerp(red, other.red, t) ?? other.red,
+      redLight: Color.lerp(redLight, other.redLight, t) ?? other.redLight,
+      redDark: Color.lerp(redDark, other.redDark, t) ?? other.redDark,
+    );
+  }
+
+  static final UIColorsTertiary dark = UIColorsTertiary(
+    blue: Color(0xFF14A3FC),
+    blueLight: Color(0xFF2F4552),
+    blueDark: Color(0xFF1C6390),
+    green: Color(0xFF66BB6A),
+    greenLight: Color(0xFF5C6D5D),
+    greenDark: Color(0xFF5F8160),
+    orange: Color(0xFFFAA645),
+    orangeLight: Color(0xFF4F3E2B),
+    orangeDark: Color(0xFF8F6534),
+    red: Color(0xFFE64B4F),
+    redLight: Color(0xFF4D3031),
+    redDark: Color(0xFF894244),
+  );
+  static final UIColorsTertiary light = UIColorsTertiary(
+    blue: Color(0xFF0A70E9),
+    blueLight: Color(0xFFE7F1FD),
+    blueDark: Color(0xFF84BCFF),
+    green: Color(0xFF388E3C),
+    greenLight: Color(0xFFEBF4EB),
+    greenDark: Color(0xFF75CD79),
+    orange: Color(0xFFEDB431),
+    orangeLight: Color(0xFFFDF7EA),
+    orangeDark: Color(0xFFFFE2A2),
+    red: Color(0xFFE64B4F),
+    redLight: Color(0xFFFCEDED),
+    redDark: Color(0xFFFF9EA0),
+  );
+}
+
 class UIColors extends ThemeExtension<UIColors> {
   final UIColorsKeywords keywords;
   final UIColorsPrimary primary;
   final UIColorsSecondary secondary;
+  final UIColorsTertiary tertiary;
 
-  const UIColors({required this.keywords, required this.primary, required this.secondary});
+  const UIColors({
+    required this.keywords,
+    required this.primary,
+    required this.secondary,
+    required this.tertiary,
+  });
 
   @override
   UIColors copyWith({
     UIColorsKeywords? keywords,
     UIColorsPrimary? primary,
     UIColorsSecondary? secondary,
+    UIColorsTertiary? tertiary,
   }) {
     return UIColors(
       keywords: keywords ?? this.keywords,
       primary: primary ?? this.primary,
       secondary: secondary ?? this.secondary,
+      tertiary: tertiary ?? this.tertiary,
     );
   }
 
@@ -701,6 +818,7 @@ class UIColors extends ThemeExtension<UIColors> {
       keywords: keywords.lerp(other.keywords, t),
       primary: primary.lerp(other.primary, t),
       secondary: secondary.lerp(other.secondary, t),
+      tertiary: tertiary.lerp(other.tertiary, t),
     );
   }
 
@@ -708,10 +826,12 @@ class UIColors extends ThemeExtension<UIColors> {
     keywords: UIColorsKeywords.base,
     primary: UIColorsPrimary.light,
     secondary: UIColorsSecondary.light,
+    tertiary: UIColorsTertiary.light,
   );
   static final UIColors dark = UIColors(
     keywords: UIColorsKeywords.base,
     primary: UIColorsPrimary.dark,
     secondary: UIColorsSecondary.dark,
+    tertiary: UIColorsTertiary.dark,
   );
 }

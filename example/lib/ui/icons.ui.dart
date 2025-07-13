@@ -25,38 +25,38 @@ enum AppIcons {
   filledRocket('filled/rocket.svg'),
   filledTreeDecidious('filled/tree_decidious.svg'),
   filledTreeEvergreen('filled/tree_evergreen.svg'),
-  outlinedBellCloseDark('outlined/dark/bell_close.svg'),
-  outlinedBellCloseLight('outlined/light/bell_close.svg'),
-  outlinedBellOffDark('outlined/dark/bell_off.svg'),
-  outlinedBellOffLight('outlined/light/bell_off.svg'),
-  outlinedBuildingDark('outlined/dark/building.svg'),
-  outlinedBuildingLight('outlined/light/building.svg'),
-  outlinedCalendarDark('outlined/dark/calendar.svg'),
-  outlinedCalendarLight('outlined/light/calendar.svg'),
-  outlinedCalendarDaysDark('outlined/dark/calendar_days.svg'),
-  outlinedCalendarDaysLight('outlined/light/calendar_days.svg'),
-  outlinedCarAutoDark('outlined/dark/car_auto.svg'),
-  outlinedCarAutoLight('outlined/light/car_auto.svg'),
-  outlinedChatDark('outlined/dark/chat.svg'),
-  outlinedChatLight('outlined/light/chat.svg'),
-  outlinedChatAddDark('outlined/dark/chat_add.svg'),
-  outlinedChatAddLight('outlined/light/chat_add.svg'),
-  outlinedCloudDark('outlined/dark/cloud.svg'),
-  outlinedCloudLight('outlined/light/cloud.svg'),
-  outlinedCloudAddDark('outlined/dark/cloud_add.svg'),
-  outlinedCloudAddLight('outlined/light/cloud_add.svg'),
-  outlinedCupcakeDark('outlined/dark/cupcake.svg'),
-  outlinedCupcakeLight('outlined/light/cupcake.svg'),
-  outlinedFileBlankDark('outlined/dark/file_blank.svg'),
-  outlinedFileBlankLight('outlined/light/file_blank.svg'),
-  outlinedFolderDark('outlined/dark/folder.svg'),
-  outlinedFolderLight('outlined/light/folder.svg'),
-  outlinedHamburgerLgDark('outlined/dark/hamburger_lg.svg'),
-  outlinedHamburgerLgLight('outlined/light/hamburger_lg.svg'),
-  outlinedHeadphonesDark('outlined/dark/headphones.svg'),
-  outlinedHeadphonesLight('outlined/light/headphones.svg'),
-  outlinedHouseDark('outlined/dark/house.svg'),
-  outlinedHouseLight('outlined/light/house.svg');
+  outlinedBellCloseBellCloseDark('outlined/dark/bell_close.svg'),
+  outlinedBellCloseBellCloseLight('outlined/light/bell_close.svg'),
+  outlinedBellOffBellOffDark('outlined/dark/bell_off.svg'),
+  outlinedBellOffBellOffLight('outlined/light/bell_off.svg'),
+  outlinedBuildingBuildingDark('outlined/dark/building.svg'),
+  outlinedBuildingBuildingLight('outlined/light/building.svg'),
+  outlinedCalendarCalendarDark('outlined/dark/calendar.svg'),
+  outlinedCalendarCalendarLight('outlined/light/calendar.svg'),
+  outlinedCalendarDaysCalendarDaysDark('outlined/dark/calendar_days.svg'),
+  outlinedCalendarDaysCalendarDaysLight('outlined/light/calendar_days.svg'),
+  outlinedCarAutoCarAutoDark('outlined/dark/car_auto.svg'),
+  outlinedCarAutoCarAutoLight('outlined/light/car_auto.svg'),
+  outlinedChatChatDark('outlined/dark/chat.svg'),
+  outlinedChatChatLight('outlined/light/chat.svg'),
+  outlinedChatAddChatAddDark('outlined/dark/chat_add.svg'),
+  outlinedChatAddChatAddLight('outlined/light/chat_add.svg'),
+  outlinedCloudCloudDark('outlined/dark/cloud.svg'),
+  outlinedCloudCloudLight('outlined/light/cloud.svg'),
+  outlinedCloudAddCloudAddDark('outlined/dark/cloud_add.svg'),
+  outlinedCloudAddCloudAddLight('outlined/light/cloud_add.svg'),
+  outlinedCupcakeCupcakeDark('outlined/dark/cupcake.svg'),
+  outlinedCupcakeCupcakeLight('outlined/light/cupcake.svg'),
+  outlinedFileBlankFileBlankDark('outlined/dark/file_blank.svg'),
+  outlinedFileBlankFileBlankLight('outlined/light/file_blank.svg'),
+  outlinedFolderFolderDark('outlined/dark/folder.svg'),
+  outlinedFolderFolderLight('outlined/light/folder.svg'),
+  outlinedHamburgerLgHamburgerLgDark('outlined/dark/hamburger_lg.svg'),
+  outlinedHamburgerLgHamburgerLgLight('outlined/light/hamburger_lg.svg'),
+  outlinedHeadphonesHeadphonesDark('outlined/dark/headphones.svg'),
+  outlinedHeadphonesHeadphonesLight('outlined/light/headphones.svg'),
+  outlinedHouseHouseDark('outlined/dark/house.svg'),
+  outlinedHouseHouseLight('outlined/light/house.svg');
 
   const AppIcons(this.value);
 
@@ -67,16 +67,32 @@ class ThemedIcons {
   final String value;
   final Color _alertNotification;
   final Color _active;
+  final Color _blue;
+  final Color _green;
+  final Color _orange;
+  final Color _red;
   const ThemedIcons._({
     required Color alertNotification,
     required Color active,
+    required Color blue,
+    required Color green,
+    required Color orange,
+    required Color red,
     required this.value,
   }) : _alertNotification = alertNotification,
-       _active = active;
+       _active = active,
+       _blue = blue,
+       _green = green,
+       _orange = orange,
+       _red = red;
   ThemedIcons(UI ui, String value)
     : this._(
         alertNotification: ui.colors.primary.alertNotification,
         active: ui.colors.primary.brand,
+        blue: ui.colors.tertiary.blue,
+        green: ui.colors.tertiary.green,
+        orange: ui.colors.tertiary.orange,
+        red: ui.colors.tertiary.red,
         value: value,
       );
 
@@ -85,12 +101,20 @@ class ThemedIcons {
       alertNotification:
           Color.lerp(_alertNotification, other._alertNotification, t) ?? _alertNotification,
       active: Color.lerp(_active, other._active, t) ?? _active,
+      blue: Color.lerp(_blue, other._blue, t) ?? _blue,
+      green: Color.lerp(_green, other._green, t) ?? _green,
+      orange: Color.lerp(_orange, other._orange, t) ?? _orange,
+      red: Color.lerp(_red, other._red, t) ?? _red,
       value: t < 0.5 ? value : other.value,
     );
   }
 
   ColoredIcons get alertNotification => ColoredIcons(value, _alertNotification);
   ColoredIcons get active => ColoredIcons(value, _active);
+  ColoredIcons get blue => ColoredIcons(value, _blue);
+  ColoredIcons get green => ColoredIcons(value, _green);
+  ColoredIcons get orange => ColoredIcons(value, _orange);
+  ColoredIcons get red => ColoredIcons(value, _red);
   ColoredIcons colored(Color color) => ColoredIcons(value, color);
 }
 
@@ -361,40 +385,40 @@ class UIIconsOutlined extends ThemeExtension<UIIconsOutlined> {
   }
 
   static final UIIconsOutlined light = UIIconsOutlined(
-    bellClose: ThemedIcons(UI.light, AppIcons.outlinedBellCloseLight.value),
-    bellOff: ThemedIcons(UI.light, AppIcons.outlinedBellOffLight.value),
-    building: ThemedIcons(UI.light, AppIcons.outlinedBuildingLight.value),
-    calendar: ThemedIcons(UI.light, AppIcons.outlinedCalendarLight.value),
-    calendarDays: ThemedIcons(UI.light, AppIcons.outlinedCalendarDaysLight.value),
-    carAuto: ThemedIcons(UI.light, AppIcons.outlinedCarAutoLight.value),
-    chat: ThemedIcons(UI.light, AppIcons.outlinedChatLight.value),
-    chatAdd: ThemedIcons(UI.light, AppIcons.outlinedChatAddLight.value),
-    cloud: ThemedIcons(UI.light, AppIcons.outlinedCloudLight.value),
-    cloudAdd: ThemedIcons(UI.light, AppIcons.outlinedCloudAddLight.value),
-    cupcake: ThemedIcons(UI.light, AppIcons.outlinedCupcakeLight.value),
-    fileBlank: ThemedIcons(UI.light, AppIcons.outlinedFileBlankLight.value),
-    folder: ThemedIcons(UI.light, AppIcons.outlinedFolderLight.value),
-    hamburgerLg: ThemedIcons(UI.light, AppIcons.outlinedHamburgerLgLight.value),
-    headphones: ThemedIcons(UI.light, AppIcons.outlinedHeadphonesLight.value),
-    house: ThemedIcons(UI.light, AppIcons.outlinedHouseLight.value),
+    bellClose: ThemedIcons(UI.light, AppIcons.outlinedBellCloseBellCloseLight.value),
+    bellOff: ThemedIcons(UI.light, AppIcons.outlinedBellOffBellOffLight.value),
+    building: ThemedIcons(UI.light, AppIcons.outlinedBuildingBuildingLight.value),
+    calendar: ThemedIcons(UI.light, AppIcons.outlinedCalendarCalendarLight.value),
+    calendarDays: ThemedIcons(UI.light, AppIcons.outlinedCalendarDaysCalendarDaysLight.value),
+    carAuto: ThemedIcons(UI.light, AppIcons.outlinedCarAutoCarAutoLight.value),
+    chat: ThemedIcons(UI.light, AppIcons.outlinedChatChatLight.value),
+    chatAdd: ThemedIcons(UI.light, AppIcons.outlinedChatAddChatAddLight.value),
+    cloud: ThemedIcons(UI.light, AppIcons.outlinedCloudCloudLight.value),
+    cloudAdd: ThemedIcons(UI.light, AppIcons.outlinedCloudAddCloudAddLight.value),
+    cupcake: ThemedIcons(UI.light, AppIcons.outlinedCupcakeCupcakeLight.value),
+    fileBlank: ThemedIcons(UI.light, AppIcons.outlinedFileBlankFileBlankLight.value),
+    folder: ThemedIcons(UI.light, AppIcons.outlinedFolderFolderLight.value),
+    hamburgerLg: ThemedIcons(UI.light, AppIcons.outlinedHamburgerLgHamburgerLgLight.value),
+    headphones: ThemedIcons(UI.light, AppIcons.outlinedHeadphonesHeadphonesLight.value),
+    house: ThemedIcons(UI.light, AppIcons.outlinedHouseHouseLight.value),
   );
   static final UIIconsOutlined dark = UIIconsOutlined(
-    bellClose: ThemedIcons(UI.dark, AppIcons.outlinedBellCloseDark.value),
-    bellOff: ThemedIcons(UI.dark, AppIcons.outlinedBellOffDark.value),
-    building: ThemedIcons(UI.dark, AppIcons.outlinedBuildingDark.value),
-    calendar: ThemedIcons(UI.dark, AppIcons.outlinedCalendarDark.value),
-    calendarDays: ThemedIcons(UI.dark, AppIcons.outlinedCalendarDaysDark.value),
-    carAuto: ThemedIcons(UI.dark, AppIcons.outlinedCarAutoDark.value),
-    chat: ThemedIcons(UI.dark, AppIcons.outlinedChatDark.value),
-    chatAdd: ThemedIcons(UI.dark, AppIcons.outlinedChatAddDark.value),
-    cloud: ThemedIcons(UI.dark, AppIcons.outlinedCloudDark.value),
-    cloudAdd: ThemedIcons(UI.dark, AppIcons.outlinedCloudAddDark.value),
-    cupcake: ThemedIcons(UI.dark, AppIcons.outlinedCupcakeDark.value),
-    fileBlank: ThemedIcons(UI.dark, AppIcons.outlinedFileBlankDark.value),
-    folder: ThemedIcons(UI.dark, AppIcons.outlinedFolderDark.value),
-    hamburgerLg: ThemedIcons(UI.dark, AppIcons.outlinedHamburgerLgDark.value),
-    headphones: ThemedIcons(UI.dark, AppIcons.outlinedHeadphonesDark.value),
-    house: ThemedIcons(UI.dark, AppIcons.outlinedHouseDark.value),
+    bellClose: ThemedIcons(UI.dark, AppIcons.outlinedBellCloseBellCloseDark.value),
+    bellOff: ThemedIcons(UI.dark, AppIcons.outlinedBellOffBellOffDark.value),
+    building: ThemedIcons(UI.dark, AppIcons.outlinedBuildingBuildingDark.value),
+    calendar: ThemedIcons(UI.dark, AppIcons.outlinedCalendarCalendarDark.value),
+    calendarDays: ThemedIcons(UI.dark, AppIcons.outlinedCalendarDaysCalendarDaysDark.value),
+    carAuto: ThemedIcons(UI.dark, AppIcons.outlinedCarAutoCarAutoDark.value),
+    chat: ThemedIcons(UI.dark, AppIcons.outlinedChatChatDark.value),
+    chatAdd: ThemedIcons(UI.dark, AppIcons.outlinedChatAddChatAddDark.value),
+    cloud: ThemedIcons(UI.dark, AppIcons.outlinedCloudCloudDark.value),
+    cloudAdd: ThemedIcons(UI.dark, AppIcons.outlinedCloudAddCloudAddDark.value),
+    cupcake: ThemedIcons(UI.dark, AppIcons.outlinedCupcakeCupcakeDark.value),
+    fileBlank: ThemedIcons(UI.dark, AppIcons.outlinedFileBlankFileBlankDark.value),
+    folder: ThemedIcons(UI.dark, AppIcons.outlinedFolderFolderDark.value),
+    hamburgerLg: ThemedIcons(UI.dark, AppIcons.outlinedHamburgerLgHamburgerLgDark.value),
+    headphones: ThemedIcons(UI.dark, AppIcons.outlinedHeadphonesHeadphonesDark.value),
+    house: ThemedIcons(UI.dark, AppIcons.outlinedHouseHouseDark.value),
   );
 }
 

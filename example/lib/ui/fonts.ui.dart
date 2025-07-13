@@ -10,45 +10,75 @@ import 'ui.ui.dart';
 
 class ThemedTextStyle extends TextStyle {
   final Color _error;
+  final Color _blue;
+  final Color _green;
+  final Color _orange;
+  final Color _red;
 
-  ThemedTextStyle._({required Color error, required TextStyle style})
-    : _error = error,
-      super(
-        inherit: style.inherit,
-        color: style.color,
-        backgroundColor: style.backgroundColor,
-        fontSize: style.fontSize,
-        fontWeight: style.fontWeight,
-        fontStyle: style.fontStyle,
-        letterSpacing: style.letterSpacing,
-        wordSpacing: style.wordSpacing,
-        textBaseline: style.textBaseline,
-        height: style.height,
-        leadingDistribution: style.leadingDistribution,
-        locale: style.locale,
-        foreground: style.foreground,
-        background: style.background,
-        shadows: style.shadows,
-        fontFeatures: style.fontFeatures,
-        fontVariations: style.fontVariations,
-        decoration: style.decoration,
-        decorationColor: style.decorationColor,
-        decorationStyle: style.decorationStyle,
-        decorationThickness: style.decorationThickness,
-        debugLabel: style.debugLabel,
-        fontFamily: style.fontFamily,
-        overflow: style.overflow,
+  ThemedTextStyle._({
+    required Color error,
+    required Color blue,
+    required Color green,
+    required Color orange,
+    required Color red,
+    required TextStyle style,
+  }) : _error = error,
+       _blue = blue,
+       _green = green,
+       _orange = orange,
+       _red = red,
+       super(
+         inherit: style.inherit,
+         color: style.color,
+         backgroundColor: style.backgroundColor,
+         fontSize: style.fontSize,
+         fontWeight: style.fontWeight,
+         fontStyle: style.fontStyle,
+         letterSpacing: style.letterSpacing,
+         wordSpacing: style.wordSpacing,
+         textBaseline: style.textBaseline,
+         height: style.height,
+         leadingDistribution: style.leadingDistribution,
+         locale: style.locale,
+         foreground: style.foreground,
+         background: style.background,
+         shadows: style.shadows,
+         fontFeatures: style.fontFeatures,
+         fontVariations: style.fontVariations,
+         decoration: style.decoration,
+         decorationColor: style.decorationColor,
+         decorationStyle: style.decorationStyle,
+         decorationThickness: style.decorationThickness,
+         debugLabel: style.debugLabel,
+         fontFamily: style.fontFamily,
+         overflow: style.overflow,
+       );
+  ThemedTextStyle(UI ui, TextStyle style)
+    : this._(
+        error: ui.colors.primary.error,
+        blue: ui.colors.tertiary.blue,
+        green: ui.colors.tertiary.green,
+        orange: ui.colors.tertiary.orange,
+        red: ui.colors.tertiary.red,
+        style: style,
       );
-  ThemedTextStyle(UI ui, TextStyle style) : this._(error: ui.colors.primary.error, style: style);
 
   ThemedTextStyle lerp(ThemedTextStyle other, double t) {
     return ThemedTextStyle._(
       error: Color.lerp(_error, other._error, t) ?? _error,
+      blue: Color.lerp(_blue, other._blue, t) ?? _blue,
+      green: Color.lerp(_green, other._green, t) ?? _green,
+      orange: Color.lerp(_orange, other._orange, t) ?? _orange,
+      red: Color.lerp(_red, other._red, t) ?? _red,
       style: TextStyle.lerp(this, other, t) ?? this,
     );
   }
 
   TextStyle get error => copyWith(color: _error);
+  TextStyle get blue => copyWith(color: _blue);
+  TextStyle get green => copyWith(color: _green);
+  TextStyle get orange => copyWith(color: _orange);
+  TextStyle get red => copyWith(color: _red);
 }
 
 class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> {
@@ -1043,22 +1073,832 @@ class UIFontsManrope extends ThemeExtension<UIFontsManrope> {
   );
 }
 
-class UIFonts extends ThemeExtension<UIFonts> {
-  final UIFontsManrope manrope;
+class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
+  final ThemedTextStyle title48S;
+  final ThemedTextStyle title40L;
+  final ThemedTextStyle title34X;
+  final ThemedTextStyle title34M;
+  final ThemedTextStyle title34L;
+  final ThemedTextStyle title26M;
+  final ThemedTextStyle title26R;
+  final ThemedTextStyle title26L;
+  final ThemedTextStyle title20S;
+  final ThemedTextStyle title20M;
+  final ThemedTextStyle title20R;
+  final ThemedTextStyle title20L;
+  final ThemedTextStyle title18M;
+  final ThemedTextStyle title18R;
+  final ThemedTextStyle title18L;
+  final ThemedTextStyle body16M;
+  final ThemedTextStyle body16R;
+  final ThemedTextStyle body16L;
+  final ThemedTextStyle body14M;
+  final ThemedTextStyle body14R;
+  final ThemedTextStyle body14L;
+  final ThemedTextStyle body14I;
+  final ThemedTextStyle caption12M;
+  final ThemedTextStyle caption12R;
+  final ThemedTextStyle caption12L;
+  final ThemedTextStyle caption10X;
+  final ThemedTextStyle caption10R;
+  final ThemedTextStyle caption8R;
+  final ThemedTextStyle caption8M;
+  final ThemedTextStyle button16M;
+  final ThemedTextStyle button16R;
+  final ThemedTextStyle button14M;
+  final ThemedTextStyle button14R;
+  final ThemedTextStyle button12M;
 
-  const UIFonts({required this.manrope});
+  const UIFontsRoboto({
+    required this.title48S,
+    required this.title40L,
+    required this.title34X,
+    required this.title34M,
+    required this.title34L,
+    required this.title26M,
+    required this.title26R,
+    required this.title26L,
+    required this.title20S,
+    required this.title20M,
+    required this.title20R,
+    required this.title20L,
+    required this.title18M,
+    required this.title18R,
+    required this.title18L,
+    required this.body16M,
+    required this.body16R,
+    required this.body16L,
+    required this.body14M,
+    required this.body14R,
+    required this.body14L,
+    required this.body14I,
+    required this.caption12M,
+    required this.caption12R,
+    required this.caption12L,
+    required this.caption10X,
+    required this.caption10R,
+    required this.caption8R,
+    required this.caption8M,
+    required this.button16M,
+    required this.button16R,
+    required this.button14M,
+    required this.button14R,
+    required this.button12M,
+  });
 
   @override
-  UIFonts copyWith({UIFontsManrope? manrope}) {
-    return UIFonts(manrope: manrope ?? this.manrope);
+  UIFontsRoboto copyWith({
+    ThemedTextStyle? title48S,
+    ThemedTextStyle? title40L,
+    ThemedTextStyle? title34X,
+    ThemedTextStyle? title34M,
+    ThemedTextStyle? title34L,
+    ThemedTextStyle? title26M,
+    ThemedTextStyle? title26R,
+    ThemedTextStyle? title26L,
+    ThemedTextStyle? title20S,
+    ThemedTextStyle? title20M,
+    ThemedTextStyle? title20R,
+    ThemedTextStyle? title20L,
+    ThemedTextStyle? title18M,
+    ThemedTextStyle? title18R,
+    ThemedTextStyle? title18L,
+    ThemedTextStyle? body16M,
+    ThemedTextStyle? body16R,
+    ThemedTextStyle? body16L,
+    ThemedTextStyle? body14M,
+    ThemedTextStyle? body14R,
+    ThemedTextStyle? body14L,
+    ThemedTextStyle? body14I,
+    ThemedTextStyle? caption12M,
+    ThemedTextStyle? caption12R,
+    ThemedTextStyle? caption12L,
+    ThemedTextStyle? caption10X,
+    ThemedTextStyle? caption10R,
+    ThemedTextStyle? caption8R,
+    ThemedTextStyle? caption8M,
+    ThemedTextStyle? button16M,
+    ThemedTextStyle? button16R,
+    ThemedTextStyle? button14M,
+    ThemedTextStyle? button14R,
+    ThemedTextStyle? button12M,
+  }) {
+    return UIFontsRoboto(
+      title48S: title48S ?? this.title48S,
+      title40L: title40L ?? this.title40L,
+      title34X: title34X ?? this.title34X,
+      title34M: title34M ?? this.title34M,
+      title34L: title34L ?? this.title34L,
+      title26M: title26M ?? this.title26M,
+      title26R: title26R ?? this.title26R,
+      title26L: title26L ?? this.title26L,
+      title20S: title20S ?? this.title20S,
+      title20M: title20M ?? this.title20M,
+      title20R: title20R ?? this.title20R,
+      title20L: title20L ?? this.title20L,
+      title18M: title18M ?? this.title18M,
+      title18R: title18R ?? this.title18R,
+      title18L: title18L ?? this.title18L,
+      body16M: body16M ?? this.body16M,
+      body16R: body16R ?? this.body16R,
+      body16L: body16L ?? this.body16L,
+      body14M: body14M ?? this.body14M,
+      body14R: body14R ?? this.body14R,
+      body14L: body14L ?? this.body14L,
+      body14I: body14I ?? this.body14I,
+      caption12M: caption12M ?? this.caption12M,
+      caption12R: caption12R ?? this.caption12R,
+      caption12L: caption12L ?? this.caption12L,
+      caption10X: caption10X ?? this.caption10X,
+      caption10R: caption10R ?? this.caption10R,
+      caption8R: caption8R ?? this.caption8R,
+      caption8M: caption8M ?? this.caption8M,
+      button16M: button16M ?? this.button16M,
+      button16R: button16R ?? this.button16R,
+      button14M: button14M ?? this.button14M,
+      button14R: button14R ?? this.button14R,
+      button12M: button12M ?? this.button12M,
+    );
+  }
+
+  @override
+  UIFontsRoboto lerp(ThemeExtension<UIFontsRoboto>? other, double t) {
+    if (other is! UIFontsRoboto) return this;
+    return UIFontsRoboto(
+      title48S: title48S.lerp(other.title48S, t),
+      title40L: title40L.lerp(other.title40L, t),
+      title34X: title34X.lerp(other.title34X, t),
+      title34M: title34M.lerp(other.title34M, t),
+      title34L: title34L.lerp(other.title34L, t),
+      title26M: title26M.lerp(other.title26M, t),
+      title26R: title26R.lerp(other.title26R, t),
+      title26L: title26L.lerp(other.title26L, t),
+      title20S: title20S.lerp(other.title20S, t),
+      title20M: title20M.lerp(other.title20M, t),
+      title20R: title20R.lerp(other.title20R, t),
+      title20L: title20L.lerp(other.title20L, t),
+      title18M: title18M.lerp(other.title18M, t),
+      title18R: title18R.lerp(other.title18R, t),
+      title18L: title18L.lerp(other.title18L, t),
+      body16M: body16M.lerp(other.body16M, t),
+      body16R: body16R.lerp(other.body16R, t),
+      body16L: body16L.lerp(other.body16L, t),
+      body14M: body14M.lerp(other.body14M, t),
+      body14R: body14R.lerp(other.body14R, t),
+      body14L: body14L.lerp(other.body14L, t),
+      body14I: body14I.lerp(other.body14I, t),
+      caption12M: caption12M.lerp(other.caption12M, t),
+      caption12R: caption12R.lerp(other.caption12R, t),
+      caption12L: caption12L.lerp(other.caption12L, t),
+      caption10X: caption10X.lerp(other.caption10X, t),
+      caption10R: caption10R.lerp(other.caption10R, t),
+      caption8R: caption8R.lerp(other.caption8R, t),
+      caption8M: caption8M.lerp(other.caption8M, t),
+      button16M: button16M.lerp(other.button16M, t),
+      button16R: button16R.lerp(other.button16R, t),
+      button14M: button14M.lerp(other.button14M, t),
+      button14R: button14R.lerp(other.button14R, t),
+      button12M: button12M.lerp(other.button12M, t),
+    );
+  }
+
+  static final UIFontsRoboto light = UIFontsRoboto(
+    title48S: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w600,
+        fontSize: 48.0,
+        height: 64.0 / 48.0,
+      ),
+    ),
+    title40L: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 40.0,
+        height: 48.0 / 40.0,
+      ),
+    ),
+    title34X: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 34.0,
+        height: 34.0 / 34.0,
+      ),
+    ),
+    title34M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 34.0,
+        height: 48.0 / 34.0,
+      ),
+    ),
+    title34L: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 34.0,
+        height: 48.0 / 34.0,
+      ),
+    ),
+    title26M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 26.0,
+        height: 32.0 / 26.0,
+      ),
+    ),
+    title26R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 26.0,
+        height: 32.0 / 26.0,
+      ),
+    ),
+    title26L: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 26.0,
+        height: 32.0 / 26.0,
+      ),
+    ),
+    title20S: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w600,
+        fontSize: 20.0,
+        height: 30.0 / 20.0,
+      ),
+    ),
+    title20M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 20.0,
+        height: 30.0 / 20.0,
+      ),
+    ),
+    title20R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 20.0,
+        height: 30.0 / 20.0,
+      ),
+    ),
+    title20L: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 20.0,
+        height: 30.0 / 20.0,
+      ),
+    ),
+    title18M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 18.0,
+        height: 28.0 / 18.0,
+      ),
+    ),
+    title18R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 18.0,
+        height: 28.0 / 18.0,
+      ),
+    ),
+    title18L: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 18.0,
+        height: 28.0 / 18.0,
+      ),
+    ),
+    body16M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
+        height: 24.0 / 16.0,
+      ),
+    ),
+    body16R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 16.0,
+        height: 24.0 / 16.0,
+      ),
+    ),
+    body16L: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 16.0,
+        height: 24.0 / 16.0,
+      ),
+    ),
+    body14M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+        height: 20.0 / 14.0,
+      ),
+    ),
+    body14R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14.0,
+        height: 20.0 / 14.0,
+      ),
+    ),
+    body14L: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 14.0,
+        height: 20.0 / 14.0,
+      ),
+    ),
+    body14I: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14.0,
+        height: 20.0 / 14.0,
+        fontStyle: FontStyle.italic,
+      ),
+    ),
+    caption12M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+        height: 16.0 / 12.0,
+      ),
+    ),
+    caption12R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 12.0,
+        height: 16.0 / 12.0,
+      ),
+    ),
+    caption12L: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 12.0,
+        height: 16.0 / 12.0,
+      ),
+    ),
+    caption10X: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 10.0,
+        height: 10.0 / 10.0,
+      ),
+    ),
+    caption10R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 10.0,
+        height: 12.0 / 10.0,
+      ),
+    ),
+    caption8R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 8.0,
+        height: 10.0 / 8.0,
+      ),
+    ),
+    caption8M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 8.0,
+        height: 10.0 / 8.0,
+      ),
+    ),
+    button16M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
+        height: 20.0 / 16.0,
+      ),
+    ),
+    button16R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 16.0,
+        height: 20.0 / 16.0,
+      ),
+    ),
+    button14M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+        height: 16.0 / 14.0,
+      ),
+    ),
+    button14R: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14.0,
+        height: 16.0 / 14.0,
+      ),
+    ),
+    button12M: ThemedTextStyle(
+      UI.light,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+        height: 20.0 / 12.0,
+      ),
+    ),
+  );
+  static final UIFontsRoboto dark = UIFontsRoboto(
+    title48S: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w600,
+        fontSize: 48.0,
+        height: 64.0 / 48.0,
+      ),
+    ),
+    title40L: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 40.0,
+        height: 48.0 / 40.0,
+      ),
+    ),
+    title34X: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 34.0,
+        height: 34.0 / 34.0,
+      ),
+    ),
+    title34M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 34.0,
+        height: 48.0 / 34.0,
+      ),
+    ),
+    title34L: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 34.0,
+        height: 48.0 / 34.0,
+      ),
+    ),
+    title26M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 26.0,
+        height: 32.0 / 26.0,
+      ),
+    ),
+    title26R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 26.0,
+        height: 32.0 / 26.0,
+      ),
+    ),
+    title26L: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 26.0,
+        height: 32.0 / 26.0,
+      ),
+    ),
+    title20S: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w600,
+        fontSize: 20.0,
+        height: 30.0 / 20.0,
+      ),
+    ),
+    title20M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 20.0,
+        height: 30.0 / 20.0,
+      ),
+    ),
+    title20R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 20.0,
+        height: 30.0 / 20.0,
+      ),
+    ),
+    title20L: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 20.0,
+        height: 30.0 / 20.0,
+      ),
+    ),
+    title18M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 18.0,
+        height: 28.0 / 18.0,
+      ),
+    ),
+    title18R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 18.0,
+        height: 28.0 / 18.0,
+      ),
+    ),
+    title18L: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 18.0,
+        height: 28.0 / 18.0,
+      ),
+    ),
+    body16M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
+        height: 24.0 / 16.0,
+      ),
+    ),
+    body16R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 16.0,
+        height: 24.0 / 16.0,
+      ),
+    ),
+    body16L: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 16.0,
+        height: 24.0 / 16.0,
+      ),
+    ),
+    body14M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+        height: 20.0 / 14.0,
+      ),
+    ),
+    body14R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14.0,
+        height: 20.0 / 14.0,
+      ),
+    ),
+    body14L: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 14.0,
+        height: 20.0 / 14.0,
+      ),
+    ),
+    body14I: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14.0,
+        height: 20.0 / 14.0,
+        fontStyle: FontStyle.italic,
+      ),
+    ),
+    caption12M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+        height: 16.0 / 12.0,
+      ),
+    ),
+    caption12R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 12.0,
+        height: 16.0 / 12.0,
+      ),
+    ),
+    caption12L: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w300,
+        fontSize: 12.0,
+        height: 16.0 / 12.0,
+      ),
+    ),
+    caption10X: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 10.0,
+        height: 10.0 / 10.0,
+      ),
+    ),
+    caption10R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 10.0,
+        height: 12.0 / 10.0,
+      ),
+    ),
+    caption8R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 8.0,
+        height: 10.0 / 8.0,
+      ),
+    ),
+    caption8M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 8.0,
+        height: 10.0 / 8.0,
+      ),
+    ),
+    button16M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 16.0,
+        height: 20.0 / 16.0,
+      ),
+    ),
+    button16R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 16.0,
+        height: 20.0 / 16.0,
+      ),
+    ),
+    button14M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 14.0,
+        height: 16.0 / 14.0,
+      ),
+    ),
+    button14R: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w400,
+        fontSize: 14.0,
+        height: 16.0 / 14.0,
+      ),
+    ),
+    button12M: ThemedTextStyle(
+      UI.dark,
+      const TextStyle(
+        fontFamily: 'Roboto',
+        fontWeight: FontWeight.w500,
+        fontSize: 12.0,
+        height: 20.0 / 12.0,
+      ),
+    ),
+  );
+}
+
+class UIFonts extends ThemeExtension<UIFonts> {
+  final UIFontsManrope manrope;
+  final UIFontsRoboto roboto;
+
+  const UIFonts({required this.manrope, required this.roboto});
+
+  @override
+  UIFonts copyWith({UIFontsManrope? manrope, UIFontsRoboto? roboto}) {
+    return UIFonts(manrope: manrope ?? this.manrope, roboto: roboto ?? this.roboto);
   }
 
   @override
   UIFonts lerp(ThemeExtension<UIFonts>? other, double t) {
     if (other is! UIFonts) return this;
-    return UIFonts(manrope: manrope.lerp(other.manrope, t));
+    return UIFonts(manrope: manrope.lerp(other.manrope, t), roboto: roboto.lerp(other.roboto, t));
   }
 
-  static final UIFonts light = UIFonts(manrope: UIFontsManrope.light);
-  static final UIFonts dark = UIFonts(manrope: UIFontsManrope.dark);
+  static final UIFonts light = UIFonts(manrope: UIFontsManrope.light, roboto: UIFontsRoboto.light);
+  static final UIFonts dark = UIFonts(manrope: UIFontsManrope.dark, roboto: UIFontsRoboto.dark);
 }

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="blue" type="fonts, icons">#0A70E9</color>
+    <color name="blueLight">#E7F1FD</color>
+    <color name="blueDark">#84BCFF</color>
+    <color name="green" type="fonts, icons">#388E3C</color>
+    <color name="greenLight">#EBF4EB</color>
+    <color name="greenDark">#75CD79</color>
+    <color name="orange" type="fonts, icons">#EDB431</color>
+    <color name="orangeLight">#FDF7EA</color>
+    <color name="orangeDark">#FFE2A2</color>
+    <color name="red" type="fonts, icons">#E64B4F</color>
+    <color name="redLight">#FCEDED</color>
+    <color name="redDark">#FF9EA0</color>
+</resources>

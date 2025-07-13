@@ -86,8 +86,7 @@ class ValueParser {
         return TokenValue(
           tokenType: token.config.className,
           // TODO(vaniapril): name.value ???
-          tokenName:
-              token.config.classType == TokenClassType.enum_ ? '$name.value' : name,
+          tokenName: token.config.classType == TokenClassType.enum_ ? '$name.value' : name,
           innerValue: field.values.values.first,
           flags: flags,
           additionalImports: token.import,
@@ -206,7 +205,13 @@ class ValueParser {
     final weight = _parseInt(args[1]);
     final size = _parseDouble(args[2]);
     final height = _parseDouble(args[3]);
-    final spacing = args.length > 4 ? _parseDouble(args[4]) : null;
+    Value? spacing;
+    try {
+      spacing = args.length > 4 ? _parseDouble(args[4]) : null;
+    } catch (_) {
+      spacing = null;
+    }
+    final italic = args.last == 'italic';
 
     return TextStyleValue(
       family: family,
@@ -215,6 +220,7 @@ class ValueParser {
       size: size,
       height: height,
       spacing: spacing,
+      italic: italic,
     );
   }
 

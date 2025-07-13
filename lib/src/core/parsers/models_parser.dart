@@ -52,7 +52,7 @@ class ModelsParser {
                 // TODO(vaniapril): refactor
                 return Field(
                   name: e.name,
-                  path: [...path, folder.name],
+                  path: [...path, folder.name, e.name],
                   valueType: value.type,
                   values: {element.name: value},
                 );

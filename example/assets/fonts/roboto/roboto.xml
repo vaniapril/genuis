@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--Title-->
+    <font name="title48S">'Roboto' 600 48px 64px</font>
+    <font name="title40L">'Roboto' 300 40px 48px</font>
+    <font name="title34X">'Roboto' 500 34px 34px</font>
+    <font name="title34M">'Roboto' 500 34px 48px</font>
+    <font name="title34L">'Roboto' 300 34px 48px</font>
+    <font name="title26M">'Roboto' 500 26px 32px</font>
+    <font name="title26R">'Roboto' 400 26px 32px</font>
+    <font name="title26L">'Roboto' 300 26px 32px</font>
+    <font name="title20S">'Roboto' 600 20px 30px</font>
+    <font name="title20M">'Roboto' 500 20px 30px</font>
+    <font name="title20R">'Roboto' 400 20px 30px</font>
+    <font name="title20L">'Roboto' 300 20px 30px</font>
+    <font name="title18M">'Roboto' 500 18px 28px</font>
+    <font name="title18R">'Roboto' 400 18px 28px</font>
+    <font name="title18L">'Roboto' 300 18px 28px</font>
+    <!--Body-->
+    <font name="body16M">'Roboto' 500 16px 24px</font>
+    <font name="body16R">'Roboto' 400 16px 24px</font>
+    <font name="body16L">'Roboto' 300 16px 24px</font>
+    <font name="body14M">'Roboto' 500 14px 20px</font>
+    <font name="body14R">'Roboto' 400 14px 20px</font>
+    <font name="body14L">'Roboto' 300 14px 20px</font>
+    <font name="body14I">'Roboto' 400 14px 20px italic</font>
+    <!--Caption-->
+    <font name="caption12M">'Roboto' 500 12px 16px</font>
+    <font name="caption12R">'Roboto' 400 12px 16px</font>
+    <font name="caption12L">'Roboto' 300 12px 16px</font>
+    <font name="caption10X">'Roboto' 400 10px 10px</font>
+    <font name="caption10R">'Roboto' 400 10px 12px</font>
+    <font name="caption8R">'Roboto' 400 8px 10px</font>
+    <font name="caption8M">'Roboto' 500 8px 10px</font>
+    <!--Button-->
+    <font name="button16M">'Roboto' 500 16px 20px</font>
+    <font name="button16R">'Roboto' 400 16px 20px</font>
+    <font name="button14M">'Roboto' 500 14px 16px</font>
+    <font name="button14R">'Roboto' 400 14px 16px</font>
+    <font name="button12M">'Roboto' 500 12px 20px</font>
+</resources>

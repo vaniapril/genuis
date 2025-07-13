@@ -2,17 +2,22 @@ import 'dart:io';
 
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
+import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
+import 'package:genuis/src/core/parsers/file/xml_file_parser.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 import 'package:path/path.dart';
 
 class NodesParser {
-  final FileParser? fileParser;
+  final bool parseFiles;
   final String path;
+
+  final FileParser jsonParser = JsonFileParser();
+  final FileParser xmlParser = XmlFileParser();
 
   NodesParser({
     required this.path,
-    this.fileParser,
+    required this.parseFiles,
   });
 
   Folder parse() {
@@ -66,7 +71,8 @@ class NodesParser {
           ),
         );
       }
-      if (entity is File && (fileParser?.canParse(entity) ?? true)) {
+      if (entity is File &&
+          (!parseFiles || jsonParser.canParse(entity) || xmlParser.canParse(entity))) {
         nodes.add(_parseFile(entity));
       }
     }
@@ -77,8 +83,14 @@ class NodesParser {
   Node _parseFile(File file) {
     final names = file.name.split('-').map((e) => e.camelCase.named).toList();
 
-    Node node = fileParser != null
-        ? Folder(name: names.last, nodes: fileParser?.parse(file) ?? [])
+    Node node = parseFiles
+        ? Folder(
+            name: names.last,
+            nodes: jsonParser.canParse(file)
+                ? jsonParser.parse(file)
+                : xmlParser.canParse(file)
+                    ? xmlParser.parse(file)
+                    : [])
         : Item(
             name: names.last,
             value: relative(file.path, from: path).forwardSlash,

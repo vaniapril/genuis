@@ -6,4 +6,9 @@ class Flag {
     required this.name,
     this.value,
   });
+
+  @override
+  String toString() {
+    return '$name:$value';
+  }
 }
