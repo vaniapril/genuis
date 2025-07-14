@@ -31,6 +31,39 @@ class MyWidget extends StatelessWidget {
 
 ## Config
 
+```yaml
+assets_path: assets/
+output_path: lib/ui/
+themes:
+  - light
+  - dark
+base_theme: base
+default_theme: false
+class_type: theme_extension
+from_json_method: false
+dart_line_length: 100
+class_name: UI
+value_name: ui
+
+tokens:
+  - <token_name>:
+      type: asset
+      path: <token_name>.json
+      class_name: <token_name>
+      class_type: static
+      value_name: value
+
+modules:
+  - <module_name>:
+      type: asset
+      path: <module_name>/
+      token_class_type: null
+      token_class_name: <module_name>Token
+      color: false
+      color_class_name: null
+```
+
+
 
 ## Types
 Package support next types:

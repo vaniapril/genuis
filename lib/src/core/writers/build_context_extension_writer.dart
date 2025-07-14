@@ -1,8 +1,8 @@
-import 'package:genuis/src/config/genuis_config.dart';
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/module.dart';
 
 class BuildContextExtensionWriter {
-  final GenuisConfig config;
+  final Config config;
 
   BuildContextExtensionWriter({
     required this.config,

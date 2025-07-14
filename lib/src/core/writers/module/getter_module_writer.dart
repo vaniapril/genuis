@@ -1,9 +1,9 @@
-import 'package:genuis/src/config/genuis_config.dart';
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GetterModuleWriter {
-  final GenuisConfig config;
+  final Config config;
 
   const GetterModuleWriter({
     required this.config,

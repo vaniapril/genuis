@@ -2,7 +2,7 @@ import 'package:genuis/src/config/module_config.dart';
 import 'package:genuis/src/config/token_config.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 
-class GenuisConfig {
+class Config {
   String assetsPath;
   String outputPath;
   List<String> themes;
@@ -17,7 +17,7 @@ class GenuisConfig {
   List<TokenConfig> tokens;
   List<ModuleConfig> modules;
 
-  GenuisConfig({
+  Config({
     required this.assetsPath,
     required this.outputPath,
     required this.themes,

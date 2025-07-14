@@ -1,8 +1,8 @@
-import 'package:genuis/src/config/genuis_config.dart';
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 
 class ThemeExtensionModuleWriter {
-  final GenuisConfig config;
+  final Config config;
 
   const ThemeExtensionModuleWriter({
     required this.config,

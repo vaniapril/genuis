@@ -1,11 +1,11 @@
-import 'package:genuis/src/config/genuis_config.dart';
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class ModelsParser {
-  final GenuisConfig config;
+  final Config config;
   final Folder root;
 
   final Value Function(String value) mapper;

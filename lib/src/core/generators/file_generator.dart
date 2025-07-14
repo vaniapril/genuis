@@ -1,7 +1,7 @@
-import 'package:genuis/src/config/genuis_config.dart';
+import 'package:genuis/src/config/config.dart';
 
 abstract class FileGenerator {
-  final GenuisConfig config;
+  final Config config;
 
   const FileGenerator({
     required this.config,

@@ -1,4 +1,4 @@
-import 'package:genuis/src/config/genuis_config.dart';
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
@@ -21,7 +21,7 @@ import 'package:genuis/src/utils/list_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GenuisCore {
-  final GenuisConfig config;
+  final Config config;
 
   GenuisCore({
     required this.config,

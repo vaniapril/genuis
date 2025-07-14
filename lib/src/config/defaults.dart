@@ -1,3 +1,4 @@
+import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/utils/string_extension.dart';
@@ -15,10 +16,11 @@ abstract class Defaults {
   static const mainGetterName = 'ui';
   static const baseTheme = 'base';
   //Module
+  static const moduleType = ElementType.asset;
   static const moduleColor = false;
   static const moduleOptional = false;
-  static String modulePathFrom(String assetPath, String name) {
-    return '$assetPath/$name/';
+  static String modulePathFrom(String name) {
+    return '${name.snakeCase}/';
   }
 
   static String moduleTokenClassName(String name) {
@@ -26,10 +28,11 @@ abstract class Defaults {
   }
 
   //Token
+  static const tokenType = ElementType.color;
   static const tokenClassType = TokenClassType.static_;
   static const tokenValueName = 'value';
-  static String tokenPathFrom(String assetPath, String name) {
-    return '$assetPath/$name.json';
+  static String tokenPathFrom(String name) {
+    return '${name.snakeCase}.json';
   }
 
   static String tokenClassName(String name) {

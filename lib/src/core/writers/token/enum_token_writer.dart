@@ -1,10 +1,10 @@
-import 'package:genuis/src/config/genuis_config.dart';
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class EnumTokenWriter {
-  final GenuisConfig config;
+  final Config config;
   final String className;
   final String valueType;
   final String valueName;

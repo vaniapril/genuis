@@ -14,7 +14,6 @@ value_name: ui
 tokens:
   - colors:
       type: color
-      path: colors.json
       class_name: AppColors
       class_type: enum
       value_name: value
@@ -36,7 +35,6 @@ modules:
   
   - colors:
       type: color
-      path: colors/
 
   - fonts:
       type: font
