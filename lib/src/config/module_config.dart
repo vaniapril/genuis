@@ -10,7 +10,6 @@ class ModuleConfig {
   final String tokenValueName;
   final bool color;
   final String? colorClassName;
-  final bool optional;
 
   ModuleConfig({
     required this.name,
@@ -21,6 +20,5 @@ class ModuleConfig {
     required this.tokenValueName,
     required this.color,
     required this.colorClassName,
-    required this.optional,
   });
 }

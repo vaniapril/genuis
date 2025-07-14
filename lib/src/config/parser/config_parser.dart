@@ -61,7 +61,6 @@ abstract class ConfigParser {
           final tokenValueName = _get<String>(map, 'token_value_name') ?? Defaults.tokenValueName;
           final color = _get<bool>(map, 'color') ?? Defaults.moduleColor;
           final colorClassName = _get<String>(map, 'color_class_name');
-          final optional = _get<bool>(map, 'optional') ?? Defaults.moduleOptional;
 
           return ModuleConfig(
             name: name,
@@ -72,7 +71,6 @@ abstract class ConfigParser {
             tokenValueName: tokenValueName,
             color: color,
             colorClassName: colorClassName,
-            optional: optional,
           );
         }).toList() ??
         [];

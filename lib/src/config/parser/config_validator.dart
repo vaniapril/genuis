@@ -68,8 +68,6 @@ abstract class ConfigValidator {
       }
       // colorClassName
       _validateClassName(config.className);
-      // optional
-      // -
     }
   }
 
