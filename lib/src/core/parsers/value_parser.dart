@@ -54,6 +54,7 @@ class ValueParser {
       ElementType.shadow => _parseShadow(args),
       ElementType.asset => _parseAsset(args),
       ElementType.number => _parseNumber(args),
+      ElementType.string => _parseString(value),
     };
   }
 
@@ -163,12 +164,12 @@ class ValueParser {
       return _parseToken<StringValue>(value);
     }
 
-    if (!value.startsWith("'") || !value.endsWith("'")) {
-      throw 'Invalid string value: $value';
+    if (value.startsWith("'") && value.endsWith("'") || value.startsWith('"') && value.endsWith('"')) {
+      value = value.substring(1, value.length - 1);
     }
 
     return StringValue(
-      value: value.substring(1, value.length - 1),
+      value: value,
     );
   }
 

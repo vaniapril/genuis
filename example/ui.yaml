@@ -23,6 +23,11 @@ tokens:
       path: heights.json
       class_name: AppHeights
       value_name: value
+  - strings:
+      type: string
+      path: strings.xml
+      class_name: AppStrings
+      value_name: value
 
 modules:
   - blurs:

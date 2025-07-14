@@ -41,7 +41,7 @@ class JsonFileParser extends FileParser {
         nodes.addAll(
           entity.map(
             (e) => Item(
-              name: key + e.toString(),
+              name: key.camelCase.named + e.toString(),
               value: e.toString(),
             ),
           ),

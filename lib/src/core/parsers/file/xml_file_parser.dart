@@ -29,9 +29,10 @@ class XmlFileParser extends FileParser {
 
     for (final element in xml.childElements) {
       final name = element.getAttribute('name'); // ?? element.name.local;
+      final type = element.getAttribute('type')?.split(',').join(' ');
       final children = element.childElements;
       final value =
-          element.innerText.isEmpty ? '' : '${element.innerText} ${(element.getAttribute('type') ?? '').split(',').join(' ')}';
+          element.innerText.isEmpty ? '' : '${element.innerText}${type != null ? ' $type' : ''}';
 
       if (name != null && children.isNotEmpty && value.isEmpty) {
         nodes.add(Folder(
@@ -43,7 +44,7 @@ class XmlFileParser extends FileParser {
       if (name == null && children.isEmpty && value.isNotEmpty) {
         nodes.add(
           Item(
-            name: (xml.getAttribute('name') ?? '') + value.toString(),
+            name: ('${xml.getAttribute('name') ?? ''} $value').camelCase.named,
             value: value.toString(),
           ),
         );

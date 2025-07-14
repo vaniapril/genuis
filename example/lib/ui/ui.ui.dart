@@ -13,6 +13,7 @@ import 'images.ui.dart';
 import 'shadows.ui.dart';
 import 'token_colors.ui.dart';
 import 'token_heights.ui.dart';
+import 'token_strings.ui.dart';
 import 'package:flutter/material.dart';
 
 export 'blurs.ui.dart';
@@ -23,6 +24,7 @@ export 'images.ui.dart';
 export 'shadows.ui.dart';
 export 'token_colors.ui.dart';
 export 'token_heights.ui.dart';
+export 'token_strings.ui.dart';
 export 'build_context_extension.ui.dart';
 
 class UI extends ThemeExtension<UI> {

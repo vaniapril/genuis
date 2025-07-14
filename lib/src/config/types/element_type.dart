@@ -4,7 +4,8 @@ enum ElementType {
   font,
   asset,
   shadow,
-  number;
+  number,
+  string;
 
   static ElementType? tryParse(String value) {
     return switch (value) {
@@ -14,6 +15,7 @@ enum ElementType {
       'asset' => ElementType.asset,
       'shadow' => ElementType.shadow,
       'number' => ElementType.number,
+      'string' => ElementType.string,
       _ => null,
     };
   }
