@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/types/element_type.dart';
 
@@ -72,22 +74,32 @@ abstract class ConfigValidator {
   }
 
   static void _validateFolderPath(String value, {bool checkExists = true}) {
-    // TODO(vaniapril):
+    if (!Directory(value).existsSync() && !checkExists) {
+      throw Exception('Folder does not exist: $value');
+    }
   }
 
   static void _validateFilePath(String value) {
-    // TODO(vaniapril):
+    if (!File(value).existsSync()) {
+      throw Exception('File does not exist: $value');
+    }
   }
 
   static void _validateName(String value) {
-    // TODO(vaniapril):
+    if (value.isEmpty) {
+      throw Exception('Invalid name: $value');
+    }
   }
 
   static void _validateClassName(String value) {
-    // TODO(vaniapril):
+    if (value.isEmpty) {
+      throw Exception('Invalid className: $value');
+    }
   }
 
   static void _validateFieldName(String value) {
-    // TODO(vaniapril):
+    if (value.isEmpty) {
+      throw Exception('Invalid fieldName: $value');
+    }
   }
 }
