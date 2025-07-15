@@ -12,8 +12,8 @@ abstract class Defaults {
   static const classType = GenuisClassType.themeExtension;
   static const fromJsonMethod = true;
   static const dartLineLength = 100;
-  static const mainClassName = 'UI';
-  static const mainGetterName = 'ui';
+  static const className = 'UI';
+  static const fieldName = 'ui';
   static const baseTheme = 'base';
   //Module
   static const moduleType = ElementType.asset;
@@ -30,7 +30,7 @@ abstract class Defaults {
   //Token
   static const tokenType = ElementType.color;
   static const tokenClassType = TokenClassType.static_;
-  static const tokenValueName = 'value';
+  static const tokenFieldName = 'value';
   static String tokenPathFrom(String name) {
     return '${name.snakeCase}.json';
   }

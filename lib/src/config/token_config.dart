@@ -7,7 +7,7 @@ class TokenConfig {
   ElementType type;
   TokenClassType classType;
   String className;
-  String valueName;
+  String fieldName;
 
   TokenConfig({
     required this.name,
@@ -15,6 +15,6 @@ class TokenConfig {
     required this.type,
     required this.classType,
     required this.className,
-    required this.valueName,
+    required this.fieldName,
   });
 }

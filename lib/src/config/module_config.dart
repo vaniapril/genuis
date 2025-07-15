@@ -7,7 +7,7 @@ class ModuleConfig {
   final ElementType type;
   final TokenClassType? tokenClassType;
   final String tokenClassName;
-  final String tokenValueName;
+  final String tokenFieldName;
   final bool color;
   final String? colorClassName;
 
@@ -17,7 +17,7 @@ class ModuleConfig {
     required this.type,
     required this.tokenClassType,
     required this.tokenClassName,
-    required this.tokenValueName,
+    required this.tokenFieldName,
     required this.color,
     required this.colorClassName,
   });

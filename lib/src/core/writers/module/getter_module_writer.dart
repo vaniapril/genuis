@@ -27,11 +27,11 @@ class GetterModuleWriter {
 
   void _writeMainInheritedWidgetClass(StringBuffer buffer, Class mainClass) {
     buffer.writeln('class ${mainClass.type}Widget extends InheritedWidget {');
-    buffer.writeln('final ${mainClass.type} ${config.valueName};');
+    buffer.writeln('final ${mainClass.type} ${config.fieldName};');
     buffer.writeln();
     buffer.writeln('const  ${mainClass.type}Widget({');
     buffer.writeln('super.key,');
-    buffer.writeln('required this.${config.valueName},');
+    buffer.writeln('required this.${config.fieldName},');
     buffer.writeln('required super.child,');
     buffer.writeln('});');
     buffer.writeln();
@@ -41,14 +41,14 @@ class GetterModuleWriter {
     buffer.writeln();
     buffer.writeln('@override');
     buffer.writeln(
-        'bool updateShouldNotify(${mainClass.type}Widget oldWidget) => ${config.valueName} != oldWidget.${config.valueName};');
+        'bool updateShouldNotify(${mainClass.type}Widget oldWidget) => ${config.fieldName} != oldWidget.${config.fieldName};');
     buffer.writeln('}');
   }
 
   void _writeMainClassFactory(StringBuffer buffer, Class mainClass) {
     buffer.writeln('factory ${mainClass.type}.of(BuildContext context) {');
     buffer.writeln(
-        'return ${mainClass.type}Widget.of(context)?.${config.valueName} ?? ${mainClass.type}.${mainClass.themes.first};');
+        'return ${mainClass.type}Widget.of(context)?.${config.fieldName} ?? ${mainClass.type}.${mainClass.themes.first};');
     buffer.writeln('}');
   }
 

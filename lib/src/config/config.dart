@@ -12,7 +12,7 @@ class Config {
   bool fromJsonMethod;
   int dartLineLength;
   String className;
-  String valueName;
+  String fieldName;
 
   List<TokenConfig> tokens;
   List<ModuleConfig> modules;
@@ -27,7 +27,7 @@ class Config {
     required this.dartLineLength,
     required this.baseTheme,
     required this.className,
-    required this.valueName,
+    required this.fieldName,
     required this.tokens,
     required this.modules,
   });

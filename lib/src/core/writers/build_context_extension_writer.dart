@@ -11,11 +11,11 @@ class BuildContextExtensionWriter {
   void write(StringBuffer buffer, List<Module> modules) {
     buffer.writeln('extension ${config.className}BuildContextExtension on BuildContext {');
     buffer.writeln(
-        '${config.className} get ${config.valueName} => ${config.className}.of(this);');
+        '${config.className} get ${config.fieldName} => ${config.className}.of(this);');
 
     for (final module in modules) {
       buffer.writeln(
-          '${module.rootClass.classType} get ${module.config.name} => ${config.valueName}.${module.config.name};');
+          '${module.rootClass.classType} get ${module.config.name} => ${config.fieldName}.${module.config.name};');
     }
 
     buffer.writeln('}');

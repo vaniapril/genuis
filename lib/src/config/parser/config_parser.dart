@@ -25,8 +25,8 @@ abstract class ConfigParser {
     final classType = _getType(map, 'class_type', GenuisClassType.tryParse) ?? Defaults.classType;
     final fromJsonMethod = _get<bool>(map, 'from_json_method') ?? Defaults.fromJsonMethod;
     final dartLineLength = _get<int>(map, 'dart_line_length') ?? Defaults.dartLineLength;
-    final className = _get<String>(map, 'class_name') ?? Defaults.mainClassName;
-    final valueName = _get<String>(map, 'value_name') ?? Defaults.mainGetterName;
+    final className = _get<String>(map, 'class_name') ?? Defaults.className;
+    final fieldName = _get<String>(map, 'field_name') ?? Defaults.fieldName;
     final baseTheme = _get<String>(map, 'base_theme') ?? Defaults.baseTheme;
 
     final tokens = _getList<YamlMap>(map, 'tokens')?.map((e) {
@@ -37,7 +37,7 @@ abstract class ConfigParser {
           final classType =
               _getType(map, 'class_type', TokenClassType.tryParse) ?? Defaults.tokenClassType;
           final className = _get<String>(map, 'class_name') ?? Defaults.tokenClassName(name);
-          final valueName = _get<String>(map, 'value_name') ?? Defaults.tokenValueName;
+          final fieldName = _get<String>(map, 'field_name') ?? Defaults.tokenFieldName;
 
           return TokenConfig(
             name: name,
@@ -45,7 +45,7 @@ abstract class ConfigParser {
             type: type,
             classType: classType,
             className: className,
-            valueName: valueName,
+            fieldName: fieldName,
           );
         }).toList() ??
         [];
@@ -58,7 +58,7 @@ abstract class ConfigParser {
           final tokenClassType = _getType(map, 'token_class_type', TokenClassType.tryParse);
           final tokenClassName =
               _get<String>(map, 'token_class_name') ?? Defaults.moduleTokenClassName(name);
-          final tokenValueName = _get<String>(map, 'token_value_name') ?? Defaults.tokenValueName;
+          final tokenFieldName = _get<String>(map, 'token_field_name') ?? Defaults.tokenFieldName;
           final color = _get<bool>(map, 'color') ?? Defaults.moduleColor;
           final colorClassName = _get<String>(map, 'color_class_name');
 
@@ -68,7 +68,7 @@ abstract class ConfigParser {
             type: type,
             tokenClassType: tokenClassType,
             tokenClassName: tokenClassName,
-            tokenValueName: tokenValueName,
+            tokenFieldName: tokenFieldName,
             color: color,
             colorClassName: colorClassName,
           );
@@ -84,13 +84,13 @@ abstract class ConfigParser {
       fromJsonMethod: fromJsonMethod,
       dartLineLength: dartLineLength,
       className: className,
-      valueName: valueName,
+      fieldName: fieldName,
       baseTheme: baseTheme,
       tokens: tokens,
       modules: modules,
     );
 
-    ConfigValidator.validate(config);
+    ConfigValidator(config).validate();
 
     return config;
   }

@@ -43,7 +43,7 @@ class_type: theme_extension
 from_json_method: false
 dart_line_length: 100
 class_name: UI
-value_name: ui
+field_name: ui
 
 tokens:
   - <token_name>:
@@ -51,7 +51,7 @@ tokens:
       path: <token_name>.json
       class_name: <token_name>
       class_type: static
-      value_name: value
+      field_name: value
 
 modules:
   - <module_name>:

@@ -27,7 +27,7 @@ class TokensGenerator extends FileGenerator {
           config: config,
           className: token.config.className,
           valueType: token.fields.first.type,
-          valueName: token.config.valueName,
+          valueName: token.config.fieldName,
         ).write(
           buffer,
           token.fields,

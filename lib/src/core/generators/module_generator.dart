@@ -51,7 +51,7 @@ class ModuleGenerator extends FileGenerator {
             config: config,
             className: module.config.tokenClassName,
             valueType: module.enumFields.first.valueType,
-            valueName: module.config.tokenValueName,
+            valueName: module.config.tokenFieldName,
           ).write(
             buffer,
             module.enumFields,

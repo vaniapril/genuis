@@ -9,24 +9,24 @@ class_type: theme_extension
 from_json_method: false
 dart_line_length: 100
 class_name: UI
-value_name: ui
+field_name: ui
 
 tokens:
   - colors:
       type: color
       class_name: AppColors
       class_type: enum
-      value_name: value
+      field_name: value
   - heights:
       type: number
       path: heights.json
       class_name: AppHeights
-      value_name: value
+      field_name: value
   - strings:
       type: string
       path: strings.xml
       class_name: AppStrings
-      value_name: value
+      field_name: value
 
 modules:
   - blurs:
