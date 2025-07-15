@@ -12,53 +12,53 @@ class ThemeExtensionModuleWriter {
     _writeClassWithSubclasses(buffer, root);
   }
 
-  void writeMainClass(StringBuffer buffer, Class mainClass) {
-    buffer.writeln('class ${mainClass.type} extends ThemeExtension<${mainClass.type}> {');
-    _writeClassBody(buffer, mainClass);
+  void writeMainClass(StringBuffer buffer, Class class_) {
+    buffer.writeln('class ${class_.type} extends ThemeExtension<${class_.type}> {');
+    _writeClassBody(buffer, class_);
     buffer.writeln();
-    _writeMainClassFactory(buffer, mainClass);
+    _writeMainClassFactory(buffer, class_);
     buffer.writeln('}');
   }
 
-  void _writeMainClassFactory(StringBuffer buffer, Class mainClass) {
-    buffer.writeln('factory ${mainClass.type}.of(BuildContext context) {');
+  void _writeMainClassFactory(StringBuffer buffer, Class class_) {
+    buffer.writeln('factory ${class_.type}.of(BuildContext context) {');
     buffer.writeln(
-        'return Theme.of(context).extension<${mainClass.type}>() ?? ${mainClass.type}.${mainClass.themes.first};');
+        'return Theme.of(context).extension<${class_.type}>() ?? ${class_.type}.${_theme(class_.themes.first)};');
     buffer.writeln('}');
   }
 
-  void _writeClassWithSubclasses(StringBuffer buffer, Class folder) {
-    for (final model in folder.classes) {
+  void _writeClassWithSubclasses(StringBuffer buffer, Class class_) {
+    for (final model in class_.classes) {
       _writeClassWithSubclasses(buffer, model);
     }
-    buffer.writeln('class ${folder.type} extends ThemeExtension<${folder.type}> {');
-    _writeClassBody(buffer, folder);
+    buffer.writeln('class ${class_.type} extends ThemeExtension<${class_.type}> {');
+    _writeClassBody(buffer, class_);
     buffer.writeln('}');
   }
 
-  void _writeClassBody(StringBuffer buffer, Class folder) {
-    _writeFields(folder, buffer);
+  void _writeClassBody(StringBuffer buffer, Class class_) {
+    _writeFields(buffer, class_);
     buffer.writeln();
-    _writeConstructor(buffer, folder);
+    _writeConstructor(buffer, class_);
     buffer.writeln();
-    _writeCopyWithMethod(buffer, folder);
+    _writeCopyWithMethod(buffer, class_);
     buffer.writeln();
-    _writeLerpMethod(buffer, folder);
+    _writeLerpMethod(buffer, class_);
     buffer.writeln();
-    _writeThemes(buffer, folder);
+    _writeThemes(buffer, class_);
   }
 
-  void _writeFields(Class folder, StringBuffer buffer) {
-    for (final model in folder.nodes) {
+  void _writeFields(StringBuffer buffer, Class class_) {
+    for (final model in class_.nodes) {
       buffer.writeln('final ${model.type} ${model.name};');
     }
   }
 
-  void _writeConstructor(StringBuffer buffer, Class folder) {
-    buffer.writeln('const ${folder.type}(');
-    if (folder.nodes.isNotEmpty) {
+  void _writeConstructor(StringBuffer buffer, Class class_) {
+    buffer.writeln('const ${class_.type}(');
+    if (class_.nodes.isNotEmpty) {
       buffer.writeln('{');
-      for (final model in folder.nodes) {
+      for (final model in class_.nodes) {
         buffer.writeln('required this.${model.name},');
       }
       buffer.writeln('}');
@@ -66,31 +66,31 @@ class ThemeExtensionModuleWriter {
     buffer.writeln(');');
   }
 
-  void _writeCopyWithMethod(StringBuffer buffer, Class folder) {
+  void _writeCopyWithMethod(StringBuffer buffer, Class class_) {
     buffer.writeln('@override');
-    buffer.writeln('${folder.type} copyWith(');
-    if (folder.nodes.isNotEmpty) {
+    buffer.writeln('${class_.type} copyWith(');
+    if (class_.nodes.isNotEmpty) {
       buffer.writeln('{');
-      for (final model in folder.nodes) {
+      for (final model in class_.nodes) {
         buffer.writeln('${model.type}? ${model.name},');
       }
       buffer.writeln('}');
     }
     buffer.writeln(') {');
-    buffer.writeln('return ${folder.type}(');
-    for (final model in folder.nodes) {
+    buffer.writeln('return ${class_.type}(');
+    for (final model in class_.nodes) {
       buffer.writeln('${model.name}: ${model.name} ?? this.${model.name},');
     }
     buffer.writeln(');');
     buffer.writeln('}');
   }
 
-  void _writeLerpMethod(StringBuffer buffer, Class folder) {
+  void _writeLerpMethod(StringBuffer buffer, Class class_) {
     buffer.writeln('@override');
-    buffer.writeln('${folder.type} lerp(ThemeExtension<${folder.type}>? other, double t) {');
-    buffer.writeln('if (other is! ${folder.type}) return this;');
-    buffer.writeln('return ${folder.type}(');
-    for (final model in folder.nodes) {
+    buffer.writeln('${class_.type} lerp(ThemeExtension<${class_.type}>? other, double t) {');
+    buffer.writeln('if (other is! ${class_.type}) return this;');
+    buffer.writeln('return ${class_.type}(');
+    for (final model in class_.nodes) {
       buffer.writeln(
         '${model.name}:${model.lerpCode(model.name, 'other.${model.name}')},',
       );
@@ -99,13 +99,15 @@ class ThemeExtensionModuleWriter {
     buffer.writeln('}');
   }
 
-  void _writeThemes(StringBuffer buffer, Class folder) {
-    for (final theme in folder.themes) {
-      buffer.writeln('static final ${folder.type} $theme = ${folder.type}(');
-      for (final model in folder.nodes) {
-        buffer.writeln('${model.name}: ${model.value(theme)},');
+  void _writeThemes(StringBuffer buffer, Class class_) {
+    for (final theme in class_.themes) {
+      buffer.writeln('static final ${class_.type} ${_theme(theme)} = ${class_.type}(');
+      for (final model in class_.nodes) {
+        buffer.writeln('${model.name}: ${model.value(theme, config.baseTheme)},');
       }
       buffer.writeln(');');
     }
   }
+
+  String _theme(String theme) => theme.isEmpty ? config.baseTheme : theme;
 }

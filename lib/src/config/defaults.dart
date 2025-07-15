@@ -8,7 +8,6 @@ abstract class Defaults {
   static const assetsPath = 'assets/';
   static const outputPath = 'lib/ui/';
   static const themes = ['light', 'dark'];
-  static const defaultTheme = false;
   static const classType = GenuisClassType.themeExtension;
   static const fromJsonMethod = true;
   static const dartLineLength = 100;
@@ -24,7 +23,7 @@ abstract class Defaults {
   }
 
   static String moduleTokenClassName(String name) {
-    return '${name}_Token'.named.camelCase;
+    return '${name}_Token'.named.camelCase.upperFirst;
   }
 
   //Token
@@ -36,6 +35,6 @@ abstract class Defaults {
   }
 
   static String tokenClassName(String name) {
-    return name.named.camelCase;
+    return name.named.camelCase.upperFirst;
   }
 }

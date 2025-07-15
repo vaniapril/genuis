@@ -8,6 +8,8 @@ import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/config/defaults.dart';
+import 'package:genuis/src/utils/exceptions.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 import 'package:yaml/yaml.dart';
 
 abstract class ConfigParser {
@@ -18,10 +20,9 @@ abstract class ConfigParser {
   }
 
   static Config _configFromYaml(YamlMap map) {
-    final assetsPath = _get<String>(map, 'assets_path') ?? Defaults.assetsPath;
-    final outputPath = _get<String>(map, 'output_path') ?? Defaults.outputPath;
+    final assetsPath = _get<String>(map, 'assets_path')?.asFolderPath ?? Defaults.assetsPath;
+    final outputPath = _get<String>(map, 'output_path')?.asFolderPath ?? Defaults.outputPath;
     final themes = _getList<String>(map, 'themes') ?? Defaults.themes;
-    final defaultTheme = _get<bool>(map, 'default_theme') ?? Defaults.defaultTheme;
     final classType = _getType(map, 'class_type', GenuisClassType.tryParse) ?? Defaults.classType;
     final fromJsonMethod = _get<bool>(map, 'from_json_method') ?? Defaults.fromJsonMethod;
     final dartLineLength = _get<int>(map, 'dart_line_length') ?? Defaults.dartLineLength;
@@ -40,7 +41,7 @@ abstract class ConfigParser {
           final fieldName = _get<String>(map, 'field_name') ?? Defaults.tokenFieldName;
 
           return TokenConfig(
-            name: name,
+            name: name.snakeCase,
             path: path,
             type: type,
             classType: classType,
@@ -63,7 +64,7 @@ abstract class ConfigParser {
           final colorClassName = _get<String>(map, 'color_class_name');
 
           return ModuleConfig(
-            name: name,
+            name: name.snakeCase,
             path: path,
             type: type,
             tokenClassType: tokenClassType,
@@ -79,7 +80,6 @@ abstract class ConfigParser {
       assetsPath: assetsPath,
       outputPath: outputPath,
       themes: themes,
-      defaultTheme: defaultTheme,
       classType: classType,
       fromJsonMethod: fromJsonMethod,
       dartLineLength: dartLineLength,
@@ -98,35 +98,35 @@ abstract class ConfigParser {
   static T? _get<T>(YamlMap map, String name) {
     final value = map[name];
     if (value == null) return null;
-    if (value is! T) throw Exception('$name must be a $T');
+    if (value is! T) throw ConfigValueTypeException(value, name, '$T');
     return value;
   }
 
   static T? _getType<T>(YamlMap map, String name, T? Function(String value) tryParse) {
     final value = map[name];
     if (value == null) return null;
-    if (value is! String) throw Exception('$name must be a String');
+    if (value is! String) throw ConfigValueTypeException(value, name, 'String');
     final type = tryParse(value);
-    if (type == null) throw Exception('Invalid type "$value"');
+    if (type == null) throw ConfigParseValueException(value, name);
     return type;
   }
 
   static List<T>? _getList<T>(YamlMap map, String name) {
     final value = map[name];
     if (value == null) return null;
-    if (value is! YamlList) throw Exception('$name must be a list of $T');
+    if (value is! YamlList) throw ConfigValueTypeException(value, name, 'List of $T');
     return value.map((e) {
-      if (e is! T) throw Exception('$name must be a list of $T');
+      if (e is! T) throw ConfigValueTypeException(value, name, 'List of $T');
       return e;
     }).toList();
   }
 
   static (String, YamlMap) _getEntry(YamlMap map) {
-    if (map.keys.length != 1) throw Exception('Invalid config');
+    if (map.keys.length != 1) throw const ConfigInvalidStructureException();
     final key = map.keys.first;
 
     final subMap = map[key];
-    if (subMap is! YamlMap) throw Exception('Invalid config');
+    if (subMap is! YamlMap) throw const ConfigInvalidStructureException();
 
     return (key, subMap);
   }

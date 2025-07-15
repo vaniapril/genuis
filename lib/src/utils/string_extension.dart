@@ -7,6 +7,13 @@ extension StringExtension on String {
 
   String get forwardSlash => replaceAll('\\', '/');
 
+  String get asFolderPath {
+    var result = forwardSlash;
+    if (!result.endsWith('/')) result = '$result/';
+    if (result.startsWith('/')) result = result.substring(1);
+    return result;
+  }
+
   String get camelCase => replaceAll(RegExp('[^A-Za-z0-9]'), ' ')
       .split(' ')
       .where((e) => e.isNotEmpty)

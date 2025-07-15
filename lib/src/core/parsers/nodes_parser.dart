@@ -4,6 +4,7 @@ import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
 import 'package:genuis/src/core/parsers/file/xml_file_parser.dart';
+import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 import 'package:path/path.dart';
@@ -43,7 +44,7 @@ class NodesParser {
             );
     }
 
-    throw 'File or directory not found at $path';
+    throw ParserFolderOrFileIsNotExistsException(path);
   }
 
   Node reduce(Node node) {

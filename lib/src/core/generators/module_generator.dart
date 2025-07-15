@@ -45,41 +45,33 @@ class ModuleGenerator extends FileGenerator {
     }
 
     if (module.config.tokenClassType != null) {
-      switch (module.config.tokenClassType) {
-        case TokenClassType.enum_:
-          EnumTokenWriter(
-            config: config,
-            className: module.config.tokenClassName,
-            valueType: module.enumFields.first.valueType,
-            valueName: module.config.tokenFieldName,
-          ).write(
-            buffer,
-            module.enumFields,
-          );
-          break;
-        case TokenClassType.static_:
-          StaticTokenWriter(
-            config: config,
-            className: module.config.tokenClassName,
-          ).write(
-            buffer,
-            module.enumFields,
-          );
-          break;
-        default:
-          throw 'Unknown module type: ${module.config.tokenClassType}';
+      if (module.config.tokenClassType == TokenClassType.enum_) {
+        EnumTokenWriter(
+          config: config,
+          className: module.config.tokenClassName,
+          valueType: module.enumFields.first.valueType,
+          valueName: module.config.tokenFieldName,
+        ).write(
+          buffer,
+          module.enumFields,
+        );
+      } else if (module.config.tokenClassType == TokenClassType.static_) {
+        StaticTokenWriter(
+          config: config,
+          className: module.config.tokenClassName,
+        ).write(
+          buffer,
+          module.enumFields,
+        );
       }
     }
 
     if (module.config.color) {
-      switch (module.config.type) {
-        case ElementType.font:
-          ColorExtensionWriter(config: config).writeTextStyleExtensionClass(buffer, module.colors);
-        case ElementType.asset:
-          ColorExtensionWriter(config: config)
-              .writeAssetExtensionClass(buffer, module, module.colors);
-        default:
-          throw 'Unknown module type: ${module.config.type}';
+      if (module.config.type == ElementType.font) {
+        ColorExtensionWriter(config: config).writeTextStyleExtensionClass(buffer, module.colors);
+      } else if (module.config.type == ElementType.asset) {
+        ColorExtensionWriter(config: config)
+            .writeAssetExtensionClass(buffer, module, module.colors);
       }
     }
 

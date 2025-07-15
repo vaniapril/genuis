@@ -131,18 +131,16 @@ class GenuisCore {
     if (module.config.color) {
       var colorThemesSet = {
         for (final themes in module.colors.values.map((e) => e.values.keys)) ...themes
-      };
+      }..remove('');
 
-      colorThemesSet.remove('base');
-      final colorThemes = colorThemesSet.isEmpty ? ['base'] : colorThemesSet.toList();
+      final colorThemes = colorThemesSet.isEmpty ? [''] : colorThemesSet.toList();
 
       root = root.map(
         (field) {
           final type = switch (module.config.type) {
             ElementType.font => 'ThemedTextStyle',
             ElementType.asset => 'Themed${module.config.name.upperFirst}',
-            // TODO(vaniapril): error
-            _ => throw 'Unknown module type: ${module.config.type}'
+            _ => ''
           };
 
           return Field(

@@ -13,6 +13,7 @@ import 'package:genuis/src/core/data/code/values/string_value.dart';
 import 'package:genuis/src/core/data/code/values/text_style_value.dart';
 import 'package:genuis/src/core/data/code/values/token_value.dart';
 import 'package:genuis/src/core/data/token.dart';
+import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class ValueParser {
@@ -95,11 +96,11 @@ class ValueParser {
       }
     }
 
-    throw 'Unexpected token: $name';
+    throw ParserTokenNotFoundException(name);
   }
 
   Value _parseBlur(List<String> args) {
-    if (args.length != 1) throw 'Invalid blur args: $args';
+    if (args.length != 1) throw ParserValueArgsException(args, 'blur');
 
     if (args[0].startsWith('\$')) {
       return _parseToken<DoubleValue>(args[0]);
@@ -113,7 +114,7 @@ class ValueParser {
   }
 
   Value _parseColor(List<String> args) {
-    if (args.isEmpty) throw 'Invalid color args: $args';
+    if (args.isEmpty) throw ParserValueArgsException(args, 'color');
 
     final flags = args.sublist(1).map((e) => _parseFlag(e)).toList();
 
@@ -122,7 +123,7 @@ class ValueParser {
     }
 
     if (!RegExp(r'#([0-9A-Fa-f]{8}|[0-9A-Fa-f]{6})').hasMatch(args[0])) {
-      throw 'Invalid color value: ${args[0]}';
+      throw ParserValueArgsException(args[0], 'color');
     }
 
     return ColorValue(
@@ -138,7 +139,7 @@ class ValueParser {
 
     final number = double.tryParse(value.replaceAll('px', ''));
 
-    if (number == null) throw 'Invalid double value: $value';
+    if (number == null) throw ParserValueArgsException(value, 'double');
 
     return DoubleValue(
       value: number,
@@ -152,7 +153,7 @@ class ValueParser {
 
     final number = int.tryParse(value.replaceAll('w', ''));
 
-    if (number == null) throw 'Invalid int value: $value';
+    if (number == null) throw ParserValueArgsException(value, 'int');
 
     return IntValue(
       value: number.toString(),
@@ -164,7 +165,8 @@ class ValueParser {
       return _parseToken<StringValue>(value);
     }
 
-    if (value.startsWith("'") && value.endsWith("'") || value.startsWith('"') && value.endsWith('"')) {
+    if (value.startsWith("'") && value.endsWith("'") ||
+        value.startsWith('"') && value.endsWith('"')) {
       value = value.substring(1, value.length - 1);
     }
 
@@ -200,7 +202,7 @@ class ValueParser {
   }
 
   Value _parseFont(List<String> args) {
-    if (args.length < 4) throw 'Invalid font args: $args';
+    if (args.length < 4) throw ParserValueArgsException(args, 'font');
 
     final family = _parseString(args[0]);
     final weight = _parseInt(args[1]);
@@ -226,7 +228,7 @@ class ValueParser {
   }
 
   Value parseGradient(List<String> args) {
-    if (args.length < 3) throw 'Invalid gradient args: $args';
+    if (args.length < 3) throw ParserValueArgsException(args, 'gradient');
 
     Value? begin = _tryParseAlignmentString(args[0]);
     if (begin == null) {
@@ -244,7 +246,7 @@ class ValueParser {
       args = args.sublist(1);
     }
 
-    if (begin == null || end == null) throw 'Invalid gradient args: $args';
+    if (begin == null || end == null) throw ParserValueArgsException(args, 'gradient');
 
     return GradientValue(
       begin: begin,
@@ -254,7 +256,7 @@ class ValueParser {
   }
 
   Value _parseShadow(List<String> args) {
-    if (args.length < 5) throw 'Invalid shadow args: $args';
+    if (args.length < 5) throw ParserValueArgsException(args, 'shadow');
 
     final color = _parseColor(args);
     final dx = _parseDouble(args[1]);
@@ -274,7 +276,7 @@ class ValueParser {
   }
 
   Value _parseNumber(List<String> args) {
-    if (args.length != 1) throw 'Invalid number args: $args';
+    if (args.length != 1) throw ParserValueArgsException(args, 'number');
 
     if (args[0].startsWith('\$')) {
       return _parseToken<DoubleValue>(args[0]);
@@ -284,7 +286,7 @@ class ValueParser {
   }
 
   Value _parseAsset(List<String> args) {
-    if (args.length != 1) throw 'Invalid asset args: $args';
+    if (args.length != 1) throw ParserValueArgsException(args, 'asset');
 
     return StringValue(
       value: args[0],

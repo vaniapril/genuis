@@ -13,96 +13,99 @@ class GetterModuleWriter {
     _writeClassWithSubclasses(buffer, root);
   }
 
-  void writeMainClass(StringBuffer buffer, Class mainClass) {
-    _writeMainInheritedWidgetClass(buffer, mainClass);
+  void writeMainClass(StringBuffer buffer, Class class_) {
+    _writeMainInheritedWidgetClass(buffer, class_);
     buffer.writeln();
-    buffer.writeln('abstract class ${mainClass.type} {');
-    _writeAbstractClassBody(buffer, mainClass);
+    buffer.writeln('abstract class ${class_.type} {');
+    _writeAbstractClassBody(buffer, class_);
     buffer.writeln();
-    _writeMainClassFactory(buffer, mainClass);
+    _writeMainClassFactory(buffer, class_);
     buffer.writeln('}');
     buffer.writeln();
-    _writeThemeClasses(buffer, mainClass);
+    _writeThemeClasses(buffer, class_);
   }
 
-  void _writeMainInheritedWidgetClass(StringBuffer buffer, Class mainClass) {
-    buffer.writeln('class ${mainClass.type}Widget extends InheritedWidget {');
-    buffer.writeln('final ${mainClass.type} ${config.fieldName};');
+  void _writeMainInheritedWidgetClass(StringBuffer buffer, Class class_) {
+    buffer.writeln('class ${class_.type}Widget extends InheritedWidget {');
+    buffer.writeln('final ${class_.type} ${config.fieldName};');
     buffer.writeln();
-    buffer.writeln('const  ${mainClass.type}Widget({');
+    buffer.writeln('const  ${class_.type}Widget({');
     buffer.writeln('super.key,');
     buffer.writeln('required this.${config.fieldName},');
     buffer.writeln('required super.child,');
     buffer.writeln('});');
     buffer.writeln();
-    buffer.writeln('static ${mainClass.type}Widget? of(BuildContext context) {');
-    buffer.writeln('return context.dependOnInheritedWidgetOfExactType<${mainClass.type}Widget>();');
+    buffer.writeln('static ${class_.type}Widget? of(BuildContext context) {');
+    buffer.writeln('return context.dependOnInheritedWidgetOfExactType<${class_.type}Widget>();');
     buffer.writeln('}');
     buffer.writeln();
     buffer.writeln('@override');
     buffer.writeln(
-        'bool updateShouldNotify(${mainClass.type}Widget oldWidget) => ${config.fieldName} != oldWidget.${config.fieldName};');
+        'bool updateShouldNotify(${class_.type}Widget oldWidget) => ${config.fieldName} != oldWidget.${config.fieldName};');
     buffer.writeln('}');
   }
 
-  void _writeMainClassFactory(StringBuffer buffer, Class mainClass) {
-    buffer.writeln('factory ${mainClass.type}.of(BuildContext context) {');
+  void _writeMainClassFactory(StringBuffer buffer, Class class_) {
+    buffer.writeln('factory ${class_.type}.of(BuildContext context) {');
     buffer.writeln(
-        'return ${mainClass.type}Widget.of(context)?.${config.fieldName} ?? ${mainClass.type}.${mainClass.themes.first};');
+        'return ${class_.type}Widget.of(context)?.${config.fieldName} ?? ${class_.type}.${_theme(class_.themes.first)};');
     buffer.writeln('}');
   }
 
-  void _writeClassWithSubclasses(StringBuffer buffer, Class folder) {
-    for (final model in folder.classes) {
+  void _writeClassWithSubclasses(StringBuffer buffer, Class class_) {
+    for (final model in class_.classes) {
       _writeClassWithSubclasses(buffer, model);
     }
     buffer.writeln();
-    buffer.writeln('abstract class ${folder.type} {');
-    _writeAbstractClassBody(buffer, folder);
+    buffer.writeln('abstract class ${class_.type} {');
+    _writeAbstractClassBody(buffer, class_);
     buffer.writeln('}');
     buffer.writeln();
-    _writeThemeClasses(buffer, folder);
+    _writeThemeClasses(buffer, class_);
   }
 
-  void _writeAbstractClassBody(StringBuffer buffer, Class folder) {
-    _writeAbstractThemes(buffer, folder);
+  void _writeAbstractClassBody(StringBuffer buffer, Class class_) {
+    _writeAbstractThemes(buffer, class_);
     buffer.writeln();
-    buffer.writeln('const ${folder.type}._();');
+    buffer.writeln('const ${class_.type}._();');
     buffer.writeln();
-    _writeAbstractClassGetters(buffer, folder);
+    _writeAbstractClassGetters(buffer, class_);
   }
 
-  void _writeAbstractThemes(StringBuffer buffer, Class folder) {
-    for (final theme in folder.themes) {
-      buffer.writeln('static const ${folder.type} $theme = _${folder.type}${theme.upperFirst}();');
+  void _writeAbstractThemes(StringBuffer buffer, Class class_) {
+    for (final theme in class_.themes) {
+      buffer.writeln('static const ${class_.type} ${_theme(theme)} = ${_themeClassName(class_, theme)}();');
     }
   }
 
-  void _writeAbstractClassGetters(StringBuffer buffer, Class folder) {
-    for (final model in folder.nodes) {
+  void _writeAbstractClassGetters(StringBuffer buffer, Class class_) {
+    for (final model in class_.nodes) {
       buffer.writeln('${model.type} get ${model.name};');
     }
   }
 
-  void _writeThemeClasses(StringBuffer buffer, Class folder) {
-    for (final theme in folder.themes) {
-      buffer.writeln('class _${folder.type}${theme.upperFirst} extends ${folder.type} {');
-      _writeThemeClassBody(buffer, folder, theme);
+  void _writeThemeClasses(StringBuffer buffer, Class class_) {
+    for (final theme in class_.themes) {
+      buffer.writeln('class ${_themeClassName(class_, theme)} extends ${class_.type} {');
+      _writeThemeClassBody(buffer, class_, theme);
       buffer.writeln('}');
       buffer.writeln();
     }
   }
 
-  void _writeThemeClassBody(StringBuffer buffer, Class folder, String theme) {
-    buffer.writeln('const _${folder.type}${theme.upperFirst}(): super._();');
+  void _writeThemeClassBody(StringBuffer buffer, Class class_, String theme) {
+    buffer.writeln('const ${_themeClassName(class_, theme)}(): super._();');
     buffer.writeln();
-    _writeThemeClassGetters(buffer, folder, theme);
+    _writeThemeClassGetters(buffer, class_, theme);
   }
 
-  void _writeThemeClassGetters(StringBuffer buffer, Class folder, String theme) {
-    for (final model in folder.nodes) {
+  void _writeThemeClassGetters(StringBuffer buffer, Class class_, String theme) {
+    for (final model in class_.nodes) {
       buffer.writeln('@override');
-      buffer.writeln('${model.type} get ${model.name} => ${model.value(theme)};');
+      buffer.writeln('${model.type} get ${model.name} => ${model.value(theme, config.baseTheme)};');
     }
   }
+
+  String _themeClassName(Class class_, String theme) => '_${class_.type}${_theme(theme).upperFirst}';
+  String _theme(String theme) => theme.isEmpty ? config.baseTheme : theme;
 }

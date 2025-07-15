@@ -5,8 +5,7 @@ class Field extends CodeEntity {
   final Map<String, Value> values;
 
   String enumName(String theme) {
-    return '${path.skip(1).map((e) => e.upperFirst).join()}${name.upperFirst}${theme != 'base' ? theme.upperFirst : ''}'
-        .lowerFirst;
+    return '${path.skip(1).map((e) => e.upperFirst).join()}${theme.upperFirst}'.lowerFirst;
   }
 
   Field({

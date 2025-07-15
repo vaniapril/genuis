@@ -8,11 +8,11 @@ sealed class CodeEntity {
   final String name;
   final List<String> path;
 
-  String value(String theme) {
+  String value(String theme, String baseTheme) {
     final node = this;
     return switch (node) {
-      Field() => node.values[theme]?.toString() ?? node.values['base']?.toString() ?? 'null',
-      Class() => '${node.type}.${node.themes.contains(theme) ? theme : 'base'}',
+      Field() => node.values[theme]?.toString() ?? node.values['']?.toString() ?? 'null',
+      Class() => '${node.type}.${node.themes.contains(theme) && theme.isNotEmpty ? theme : baseTheme}',
     };
   }
 

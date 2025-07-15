@@ -7,7 +7,6 @@ class Config {
   String outputPath;
   List<String> themes;
   String baseTheme;
-  bool defaultTheme;
   GenuisClassType classType;
   bool fromJsonMethod;
   int dartLineLength;
@@ -21,7 +20,6 @@ class Config {
     required this.assetsPath,
     required this.outputPath,
     required this.themes,
-    required this.defaultTheme,
     required this.classType,
     required this.fromJsonMethod,
     required this.dartLineLength,

@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
+import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 import 'package:xml/xml.dart';
@@ -20,7 +21,8 @@ class XmlFileParser extends FileParser {
 
       return root.length == 1 ? _parseXml(root.first) : _parseXml(document.rootElement);
     } catch (e) {
-      throw '\n${file.path} - $e';
+      if (e is ParserFileElementException) throw ParserFileException(file.path, element: e.element);
+      throw ParserFileException(file.path);
     }
   }
 
@@ -58,7 +60,7 @@ class XmlFileParser extends FileParser {
         continue;
       }
 
-      throw 'Wrong XmlElement format: $element';
+      throw ParserFileElementException(element.toString());
     }
 
     return nodes;

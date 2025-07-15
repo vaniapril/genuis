@@ -21,29 +21,24 @@ class TokensGenerator extends FileGenerator {
 
     buffer.writeln("import 'package:flutter/material.dart';");
 
-    switch (token.config.classType) {
-      case TokenClassType.enum_:
-        EnumTokenWriter(
-          config: config,
-          className: token.config.className,
-          valueType: token.fields.first.type,
-          valueName: token.config.fieldName,
-        ).write(
-          buffer,
-          token.fields,
-        );
-        break;
-      case TokenClassType.static_:
-        StaticTokenWriter(
-          config: config,
-          className: token.config.className,
-        ).write(
-          buffer,
-          token.fields,
-        );
-        break;
-      // default:
-      //   throw 'Unknown module type: ${token.config.type}';
+    if (token.config.classType == TokenClassType.enum_) {
+      EnumTokenWriter(
+        config: config,
+        className: token.config.className,
+        valueType: token.fields.first.type,
+        valueName: token.config.fieldName,
+      ).write(
+        buffer,
+        token.fields,
+      );
+    } else if (token.config.classType == TokenClassType.static_) {
+      StaticTokenWriter(
+        config: config,
+        className: token.config.className,
+      ).write(
+        buffer,
+        token.fields,
+      );
     }
 
     return buffer.toString();

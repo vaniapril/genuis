@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/module_config.dart';
 import 'package:genuis/src/config/token_config.dart';
-import 'package:genuis/src/config/types/element_type.dart';
+import 'package:genuis/src/utils/exceptions.dart';
+import 'package:genuis/src/utils/file_system_entity_extension.dart';
 
 class ConfigValidator {
   Config config;
@@ -15,7 +16,6 @@ class ConfigValidator {
     _validateConfigOutputPath();
     _validateConfigThemes();
     _validateConfigBaseTheme();
-    // _validateConfigDefaultTheme();
     // _validateConfigClassType();
     // _validateConfigFromJsonMethod();
     _validateConfigDartLineLength();
@@ -37,7 +37,7 @@ class ConfigValidator {
 
   void _validateConfigThemes() {
     for (final theme in config.themes) {
-      _validateFieldName(theme);
+      _validateSnakeCaseName(theme);
     }
   }
 
@@ -47,7 +47,7 @@ class ConfigValidator {
 
   void _validateConfigDartLineLength() {
     if (config.dartLineLength < 1) {
-      throw Exception('Invalid dartLineLength: ${config.dartLineLength}');
+      throw ConfigValidationException('invalid dart_line_length: ${config.dartLineLength}');
     }
   }
 
@@ -72,11 +72,11 @@ class ConfigValidator {
   }
 
   void _validateTokenName(TokenConfig token) {
-    _validateName(token.name);
+    _validateSnakeCaseName(token.name);
   }
 
   void _validateTokenPath(TokenConfig token) {
-    _validateFilePath(token.path);
+    _validateFilePath(config.assetsPath + token.path);
   }
 
   void _validateTokenClassName(TokenConfig token) {
@@ -102,11 +102,11 @@ class ConfigValidator {
   }
 
   void _validateModuleName(ModuleConfig module) {
-    _validateName(module.name);
+    _validateSnakeCaseName(module.name);
   }
 
   void _validateModulePath(ModuleConfig module) {
-    _validateFilePath(module.path);
+    _validateFolderPath(config.assetsPath + module.path);
   }
 
   void _validateModuleType(ModuleConfig module) {}
@@ -121,8 +121,9 @@ class ConfigValidator {
 
   void _validateModuleColor(ModuleConfig module) {
     if (module.color) {
-      if (module.type != ElementType.asset && module.type != ElementType.font) {
-        throw Exception('Cannot use color extension on ${module.type} module');
+      if (!module.type.supportsColor) {
+        throw ConfigValidationException(
+            '"color: true" is not supported for ${module.type} module (${module.name})');
       }
     }
   }
@@ -133,32 +134,60 @@ class ConfigValidator {
 
   // Utils
   static void _validateFolderPath(String value, {bool checkExists = true}) {
-    if (!Directory(value).existsSync() && !checkExists) {
-      throw Exception('Folder does not exist: $value');
+    if (FileSystemEntity.isDirectorySync('/$value')) {
+      throw ConfigValidationException('$value is not a folder');
+    }
+
+    final directory = Directory(value);
+
+    if (!directory.existsSync() && !checkExists) {
+      throw ConfigValidationException('folder does not exist: $value');
     }
   }
 
   static void _validateFilePath(String value) {
-    if (!File(value).existsSync()) {
-      throw Exception('File does not exist: $value');
+    if (FileSystemEntity.isFileSync('/$value')) {
+      throw ConfigValidationException('$value is not a file');
+    }
+
+    final file = File(value);
+
+    if (!file.existsSync()) {
+      throw ConfigValidationException('file does not exist: $value');
+    }
+
+    if (!file.isXml && !file.isJson) {
+      throw ConfigValidationException('file is not xml or json: $value');
     }
   }
 
-  static void _validateName(String value) {
+  static void _validateSnakeCaseName(String value) {
     if (value.isEmpty) {
-      throw Exception('Invalid name: $value');
+      throw const ConfigValidationException('value is empty');
+    }
+
+    if (!RegExp(r'^[a-z0-9]+(_[a-z0-9]+)*$').hasMatch(value)) {
+      throw ConfigValidationException('$value' 'is not valid name (must be snake_case)');
     }
   }
 
   static void _validateClassName(String value) {
     if (value.isEmpty) {
-      throw Exception('Invalid className: $value');
+      throw const ConfigValidationException('value is empty');
+    }
+
+    if (!RegExp(r'^[A-Z][a-zA-Z0-9_]*$').hasMatch(value)) {
+      throw ConfigValidationException('$value is not valid name for class (must be PascalCase)');
     }
   }
 
   static void _validateFieldName(String value) {
     if (value.isEmpty) {
-      throw Exception('Invalid fieldName: $value');
+      throw const ConfigValidationException('value is empty');
+    }
+
+    if (!RegExp(r'^[a-z][a-zA-Z0-9_]*$').hasMatch(value)) {
+      throw ConfigValidationException('$value is not valid name for field (must be camelCase)');
     }
   }
 }
