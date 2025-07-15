@@ -32,6 +32,7 @@ class UIShadowsCards extends ThemeExtension<UIShadowsCards> {
   @override
   UIShadowsCards lerp(ThemeExtension<UIShadowsCards>? other, double t) {
     if (other is! UIShadowsCards) return this;
+    if (identical(this, other)) return this;
     return UIShadowsCards(
       neomorphism: BoxShadow.lerp(neomorphism, other.neomorphism, t) ?? other.neomorphism,
       popUp: BoxShadow.lerp(popUp, other.popUp, t) ?? other.popUp,
@@ -97,6 +98,7 @@ class UIShadows extends ThemeExtension<UIShadows> {
   @override
   UIShadows lerp(ThemeExtension<UIShadows>? other, double t) {
     if (other is! UIShadows) return this;
+    if (identical(this, other)) return this;
     return UIShadows(cards: cards.lerp(other.cards, t));
   }
 

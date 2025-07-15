@@ -64,6 +64,7 @@ class ThemedTextStyle extends TextStyle {
       );
 
   ThemedTextStyle lerp(ThemedTextStyle other, double t) {
+    if (identical(this, other)) return this;
     return ThemedTextStyle._(
       error: Color.lerp(_error, other._error, t) ?? _error,
       blue: Color.lerp(_blue, other._blue, t) ?? _blue,
@@ -95,6 +96,7 @@ class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> 
   @override
   UIFontsManropeLargeTitle lerp(ThemeExtension<UIFontsManropeLargeTitle>? other, double t) {
     if (other is! UIFontsManropeLargeTitle) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeLargeTitle(
       regular: regular.lerp(other.regular, t),
       bold: bold.lerp(other.bold, t),
@@ -161,6 +163,7 @@ class UIFontsManropeTitle1 extends ThemeExtension<UIFontsManropeTitle1> {
   @override
   UIFontsManropeTitle1 lerp(ThemeExtension<UIFontsManropeTitle1>? other, double t) {
     if (other is! UIFontsManropeTitle1) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeTitle1(
       regular: regular.lerp(other.regular, t),
       bold: bold.lerp(other.bold, t),
@@ -227,6 +230,7 @@ class UIFontsManropeTitle2 extends ThemeExtension<UIFontsManropeTitle2> {
   @override
   UIFontsManropeTitle2 lerp(ThemeExtension<UIFontsManropeTitle2>? other, double t) {
     if (other is! UIFontsManropeTitle2) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeTitle2(
       regular: regular.lerp(other.regular, t),
       bold: bold.lerp(other.bold, t),
@@ -296,6 +300,7 @@ class UIFontsManropeTitle3 extends ThemeExtension<UIFontsManropeTitle3> {
   @override
   UIFontsManropeTitle3 lerp(ThemeExtension<UIFontsManropeTitle3>? other, double t) {
     if (other is! UIFontsManropeTitle3) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeTitle3(
       regular: regular.lerp(other.regular, t),
       semiBold: semiBold.lerp(other.semiBold, t),
@@ -365,6 +370,7 @@ class UIFontsManropeHeadline extends ThemeExtension<UIFontsManropeHeadline> {
   @override
   UIFontsManropeHeadline lerp(ThemeExtension<UIFontsManropeHeadline>? other, double t) {
     if (other is! UIFontsManropeHeadline) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeHeadline(
       semiBold: semiBold.lerp(other.semiBold, t),
       regular: regular.lerp(other.regular, t),
@@ -448,6 +454,7 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
   @override
   UIFontsManropeBody lerp(ThemeExtension<UIFontsManropeBody>? other, double t) {
     if (other is! UIFontsManropeBody) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeBody(
       regular: regular.lerp(other.regular, t),
       medium: medium.lerp(other.medium, t),
@@ -559,6 +566,7 @@ class UIFontsManropeCallout extends ThemeExtension<UIFontsManropeCallout> {
   @override
   UIFontsManropeCallout lerp(ThemeExtension<UIFontsManropeCallout>? other, double t) {
     if (other is! UIFontsManropeCallout) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeCallout(
       regular: regular.lerp(other.regular, t),
       semiBold: semiBold.lerp(other.semiBold, t),
@@ -638,6 +646,7 @@ class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
   @override
   UIFontsManropeSubhead lerp(ThemeExtension<UIFontsManropeSubhead>? other, double t) {
     if (other is! UIFontsManropeSubhead) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeSubhead(
       regular: regular.lerp(other.regular, t),
       medium: medium.lerp(other.medium, t),
@@ -742,6 +751,7 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
   @override
   UIFontsManropeFootnote lerp(ThemeExtension<UIFontsManropeFootnote>? other, double t) {
     if (other is! UIFontsManropeFootnote) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeFootnote(
       regular: regular.lerp(other.regular, t),
       medium: medium.lerp(other.medium, t),
@@ -850,6 +860,7 @@ class UIFontsManropeCaption1 extends ThemeExtension<UIFontsManropeCaption1> {
   @override
   UIFontsManropeCaption1 lerp(ThemeExtension<UIFontsManropeCaption1>? other, double t) {
     if (other is! UIFontsManropeCaption1) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeCaption1(
       regular: regular.lerp(other.regular, t),
       medium: medium.lerp(other.medium, t),
@@ -919,6 +930,7 @@ class UIFontsManropeCaption2 extends ThemeExtension<UIFontsManropeCaption2> {
   @override
   UIFontsManropeCaption2 lerp(ThemeExtension<UIFontsManropeCaption2>? other, double t) {
     if (other is! UIFontsManropeCaption2) return this;
+    if (identical(this, other)) return this;
     return UIFontsManropeCaption2(
       regular: regular.lerp(other.regular, t),
       semiBold: semiBold.lerp(other.semiBold, t),
@@ -1030,6 +1042,7 @@ class UIFontsManrope extends ThemeExtension<UIFontsManrope> {
   @override
   UIFontsManrope lerp(ThemeExtension<UIFontsManrope>? other, double t) {
     if (other is! UIFontsManrope) return this;
+    if (identical(this, other)) return this;
     return UIFontsManrope(
       largeTitle: largeTitle.lerp(other.largeTitle, t),
       title1: title1.lerp(other.title1, t),
@@ -1224,6 +1237,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
   @override
   UIFontsRoboto lerp(ThemeExtension<UIFontsRoboto>? other, double t) {
     if (other is! UIFontsRoboto) return this;
+    if (identical(this, other)) return this;
     return UIFontsRoboto(
       title48S: title48S.lerp(other.title48S, t),
       title40L: title40L.lerp(other.title40L, t),
@@ -1896,6 +1910,7 @@ class UIFonts extends ThemeExtension<UIFonts> {
   @override
   UIFonts lerp(ThemeExtension<UIFonts>? other, double t) {
     if (other is! UIFonts) return this;
+    if (identical(this, other)) return this;
     return UIFonts(manrope: manrope.lerp(other.manrope, t), roboto: roboto.lerp(other.roboto, t));
   }
 

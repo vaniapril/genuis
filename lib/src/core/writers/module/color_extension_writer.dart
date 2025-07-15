@@ -52,6 +52,7 @@ class ColorExtensionWriter {
 
     buffer.writeln('');
     buffer.writeln('$themedClassName lerp($themedClassName other, double t){');
+    buffer.writeln('if (identical(this, other)) return this;');
     buffer.writeln('return $themedClassName._(');
     for (final name in fields.keys) {
       buffer.writeln('$name: Color.lerp(_$name, other._$name, t) ?? _$name,');
@@ -127,6 +128,7 @@ class ColorExtensionWriter {
 
     buffer.writeln('');
     buffer.writeln('ThemedTextStyle lerp(ThemedTextStyle other, double t){');
+    buffer.writeln('if (identical(this, other)) return this;');
     buffer.writeln('return ThemedTextStyle._(');
     for (final name in fields.keys) {
       buffer.writeln('$name: Color.lerp(_$name, other._$name, t) ?? _$name,');

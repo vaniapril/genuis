@@ -66,6 +66,7 @@ class UI extends ThemeExtension<UI> {
   @override
   UI lerp(ThemeExtension<UI>? other, double t) {
     if (other is! UI) return this;
+    if (identical(this, other)) return this;
     return UI(
       blurs: blurs.lerp(other.blurs, t),
       colors: colors.lerp(other.colors, t),

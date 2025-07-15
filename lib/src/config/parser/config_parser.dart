@@ -126,6 +126,8 @@ abstract class ConfigParser {
     final key = map.keys.first;
 
     final subMap = map[key];
+
+    if (subMap == null) return (key, YamlMap());
     if (subMap is! YamlMap) throw const ConfigInvalidStructureException();
 
     return (key, subMap);

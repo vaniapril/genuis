@@ -47,6 +47,7 @@ class UIBlursBlurs extends ThemeExtension<UIBlursBlurs> {
   @override
   UIBlursBlurs lerp(ThemeExtension<UIBlursBlurs>? other, double t) {
     if (other is! UIBlursBlurs) return this;
+    if (identical(this, other)) return this;
     return UIBlursBlurs(
       blur2: t < 0.5 ? blur2 : other.blur2,
       blur4: t < 0.5 ? blur4 : other.blur4,
@@ -80,6 +81,7 @@ class UIBlurs extends ThemeExtension<UIBlurs> {
   @override
   UIBlurs lerp(ThemeExtension<UIBlurs>? other, double t) {
     if (other is! UIBlurs) return this;
+    if (identical(this, other)) return this;
     return UIBlurs(blurs: blurs.lerp(other.blurs, t));
   }
 

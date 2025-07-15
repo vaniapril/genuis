@@ -89,6 +89,7 @@ class ThemeExtensionModuleWriter {
     buffer.writeln('@override');
     buffer.writeln('${class_.type} lerp(ThemeExtension<${class_.type}>? other, double t) {');
     buffer.writeln('if (other is! ${class_.type}) return this;');
+    buffer.writeln('if (identical(this, other)) return this;');
     buffer.writeln('return ${class_.type}(');
     for (final model in class_.nodes) {
       buffer.writeln(

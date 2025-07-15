@@ -295,6 +295,7 @@ class UIColorsKeywords extends ThemeExtension<UIColorsKeywords> {
   @override
   UIColorsKeywords lerp(ThemeExtension<UIColorsKeywords>? other, double t) {
     if (other is! UIColorsKeywords) return this;
+    if (identical(this, other)) return this;
     return UIColorsKeywords(
       abstract_: Color.lerp(abstract_, other.abstract_, t) ?? other.abstract_,
       as_: Color.lerp(as_, other.as_, t) ?? other.as_,
@@ -478,6 +479,7 @@ class UIColorsPrimaryOnboarding extends ThemeExtension<UIColorsPrimaryOnboarding
   @override
   UIColorsPrimaryOnboarding lerp(ThemeExtension<UIColorsPrimaryOnboarding>? other, double t) {
     if (other is! UIColorsPrimaryOnboarding) return this;
+    if (identical(this, other)) return this;
     return UIColorsPrimaryOnboarding(
       bg: Color.lerp(bg, other.bg, t) ?? other.bg,
       color1: Color.lerp(color1, other.color1, t) ?? other.color1,
@@ -589,6 +591,7 @@ class UIColorsPrimary extends ThemeExtension<UIColorsPrimary> {
   @override
   UIColorsPrimary lerp(ThemeExtension<UIColorsPrimary>? other, double t) {
     if (other is! UIColorsPrimary) return this;
+    if (identical(this, other)) return this;
     return UIColorsPrimary(
       onboarding: onboarding.lerp(other.onboarding, t),
       error: Color.lerp(error, other.error, t) ?? other.error,
@@ -667,6 +670,7 @@ class UIColorsSecondary extends ThemeExtension<UIColorsSecondary> {
   @override
   UIColorsSecondary lerp(ThemeExtension<UIColorsSecondary>? other, double t) {
     if (other is! UIColorsSecondary) return this;
+    if (identical(this, other)) return this;
     return UIColorsSecondary(error: Color.lerp(error, other.error, t) ?? other.error);
   }
 
@@ -737,6 +741,7 @@ class UIColorsTertiary extends ThemeExtension<UIColorsTertiary> {
   @override
   UIColorsTertiary lerp(ThemeExtension<UIColorsTertiary>? other, double t) {
     if (other is! UIColorsTertiary) return this;
+    if (identical(this, other)) return this;
     return UIColorsTertiary(
       blue: Color.lerp(blue, other.blue, t) ?? other.blue,
       blueLight: Color.lerp(blueLight, other.blueLight, t) ?? other.blueLight,
@@ -814,6 +819,7 @@ class UIColors extends ThemeExtension<UIColors> {
   @override
   UIColors lerp(ThemeExtension<UIColors>? other, double t) {
     if (other is! UIColors) return this;
+    if (identical(this, other)) return this;
     return UIColors(
       keywords: keywords.lerp(other.keywords, t),
       primary: primary.lerp(other.primary, t),

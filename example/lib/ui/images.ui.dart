@@ -33,6 +33,7 @@ class UIImagesBackground extends ThemeExtension<UIImagesBackground> {
   @override
   UIImagesBackground lerp(ThemeExtension<UIImagesBackground>? other, double t) {
     if (other is! UIImagesBackground) return this;
+    if (identical(this, other)) return this;
     return UIImagesBackground(
       book: t < 0.5 ? book : other.book,
       cat: t < 0.5 ? cat : other.cat,
@@ -60,6 +61,7 @@ class UIImagesLogo extends ThemeExtension<UIImagesLogo> {
   @override
   UIImagesLogo lerp(ThemeExtension<UIImagesLogo>? other, double t) {
     if (other is! UIImagesLogo) return this;
+    if (identical(this, other)) return this;
     return UIImagesLogo(abstract_: t < 0.5 ? abstract_ : other.abstract_);
   }
 
@@ -80,6 +82,7 @@ class UIImages extends ThemeExtension<UIImages> {
   @override
   UIImages lerp(ThemeExtension<UIImages>? other, double t) {
     if (other is! UIImages) return this;
+    if (identical(this, other)) return this;
     return UIImages(
       background: background.lerp(other.background, t),
       logo: logo.lerp(other.logo, t),

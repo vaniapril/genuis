@@ -97,6 +97,7 @@ class ThemedIcons {
       );
 
   ThemedIcons lerp(ThemedIcons other, double t) {
+    if (identical(this, other)) return this;
     return ThemedIcons._(
       alertNotification:
           Color.lerp(_alertNotification, other._alertNotification, t) ?? _alertNotification,
@@ -137,6 +138,7 @@ class UIIconsFilledShopping extends ThemeExtension<UIIconsFilledShopping> {
   @override
   UIIconsFilledShopping lerp(ThemeExtension<UIIconsFilledShopping>? other, double t) {
     if (other is! UIIconsFilledShopping) return this;
+    if (identical(this, other)) return this;
     return UIIconsFilledShopping(card: card.lerp(other.card, t));
   }
 
@@ -227,6 +229,7 @@ class UIIconsFilled extends ThemeExtension<UIIconsFilled> {
   @override
   UIIconsFilled lerp(ThemeExtension<UIIconsFilled>? other, double t) {
     if (other is! UIIconsFilled) return this;
+    if (identical(this, other)) return this;
     return UIIconsFilled(
       shopping: shopping.lerp(other.shopping, t),
       bandAid: bandAid.lerp(other.bandAid, t),
@@ -364,6 +367,7 @@ class UIIconsOutlined extends ThemeExtension<UIIconsOutlined> {
   @override
   UIIconsOutlined lerp(ThemeExtension<UIIconsOutlined>? other, double t) {
     if (other is! UIIconsOutlined) return this;
+    if (identical(this, other)) return this;
     return UIIconsOutlined(
       bellClose: bellClose.lerp(other.bellClose, t),
       bellOff: bellOff.lerp(other.bellOff, t),
@@ -436,6 +440,7 @@ class UIIcons extends ThemeExtension<UIIcons> {
   @override
   UIIcons lerp(ThemeExtension<UIIcons>? other, double t) {
     if (other is! UIIcons) return this;
+    if (identical(this, other)) return this;
     return UIIcons(
       filled: filled.lerp(other.filled, t),
       outlined: outlined.lerp(other.outlined, t),
