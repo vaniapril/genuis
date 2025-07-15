@@ -24,7 +24,6 @@ abstract class ConfigParser {
     final outputPath = _get<String>(map, 'output_path')?.asFolderPath ?? Defaults.outputPath;
     final themes = _getList<String>(map, 'themes') ?? Defaults.themes;
     final classType = _getType(map, 'class_type', GenuisClassType.tryParse) ?? Defaults.classType;
-    final fromJsonMethod = _get<bool>(map, 'from_json_method') ?? Defaults.fromJsonMethod;
     final dartLineLength = _get<int>(map, 'dart_line_length') ?? Defaults.dartLineLength;
     final className = _get<String>(map, 'class_name') ?? Defaults.className;
     final fieldName = _get<String>(map, 'field_name') ?? Defaults.fieldName;
@@ -81,7 +80,6 @@ abstract class ConfigParser {
       outputPath: outputPath,
       themes: themes,
       classType: classType,
-      fromJsonMethod: fromJsonMethod,
       dartLineLength: dartLineLength,
       className: className,
       fieldName: fieldName,

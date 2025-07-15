@@ -17,7 +17,6 @@ class ConfigValidator {
     _validateConfigThemes();
     _validateConfigBaseTheme();
     // _validateConfigClassType();
-    // _validateConfigFromJsonMethod();
     _validateConfigDartLineLength();
     _validateConfigClassName();
     _validateConfigFieldName();
