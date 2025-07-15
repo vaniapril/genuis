@@ -110,19 +110,13 @@ class ThemedIcons {
     );
   }
 
-  ColoredIcons get alertNotification => ColoredIcons(value, _alertNotification);
-  ColoredIcons get active => ColoredIcons(value, _active);
-  ColoredIcons get blue => ColoredIcons(value, _blue);
-  ColoredIcons get green => ColoredIcons(value, _green);
-  ColoredIcons get orange => ColoredIcons(value, _orange);
-  ColoredIcons get red => ColoredIcons(value, _red);
-  ColoredIcons colored(Color color) => ColoredIcons(value, color);
-}
-
-class ColoredIcons {
-  final String value;
-  final Color color;
-  const ColoredIcons(this.value, this.color);
+  (String, Color) get alertNotification => (value, _alertNotification);
+  (String, Color) get active => (value, _active);
+  (String, Color) get blue => (value, _blue);
+  (String, Color) get green => (value, _green);
+  (String, Color) get orange => (value, _orange);
+  (String, Color) get red => (value, _red);
+  (String, Color) colored(Color color) => (value, color);
 }
 
 class UIIconsFilledShopping extends ThemeExtension<UIIconsFilledShopping> {

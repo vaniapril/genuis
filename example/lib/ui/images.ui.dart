@@ -6,6 +6,7 @@
 // ignore_for_file: unused_import
 
 import 'package:flutter/material.dart';
+import 'ui.ui.dart';
 
 abstract class AppImages {
   static const String backgroundBook = 'background/book.jpg';
@@ -14,15 +15,33 @@ abstract class AppImages {
   static const String logoAbstract_ = 'logo/abstract.svg';
 }
 
+class ThemedImages {
+  final String value;
+  final Color _brand;
+  const ThemedImages._({required Color brand, required this.value}) : _brand = brand;
+  ThemedImages(UI ui, String value) : this._(brand: ui.colors.primary.brand, value: value);
+
+  ThemedImages lerp(ThemedImages other, double t) {
+    if (identical(this, other)) return this;
+    return ThemedImages._(
+      brand: Color.lerp(_brand, other._brand, t) ?? _brand,
+      value: t < 0.5 ? value : other.value,
+    );
+  }
+
+  (String, Color) get brand => (value, _brand);
+  (String, Color) colored(Color color) => (value, color);
+}
+
 class UIImagesBackground extends ThemeExtension<UIImagesBackground> {
-  final String book;
-  final String cat;
-  final String flowers;
+  final ThemedImages book;
+  final ThemedImages cat;
+  final ThemedImages flowers;
 
   const UIImagesBackground({required this.book, required this.cat, required this.flowers});
 
   @override
-  UIImagesBackground copyWith({String? book, String? cat, String? flowers}) {
+  UIImagesBackground copyWith({ThemedImages? book, ThemedImages? cat, ThemedImages? flowers}) {
     return UIImagesBackground(
       book: book ?? this.book,
       cat: cat ?? this.cat,
@@ -35,26 +54,31 @@ class UIImagesBackground extends ThemeExtension<UIImagesBackground> {
     if (other is! UIImagesBackground) return this;
     if (identical(this, other)) return this;
     return UIImagesBackground(
-      book: t < 0.5 ? book : other.book,
-      cat: t < 0.5 ? cat : other.cat,
-      flowers: t < 0.5 ? flowers : other.flowers,
+      book: book.lerp(other.book, t),
+      cat: cat.lerp(other.cat, t),
+      flowers: flowers.lerp(other.flowers, t),
     );
   }
 
-  static final UIImagesBackground base = UIImagesBackground(
-    book: AppImages.backgroundBook,
-    cat: AppImages.backgroundCat,
-    flowers: AppImages.backgroundFlowers,
+  static final UIImagesBackground light = UIImagesBackground(
+    book: ThemedImages(UI.light, AppImages.backgroundBook),
+    cat: ThemedImages(UI.light, AppImages.backgroundCat),
+    flowers: ThemedImages(UI.light, AppImages.backgroundFlowers),
+  );
+  static final UIImagesBackground dark = UIImagesBackground(
+    book: ThemedImages(UI.dark, AppImages.backgroundBook),
+    cat: ThemedImages(UI.dark, AppImages.backgroundCat),
+    flowers: ThemedImages(UI.dark, AppImages.backgroundFlowers),
   );
 }
 
 class UIImagesLogo extends ThemeExtension<UIImagesLogo> {
-  final String abstract_;
+  final ThemedImages abstract_;
 
   const UIImagesLogo({required this.abstract_});
 
   @override
-  UIImagesLogo copyWith({String? abstract_}) {
+  UIImagesLogo copyWith({ThemedImages? abstract_}) {
     return UIImagesLogo(abstract_: abstract_ ?? this.abstract_);
   }
 
@@ -62,10 +86,15 @@ class UIImagesLogo extends ThemeExtension<UIImagesLogo> {
   UIImagesLogo lerp(ThemeExtension<UIImagesLogo>? other, double t) {
     if (other is! UIImagesLogo) return this;
     if (identical(this, other)) return this;
-    return UIImagesLogo(abstract_: t < 0.5 ? abstract_ : other.abstract_);
+    return UIImagesLogo(abstract_: abstract_.lerp(other.abstract_, t));
   }
 
-  static final UIImagesLogo base = UIImagesLogo(abstract_: AppImages.logoAbstract_);
+  static final UIImagesLogo light = UIImagesLogo(
+    abstract_: ThemedImages(UI.light, AppImages.logoAbstract_),
+  );
+  static final UIImagesLogo dark = UIImagesLogo(
+    abstract_: ThemedImages(UI.dark, AppImages.logoAbstract_),
+  );
 }
 
 class UIImages extends ThemeExtension<UIImages> {
@@ -89,8 +118,12 @@ class UIImages extends ThemeExtension<UIImages> {
     );
   }
 
-  static final UIImages base = UIImages(
-    background: UIImagesBackground.base,
-    logo: UIImagesLogo.base,
+  static final UIImages light = UIImages(
+    background: UIImagesBackground.light,
+    logo: UIImagesLogo.light,
+  );
+  static final UIImages dark = UIImages(
+    background: UIImagesBackground.dark,
+    logo: UIImagesLogo.dark,
   );
 }

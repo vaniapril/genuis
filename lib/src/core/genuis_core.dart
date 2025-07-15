@@ -139,7 +139,7 @@ class GenuisCore {
         (field) {
           final type = switch (module.config.type) {
             ElementType.font => 'ThemedTextStyle',
-            ElementType.asset => 'Themed${module.config.name.upperFirst}',
+            ElementType.asset => 'Themed${module.config.name.camelCase.upperFirst}',
             _ => ''
           };
 
@@ -151,7 +151,7 @@ class GenuisCore {
               for (final theme in colorThemes)
                 theme: ColoredValue(
                   coloredType: type,
-                  theme: theme,
+                  theme: theme.isEmpty ? config.themes.first : theme,
                   innerValue: field.values[theme] ?? field.values.values.first,
                 )
             },

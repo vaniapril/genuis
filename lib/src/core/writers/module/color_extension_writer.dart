@@ -8,20 +8,23 @@ import 'package:genuis/src/utils/string_extension.dart';
 
 class ColorExtensionWriter {
   final Config config;
+  final String? colorClassName;
 
   ColorExtensionWriter({
     required this.config,
+    this.colorClassName,
   });
 
   void writeAssetExtensionClass(StringBuffer buffer, Module module, Map<String, Field> fields) {
     final themedClassName = 'Themed${module.config.name.upperFirst}';
-    final coloredClassName = 'Colored${module.config.name.upperFirst}';
 
     // TODO(vaniapril): refactor
     Value? type;
     module.rootClass.forEach((e) => type = e.values.values.first);
     final coloredType = type;
     type = coloredType is ColoredValue ? coloredType.innerValue : type;
+
+    final colorClass = colorClassName ?? '(${type?.type}, Color)';
 
     buffer.writeln('class $themedClassName {');
     buffer.writeln('final ${type?.type} value;');
@@ -62,16 +65,18 @@ class ColorExtensionWriter {
     buffer.writeln('}');
 
     for (final name in fields.keys) {
-      buffer.writeln('$coloredClassName get $name => $coloredClassName(value, _$name);');
+      buffer.writeln('$colorClass get $name => ${colorClassName ?? ''}(value, _$name);');
     }
-    buffer.writeln('$coloredClassName colored(Color color) => $coloredClassName(value, color);');
+    buffer.writeln('$colorClass colored(Color color) => ${colorClassName ?? ''}(value, color);');
     buffer.writeln('}');
 
-    buffer.writeln('class $coloredClassName {');
-    buffer.writeln('final ${type?.type} value;');
-    buffer.writeln('final Color color;');
-    buffer.writeln('const $coloredClassName(this.value, this.color);');
-    buffer.writeln('}');
+    if (colorClassName != null) {
+      buffer.writeln('class $colorClassName {');
+      buffer.writeln('final ${type?.type} value;');
+      buffer.writeln('final Color color;');
+      buffer.writeln('const $colorClassName(this.value, this.color);');
+      buffer.writeln('}');
+    }
   }
 
   void writeTextStyleExtensionClass(StringBuffer buffer, Map<String, Field> fields) {

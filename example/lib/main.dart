@@ -60,6 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
               '$_counter',
               style: ui.fonts.manrope.callout.semiBold.error,
             ),
+            Image.asset(ui.images.background.book.brand.$1)
           ],
         ),
       ),

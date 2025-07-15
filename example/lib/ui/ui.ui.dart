@@ -82,7 +82,7 @@ class UI extends ThemeExtension<UI> {
     colors: UIColors.light,
     fonts: UIFonts.light,
     icons: UIIcons.light,
-    images: UIImages.base,
+    images: UIImages.light,
     shadows: UIShadows.light,
   );
   static final UI dark = UI(
@@ -90,7 +90,7 @@ class UI extends ThemeExtension<UI> {
     colors: UIColors.dark,
     fonts: UIFonts.dark,
     icons: UIIcons.dark,
-    images: UIImages.base,
+    images: UIImages.dark,
     shadows: UIShadows.dark,
   );
 

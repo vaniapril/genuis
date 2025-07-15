@@ -9,7 +9,7 @@
     },
     "brand": {
         "light": "$colors.primary_brand_300 icons:active",
-        "dark": "$colors.primary_brand_300"
+        "dark": "$colors.primary_brand_300 images"
     },
     "chat_message": {
         "light": "$colors.primary_neutral_100",

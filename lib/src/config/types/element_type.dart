@@ -20,5 +20,6 @@ enum ElementType {
     };
   }
 
-  bool get supportsColor => this == ElementType.font || this == ElementType.asset || this == ElementType.shadow;
+  bool get supportsColor =>
+      this == ElementType.font || this == ElementType.asset; // || this == ElementType.shadow;
 }

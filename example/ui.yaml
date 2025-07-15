@@ -54,6 +54,7 @@ modules:
       path: images/
       token_class_type: static
       token_class_name: AppImages
+      color: true
 
   - shadows:
       type: shadow
