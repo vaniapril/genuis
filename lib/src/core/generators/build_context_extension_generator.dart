@@ -1,7 +1,7 @@
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/writers/build_context_extension_writer.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
-import 'package:genuis/src/utils/string_extension.dart';
+import 'package:genuis/src/utils/imports.dart';
 
 class BuildContextExtensionGenerator extends FileGenerator {
   final List<Module> modules;
@@ -17,8 +17,8 @@ class BuildContextExtensionGenerator extends FileGenerator {
   @override
   String generate() {
     final buffer = StringBuffer();
-    buffer.writeln("import 'package:flutter/material.dart';");
-    buffer.writeln("import '${config.className.snakeCase}.ui.dart';");
+    buffer.writeln(Imports.material);
+    buffer.writeln(Imports.mainClass(config));
 
     BuildContextExtensionWriter(config: config).write(buffer, modules);
 

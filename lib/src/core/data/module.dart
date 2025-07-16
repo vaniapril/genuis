@@ -15,4 +15,21 @@ class Module {
   });
 
   String get fileName => config.name;
+
+  String get importCode => "import '${config.name}.ui.dart';";
+  String get exportCode => "export '${config.name}.ui.dart';";
+
+  Module copyWith({
+    ModuleConfig? config,
+    Class? rootClass,
+    Map<String, Field>? colorFields,
+    List<Field>? tokenFields,
+    List<String>? additionalImports,
+  }) =>
+      Module(
+        config: config ?? this.config,
+        rootClass: rootClass ?? this.rootClass,
+        colorFields: colorFields ?? this.colorFields,
+        tokenFields: tokenFields ?? this.tokenFields,
+      );
 }

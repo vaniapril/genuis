@@ -17,4 +17,6 @@ class Field extends CodeEntity {
 
   @override
   String toString() => '{name: $name, path: $path, value: $values}';
+
+  List<Flag> get flags => values.values.expand((e) => e.flags).toList();
 }

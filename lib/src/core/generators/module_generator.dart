@@ -6,7 +6,6 @@ import 'package:genuis/src/core/writers/module/color_extension_writer.dart';
 import 'package:genuis/src/core/writers/token/enum_token_writer.dart';
 import 'package:genuis/src/core/writers/module/getter_module_writer.dart';
 import 'package:genuis/src/core/writers/module/theme_extension_module_writer.dart';
-import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/core/writers/token/static_token_writer.dart';
 import 'package:genuis/src/utils/imports.dart';
@@ -26,15 +25,12 @@ class ModuleGenerator extends FileGenerator {
   String generate() {
     StringBuffer buffer = StringBuffer();
 
-    Class root = module.rootClass;
-
     final Set<String> imports = {
       if (config.classType == GenuisClassType.themeExtension) Imports.material,
-      // TODO(vaniapril): colors modules import
-      if (module.config.color) "import '${config.className.toLowerCase()}.ui.dart';"
+      if (module.config.color) Imports.mainClass(config),
     };
 
-    root.forEach(
+    module.rootClass.forEach(
       (e) => imports.addAll({
         for (final value in e.values.values) ...value.imports,
       }),
@@ -68,7 +64,8 @@ class ModuleGenerator extends FileGenerator {
 
     if (module.config.color) {
       if (module.config.type == ElementType.font) {
-        ColorExtensionWriter(config: config).writeTextStyleExtensionClass(buffer, module.colorFields);
+        ColorExtensionWriter(config: config)
+            .writeTextStyleExtensionClass(buffer, module.colorFields);
       } else if (module.config.type == ElementType.asset) {
         ColorExtensionWriter(config: config)
             .writeAssetExtensionClass(buffer, module, module.colorFields);
@@ -77,9 +74,9 @@ class ModuleGenerator extends FileGenerator {
 
     switch (config.classType) {
       case GenuisClassType.themeExtension:
-        ThemeExtensionModuleWriter(config: config).write(buffer, root);
+        ThemeExtensionModuleWriter(config: config).write(buffer, module.rootClass);
       case GenuisClassType.getter:
-        GetterModuleWriter(config: config).write(buffer, root);
+        GetterModuleWriter(config: config).write(buffer, module.rootClass);
     }
 
     return buffer.toString();

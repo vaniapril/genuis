@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: GenUIs - Build_context_extension generator
+// Generator: GenUIs - build_context_extension generator
 // **************************************************************************
 
 // ignore_for_file: unused_import

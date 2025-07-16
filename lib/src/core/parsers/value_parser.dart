@@ -87,11 +87,10 @@ class ValueParser {
       if (field.name == name) {
         return TokenValue(
           tokenType: token.config.className,
-          // TODO(vaniapril): name.value ???
           tokenName: token.config.classType == TokenClassType.enum_ ? '$name.value' : name,
           innerValue: field.values.values.first,
           flags: flags,
-          additionalImports: token.import,
+          additionalImports: token.importCode,
         );
       }
     }
@@ -218,7 +217,6 @@ class ValueParser {
 
     return TextStyleValue(
       family: family,
-      // TODO(vaniapril): check 100,200,300,400,500,600,700,800,900
       weight: weight,
       size: size,
       height: height,

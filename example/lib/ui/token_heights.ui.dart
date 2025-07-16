@@ -1,11 +1,9 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: GenUIs - Token_heights generator
+// Generator: GenUIs - token_heights generator
 // **************************************************************************
 
 // ignore_for_file: unused_import
-
-import 'package:flutter/material.dart';
 
 abstract class AppHeights {
   static const double heights1 = 1.0;

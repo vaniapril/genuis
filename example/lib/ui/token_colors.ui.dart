@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: GenUIs - Token_colors generator
+// Generator: GenUIs - token_colors generator
 // **************************************************************************
 
 // ignore_for_file: unused_import

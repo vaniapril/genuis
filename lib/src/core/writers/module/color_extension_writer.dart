@@ -1,6 +1,5 @@
 import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/core/data/code/values/colored_value.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/utils/map_extension.dart';
@@ -18,16 +17,13 @@ class ColorExtensionWriter {
   void writeAssetExtensionClass(StringBuffer buffer, Module module, Map<String, Field> fields) {
     final themedClassName = 'Themed${module.config.name.upperFirst}';
 
-    // TODO(vaniapril): refactor
-    Value? type;
-    module.rootClass.forEach((e) => type = e.values.values.first);
-    final coloredType = type;
-    type = coloredType is ColoredValue ? coloredType.innerValue : type;
+    final coloredValue = module.rootClass.flattenFields.first.values.values.first;
+    final value = coloredValue is ColoredValue ? coloredValue.innerValue : coloredValue;
 
-    final colorClass = colorClassName ?? '(${type?.type}, Color)';
+    final colorClass = colorClassName ?? '(${value.type}, Color)';
 
     buffer.writeln('class $themedClassName {');
-    buffer.writeln('final ${type?.type} value;');
+    buffer.writeln('final ${value.type} value;');
     for (final name in fields.keys) {
       buffer.writeln('final Color _$name;');
     }
@@ -46,7 +42,7 @@ class ColorExtensionWriter {
     }
     buffer.writeln(';');
 
-    buffer.writeln('$themedClassName(UI ui, ${type?.type} value) : this._(');
+    buffer.writeln('$themedClassName(UI ui, ${value.type} value) : this._(');
     for (final (name, field) in fields.iterable) {
       buffer.writeln('$name: ui.${field.path.join('.')},');
     }
@@ -60,7 +56,7 @@ class ColorExtensionWriter {
     for (final name in fields.keys) {
       buffer.writeln('$name: Color.lerp(_$name, other._$name, t) ?? _$name,');
     }
-    buffer.writeln('value: ${type?.lerpCode('value', 'other.value')},');
+    buffer.writeln('value: ${value.lerpCode('value', 'other.value')},');
     buffer.writeln(');');
     buffer.writeln('}');
 
@@ -72,7 +68,7 @@ class ColorExtensionWriter {
 
     if (colorClassName != null) {
       buffer.writeln('class $colorClassName {');
-      buffer.writeln('final ${type?.type} value;');
+      buffer.writeln('final ${value.type} value;');
       buffer.writeln('final Color color;');
       buffer.writeln('const $colorClassName(this.value, this.color);');
       buffer.writeln('}');

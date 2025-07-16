@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: GenUIs - Ui generator
+// Generator: GenUIs - ui generator
 // **************************************************************************
 
 // ignore_for_file: unused_import

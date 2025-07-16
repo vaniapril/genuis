@@ -94,7 +94,12 @@ class GenuisCore {
   }
 
   List<Module> _collectColorFields(List<Module> modules) {
-    final colorModules = modules.where((e) => e.config.type == ElementType.color).toList();
+    final colorModules = modules.where((e) => e.config.type == ElementType.color);
+
+    final colorFields = [
+      for (final module in colorModules)
+        ...module.rootClass.flattenFields.where((e) => e.flags.isNotEmpty)
+    ];
 
     return modules.map((module) {
       if (!module.config.color) {
@@ -102,20 +107,16 @@ class GenuisCore {
       }
       Map<String, Field> fields = {};
 
-      for (final colorModule in colorModules) {
-        colorModule.rootClass.forEach((field) {
-          final Flag? flag = [for (final e in field.values.values) ...e.flags]
-              .firstWhereOrNull((e) => e.name == module.config.name);
-          if (flag != null) {
-            fields[flag.value ?? field.name] = field;
-          }
-        });
+      for (final colorField in colorFields) {
+        final Flag? flag = colorField.flags.firstWhereOrNull((e) => e.name == module.config.name);
+        if (flag != null) {
+          fields[flag.value ?? colorField.name] = colorField;
+        }
       }
 
-      return Module(
-        config: module.config,
-        rootClass: module.rootClass,
+      return module.copyWith(
         colorFields: fields,
+        additionalImports: colorModules.map((e) => e.importCode).toList(),
       );
     }).toList();
   }
@@ -142,7 +143,6 @@ class GenuisCore {
                   key,
                   TokenValue(
                     tokenType: module.config.tokenClassName,
-                    // TODO(vaniapril): name
                     tokenName:
                         '${field.enumName(key)}${module.config.tokenClassType == TokenClassType.enum_ ? '.value' : ''}',
                     innerValue: value,
@@ -154,10 +154,8 @@ class GenuisCore {
         },
       );
 
-      return Module(
-        config: module.config,
+      return module.copyWith(
         rootClass: rootClass,
-        colorFields: module.colorFields,
         tokenFields: tokenFields,
       );
     }).toList();
@@ -199,12 +197,7 @@ class GenuisCore {
         },
       );
 
-      return Module(
-        config: module.config,
-        rootClass: rootClass,
-        colorFields: module.colorFields,
-        tokenFields: module.tokenFields,
-      );
+      return module.copyWith(rootClass: rootClass);
     }).toList();
   }
 }

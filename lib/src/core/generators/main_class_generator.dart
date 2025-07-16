@@ -5,9 +5,9 @@ import 'package:genuis/src/core/writers/module/getter_module_writer.dart';
 import 'package:genuis/src/core/writers/module/theme_extension_module_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
+import 'package:genuis/src/utils/imports.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-// TODO(vaniapril): refactor all
 class MainClassGenerator extends FileGenerator {
   final List<Module> modules;
   final List<Token> tokens;
@@ -23,24 +23,30 @@ class MainClassGenerator extends FileGenerator {
 
   @override
   String generate() {
-    final imports = config.modules.map((e) => 'import \'${e.name}.ui.dart\';').join('\n') +
-        config.tokens.map((e) => 'import \'token_${e.name}.ui.dart\';').join('\n') +
-        // "import 'package:core/core.dart';" +
-        "import 'package:flutter/material.dart';" +
-        '\n' +
-        '\n' +
-        // generators.map((e) => 'export \'${e.name}.ui.dart\';').join('\n') +
-        // "export 'dimens.ui.dart';" +
-        config.modules.map((e) => 'export \'${e.name}.ui.dart\';').join('\n') +
-        config.tokens.map((e) => 'export \'token_${e.name}.ui.dart\';').join('\n') +
-        "export 'build_context_extension.ui.dart';";
+    final imports = [
+      ...modules.map((e) => e.importCode),
+      ...tokens.map((e) => e.importCode),
+      if (config.classType == GenuisClassType.themeExtension) Imports.material,
+    ];
+
+    final exports = [
+      ...modules.map((e) => e.exportCode),
+      ...tokens.map((e) => e.exportCode),
+      Imports.buildContextExtensionExport(config),
+    ];
 
     StringBuffer buffer = StringBuffer();
 
-    buffer.writeln(imports);
+    for (final import in imports) {
+      buffer.writeln(import);
+    }
+    buffer.writeln();
+    for (final export in exports) {
+      buffer.writeln(export);
+    }
 
     final tree = Class(
-      name: 'ui',
+      name: config.fieldName,
       path: [],
       classType: config.className,
       themes: config.themes,

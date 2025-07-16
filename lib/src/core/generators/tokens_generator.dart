@@ -19,7 +19,17 @@ class TokensGenerator extends FileGenerator {
   String generate() {
     StringBuffer buffer = StringBuffer();
 
-    buffer.writeln("import 'package:flutter/material.dart';");
+    final Set<String> imports = {};
+
+    for (var field in token.fields) {
+      imports.addAll({
+        for (final value in field.values.values) ...value.imports,
+      });
+    }
+
+    for (final import in imports) {
+      buffer.writeln(import);
+    }
 
     if (token.config.classType == TokenClassType.enum_) {
       EnumTokenWriter(

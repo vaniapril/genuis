@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: GenUIs - Shadows generator
+// Generator: GenUIs - shadows generator
 // **************************************************************************
 
 // ignore_for_file: unused_import

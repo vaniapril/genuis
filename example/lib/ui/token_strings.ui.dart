@@ -1,11 +1,9 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: GenUIs - Token_strings generator
+// Generator: GenUIs - token_strings generator
 // **************************************************************************
 
 // ignore_for_file: unused_import
-
-import 'package:flutter/material.dart';
 
 abstract class AppStrings {
   static const String hello = 'Hello';

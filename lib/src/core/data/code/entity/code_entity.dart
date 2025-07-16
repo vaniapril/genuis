@@ -1,3 +1,4 @@
+import 'package:genuis/src/core/data/code/flag.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
@@ -27,7 +28,6 @@ sealed class CodeEntity {
   String lerpCode(String arg1, String arg2) {
     final node = this;
     return switch (node) {
-      // TODO(vaniapril): without first
       Field() => node.values.values.first.lerpCode(arg1, arg2),
       Class() => '$arg1.lerp($arg2, t)',
     };

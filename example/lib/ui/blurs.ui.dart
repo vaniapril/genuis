@@ -1,6 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 // **************************************************************************
-// Generator: GenUIs - Blurs generator
+// Generator: GenUIs - blurs generator
 // **************************************************************************
 
 // ignore_for_file: unused_import

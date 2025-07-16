@@ -20,6 +20,7 @@ enum ElementType {
     };
   }
 
+  // TODO(vaniapril): add shadow support
   bool get supportsColor =>
       this == ElementType.font || this == ElementType.asset; // || this == ElementType.shadow;
 }
