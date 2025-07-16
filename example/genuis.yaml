@@ -1,0 +1,28 @@
+themes:
+  - light
+  - dark
+
+tokens:
+  - sizes:
+      type: number
+
+modules:
+  - colors:
+      type: color
+
+  - icons:
+      type: asset
+      color: true
+
+  - fonts:
+      type: font
+      color: true
+
+  - shadows:
+      type: shadow
+
+  - gradients:
+      type: gradient
+      
+  - blurs:
+      type: blur

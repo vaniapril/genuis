@@ -13,18 +13,22 @@ import 'package:genuis/src/utils/string_extension.dart';
 import 'package:yaml/yaml.dart';
 
 abstract class ConfigParser {
-  static Config getConfig() {
-    final uiFile = File(Defaults.uiFile);
-    if (uiFile.existsSync()) {
-      final content = uiFile.readAsStringSync();
+  static Config? getConfig() {
+    final genuisFile = File(Defaults.genuisFile);
+    if (genuisFile.existsSync()) {
+      final content = genuisFile.readAsStringSync();
       final map = loadYaml(content) as YamlMap;
       return _configFromYaml(map);
     }
 
     final pubspecFile = File(Defaults.pubspecFile);
     final content = pubspecFile.readAsStringSync();
-    final map = loadYaml(content) as YamlMap;
-    return _configFromYaml(map['genuis'] as YamlMap);
+    final map = (loadYaml(content) as YamlMap)['genuis'];
+    if (map != null && map is YamlMap) {
+      return _configFromYaml(map);
+    }
+
+    return null;
   }
 
   static Config _configFromYaml(YamlMap map) {

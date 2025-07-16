@@ -1,4 +1,26 @@
 import 'package:flutter/material.dart';
+import 'ui/ui.ui.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      theme: ThemeData.light().copyWith(
+        extensions: <UI>[UI.light],
+      ),
+      darkTheme: ThemeData.dark().copyWith(
+        extensions: <UI>[UI.dark],
+      ),
+      home: const MyWidget(),
+    );
+  }
+}
 
 class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
@@ -16,6 +38,7 @@ class MyWidget extends StatelessWidget {
         // Icon
         CustomIcon(
           icon: ui.icons.outline.example.white,
+          size: Sizes.iconMedium,
         ),
         // TextStyle
         Text(

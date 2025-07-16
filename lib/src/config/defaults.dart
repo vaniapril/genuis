@@ -5,7 +5,7 @@ import 'package:genuis/src/utils/string_extension.dart';
 
 abstract class Defaults {
   //Files
-  static const uiFile = 'ui.yaml';
+  static const genuisFile = 'genuis.yaml';
   static const pubspecFile = 'pubspec.yaml';
   //Config
   static const assetsPath = 'assets/';
