@@ -2,10 +2,12 @@ import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/utils/imports.dart';
 
 class BlurValue extends Value {
-  final Value sigma;
+  final Value sigmaX;
+  final Value sigmaY;
 
   const BlurValue({
-    required this.sigma,
+    required this.sigmaX,
+    required this.sigmaY,
   });
 
   @override
@@ -15,9 +17,10 @@ class BlurValue extends Value {
   Set<String> get imports => {
         Imports.material,
         Imports.dartUi,
-        ...sigma.imports,
+        ...sigmaX.imports,
+        ...sigmaY.imports,
       };
 
   @override
-  String toString() => 'ImageFilter.blur(sigmaX: $sigma / 2, sigmaY: $sigma / 2,)';
+  String toString() => 'ImageFilter.blur(sigmaX: $sigmaX, sigmaY: $sigmaY,)';
 }
