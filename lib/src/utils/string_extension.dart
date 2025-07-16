@@ -14,6 +14,12 @@ extension StringExtension on String {
     return result;
   }
 
+  String get asFilePath {
+    var result = forwardSlash;
+    if (result.startsWith('/')) result = result.substring(1);
+    return result;
+  }
+
   String get camelCase => replaceAll(RegExp('[^A-Za-z0-9]'), ' ')
       .split(' ')
       .where((e) => e.isNotEmpty)

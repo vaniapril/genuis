@@ -49,11 +49,11 @@ class ModuleGenerator extends FileGenerator {
         EnumTokenWriter(
           config: config,
           className: module.config.tokenClassName,
-          valueType: module.enumFields.first.valueType,
+          valueType: module.tokenFields.first.valueType,
           valueName: module.config.tokenFieldName,
         ).write(
           buffer,
-          module.enumFields,
+          module.tokenFields,
         );
       } else if (module.config.tokenClassType == TokenClassType.static_) {
         StaticTokenWriter(
@@ -61,17 +61,17 @@ class ModuleGenerator extends FileGenerator {
           className: module.config.tokenClassName,
         ).write(
           buffer,
-          module.enumFields,
+          module.tokenFields,
         );
       }
     }
 
     if (module.config.color) {
       if (module.config.type == ElementType.font) {
-        ColorExtensionWriter(config: config).writeTextStyleExtensionClass(buffer, module.colors);
+        ColorExtensionWriter(config: config).writeTextStyleExtensionClass(buffer, module.colorFields);
       } else if (module.config.type == ElementType.asset) {
         ColorExtensionWriter(config: config)
-            .writeAssetExtensionClass(buffer, module, module.colors);
+            .writeAssetExtensionClass(buffer, module, module.colorFields);
       }
     }
 

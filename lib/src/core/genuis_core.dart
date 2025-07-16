@@ -33,8 +33,8 @@ class GenuisCore {
   List<Token> _tokens = [];
 
   void _init() {
-    _tokens = _processTokens();
-    _modules = _processModules();
+    _tokens = _parseTokens();
+    _modules = _parseModules();
   }
 
   List<FileGenerator> get generators => [
@@ -48,8 +48,29 @@ class GenuisCore {
         ),
       ];
 
-  List<Module> _processModules() {
-    var rawModules = config.modules.map((e) {
+  List<Token> _parseTokens() {
+    return config.tokens.map((e) {
+      Folder node = NodesParser(
+        path: config.assetsPath + e.path,
+        parseFiles: e.type != ElementType.asset,
+      ).parse();
+
+      final valueParser = ValueParser(
+        type: e.type,
+      );
+
+      Class tree = ModelsParser(
+        config: config,
+        root: node,
+        mapper: (value) => valueParser.parse(value),
+      ).parse();
+
+      return Token(config: e, fields: tree.fields);
+    }).toList();
+  }
+
+  List<Module> _parseModules() {
+    var modules = config.modules.map((e) {
       Folder node = NodesParser(
         path: config.assetsPath + e.path,
         parseFiles: e.type != ElementType.asset,
@@ -66,44 +87,50 @@ class GenuisCore {
       return Module(config: e, rootClass: tree);
     }).toList();
 
-    final colorModules = rawModules.where((e) => e.config.type == ElementType.color).toList();
-
-    return rawModules
-        .map((module) {
-          if (module.config.color) {
-            Map<String, Field> fields = {};
-
-            for (final colorModule in colorModules) {
-              colorModule.rootClass.forEach((field) {
-                final Flag? flag = [for (final e in field.values.values) ...e.flags]
-                    .firstWhereOrNull((e) => e.name == module.config.name);
-                if (flag != null) {
-                  fields[flag.value ?? field.name] = field;
-                }
-              });
-            }
-
-            module = Module(
-              config: module.config,
-              rootClass: module.rootClass,
-              colors: fields,
-            );
-          }
-
-          return module;
-        })
-        .map((e) => _processModule(e))
-        .toList();
+    modules = _collectColorFields(modules);
+    modules = _collectAndWrapTokenFields(modules);
+    modules = _wrapColorFields(modules);
+    return modules;
   }
 
-  Module _processModule(Module module) {
-    Class root = module.rootClass;
-    List<Field> enumFields = [];
+  List<Module> _collectColorFields(List<Module> modules) {
+    final colorModules = modules.where((e) => e.config.type == ElementType.color).toList();
 
-    if (module.config.tokenClassType != null) {
-      root = root.map(
+    return modules.map((module) {
+      if (!module.config.color) {
+        return module;
+      }
+      Map<String, Field> fields = {};
+
+      for (final colorModule in colorModules) {
+        colorModule.rootClass.forEach((field) {
+          final Flag? flag = [for (final e in field.values.values) ...e.flags]
+              .firstWhereOrNull((e) => e.name == module.config.name);
+          if (flag != null) {
+            fields[flag.value ?? field.name] = field;
+          }
+        });
+      }
+
+      return Module(
+        config: module.config,
+        rootClass: module.rootClass,
+        colorFields: fields,
+      );
+    }).toList();
+  }
+
+  List<Module> _collectAndWrapTokenFields(List<Module> modules) {
+    return modules.map((module) {
+      if (module.config.tokenClassType == null) {
+        return module;
+      }
+
+      List<Field> tokenFields = [];
+
+      final rootClass = module.rootClass.map(
         (field) {
-          enumFields.add(field);
+          tokenFields.add(field);
 
           return Field(
             name: field.name,
@@ -126,16 +153,29 @@ class GenuisCore {
           );
         },
       );
-    }
 
-    if (module.config.color) {
+      return Module(
+        config: module.config,
+        rootClass: rootClass,
+        colorFields: module.colorFields,
+        tokenFields: tokenFields,
+      );
+    }).toList();
+  }
+
+  List<Module> _wrapColorFields(List<Module> modules) {
+    return modules.map((module) {
+      if (!module.config.color) {
+        return module;
+      }
+
       var colorThemesSet = {
-        for (final themes in module.colors.values.map((e) => e.values.keys)) ...themes
+        for (final themes in module.colorFields.values.map((e) => e.values.keys)) ...themes
       }..remove('');
 
       final colorThemes = colorThemesSet.isEmpty ? [''] : colorThemesSet.toList();
 
-      root = root.map(
+      final rootClass = module.rootClass.map(
         (field) {
           final type = switch (module.config.type) {
             ElementType.font => 'ThemedTextStyle',
@@ -158,34 +198,13 @@ class GenuisCore {
           );
         },
       );
-    }
 
-    return Module(
-      config: module.config,
-      rootClass: root,
-      colors: module.colors,
-      enumFields: enumFields,
-    );
-  }
-
-  List<Token> _processTokens() {
-    return config.tokens.map((e) {
-      Folder node = NodesParser(
-        path: config.assetsPath + e.path,
-        parseFiles: e.type != ElementType.asset,
-      ).parse();
-
-      final valueParser = ValueParser(
-        type: e.type,
+      return Module(
+        config: module.config,
+        rootClass: rootClass,
+        colorFields: module.colorFields,
+        tokenFields: module.tokenFields,
       );
-
-      Class tree = ModelsParser(
-        config: config,
-        root: node,
-        mapper: (value) => valueParser.parse(value),
-      ).parse();
-
-      return Token(config: e, fields: tree.fields);
     }).toList();
   }
 }

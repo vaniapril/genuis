@@ -42,6 +42,10 @@ class ConfigValidator {
 
   void _validateConfigBaseTheme() {
     _validateFieldName(config.baseTheme);
+
+    if (config.themes.contains(config.baseTheme)) {
+      throw ConfigValidationException('baseTheme (${config.baseTheme}) must not be in themes (${config.themes})');
+    }
   }
 
   void _validateConfigDartLineLength() {

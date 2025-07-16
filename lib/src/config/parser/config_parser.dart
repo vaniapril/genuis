@@ -32,7 +32,7 @@ abstract class ConfigParser {
     final tokens = _getList<YamlMap>(map, 'tokens')?.map((e) {
           final (name, map) = _getEntry(e);
 
-          final path = _get<String>(map, 'path') ?? Defaults.tokenPathFrom(name);
+          final path = _get<String>(map, 'path')?.asFilePath ?? Defaults.tokenPathFrom(name);
           final type = _getType(map, 'type', ElementType.tryParse) ?? Defaults.tokenType;
           final classType =
               _getType(map, 'class_type', TokenClassType.tryParse) ?? Defaults.tokenClassType;
@@ -53,7 +53,7 @@ abstract class ConfigParser {
     final modules = _getList<YamlMap>(map, 'modules')?.map((e) {
           final (name, map) = _getEntry(e);
 
-          final path = _get<String>(map, 'path') ?? Defaults.modulePathFrom(name);
+          final path = _get<String>(map, 'path')?.asFolderPath ?? Defaults.modulePathFrom(name);
           final type = _getType(map, 'type', ElementType.tryParse) ?? Defaults.moduleType;
           final tokenClassType = _getType(map, 'token_class_type', TokenClassType.tryParse);
           final tokenClassName =
