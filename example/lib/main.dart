@@ -42,7 +42,7 @@ class MyWidget extends StatelessWidget {
         ),
         // TextStyle
         Text(
-          'Hello World!',
+          Strings.tag,
           style: ui.fonts.roboto.headline.primary,
         ),
         // Shadow
@@ -56,7 +56,7 @@ class MyWidget extends StatelessWidget {
         // Gradient
         DecoratedBox(
           decoration: BoxDecoration(
-            gradient: ui.gradients.card,
+            gradient: ui.gradients.background,
           ),
         ),
         // Blur

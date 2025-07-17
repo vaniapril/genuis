@@ -56,6 +56,7 @@ class ValueParser {
       ElementType.asset => _parseAsset(args),
       ElementType.number => _parseNumber(args),
       ElementType.string => _parseString(value),
+      ElementType.gradient => _parseGradient(args),
     };
   }
 
@@ -229,7 +230,7 @@ class ValueParser {
     );
   }
 
-  Value parseGradient(List<String> args) {
+  Value _parseGradient(List<String> args) {
     if (args.length < 3) throw ParserValueArgsException(args, 'gradient');
 
     Value? begin = _tryParseAlignmentString(args[0]);

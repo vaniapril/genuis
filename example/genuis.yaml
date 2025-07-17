@@ -5,24 +5,20 @@ themes:
 tokens:
   - sizes:
       type: number
+  - strings:
+      type: string
 
 modules:
   - colors:
       type: color
-
   - icons:
-      type: asset
       color: true
-
   - fonts:
       type: font
       color: true
-
   - shadows:
       type: shadow
-
   - gradients:
       type: gradient
-      
   - blurs:
       type: blur

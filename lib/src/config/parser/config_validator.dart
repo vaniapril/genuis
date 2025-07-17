@@ -143,7 +143,7 @@ class ConfigValidator {
 
     final directory = Directory(value);
 
-    if (!directory.existsSync() && !checkExists) {
+    if (!directory.existsSync() && checkExists) {
       throw ConfigValidationException('folder does not exist: $value');
     }
   }

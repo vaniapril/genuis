@@ -14,7 +14,7 @@ class GradientValue extends Value {
   });
 
   @override
-  String lerpCode(String arg1, String arg2) => '$arg1.lerp($arg2, t)';
+  String lerpCode(String arg1, String arg2) => 'LinearGradient.lerp($arg1, $arg2, t) ?? $arg2';
 
   @override
   String get type => 'LinearGradient';

@@ -14,43 +14,22 @@ class GetterModuleWriter {
   }
 
   void writeMainClass(StringBuffer buffer, Class class_) {
-    _writeMainInheritedWidgetClass(buffer, class_);
     buffer.writeln();
     buffer.writeln('abstract class ${class_.type} {');
     _writeAbstractClassBody(buffer, class_);
-    buffer.writeln();
-    _writeMainClassFactory(buffer, class_);
+    // buffer.writeln();
+    // _writeMainClassFactory(buffer, class_);
     buffer.writeln('}');
     buffer.writeln();
     _writeThemeClasses(buffer, class_);
   }
 
-  void _writeMainInheritedWidgetClass(StringBuffer buffer, Class class_) {
-    buffer.writeln('class ${class_.type}Widget extends InheritedWidget {');
-    buffer.writeln('final ${class_.type} ${config.fieldName};');
-    buffer.writeln();
-    buffer.writeln('const  ${class_.type}Widget({');
-    buffer.writeln('super.key,');
-    buffer.writeln('required this.${config.fieldName},');
-    buffer.writeln('required super.child,');
-    buffer.writeln('});');
-    buffer.writeln();
-    buffer.writeln('static ${class_.type}Widget? of(BuildContext context) {');
-    buffer.writeln('return context.dependOnInheritedWidgetOfExactType<${class_.type}Widget>();');
-    buffer.writeln('}');
-    buffer.writeln();
-    buffer.writeln('@override');
-    buffer.writeln(
-        'bool updateShouldNotify(${class_.type}Widget oldWidget) => ${config.fieldName} != oldWidget.${config.fieldName};');
-    buffer.writeln('}');
-  }
-
-  void _writeMainClassFactory(StringBuffer buffer, Class class_) {
-    buffer.writeln('factory ${class_.type}.of(BuildContext context) {');
-    buffer.writeln(
-        'return ${class_.type}Widget.of(context)?.${config.fieldName} ?? ${class_.type}.${_theme(class_.themes.first)};');
-    buffer.writeln('}');
-  }
+  // void _writeMainClassFactory(StringBuffer buffer, Class class_) {
+  //   buffer.writeln('factory ${class_.type}.of(BuildContext context) {');
+  //   buffer.writeln(
+  //       'return ${class_.type}Widget.of(context)?.${config.fieldName} ?? ${class_.type}.${_theme(class_.themes.first)};');
+  //   buffer.writeln('}');
+  // }
 
   void _writeClassWithSubclasses(StringBuffer buffer, Class class_) {
     for (final model in class_.classes) {

@@ -25,10 +25,19 @@ class NodesParser {
     final directory = Directory(path);
 
     if (directory.existsSync()) {
-      return Folder(
-        name: directory.name,
-        nodes: _parseDirectory(directory).map(reduce).toList(),
+      final node = reduce(
+        Folder(
+          name: directory.name,
+          nodes: _parseDirectory(directory),
+        ),
       );
+
+      return node is Folder
+          ? node
+          : Folder(
+              name: directory.name,
+              nodes: [node],
+            );
     }
 
     final file = File(path);
