@@ -205,9 +205,9 @@ To generate `.ui.dart` files run the following command in the package directory:
 dart run build_runner build
 ```
 
-### 5. Use themes
+### 5. Use UI class
 
-Add `ThemeData` with generated theme extension (`UI` class) to `MaterialApp` and use themes in any widget in your application:
+Add `ThemeData` with generated theme extension to `MaterialApp` and use elements of `UI` class in any widget in your application:
 
 ```dart
 import 'ui/ui.ui.dart';
@@ -621,7 +621,7 @@ The value of an element with the [`shadow`](#shadow) type is a `BoxShadow` speci
 "<color> <dx> <dy> <blur> <spread> <optional: inset>"
 ```
 > [!IMPORTANT]  
-> Flutter does not support `inset` inside `BoxShadow`, so if you need to use `inset`, add [flutter_inset_shadow] to your project dependencies.
+> Flutter does not support `inset` inside `BoxShadow`, so if you need to use `inset`, add [flutter_inset_shadow] to your package dependencies.
 
 For example, for the `shadows` [module](#modules) with the file `assets/shadows/shadows.json`:
 
@@ -918,7 +918,7 @@ References in [color module](#color) to [colored module](#colored-modules) can b
 The configuration is the basis of the [GenUIs]. It defines a list of [modules](#modules) and [tokens](#modules). It also allows you to fine-tune the generated code for different cases of interaction.
 
 The configuration can be set:
-- In the root of the project in the `genuis.yaml` file:
+- In the root of the package in the `genuis.yaml` file:
   ```yaml
   assets_path: assets/
   #...
