@@ -1,7 +1,10 @@
-[GenUIs] - is a code generator for theme classes, enabling convenient creation and use of UI elements based on the structure of the assets folder and JSON configuration files.
+[GenUIs] - is a code generator for theme classes, enabling convenient creation and use of UI properties based on the structure of the assets folder and JSON configuration files.
+
+> [!WARNING]  
+> [GenUIs] is still under development. Features and documentation may change.
 
 # Motivation
-Setting UI elements directly in a widget is bad practice, as it inevitably leads to project clutter, constant code duplication, and prevents the implementation of even basic light and dark themes for the application.
+Setting UI properties directly in a widget is bad practice, as it inevitably leads to project clutter, constant code duplication, and prevents the implementation of even basic light and dark themes for the application.
 
 ```dart
 @override
@@ -59,7 +62,7 @@ Widget build(BuildContext context) {
   );
 }
 ```
-[GenUIs] generate theme classes for you. You need just to update assets folder with JSON configuration files for the required UI elements. Access to these elements is provided through a convenient chain of getter calls from main theme class. Using [GenUIs] makes it easier to maintain and expand themes, declutters the code and makes it more readable:
+[GenUIs] generate theme classes for you. You need just to update assets folder with JSON configuration files for the required UI properties. Access to these properties is provided through a convenient chain of getter calls from main theme class. Using [GenUIs] makes it easier to maintain and expand themes, declutters the code and makes it more readable:
 ```dart
 @override
 Widget build(BuildContext context) {
@@ -80,7 +83,7 @@ Widget build(BuildContext context) {
 ```
 
 # Example
-Example of using UI elements with [GenUIs]:
+Example of using UI properties with [GenUIs]:
 ```dart
 class MyWidget extends StatelessWidget {
   const MyWidget({super.key});
@@ -169,7 +172,7 @@ assets
 ```
 
 ### 3. Setup config
-Define the configuration in `genuis.yaml` file with a lists of [Modules](#modules) and [Tokens](#tokens) with types of UI-elements within them. For more detailed customization of generated themes see [Configuration](#configuration).\
+Define the configuration in `genuis.yaml` file with a lists of [Modules](#modules) and [Tokens](#tokens) with types of UI-properties within them. For more detailed customization of generated themes see [Configuration](#configuration).\
 Configuration file for [Example](#example):
 
 ```yaml
@@ -229,7 +232,7 @@ class MyApp extends StatelessWidget {
 
 ## Modules
 
-A [module](#modules) is the main component of a theme with one of the types of UI-elements within it. \
+A [module](#modules) is the main component of a theme with one of the types of UI-property within it. \
 You can access the module by name through `UI` or directly through `context`:
 
 ```dart
@@ -301,7 +304,7 @@ The module structure is determined by:
 > The unnecessary duplications of getters will be shortened, for example `ui.same.same.another.` will be shortened to `ui.same.another.` if the second `same` is the only getter in the first `same`.
 
 ### Themes
-In [GenUIs] you can define different values for a UI element depending on the theme. To do this, one of the structure names must contain the theme name. Let's consider the following element call:
+In [GenUIs] you can define different values for a UI properties depending on the theme. To do this, one of the structure names must contain the theme name. Let's consider the following element call:
 ```dart
 ui.moduleName.folder.name.key.element
 ```
@@ -434,7 +437,7 @@ A [module](#modules) can combine elements with and without a theme.
     "element_2" <value>
 }
 ```
-> [!WARNING]  
+> [!IMPORTANT]  
 > It is important to specify values for all themes for each themed element. \
 > These values must be of the same type.
 
