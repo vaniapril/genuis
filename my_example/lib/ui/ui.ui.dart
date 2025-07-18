@@ -26,6 +26,14 @@ export 'token_colors.ui.dart';
 export 'token_heights.ui.dart';
 export 'token_strings.ui.dart';
 export 'build_context_extension.ui.dart';
+/*
+  assets:
+    - assets/icons/filled/
+    - assets/icons/outlined/dark/
+    - assets/icons/outlined/light/
+    - assets/images/background/
+    - assets/images/logo/
+*/
 
 class UI extends ThemeExtension<UI> {
   final UIBlurs blurs;

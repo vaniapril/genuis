@@ -2,6 +2,7 @@ import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/token.dart';
+import 'package:genuis/src/core/writers/assets_list_writer.dart';
 import 'package:genuis/src/core/writers/module/getter_module_writer.dart';
 import 'package:genuis/src/core/writers/module/theme_extension_module_writer.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
@@ -44,6 +45,8 @@ class MainClassGenerator extends FileGenerator {
     for (final export in exports) {
       buffer.writeln(export);
     }
+
+    AssetsListWriter().write(buffer, modules);
 
     final tree = Class(
       name: Config.it.fieldName,

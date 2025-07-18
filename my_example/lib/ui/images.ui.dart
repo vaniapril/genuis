@@ -9,10 +9,10 @@ import 'package:flutter/material.dart';
 import 'ui.ui.dart';
 
 abstract class AppImages {
-  static const String backgroundBook = 'background/book.jpg';
-  static const String backgroundCat = 'background/cat.jpg';
-  static const String backgroundFlowers = 'background/flowers.jpg';
-  static const String logoAbstract_ = 'logo/abstract.svg';
+  static const String backgroundBook = 'assets/images/background/book.jpg';
+  static const String backgroundCat = 'assets/images/background/cat.jpg';
+  static const String backgroundFlowers = 'assets/images/background/flowers.jpg';
+  static const String logoAbstract_ = 'assets/images/logo/abstract.svg';
 }
 
 class ImagesWithColors {

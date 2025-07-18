@@ -511,6 +511,21 @@ ui.icons.outline.arrow
 // "assets/icons/outline/logo-light.svg" - for light theme
 ui.icons.outline.logo
 ```
+For convenience of adding assets to `pubspec.yaml` in the file with the main theme class `ui.ui.dart` in `lib/ui/`, a comment with a list of all folders with assets files will be generated:
+```dart
+/*
+  assets:
+    - assets/icons/filled/
+    - assets/icons/outlined/dark/
+    - assets/icons/outlined/light/
+    - assets/images/background/
+    - assets/images/logo/
+    //...
+*/
+
+class UI extends ThemeExtension<UI> {
+  //...
+```
 
 ### color
 > value type: Color

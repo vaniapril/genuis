@@ -25,3 +25,9 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+  assets:
+    - assets/icons/filled/
+    - assets/icons/outlined/dark/
+    - assets/icons/outlined/light/
+    - assets/images/background/
+    - assets/images/logo/

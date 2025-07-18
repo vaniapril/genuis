@@ -17,11 +17,13 @@ import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class ValueParser {
+  final String path;
   final ElementType type;
   final List<Token> tokens;
 
   ValueParser({
     required this.type,
+    this.path = '',
     this.tokens = const [],
   });
 
@@ -299,7 +301,7 @@ class ValueParser {
     if (args.length != 1) throw ParserValueArgsException(args, 'asset');
 
     return StringValue(
-      value: args[0],
+      value: path + args[0],
     );
   }
 }

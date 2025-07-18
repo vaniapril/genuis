@@ -5,6 +5,7 @@ import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/code/flag.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/core/data/code/values/colored_value.dart';
+import 'package:genuis/src/core/data/code/values/string_value.dart';
 import 'package:genuis/src/core/data/code/values/token_value.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/node/node.dart';
@@ -18,6 +19,7 @@ import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/core/parsers/value_parser.dart';
 import 'package:genuis/src/utils/list_extension.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class GenuisCore {
   GenuisCore() {
@@ -64,12 +66,17 @@ class GenuisCore {
 
   List<Module> _parseModules() {
     var modules = Config.it.modules.map((e) {
+      final path = Config.it.assetsPath + e.path;
       Folder node = NodesParser(
-        path: Config.it.assetsPath + e.path,
+        path: path,
         parseFiles: e.type != ElementType.asset,
       ).parse();
 
-      final valueParser = ValueParser(type: e.type, tokens: _tokens);
+      final valueParser = ValueParser(
+        path: path,
+        type: e.type,
+        tokens: _tokens,
+      );
 
       Class tree = ModelsParser(
         root: node,
@@ -79,10 +86,33 @@ class GenuisCore {
       return Module(config: e, rootClass: tree);
     }).toList();
 
+    modules = _collectAssetsList(modules);
     modules = _collectColorFields(modules);
     modules = _collectAndWrapTokenFields(modules);
     modules = _wrapColorFields(modules);
     return modules;
+  }
+
+  List<Module> _collectAssetsList(List<Module> modules) {
+    return modules.map((module) {
+      if (module.config.type != ElementType.asset) {
+        return module;
+      }
+
+      final Set<String> assetsSet = {};
+
+      module.rootClass.forEach((field) {
+        for (final value in field.values.values) {
+          if (value is StringValue) {
+            assetsSet.add('${value.value.withoutFile}/');
+          }
+        }
+      });
+
+      return module.copyWith(
+        assetsList: assetsSet.toList()..sort(),
+      );
+    }).toList();
   }
 
   List<Module> _collectColorFields(List<Module> modules) {
@@ -108,7 +138,6 @@ class GenuisCore {
 
       return module.copyWith(
         colorFields: fields,
-        additionalImports: colorModules.map((e) => e.importCode).toList(),
       );
     }).toList();
   }

@@ -3,14 +3,15 @@ extension StringExtension on String {
 
   String get lowerFirst => isEmpty ? '' : '${this[0].toLowerCase()}${substring(1)}';
 
-  String get withoutExtension => split('.').first;
+  String get withoutExtension => contains('.') ? substring(0, lastIndexOf('.')) : this;
+  String get withoutFile => contains('/') ? substring(0, lastIndexOf('/')) : this;
 
   String get forwardSlash => replaceAll('\\', '/');
 
   String get asFolderPath {
     var result = forwardSlash;
-    if (!result.endsWith('/')) result = '$result/';
     if (result.startsWith('/')) result = result.substring(1);
+    if (!result.endsWith('/')) result = '$result/';
     return result;
   }
 
