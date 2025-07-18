@@ -67,7 +67,7 @@ class ConfigValidator {
 
   void _validateConfigPostfix() {
     if (config.postfix.isEmpty) return;
-    
+
     _validateFieldName(config.fieldName);
   }
 
@@ -157,10 +157,11 @@ class ConfigValidator {
 
   // Utils
   static void _validatePath(String value, {bool checkExists = true}) {
+    if (!checkExists) {
+      return;
+    }
+
     if (FileSystemEntity.isDirectorySync(value)) {
-      if (!checkExists) {
-        return;
-      }
       final directory = Directory(value);
 
       if (!directory.existsSync()) {
@@ -171,10 +172,6 @@ class ConfigValidator {
     }
 
     if (FileSystemEntity.isFileSync(value)) {
-      if (!checkExists) {
-        return;
-      }
-
       final file = File(value);
 
       if (!file.existsSync()) {
@@ -192,13 +189,17 @@ class ConfigValidator {
   }
 
   static void _validateFolderPath(String value, {bool checkExists = true}) {
+    if (!checkExists) {
+      return;
+    }
+
     if (!FileSystemEntity.isDirectorySync(value)) {
       throw ConfigValidationException('$value is not a folder');
     }
 
     final directory = Directory(value);
 
-    if (!directory.existsSync() && checkExists) {
+    if (!directory.existsSync()) {
       throw ConfigValidationException('folder does not exist: $value');
     }
   }
