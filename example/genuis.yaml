@@ -1,6 +1,6 @@
 themes:
-  - light
   - dark
+  - light
 
 tokens:
   - sizes:

@@ -1,9 +1,11 @@
 name: genuis
+description: Code generation for theme classes based on files from the assets folder and its structure.
 version: 0.0.1
-homepage: none
+repository: https://github.com/vaniapril/genuis
+issue_tracker: https://github.com/vaniapril/genuis/issues
 
 environment:
-  sdk: ">=3.5.0"
+  sdk: ">=3.5.0 <4.0.0"
   flutter: ">=3.27.0"
 
 dependencies:
@@ -20,5 +22,3 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_lints: ^4.0.0
-
-#flutter:

@@ -1,9 +1,9 @@
 name: example
-description: Example genuis project.
+description: A new Flutter project.
 publish_to: none
 
 environment:
-  sdk: ">=3.5.0"
+  sdk: ">=3.5.0 <4.0.0"
   flutter: ">=3.27.0"
 
 dependencies:

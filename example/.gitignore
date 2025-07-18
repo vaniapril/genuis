@@ -28,5 +28,6 @@ migrate_working_dir/
 .dart_tool/
 build/
 
-# genuis generated files
+# Genuis generated files
 lib/ui/
+*.ui.dart
