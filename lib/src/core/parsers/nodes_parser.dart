@@ -65,6 +65,11 @@ class NodesParser {
       if (node.folders.isEmpty && node.items.length == 1 && node.items.first.name == node.name) {
         return node.items.first;
       }
+
+      return Folder(
+        name: node.name,
+        nodes: node.nodes.map((e) => reduce(e)).toList(),
+      );
     }
     return node;
   }

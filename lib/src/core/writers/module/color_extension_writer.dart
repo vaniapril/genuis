@@ -2,34 +2,35 @@ import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/code/values/colored_value.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/utils/map_extension.dart';
-import 'package:genuis/src/utils/string_extension.dart';
 
 class ColorExtensionWriter {
-  final String? colorClassName;
+  final String colorClassName;
+  final String colorFieldName;
+  final String? colorRecordClassName;
 
   ColorExtensionWriter({
-    this.colorClassName,
+    required this.colorFieldName,
+    required this.colorClassName,
+    this.colorRecordClassName,
   });
 
   void writeAssetExtensionClass(StringBuffer buffer, Module module, Map<String, Field> fields) {
-    final themedClassName = 'Themed${module.config.name.upperFirst}';
-
     final coloredValue = module.rootClass.flattenFields.first.values.values.first;
     final value = coloredValue is ColoredValue ? coloredValue.innerValue : coloredValue;
 
-    final colorClass = colorClassName ?? '(${value.type}, Color)';
+    final recordClassName = colorRecordClassName ?? '(${value.type}, Color)';
 
-    buffer.writeln('class $themedClassName {');
-    buffer.writeln('final ${value.type} value;');
+    buffer.writeln('class $colorClassName {');
+    buffer.writeln('final ${value.type} $colorFieldName;');
     for (final name in fields.keys) {
       buffer.writeln('final Color _$name;');
     }
 
-    buffer.writeln('const $themedClassName._({');
+    buffer.writeln('const $colorClassName._({');
     for (final name in fields.keys) {
       buffer.writeln('required Color $name,');
     }
-    buffer.writeln('required this.value,');
+    buffer.writeln('required this.$colorFieldName,');
     buffer.writeln('})');
     if (fields.isNotEmpty) {
       buffer.writeln(':');
@@ -39,46 +40,46 @@ class ColorExtensionWriter {
     }
     buffer.writeln(';');
 
-    buffer.writeln('$themedClassName(UI ui, ${value.type} value) : this._(');
+    buffer.writeln('$colorClassName(UI ui, ${value.type} $colorFieldName) : this._(');
     for (final (name, field) in fields.iterable) {
       buffer.writeln('$name: ui.${field.path.join('.')},');
     }
-    buffer.writeln('value: value,');
+    buffer.writeln('value: $colorFieldName,');
     buffer.writeln(');');
 
     buffer.writeln('');
-    buffer.writeln('$themedClassName lerp($themedClassName other, double t){');
+    buffer.writeln('$colorClassName lerp($colorClassName other, double t){');
     buffer.writeln('if (identical(this, other)) return this;');
-    buffer.writeln('return $themedClassName._(');
+    buffer.writeln('return $colorClassName._(');
     for (final name in fields.keys) {
       buffer.writeln('$name: Color.lerp(_$name, other._$name, t) ?? _$name,');
     }
-    buffer.writeln('value: ${value.lerpCode('value', 'other.value')},');
+    buffer.writeln('$colorFieldName: ${value.lerpCode(colorFieldName, 'other.$colorFieldName')},');
     buffer.writeln(');');
     buffer.writeln('}');
 
     for (final name in fields.keys) {
-      buffer.writeln('$colorClass get $name => ${colorClassName ?? ''}(value, _$name);');
+      buffer.writeln('$recordClassName get $name => ${colorRecordClassName ?? ''}($colorFieldName, _$name);');
     }
-    buffer.writeln('$colorClass colored(Color color) => ${colorClassName ?? ''}(value, color);');
+    buffer.writeln('$recordClassName colored(Color color) => ${colorRecordClassName ?? ''}($colorFieldName, color);');
     buffer.writeln('}');
 
-    if (colorClassName != null) {
-      buffer.writeln('class $colorClassName {');
-      buffer.writeln('final ${value.type} value;');
+    if (colorRecordClassName != null) {
+      buffer.writeln('class $recordClassName {');
+      buffer.writeln('final ${value.type} $colorFieldName;');
       buffer.writeln('final Color color;');
-      buffer.writeln('const $colorClassName(this.value, this.color);');
+      buffer.writeln('const $recordClassName(this.$colorFieldName, this.color);');
       buffer.writeln('}');
     }
   }
 
   void writeTextStyleExtensionClass(StringBuffer buffer, Map<String, Field> fields) {
-    buffer.writeln('class ThemedTextStyle extends TextStyle {');
+    buffer.writeln('class $colorClassName extends TextStyle {');
     for (final name in fields.keys) {
       buffer.writeln('final Color _$name;');
     }
     buffer.writeln();
-    buffer.writeln('ThemedTextStyle._({');
+    buffer.writeln('$colorClassName._({');
     for (final name in fields.keys) {
       buffer.writeln('required Color $name,');
     }
@@ -114,7 +115,7 @@ class ColorExtensionWriter {
     buffer.writeln('overflow: style.overflow,');
     buffer.writeln(');');
 
-    buffer.writeln('ThemedTextStyle(');
+    buffer.writeln('$colorClassName(');
     buffer.writeln('UI ui,');
     buffer.writeln('TextStyle style');
     buffer.writeln(') : this._(');
@@ -125,9 +126,9 @@ class ColorExtensionWriter {
     buffer.writeln(');');
 
     buffer.writeln('');
-    buffer.writeln('ThemedTextStyle lerp(ThemedTextStyle other, double t){');
+    buffer.writeln('$colorClassName lerp($colorClassName other, double t){');
     buffer.writeln('if (identical(this, other)) return this;');
-    buffer.writeln('return ThemedTextStyle._(');
+    buffer.writeln('return $colorClassName._(');
     for (final name in fields.keys) {
       buffer.writeln('$name: Color.lerp(_$name, other._$name, t) ?? _$name,');
     }

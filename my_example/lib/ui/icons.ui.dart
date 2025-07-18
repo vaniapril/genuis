@@ -63,7 +63,7 @@ enum AppIcons {
   final String value;
 }
 
-class ThemedIcons {
+class IconsWithColors {
   final String value;
   final Color _alertNotification;
   final Color _active;
@@ -71,7 +71,7 @@ class ThemedIcons {
   final Color _green;
   final Color _orange;
   final Color _red;
-  const ThemedIcons._({
+  const IconsWithColors._({
     required Color alertNotification,
     required Color active,
     required Color blue,
@@ -85,7 +85,7 @@ class ThemedIcons {
        _green = green,
        _orange = orange,
        _red = red;
-  ThemedIcons(UI ui, String value)
+  IconsWithColors(UI ui, String value)
     : this._(
         alertNotification: ui.colors.primary.alertNotification,
         active: ui.colors.primary.brand,
@@ -96,9 +96,9 @@ class ThemedIcons {
         value: value,
       );
 
-  ThemedIcons lerp(ThemedIcons other, double t) {
+  IconsWithColors lerp(IconsWithColors other, double t) {
     if (identical(this, other)) return this;
-    return ThemedIcons._(
+    return IconsWithColors._(
       alertNotification:
           Color.lerp(_alertNotification, other._alertNotification, t) ?? _alertNotification,
       active: Color.lerp(_active, other._active, t) ?? _active,
@@ -110,22 +110,28 @@ class ThemedIcons {
     );
   }
 
-  (String, Color) get alertNotification => (value, _alertNotification);
-  (String, Color) get active => (value, _active);
-  (String, Color) get blue => (value, _blue);
-  (String, Color) get green => (value, _green);
-  (String, Color) get orange => (value, _orange);
-  (String, Color) get red => (value, _red);
-  (String, Color) colored(Color color) => (value, color);
+  ColoredIcon get alertNotification => ColoredIcon(value, _alertNotification);
+  ColoredIcon get active => ColoredIcon(value, _active);
+  ColoredIcon get blue => ColoredIcon(value, _blue);
+  ColoredIcon get green => ColoredIcon(value, _green);
+  ColoredIcon get orange => ColoredIcon(value, _orange);
+  ColoredIcon get red => ColoredIcon(value, _red);
+  ColoredIcon colored(Color color) => ColoredIcon(value, color);
+}
+
+class ColoredIcon {
+  final String value;
+  final Color color;
+  const ColoredIcon(this.value, this.color);
 }
 
 class UIIconsFilledShopping extends ThemeExtension<UIIconsFilledShopping> {
-  final ThemedIcons card;
+  final IconsWithColors card;
 
   const UIIconsFilledShopping({required this.card});
 
   @override
-  UIIconsFilledShopping copyWith({ThemedIcons? card}) {
+  UIIconsFilledShopping copyWith({IconsWithColors? card}) {
     return UIIconsFilledShopping(card: card ?? this.card);
   }
 
@@ -137,30 +143,30 @@ class UIIconsFilledShopping extends ThemeExtension<UIIconsFilledShopping> {
   }
 
   static final UIIconsFilledShopping light = UIIconsFilledShopping(
-    card: ThemedIcons(UI.light, AppIcons.filledShoppingCard.value),
+    card: IconsWithColors(UI.light, AppIcons.filledShoppingCard.value),
   );
   static final UIIconsFilledShopping dark = UIIconsFilledShopping(
-    card: ThemedIcons(UI.dark, AppIcons.filledShoppingCard.value),
+    card: IconsWithColors(UI.dark, AppIcons.filledShoppingCard.value),
   );
 }
 
 class UIIconsFilled extends ThemeExtension<UIIconsFilled> {
   final UIIconsFilledShopping shopping;
-  final ThemedIcons bandAid;
-  final ThemedIcons car;
-  final ThemedIcons cloud;
-  final ThemedIcons comment;
-  final ThemedIcons compass;
-  final ThemedIcons filmCamera;
-  final ThemedIcons magnifyingGlass;
-  final ThemedIcons medKit;
-  final ThemedIcons pencil;
-  final ThemedIcons photo;
-  final ThemedIcons pill;
-  final ThemedIcons ribbon;
-  final ThemedIcons rocket;
-  final ThemedIcons treeDecidious;
-  final ThemedIcons treeEvergreen;
+  final IconsWithColors bandAid;
+  final IconsWithColors car;
+  final IconsWithColors cloud;
+  final IconsWithColors comment;
+  final IconsWithColors compass;
+  final IconsWithColors filmCamera;
+  final IconsWithColors magnifyingGlass;
+  final IconsWithColors medKit;
+  final IconsWithColors pencil;
+  final IconsWithColors photo;
+  final IconsWithColors pill;
+  final IconsWithColors ribbon;
+  final IconsWithColors rocket;
+  final IconsWithColors treeDecidious;
+  final IconsWithColors treeEvergreen;
 
   const UIIconsFilled({
     required this.shopping,
@@ -184,21 +190,21 @@ class UIIconsFilled extends ThemeExtension<UIIconsFilled> {
   @override
   UIIconsFilled copyWith({
     UIIconsFilledShopping? shopping,
-    ThemedIcons? bandAid,
-    ThemedIcons? car,
-    ThemedIcons? cloud,
-    ThemedIcons? comment,
-    ThemedIcons? compass,
-    ThemedIcons? filmCamera,
-    ThemedIcons? magnifyingGlass,
-    ThemedIcons? medKit,
-    ThemedIcons? pencil,
-    ThemedIcons? photo,
-    ThemedIcons? pill,
-    ThemedIcons? ribbon,
-    ThemedIcons? rocket,
-    ThemedIcons? treeDecidious,
-    ThemedIcons? treeEvergreen,
+    IconsWithColors? bandAid,
+    IconsWithColors? car,
+    IconsWithColors? cloud,
+    IconsWithColors? comment,
+    IconsWithColors? compass,
+    IconsWithColors? filmCamera,
+    IconsWithColors? magnifyingGlass,
+    IconsWithColors? medKit,
+    IconsWithColors? pencil,
+    IconsWithColors? photo,
+    IconsWithColors? pill,
+    IconsWithColors? ribbon,
+    IconsWithColors? rocket,
+    IconsWithColors? treeDecidious,
+    IconsWithColors? treeEvergreen,
   }) {
     return UIIconsFilled(
       shopping: shopping ?? this.shopping,
@@ -246,59 +252,59 @@ class UIIconsFilled extends ThemeExtension<UIIconsFilled> {
 
   static final UIIconsFilled light = UIIconsFilled(
     shopping: UIIconsFilledShopping.light,
-    bandAid: ThemedIcons(UI.light, AppIcons.filledBandAid.value),
-    car: ThemedIcons(UI.light, AppIcons.filledCar.value),
-    cloud: ThemedIcons(UI.light, AppIcons.filledCloud.value),
-    comment: ThemedIcons(UI.light, AppIcons.filledComment.value),
-    compass: ThemedIcons(UI.light, AppIcons.filledCompass.value),
-    filmCamera: ThemedIcons(UI.light, AppIcons.filledFilmCamera.value),
-    magnifyingGlass: ThemedIcons(UI.light, AppIcons.filledMagnifyingGlass.value),
-    medKit: ThemedIcons(UI.light, AppIcons.filledMedKit.value),
-    pencil: ThemedIcons(UI.light, AppIcons.filledPencil.value),
-    photo: ThemedIcons(UI.light, AppIcons.filledPhoto.value),
-    pill: ThemedIcons(UI.light, AppIcons.filledPill.value),
-    ribbon: ThemedIcons(UI.light, AppIcons.filledRibbon.value),
-    rocket: ThemedIcons(UI.light, AppIcons.filledRocket.value),
-    treeDecidious: ThemedIcons(UI.light, AppIcons.filledTreeDecidious.value),
-    treeEvergreen: ThemedIcons(UI.light, AppIcons.filledTreeEvergreen.value),
+    bandAid: IconsWithColors(UI.light, AppIcons.filledBandAid.value),
+    car: IconsWithColors(UI.light, AppIcons.filledCar.value),
+    cloud: IconsWithColors(UI.light, AppIcons.filledCloud.value),
+    comment: IconsWithColors(UI.light, AppIcons.filledComment.value),
+    compass: IconsWithColors(UI.light, AppIcons.filledCompass.value),
+    filmCamera: IconsWithColors(UI.light, AppIcons.filledFilmCamera.value),
+    magnifyingGlass: IconsWithColors(UI.light, AppIcons.filledMagnifyingGlass.value),
+    medKit: IconsWithColors(UI.light, AppIcons.filledMedKit.value),
+    pencil: IconsWithColors(UI.light, AppIcons.filledPencil.value),
+    photo: IconsWithColors(UI.light, AppIcons.filledPhoto.value),
+    pill: IconsWithColors(UI.light, AppIcons.filledPill.value),
+    ribbon: IconsWithColors(UI.light, AppIcons.filledRibbon.value),
+    rocket: IconsWithColors(UI.light, AppIcons.filledRocket.value),
+    treeDecidious: IconsWithColors(UI.light, AppIcons.filledTreeDecidious.value),
+    treeEvergreen: IconsWithColors(UI.light, AppIcons.filledTreeEvergreen.value),
   );
   static final UIIconsFilled dark = UIIconsFilled(
     shopping: UIIconsFilledShopping.dark,
-    bandAid: ThemedIcons(UI.dark, AppIcons.filledBandAid.value),
-    car: ThemedIcons(UI.dark, AppIcons.filledCar.value),
-    cloud: ThemedIcons(UI.dark, AppIcons.filledCloud.value),
-    comment: ThemedIcons(UI.dark, AppIcons.filledComment.value),
-    compass: ThemedIcons(UI.dark, AppIcons.filledCompass.value),
-    filmCamera: ThemedIcons(UI.dark, AppIcons.filledFilmCamera.value),
-    magnifyingGlass: ThemedIcons(UI.dark, AppIcons.filledMagnifyingGlass.value),
-    medKit: ThemedIcons(UI.dark, AppIcons.filledMedKit.value),
-    pencil: ThemedIcons(UI.dark, AppIcons.filledPencil.value),
-    photo: ThemedIcons(UI.dark, AppIcons.filledPhoto.value),
-    pill: ThemedIcons(UI.dark, AppIcons.filledPill.value),
-    ribbon: ThemedIcons(UI.dark, AppIcons.filledRibbon.value),
-    rocket: ThemedIcons(UI.dark, AppIcons.filledRocket.value),
-    treeDecidious: ThemedIcons(UI.dark, AppIcons.filledTreeDecidious.value),
-    treeEvergreen: ThemedIcons(UI.dark, AppIcons.filledTreeEvergreen.value),
+    bandAid: IconsWithColors(UI.dark, AppIcons.filledBandAid.value),
+    car: IconsWithColors(UI.dark, AppIcons.filledCar.value),
+    cloud: IconsWithColors(UI.dark, AppIcons.filledCloud.value),
+    comment: IconsWithColors(UI.dark, AppIcons.filledComment.value),
+    compass: IconsWithColors(UI.dark, AppIcons.filledCompass.value),
+    filmCamera: IconsWithColors(UI.dark, AppIcons.filledFilmCamera.value),
+    magnifyingGlass: IconsWithColors(UI.dark, AppIcons.filledMagnifyingGlass.value),
+    medKit: IconsWithColors(UI.dark, AppIcons.filledMedKit.value),
+    pencil: IconsWithColors(UI.dark, AppIcons.filledPencil.value),
+    photo: IconsWithColors(UI.dark, AppIcons.filledPhoto.value),
+    pill: IconsWithColors(UI.dark, AppIcons.filledPill.value),
+    ribbon: IconsWithColors(UI.dark, AppIcons.filledRibbon.value),
+    rocket: IconsWithColors(UI.dark, AppIcons.filledRocket.value),
+    treeDecidious: IconsWithColors(UI.dark, AppIcons.filledTreeDecidious.value),
+    treeEvergreen: IconsWithColors(UI.dark, AppIcons.filledTreeEvergreen.value),
   );
 }
 
 class UIIconsOutlined extends ThemeExtension<UIIconsOutlined> {
-  final ThemedIcons bellClose;
-  final ThemedIcons bellOff;
-  final ThemedIcons building;
-  final ThemedIcons calendar;
-  final ThemedIcons calendarDays;
-  final ThemedIcons carAuto;
-  final ThemedIcons chat;
-  final ThemedIcons chatAdd;
-  final ThemedIcons cloud;
-  final ThemedIcons cloudAdd;
-  final ThemedIcons cupcake;
-  final ThemedIcons fileBlank;
-  final ThemedIcons folder;
-  final ThemedIcons hamburgerLg;
-  final ThemedIcons headphones;
-  final ThemedIcons house;
+  final IconsWithColors bellClose;
+  final IconsWithColors bellOff;
+  final IconsWithColors building;
+  final IconsWithColors calendar;
+  final IconsWithColors calendarDays;
+  final IconsWithColors carAuto;
+  final IconsWithColors chat;
+  final IconsWithColors chatAdd;
+  final IconsWithColors cloud;
+  final IconsWithColors cloudAdd;
+  final IconsWithColors cupcake;
+  final IconsWithColors fileBlank;
+  final IconsWithColors folder;
+  final IconsWithColors hamburgerLg;
+  final IconsWithColors headphones;
+  final IconsWithColors house;
 
   const UIIconsOutlined({
     required this.bellClose,
@@ -321,22 +327,22 @@ class UIIconsOutlined extends ThemeExtension<UIIconsOutlined> {
 
   @override
   UIIconsOutlined copyWith({
-    ThemedIcons? bellClose,
-    ThemedIcons? bellOff,
-    ThemedIcons? building,
-    ThemedIcons? calendar,
-    ThemedIcons? calendarDays,
-    ThemedIcons? carAuto,
-    ThemedIcons? chat,
-    ThemedIcons? chatAdd,
-    ThemedIcons? cloud,
-    ThemedIcons? cloudAdd,
-    ThemedIcons? cupcake,
-    ThemedIcons? fileBlank,
-    ThemedIcons? folder,
-    ThemedIcons? hamburgerLg,
-    ThemedIcons? headphones,
-    ThemedIcons? house,
+    IconsWithColors? bellClose,
+    IconsWithColors? bellOff,
+    IconsWithColors? building,
+    IconsWithColors? calendar,
+    IconsWithColors? calendarDays,
+    IconsWithColors? carAuto,
+    IconsWithColors? chat,
+    IconsWithColors? chatAdd,
+    IconsWithColors? cloud,
+    IconsWithColors? cloudAdd,
+    IconsWithColors? cupcake,
+    IconsWithColors? fileBlank,
+    IconsWithColors? folder,
+    IconsWithColors? hamburgerLg,
+    IconsWithColors? headphones,
+    IconsWithColors? house,
   }) {
     return UIIconsOutlined(
       bellClose: bellClose ?? this.bellClose,
@@ -383,40 +389,40 @@ class UIIconsOutlined extends ThemeExtension<UIIconsOutlined> {
   }
 
   static final UIIconsOutlined light = UIIconsOutlined(
-    bellClose: ThemedIcons(UI.light, AppIcons.outlinedBellCloseLight.value),
-    bellOff: ThemedIcons(UI.light, AppIcons.outlinedBellOffLight.value),
-    building: ThemedIcons(UI.light, AppIcons.outlinedBuildingLight.value),
-    calendar: ThemedIcons(UI.light, AppIcons.outlinedCalendarLight.value),
-    calendarDays: ThemedIcons(UI.light, AppIcons.outlinedCalendarDaysLight.value),
-    carAuto: ThemedIcons(UI.light, AppIcons.outlinedCarAutoLight.value),
-    chat: ThemedIcons(UI.light, AppIcons.outlinedChatLight.value),
-    chatAdd: ThemedIcons(UI.light, AppIcons.outlinedChatAddLight.value),
-    cloud: ThemedIcons(UI.light, AppIcons.outlinedCloudLight.value),
-    cloudAdd: ThemedIcons(UI.light, AppIcons.outlinedCloudAddLight.value),
-    cupcake: ThemedIcons(UI.light, AppIcons.outlinedCupcakeLight.value),
-    fileBlank: ThemedIcons(UI.light, AppIcons.outlinedFileBlankLight.value),
-    folder: ThemedIcons(UI.light, AppIcons.outlinedFolderLight.value),
-    hamburgerLg: ThemedIcons(UI.light, AppIcons.outlinedHamburgerLgLight.value),
-    headphones: ThemedIcons(UI.light, AppIcons.outlinedHeadphonesLight.value),
-    house: ThemedIcons(UI.light, AppIcons.outlinedHouseLight.value),
+    bellClose: IconsWithColors(UI.light, AppIcons.outlinedBellCloseLight.value),
+    bellOff: IconsWithColors(UI.light, AppIcons.outlinedBellOffLight.value),
+    building: IconsWithColors(UI.light, AppIcons.outlinedBuildingLight.value),
+    calendar: IconsWithColors(UI.light, AppIcons.outlinedCalendarLight.value),
+    calendarDays: IconsWithColors(UI.light, AppIcons.outlinedCalendarDaysLight.value),
+    carAuto: IconsWithColors(UI.light, AppIcons.outlinedCarAutoLight.value),
+    chat: IconsWithColors(UI.light, AppIcons.outlinedChatLight.value),
+    chatAdd: IconsWithColors(UI.light, AppIcons.outlinedChatAddLight.value),
+    cloud: IconsWithColors(UI.light, AppIcons.outlinedCloudLight.value),
+    cloudAdd: IconsWithColors(UI.light, AppIcons.outlinedCloudAddLight.value),
+    cupcake: IconsWithColors(UI.light, AppIcons.outlinedCupcakeLight.value),
+    fileBlank: IconsWithColors(UI.light, AppIcons.outlinedFileBlankLight.value),
+    folder: IconsWithColors(UI.light, AppIcons.outlinedFolderLight.value),
+    hamburgerLg: IconsWithColors(UI.light, AppIcons.outlinedHamburgerLgLight.value),
+    headphones: IconsWithColors(UI.light, AppIcons.outlinedHeadphonesLight.value),
+    house: IconsWithColors(UI.light, AppIcons.outlinedHouseLight.value),
   );
   static final UIIconsOutlined dark = UIIconsOutlined(
-    bellClose: ThemedIcons(UI.dark, AppIcons.outlinedBellCloseDark.value),
-    bellOff: ThemedIcons(UI.dark, AppIcons.outlinedBellOffDark.value),
-    building: ThemedIcons(UI.dark, AppIcons.outlinedBuildingDark.value),
-    calendar: ThemedIcons(UI.dark, AppIcons.outlinedCalendarDark.value),
-    calendarDays: ThemedIcons(UI.dark, AppIcons.outlinedCalendarDaysDark.value),
-    carAuto: ThemedIcons(UI.dark, AppIcons.outlinedCarAutoDark.value),
-    chat: ThemedIcons(UI.dark, AppIcons.outlinedChatDark.value),
-    chatAdd: ThemedIcons(UI.dark, AppIcons.outlinedChatAddDark.value),
-    cloud: ThemedIcons(UI.dark, AppIcons.outlinedCloudDark.value),
-    cloudAdd: ThemedIcons(UI.dark, AppIcons.outlinedCloudAddDark.value),
-    cupcake: ThemedIcons(UI.dark, AppIcons.outlinedCupcakeDark.value),
-    fileBlank: ThemedIcons(UI.dark, AppIcons.outlinedFileBlankDark.value),
-    folder: ThemedIcons(UI.dark, AppIcons.outlinedFolderDark.value),
-    hamburgerLg: ThemedIcons(UI.dark, AppIcons.outlinedHamburgerLgDark.value),
-    headphones: ThemedIcons(UI.dark, AppIcons.outlinedHeadphonesDark.value),
-    house: ThemedIcons(UI.dark, AppIcons.outlinedHouseDark.value),
+    bellClose: IconsWithColors(UI.dark, AppIcons.outlinedBellCloseDark.value),
+    bellOff: IconsWithColors(UI.dark, AppIcons.outlinedBellOffDark.value),
+    building: IconsWithColors(UI.dark, AppIcons.outlinedBuildingDark.value),
+    calendar: IconsWithColors(UI.dark, AppIcons.outlinedCalendarDark.value),
+    calendarDays: IconsWithColors(UI.dark, AppIcons.outlinedCalendarDaysDark.value),
+    carAuto: IconsWithColors(UI.dark, AppIcons.outlinedCarAutoDark.value),
+    chat: IconsWithColors(UI.dark, AppIcons.outlinedChatDark.value),
+    chatAdd: IconsWithColors(UI.dark, AppIcons.outlinedChatAddDark.value),
+    cloud: IconsWithColors(UI.dark, AppIcons.outlinedCloudDark.value),
+    cloudAdd: IconsWithColors(UI.dark, AppIcons.outlinedCloudAddDark.value),
+    cupcake: IconsWithColors(UI.dark, AppIcons.outlinedCupcakeDark.value),
+    fileBlank: IconsWithColors(UI.dark, AppIcons.outlinedFileBlankDark.value),
+    folder: IconsWithColors(UI.dark, AppIcons.outlinedFolderDark.value),
+    hamburgerLg: IconsWithColors(UI.dark, AppIcons.outlinedHamburgerLgDark.value),
+    headphones: IconsWithColors(UI.dark, AppIcons.outlinedHeadphonesDark.value),
+    house: IconsWithColors(UI.dark, AppIcons.outlinedHouseDark.value),
   );
 }
 

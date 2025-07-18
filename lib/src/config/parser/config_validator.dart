@@ -44,7 +44,8 @@ class ConfigValidator {
     _validateFieldName(config.baseTheme);
 
     if (config.themes.contains(config.baseTheme)) {
-      throw ConfigValidationException('baseTheme (${config.baseTheme}) must not be in themes (${config.themes})');
+      throw ConfigValidationException(
+          'base_theme (${config.baseTheme}) must not be in themes (${config.themes})');
     }
   }
 
@@ -101,6 +102,8 @@ class ConfigValidator {
       _validateModuleTokenFieldName(module);
       _validateModuleColor(module);
       _validateModuleColorClassName(module);
+      _validateModuleColorFieldName(module);
+      _validateModuleColorRecordClassName(module);
     }
   }
 
@@ -132,7 +135,19 @@ class ConfigValidator {
   }
 
   void _validateModuleColorClassName(ModuleConfig module) {
-    _validateClassName(config.className);
+    _validateClassName(module.colorClassName);
+  }
+
+  void _validateModuleColorRecordClassName(ModuleConfig module) {
+    final colorRecordClassName = module.colorRecordClassName;
+
+    if (colorRecordClassName != null) {
+      _validateClassName(colorRecordClassName);
+    }
+  }
+
+  void _validateModuleColorFieldName(ModuleConfig module) {
+    _validateFieldName(module.colorFieldName);
   }
 
   // Utils

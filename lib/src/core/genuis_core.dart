@@ -18,7 +18,6 @@ import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/core/parsers/value_parser.dart';
 import 'package:genuis/src/utils/list_extension.dart';
-import 'package:genuis/src/utils/string_extension.dart';
 
 class GenuisCore {
   GenuisCore() {
@@ -168,20 +167,14 @@ class GenuisCore {
 
       final rootClass = module.rootClass.map(
         (field) {
-          final type = switch (module.config.type) {
-            ElementType.font => 'ThemedTextStyle',
-            ElementType.asset => 'Themed${module.config.name.camelCase.upperFirst}',
-            _ => ''
-          };
-
           return Field(
             name: field.name,
             path: field.path,
-            valueType: type,
+            valueType: module.config.colorClassName,
             values: {
               for (final theme in colorThemes)
                 theme: ColoredValue(
-                  coloredType: type,
+                  coloredType: module.config.colorClassName,
                   theme: theme == Config.it.baseTheme ? Config.it.themes.first : theme,
                   innerValue: field.values[theme] ?? field.values.values.first,
                 )

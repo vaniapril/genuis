@@ -887,7 +887,7 @@ tokens:
   - <token_name>:
       type: asset
       path: <token_name>.json
-      class_name: <token_name>
+      class_name: <token_name in PascalCase>
       class_type: static
       field_name: value
 
@@ -896,9 +896,11 @@ modules:
       type: asset
       path: <module_name>/
       token_class_type: null
-      token_class_name: <module_name>Token
+      token_class_name: <module_name in PascalCase>Token
       color: false
-      color_class_name: null
+      color_class_name: <module_name in PascalCase>WithColors
+      color_field_name: value
+      color_record_class_name: null
 ```
 ### GenUIs configuration 
 
@@ -1150,7 +1152,7 @@ Possible values:
   Similar to [tokens](#class_type-1)
 
 #### token_class_name 
-> default: `<module_name>Token`
+> default: `<module_name in PascalCase>Token`
 
 Specifies the name of the [token class](#token_class_type) for [module](#modules).
 
@@ -1164,24 +1166,42 @@ Specifies the name of the field used to get the value from the [enum module toke
 
 Specifies whether to use [colors](#colored-modules) in the [module](#modules).
 
-#### color_class_name 
-> default: `null`
 
-Specifies the name of color class returned by the additional getter. \
-- If specified, a color class will be generated:
-  ```dart
-  class ColorClassName{
-      final ElementType value;
-      final Color color;
-      const ColorClassName(this.value, this.color);
-  }
-  ```
-- If not specified, the record `(ElementType, Color)` will be used.
+#### color_class_name 
+> default: `<module_name in PascalCase>WithColors`
+
+Specifies the name of the color class, which wraps all elements of the [colored module](#colored-modules), contains additional getters with colors and the `.colored(...)` method.
+```dart
+class ExampleWithColors {
+  final ElementType value;
+
+  //...
+
+  (ElementType, Color) get color1 => (value, <color1 value>);
+  (ElementType, Color) get color2 => (value, <color1 value>);
+
+  (ElementType, Color) colored(Color color) => (value, color);
+}
+```
 
 #### color_filed_name 
 > default: `value`
 
 Specifies the name of the field used to get the value from the [color class](#color_class_name).
+
+#### color_record_class_name 
+> default: `null`
+
+Specifies the name of class returned by the additional getter instead of record. 
+- If specified, a new class will be generated and used:
+  ```dart
+  class ModuleNameColor{
+      final ElementType value;
+      final Color color;
+      const ModuleNameColor(this.value, this.color);
+  }
+  ```
+- If not specified, the record `(ElementType, Color)` will be used.
 
 [build_runner]: https://pub.dev/packages/build_runner
 [flutter_inset_shadow]: https://pub.dev/packages/flutter_inset_shadow

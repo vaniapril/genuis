@@ -47,7 +47,7 @@ modules:
       token_class_type: enum
       token_class_name: AppIcons
       color: true
-      color_class_name: ColoredIcon
+      color_record_class_name: ColoredIcon
   
   - images:
       type: asset

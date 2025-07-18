@@ -8,14 +8,14 @@
 import 'package:flutter/material.dart';
 import 'ui.ui.dart';
 
-class ThemedTextStyle extends TextStyle {
+class FontsWithColors extends TextStyle {
   final Color _error;
   final Color _blue;
   final Color _green;
   final Color _orange;
   final Color _red;
 
-  ThemedTextStyle._({
+  FontsWithColors._({
     required Color error,
     required Color blue,
     required Color green,
@@ -53,7 +53,7 @@ class ThemedTextStyle extends TextStyle {
          fontFamily: style.fontFamily,
          overflow: style.overflow,
        );
-  ThemedTextStyle(UI ui, TextStyle style)
+  FontsWithColors(UI ui, TextStyle style)
     : this._(
         error: ui.colors.primary.error,
         blue: ui.colors.tertiary.blue,
@@ -63,9 +63,9 @@ class ThemedTextStyle extends TextStyle {
         style: style,
       );
 
-  ThemedTextStyle lerp(ThemedTextStyle other, double t) {
+  FontsWithColors lerp(FontsWithColors other, double t) {
     if (identical(this, other)) return this;
-    return ThemedTextStyle._(
+    return FontsWithColors._(
       error: Color.lerp(_error, other._error, t) ?? _error,
       blue: Color.lerp(_blue, other._blue, t) ?? _blue,
       green: Color.lerp(_green, other._green, t) ?? _green,
@@ -83,13 +83,13 @@ class ThemedTextStyle extends TextStyle {
 }
 
 class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle bold;
+  final FontsWithColors regular;
+  final FontsWithColors bold;
 
   const UIFontsManropeLargeTitle({required this.regular, required this.bold});
 
   @override
-  UIFontsManropeLargeTitle copyWith({ThemedTextStyle? regular, ThemedTextStyle? bold}) {
+  UIFontsManropeLargeTitle copyWith({FontsWithColors? regular, FontsWithColors? bold}) {
     return UIFontsManropeLargeTitle(regular: regular ?? this.regular, bold: bold ?? this.bold);
   }
 
@@ -104,7 +104,7 @@ class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> 
   }
 
   static final UIFontsManropeLargeTitle light = UIFontsManropeLargeTitle(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -114,7 +114,7 @@ class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> 
         letterSpacing: 0.4,
       ),
     ),
-    bold: ThemedTextStyle(
+    bold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -126,7 +126,7 @@ class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> 
     ),
   );
   static final UIFontsManropeLargeTitle dark = UIFontsManropeLargeTitle(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -136,7 +136,7 @@ class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> 
         letterSpacing: 0.4,
       ),
     ),
-    bold: ThemedTextStyle(
+    bold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -150,13 +150,13 @@ class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> 
 }
 
 class UIFontsManropeTitle1 extends ThemeExtension<UIFontsManropeTitle1> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle bold;
+  final FontsWithColors regular;
+  final FontsWithColors bold;
 
   const UIFontsManropeTitle1({required this.regular, required this.bold});
 
   @override
-  UIFontsManropeTitle1 copyWith({ThemedTextStyle? regular, ThemedTextStyle? bold}) {
+  UIFontsManropeTitle1 copyWith({FontsWithColors? regular, FontsWithColors? bold}) {
     return UIFontsManropeTitle1(regular: regular ?? this.regular, bold: bold ?? this.bold);
   }
 
@@ -171,7 +171,7 @@ class UIFontsManropeTitle1 extends ThemeExtension<UIFontsManropeTitle1> {
   }
 
   static final UIFontsManropeTitle1 light = UIFontsManropeTitle1(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -181,7 +181,7 @@ class UIFontsManropeTitle1 extends ThemeExtension<UIFontsManropeTitle1> {
         letterSpacing: 0.1,
       ),
     ),
-    bold: ThemedTextStyle(
+    bold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -193,7 +193,7 @@ class UIFontsManropeTitle1 extends ThemeExtension<UIFontsManropeTitle1> {
     ),
   );
   static final UIFontsManropeTitle1 dark = UIFontsManropeTitle1(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -203,7 +203,7 @@ class UIFontsManropeTitle1 extends ThemeExtension<UIFontsManropeTitle1> {
         letterSpacing: 0.1,
       ),
     ),
-    bold: ThemedTextStyle(
+    bold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -217,13 +217,13 @@ class UIFontsManropeTitle1 extends ThemeExtension<UIFontsManropeTitle1> {
 }
 
 class UIFontsManropeTitle2 extends ThemeExtension<UIFontsManropeTitle2> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle bold;
+  final FontsWithColors regular;
+  final FontsWithColors bold;
 
   const UIFontsManropeTitle2({required this.regular, required this.bold});
 
   @override
-  UIFontsManropeTitle2 copyWith({ThemedTextStyle? regular, ThemedTextStyle? bold}) {
+  UIFontsManropeTitle2 copyWith({FontsWithColors? regular, FontsWithColors? bold}) {
     return UIFontsManropeTitle2(regular: regular ?? this.regular, bold: bold ?? this.bold);
   }
 
@@ -238,7 +238,7 @@ class UIFontsManropeTitle2 extends ThemeExtension<UIFontsManropeTitle2> {
   }
 
   static final UIFontsManropeTitle2 light = UIFontsManropeTitle2(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -248,7 +248,7 @@ class UIFontsManropeTitle2 extends ThemeExtension<UIFontsManropeTitle2> {
         letterSpacing: -0.3,
       ),
     ),
-    bold: ThemedTextStyle(
+    bold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -260,7 +260,7 @@ class UIFontsManropeTitle2 extends ThemeExtension<UIFontsManropeTitle2> {
     ),
   );
   static final UIFontsManropeTitle2 dark = UIFontsManropeTitle2(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -270,7 +270,7 @@ class UIFontsManropeTitle2 extends ThemeExtension<UIFontsManropeTitle2> {
         letterSpacing: -0.3,
       ),
     ),
-    bold: ThemedTextStyle(
+    bold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -284,13 +284,13 @@ class UIFontsManropeTitle2 extends ThemeExtension<UIFontsManropeTitle2> {
 }
 
 class UIFontsManropeTitle3 extends ThemeExtension<UIFontsManropeTitle3> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle semiBold;
+  final FontsWithColors regular;
+  final FontsWithColors semiBold;
 
   const UIFontsManropeTitle3({required this.regular, required this.semiBold});
 
   @override
-  UIFontsManropeTitle3 copyWith({ThemedTextStyle? regular, ThemedTextStyle? semiBold}) {
+  UIFontsManropeTitle3 copyWith({FontsWithColors? regular, FontsWithColors? semiBold}) {
     return UIFontsManropeTitle3(
       regular: regular ?? this.regular,
       semiBold: semiBold ?? this.semiBold,
@@ -308,7 +308,7 @@ class UIFontsManropeTitle3 extends ThemeExtension<UIFontsManropeTitle3> {
   }
 
   static final UIFontsManropeTitle3 light = UIFontsManropeTitle3(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -318,7 +318,7 @@ class UIFontsManropeTitle3 extends ThemeExtension<UIFontsManropeTitle3> {
         letterSpacing: -0.5,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -330,7 +330,7 @@ class UIFontsManropeTitle3 extends ThemeExtension<UIFontsManropeTitle3> {
     ),
   );
   static final UIFontsManropeTitle3 dark = UIFontsManropeTitle3(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -340,7 +340,7 @@ class UIFontsManropeTitle3 extends ThemeExtension<UIFontsManropeTitle3> {
         letterSpacing: -0.5,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -354,13 +354,13 @@ class UIFontsManropeTitle3 extends ThemeExtension<UIFontsManropeTitle3> {
 }
 
 class UIFontsManropeHeadline extends ThemeExtension<UIFontsManropeHeadline> {
-  final ThemedTextStyle semiBold;
-  final ThemedTextStyle regular;
+  final FontsWithColors semiBold;
+  final FontsWithColors regular;
 
   const UIFontsManropeHeadline({required this.semiBold, required this.regular});
 
   @override
-  UIFontsManropeHeadline copyWith({ThemedTextStyle? semiBold, ThemedTextStyle? regular}) {
+  UIFontsManropeHeadline copyWith({FontsWithColors? semiBold, FontsWithColors? regular}) {
     return UIFontsManropeHeadline(
       semiBold: semiBold ?? this.semiBold,
       regular: regular ?? this.regular,
@@ -378,7 +378,7 @@ class UIFontsManropeHeadline extends ThemeExtension<UIFontsManropeHeadline> {
   }
 
   static final UIFontsManropeHeadline light = UIFontsManropeHeadline(
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -388,7 +388,7 @@ class UIFontsManropeHeadline extends ThemeExtension<UIFontsManropeHeadline> {
         letterSpacing: -0.4,
       ),
     ),
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -400,7 +400,7 @@ class UIFontsManropeHeadline extends ThemeExtension<UIFontsManropeHeadline> {
     ),
   );
   static final UIFontsManropeHeadline dark = UIFontsManropeHeadline(
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -410,7 +410,7 @@ class UIFontsManropeHeadline extends ThemeExtension<UIFontsManropeHeadline> {
         letterSpacing: -0.4,
       ),
     ),
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -424,10 +424,10 @@ class UIFontsManropeHeadline extends ThemeExtension<UIFontsManropeHeadline> {
 }
 
 class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle medium;
-  final ThemedTextStyle semiBold;
-  final ThemedTextStyle bold;
+  final FontsWithColors regular;
+  final FontsWithColors medium;
+  final FontsWithColors semiBold;
+  final FontsWithColors bold;
 
   const UIFontsManropeBody({
     required this.regular,
@@ -438,10 +438,10 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
 
   @override
   UIFontsManropeBody copyWith({
-    ThemedTextStyle? regular,
-    ThemedTextStyle? medium,
-    ThemedTextStyle? semiBold,
-    ThemedTextStyle? bold,
+    FontsWithColors? regular,
+    FontsWithColors? medium,
+    FontsWithColors? semiBold,
+    FontsWithColors? bold,
   }) {
     return UIFontsManropeBody(
       regular: regular ?? this.regular,
@@ -464,7 +464,7 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
   }
 
   static final UIFontsManropeBody light = UIFontsManropeBody(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -474,7 +474,7 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
         letterSpacing: 0.1,
       ),
     ),
-    medium: ThemedTextStyle(
+    medium: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -484,7 +484,7 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
         letterSpacing: 0.1,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -494,7 +494,7 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
         letterSpacing: 0.1,
       ),
     ),
-    bold: ThemedTextStyle(
+    bold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -506,7 +506,7 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
     ),
   );
   static final UIFontsManropeBody dark = UIFontsManropeBody(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -516,7 +516,7 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
         letterSpacing: 0.1,
       ),
     ),
-    medium: ThemedTextStyle(
+    medium: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -526,7 +526,7 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
         letterSpacing: 0.1,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -536,7 +536,7 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
         letterSpacing: 0.1,
       ),
     ),
-    bold: ThemedTextStyle(
+    bold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -550,13 +550,13 @@ class UIFontsManropeBody extends ThemeExtension<UIFontsManropeBody> {
 }
 
 class UIFontsManropeCallout extends ThemeExtension<UIFontsManropeCallout> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle semiBold;
+  final FontsWithColors regular;
+  final FontsWithColors semiBold;
 
   const UIFontsManropeCallout({required this.regular, required this.semiBold});
 
   @override
-  UIFontsManropeCallout copyWith({ThemedTextStyle? regular, ThemedTextStyle? semiBold}) {
+  UIFontsManropeCallout copyWith({FontsWithColors? regular, FontsWithColors? semiBold}) {
     return UIFontsManropeCallout(
       regular: regular ?? this.regular,
       semiBold: semiBold ?? this.semiBold,
@@ -574,7 +574,7 @@ class UIFontsManropeCallout extends ThemeExtension<UIFontsManropeCallout> {
   }
 
   static final UIFontsManropeCallout light = UIFontsManropeCallout(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -584,7 +584,7 @@ class UIFontsManropeCallout extends ThemeExtension<UIFontsManropeCallout> {
         letterSpacing: 0.0,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -596,7 +596,7 @@ class UIFontsManropeCallout extends ThemeExtension<UIFontsManropeCallout> {
     ),
   );
   static final UIFontsManropeCallout dark = UIFontsManropeCallout(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -606,7 +606,7 @@ class UIFontsManropeCallout extends ThemeExtension<UIFontsManropeCallout> {
         letterSpacing: 0.0,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -620,9 +620,9 @@ class UIFontsManropeCallout extends ThemeExtension<UIFontsManropeCallout> {
 }
 
 class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle medium;
-  final ThemedTextStyle semiBold;
+  final FontsWithColors regular;
+  final FontsWithColors medium;
+  final FontsWithColors semiBold;
 
   const UIFontsManropeSubhead({
     required this.regular,
@@ -632,9 +632,9 @@ class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
 
   @override
   UIFontsManropeSubhead copyWith({
-    ThemedTextStyle? regular,
-    ThemedTextStyle? medium,
-    ThemedTextStyle? semiBold,
+    FontsWithColors? regular,
+    FontsWithColors? medium,
+    FontsWithColors? semiBold,
   }) {
     return UIFontsManropeSubhead(
       regular: regular ?? this.regular,
@@ -655,7 +655,7 @@ class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
   }
 
   static final UIFontsManropeSubhead light = UIFontsManropeSubhead(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -665,7 +665,7 @@ class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
         letterSpacing: 0.0,
       ),
     ),
-    medium: ThemedTextStyle(
+    medium: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -675,7 +675,7 @@ class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
         letterSpacing: 0.0,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -687,7 +687,7 @@ class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
     ),
   );
   static final UIFontsManropeSubhead dark = UIFontsManropeSubhead(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -697,7 +697,7 @@ class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
         letterSpacing: 0.0,
       ),
     ),
-    medium: ThemedTextStyle(
+    medium: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -707,7 +707,7 @@ class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
         letterSpacing: 0.0,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -721,10 +721,10 @@ class UIFontsManropeSubhead extends ThemeExtension<UIFontsManropeSubhead> {
 }
 
 class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle medium;
-  final ThemedTextStyle semiBold;
-  final ThemedTextStyle semiBoldUC;
+  final FontsWithColors regular;
+  final FontsWithColors medium;
+  final FontsWithColors semiBold;
+  final FontsWithColors semiBoldUC;
 
   const UIFontsManropeFootnote({
     required this.regular,
@@ -735,10 +735,10 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
 
   @override
   UIFontsManropeFootnote copyWith({
-    ThemedTextStyle? regular,
-    ThemedTextStyle? medium,
-    ThemedTextStyle? semiBold,
-    ThemedTextStyle? semiBoldUC,
+    FontsWithColors? regular,
+    FontsWithColors? medium,
+    FontsWithColors? semiBold,
+    FontsWithColors? semiBoldUC,
   }) {
     return UIFontsManropeFootnote(
       regular: regular ?? this.regular,
@@ -761,7 +761,7 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
   }
 
   static final UIFontsManropeFootnote light = UIFontsManropeFootnote(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -771,7 +771,7 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
         letterSpacing: 0.1,
       ),
     ),
-    medium: ThemedTextStyle(
+    medium: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -781,7 +781,7 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
         letterSpacing: 0.1,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -791,7 +791,7 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
         letterSpacing: 0.1,
       ),
     ),
-    semiBoldUC: ThemedTextStyle(
+    semiBoldUC: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -803,7 +803,7 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
     ),
   );
   static final UIFontsManropeFootnote dark = UIFontsManropeFootnote(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -813,7 +813,7 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
         letterSpacing: 0.1,
       ),
     ),
-    medium: ThemedTextStyle(
+    medium: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -823,7 +823,7 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
         letterSpacing: 0.1,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -833,7 +833,7 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
         letterSpacing: 0.1,
       ),
     ),
-    semiBoldUC: ThemedTextStyle(
+    semiBoldUC: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -847,13 +847,13 @@ class UIFontsManropeFootnote extends ThemeExtension<UIFontsManropeFootnote> {
 }
 
 class UIFontsManropeCaption1 extends ThemeExtension<UIFontsManropeCaption1> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle medium;
+  final FontsWithColors regular;
+  final FontsWithColors medium;
 
   const UIFontsManropeCaption1({required this.regular, required this.medium});
 
   @override
-  UIFontsManropeCaption1 copyWith({ThemedTextStyle? regular, ThemedTextStyle? medium}) {
+  UIFontsManropeCaption1 copyWith({FontsWithColors? regular, FontsWithColors? medium}) {
     return UIFontsManropeCaption1(regular: regular ?? this.regular, medium: medium ?? this.medium);
   }
 
@@ -868,7 +868,7 @@ class UIFontsManropeCaption1 extends ThemeExtension<UIFontsManropeCaption1> {
   }
 
   static final UIFontsManropeCaption1 light = UIFontsManropeCaption1(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -878,7 +878,7 @@ class UIFontsManropeCaption1 extends ThemeExtension<UIFontsManropeCaption1> {
         letterSpacing: 0.4,
       ),
     ),
-    medium: ThemedTextStyle(
+    medium: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -890,7 +890,7 @@ class UIFontsManropeCaption1 extends ThemeExtension<UIFontsManropeCaption1> {
     ),
   );
   static final UIFontsManropeCaption1 dark = UIFontsManropeCaption1(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -900,7 +900,7 @@ class UIFontsManropeCaption1 extends ThemeExtension<UIFontsManropeCaption1> {
         letterSpacing: 0.4,
       ),
     ),
-    medium: ThemedTextStyle(
+    medium: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -914,13 +914,13 @@ class UIFontsManropeCaption1 extends ThemeExtension<UIFontsManropeCaption1> {
 }
 
 class UIFontsManropeCaption2 extends ThemeExtension<UIFontsManropeCaption2> {
-  final ThemedTextStyle regular;
-  final ThemedTextStyle semiBold;
+  final FontsWithColors regular;
+  final FontsWithColors semiBold;
 
   const UIFontsManropeCaption2({required this.regular, required this.semiBold});
 
   @override
-  UIFontsManropeCaption2 copyWith({ThemedTextStyle? regular, ThemedTextStyle? semiBold}) {
+  UIFontsManropeCaption2 copyWith({FontsWithColors? regular, FontsWithColors? semiBold}) {
     return UIFontsManropeCaption2(
       regular: regular ?? this.regular,
       semiBold: semiBold ?? this.semiBold,
@@ -938,7 +938,7 @@ class UIFontsManropeCaption2 extends ThemeExtension<UIFontsManropeCaption2> {
   }
 
   static final UIFontsManropeCaption2 light = UIFontsManropeCaption2(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -948,7 +948,7 @@ class UIFontsManropeCaption2 extends ThemeExtension<UIFontsManropeCaption2> {
         letterSpacing: 0.1,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -960,7 +960,7 @@ class UIFontsManropeCaption2 extends ThemeExtension<UIFontsManropeCaption2> {
     ),
   );
   static final UIFontsManropeCaption2 dark = UIFontsManropeCaption2(
-    regular: ThemedTextStyle(
+    regular: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -970,7 +970,7 @@ class UIFontsManropeCaption2 extends ThemeExtension<UIFontsManropeCaption2> {
         letterSpacing: 0.1,
       ),
     ),
-    semiBold: ThemedTextStyle(
+    semiBold: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Manrope',
@@ -1087,40 +1087,40 @@ class UIFontsManrope extends ThemeExtension<UIFontsManrope> {
 }
 
 class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
-  final ThemedTextStyle title48S;
-  final ThemedTextStyle title40L;
-  final ThemedTextStyle title34X;
-  final ThemedTextStyle title34M;
-  final ThemedTextStyle title34L;
-  final ThemedTextStyle title26M;
-  final ThemedTextStyle title26R;
-  final ThemedTextStyle title26L;
-  final ThemedTextStyle title20S;
-  final ThemedTextStyle title20M;
-  final ThemedTextStyle title20R;
-  final ThemedTextStyle title20L;
-  final ThemedTextStyle title18M;
-  final ThemedTextStyle title18R;
-  final ThemedTextStyle title18L;
-  final ThemedTextStyle body16M;
-  final ThemedTextStyle body16R;
-  final ThemedTextStyle body16L;
-  final ThemedTextStyle body14M;
-  final ThemedTextStyle body14R;
-  final ThemedTextStyle body14L;
-  final ThemedTextStyle body14I;
-  final ThemedTextStyle caption12M;
-  final ThemedTextStyle caption12R;
-  final ThemedTextStyle caption12L;
-  final ThemedTextStyle caption10X;
-  final ThemedTextStyle caption10R;
-  final ThemedTextStyle caption8R;
-  final ThemedTextStyle caption8M;
-  final ThemedTextStyle button16M;
-  final ThemedTextStyle button16R;
-  final ThemedTextStyle button14M;
-  final ThemedTextStyle button14R;
-  final ThemedTextStyle button12M;
+  final FontsWithColors title48S;
+  final FontsWithColors title40L;
+  final FontsWithColors title34X;
+  final FontsWithColors title34M;
+  final FontsWithColors title34L;
+  final FontsWithColors title26M;
+  final FontsWithColors title26R;
+  final FontsWithColors title26L;
+  final FontsWithColors title20S;
+  final FontsWithColors title20M;
+  final FontsWithColors title20R;
+  final FontsWithColors title20L;
+  final FontsWithColors title18M;
+  final FontsWithColors title18R;
+  final FontsWithColors title18L;
+  final FontsWithColors body16M;
+  final FontsWithColors body16R;
+  final FontsWithColors body16L;
+  final FontsWithColors body14M;
+  final FontsWithColors body14R;
+  final FontsWithColors body14L;
+  final FontsWithColors body14I;
+  final FontsWithColors caption12M;
+  final FontsWithColors caption12R;
+  final FontsWithColors caption12L;
+  final FontsWithColors caption10X;
+  final FontsWithColors caption10R;
+  final FontsWithColors caption8R;
+  final FontsWithColors caption8M;
+  final FontsWithColors button16M;
+  final FontsWithColors button16R;
+  final FontsWithColors button14M;
+  final FontsWithColors button14R;
+  final FontsWithColors button12M;
 
   const UIFontsRoboto({
     required this.title48S,
@@ -1161,40 +1161,40 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
 
   @override
   UIFontsRoboto copyWith({
-    ThemedTextStyle? title48S,
-    ThemedTextStyle? title40L,
-    ThemedTextStyle? title34X,
-    ThemedTextStyle? title34M,
-    ThemedTextStyle? title34L,
-    ThemedTextStyle? title26M,
-    ThemedTextStyle? title26R,
-    ThemedTextStyle? title26L,
-    ThemedTextStyle? title20S,
-    ThemedTextStyle? title20M,
-    ThemedTextStyle? title20R,
-    ThemedTextStyle? title20L,
-    ThemedTextStyle? title18M,
-    ThemedTextStyle? title18R,
-    ThemedTextStyle? title18L,
-    ThemedTextStyle? body16M,
-    ThemedTextStyle? body16R,
-    ThemedTextStyle? body16L,
-    ThemedTextStyle? body14M,
-    ThemedTextStyle? body14R,
-    ThemedTextStyle? body14L,
-    ThemedTextStyle? body14I,
-    ThemedTextStyle? caption12M,
-    ThemedTextStyle? caption12R,
-    ThemedTextStyle? caption12L,
-    ThemedTextStyle? caption10X,
-    ThemedTextStyle? caption10R,
-    ThemedTextStyle? caption8R,
-    ThemedTextStyle? caption8M,
-    ThemedTextStyle? button16M,
-    ThemedTextStyle? button16R,
-    ThemedTextStyle? button14M,
-    ThemedTextStyle? button14R,
-    ThemedTextStyle? button12M,
+    FontsWithColors? title48S,
+    FontsWithColors? title40L,
+    FontsWithColors? title34X,
+    FontsWithColors? title34M,
+    FontsWithColors? title34L,
+    FontsWithColors? title26M,
+    FontsWithColors? title26R,
+    FontsWithColors? title26L,
+    FontsWithColors? title20S,
+    FontsWithColors? title20M,
+    FontsWithColors? title20R,
+    FontsWithColors? title20L,
+    FontsWithColors? title18M,
+    FontsWithColors? title18R,
+    FontsWithColors? title18L,
+    FontsWithColors? body16M,
+    FontsWithColors? body16R,
+    FontsWithColors? body16L,
+    FontsWithColors? body14M,
+    FontsWithColors? body14R,
+    FontsWithColors? body14L,
+    FontsWithColors? body14I,
+    FontsWithColors? caption12M,
+    FontsWithColors? caption12R,
+    FontsWithColors? caption12L,
+    FontsWithColors? caption10X,
+    FontsWithColors? caption10R,
+    FontsWithColors? caption8R,
+    FontsWithColors? caption8M,
+    FontsWithColors? button16M,
+    FontsWithColors? button16R,
+    FontsWithColors? button14M,
+    FontsWithColors? button14R,
+    FontsWithColors? button12M,
   }) {
     return UIFontsRoboto(
       title48S: title48S ?? this.title48S,
@@ -1277,7 +1277,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
   }
 
   static final UIFontsRoboto light = UIFontsRoboto(
-    title48S: ThemedTextStyle(
+    title48S: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1286,7 +1286,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 64.0 / 48.0,
       ),
     ),
-    title40L: ThemedTextStyle(
+    title40L: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1295,7 +1295,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 48.0 / 40.0,
       ),
     ),
-    title34X: ThemedTextStyle(
+    title34X: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1304,7 +1304,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 34.0 / 34.0,
       ),
     ),
-    title34M: ThemedTextStyle(
+    title34M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1313,7 +1313,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 48.0 / 34.0,
       ),
     ),
-    title34L: ThemedTextStyle(
+    title34L: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1322,7 +1322,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 48.0 / 34.0,
       ),
     ),
-    title26M: ThemedTextStyle(
+    title26M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1331,7 +1331,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 32.0 / 26.0,
       ),
     ),
-    title26R: ThemedTextStyle(
+    title26R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1340,7 +1340,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 32.0 / 26.0,
       ),
     ),
-    title26L: ThemedTextStyle(
+    title26L: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1349,7 +1349,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 32.0 / 26.0,
       ),
     ),
-    title20S: ThemedTextStyle(
+    title20S: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1358,7 +1358,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 30.0 / 20.0,
       ),
     ),
-    title20M: ThemedTextStyle(
+    title20M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1367,7 +1367,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 30.0 / 20.0,
       ),
     ),
-    title20R: ThemedTextStyle(
+    title20R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1376,7 +1376,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 30.0 / 20.0,
       ),
     ),
-    title20L: ThemedTextStyle(
+    title20L: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1385,7 +1385,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 30.0 / 20.0,
       ),
     ),
-    title18M: ThemedTextStyle(
+    title18M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1394,7 +1394,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 28.0 / 18.0,
       ),
     ),
-    title18R: ThemedTextStyle(
+    title18R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1403,7 +1403,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 28.0 / 18.0,
       ),
     ),
-    title18L: ThemedTextStyle(
+    title18L: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1412,7 +1412,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 28.0 / 18.0,
       ),
     ),
-    body16M: ThemedTextStyle(
+    body16M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1421,7 +1421,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 24.0 / 16.0,
       ),
     ),
-    body16R: ThemedTextStyle(
+    body16R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1430,7 +1430,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 24.0 / 16.0,
       ),
     ),
-    body16L: ThemedTextStyle(
+    body16L: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1439,7 +1439,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 24.0 / 16.0,
       ),
     ),
-    body14M: ThemedTextStyle(
+    body14M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1448,7 +1448,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 14.0,
       ),
     ),
-    body14R: ThemedTextStyle(
+    body14R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1457,7 +1457,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 14.0,
       ),
     ),
-    body14L: ThemedTextStyle(
+    body14L: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1466,7 +1466,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 14.0,
       ),
     ),
-    body14I: ThemedTextStyle(
+    body14I: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1476,7 +1476,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         fontStyle: FontStyle.italic,
       ),
     ),
-    caption12M: ThemedTextStyle(
+    caption12M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1485,7 +1485,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 12.0,
       ),
     ),
-    caption12R: ThemedTextStyle(
+    caption12R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1494,7 +1494,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 12.0,
       ),
     ),
-    caption12L: ThemedTextStyle(
+    caption12L: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1503,7 +1503,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 12.0,
       ),
     ),
-    caption10X: ThemedTextStyle(
+    caption10X: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1512,7 +1512,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 10.0 / 10.0,
       ),
     ),
-    caption10R: ThemedTextStyle(
+    caption10R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1521,7 +1521,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 12.0 / 10.0,
       ),
     ),
-    caption8R: ThemedTextStyle(
+    caption8R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1530,7 +1530,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 10.0 / 8.0,
       ),
     ),
-    caption8M: ThemedTextStyle(
+    caption8M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1539,7 +1539,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 10.0 / 8.0,
       ),
     ),
-    button16M: ThemedTextStyle(
+    button16M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1548,7 +1548,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 16.0,
       ),
     ),
-    button16R: ThemedTextStyle(
+    button16R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1557,7 +1557,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 16.0,
       ),
     ),
-    button14M: ThemedTextStyle(
+    button14M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1566,7 +1566,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 14.0,
       ),
     ),
-    button14R: ThemedTextStyle(
+    button14R: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1575,7 +1575,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 14.0,
       ),
     ),
-    button12M: ThemedTextStyle(
+    button12M: FontsWithColors(
       UI.light,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1586,7 +1586,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
     ),
   );
   static final UIFontsRoboto dark = UIFontsRoboto(
-    title48S: ThemedTextStyle(
+    title48S: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1595,7 +1595,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 64.0 / 48.0,
       ),
     ),
-    title40L: ThemedTextStyle(
+    title40L: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1604,7 +1604,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 48.0 / 40.0,
       ),
     ),
-    title34X: ThemedTextStyle(
+    title34X: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1613,7 +1613,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 34.0 / 34.0,
       ),
     ),
-    title34M: ThemedTextStyle(
+    title34M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1622,7 +1622,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 48.0 / 34.0,
       ),
     ),
-    title34L: ThemedTextStyle(
+    title34L: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1631,7 +1631,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 48.0 / 34.0,
       ),
     ),
-    title26M: ThemedTextStyle(
+    title26M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1640,7 +1640,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 32.0 / 26.0,
       ),
     ),
-    title26R: ThemedTextStyle(
+    title26R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1649,7 +1649,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 32.0 / 26.0,
       ),
     ),
-    title26L: ThemedTextStyle(
+    title26L: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1658,7 +1658,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 32.0 / 26.0,
       ),
     ),
-    title20S: ThemedTextStyle(
+    title20S: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1667,7 +1667,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 30.0 / 20.0,
       ),
     ),
-    title20M: ThemedTextStyle(
+    title20M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1676,7 +1676,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 30.0 / 20.0,
       ),
     ),
-    title20R: ThemedTextStyle(
+    title20R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1685,7 +1685,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 30.0 / 20.0,
       ),
     ),
-    title20L: ThemedTextStyle(
+    title20L: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1694,7 +1694,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 30.0 / 20.0,
       ),
     ),
-    title18M: ThemedTextStyle(
+    title18M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1703,7 +1703,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 28.0 / 18.0,
       ),
     ),
-    title18R: ThemedTextStyle(
+    title18R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1712,7 +1712,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 28.0 / 18.0,
       ),
     ),
-    title18L: ThemedTextStyle(
+    title18L: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1721,7 +1721,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 28.0 / 18.0,
       ),
     ),
-    body16M: ThemedTextStyle(
+    body16M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1730,7 +1730,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 24.0 / 16.0,
       ),
     ),
-    body16R: ThemedTextStyle(
+    body16R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1739,7 +1739,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 24.0 / 16.0,
       ),
     ),
-    body16L: ThemedTextStyle(
+    body16L: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1748,7 +1748,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 24.0 / 16.0,
       ),
     ),
-    body14M: ThemedTextStyle(
+    body14M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1757,7 +1757,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 14.0,
       ),
     ),
-    body14R: ThemedTextStyle(
+    body14R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1766,7 +1766,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 14.0,
       ),
     ),
-    body14L: ThemedTextStyle(
+    body14L: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1775,7 +1775,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 14.0,
       ),
     ),
-    body14I: ThemedTextStyle(
+    body14I: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1785,7 +1785,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         fontStyle: FontStyle.italic,
       ),
     ),
-    caption12M: ThemedTextStyle(
+    caption12M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1794,7 +1794,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 12.0,
       ),
     ),
-    caption12R: ThemedTextStyle(
+    caption12R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1803,7 +1803,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 12.0,
       ),
     ),
-    caption12L: ThemedTextStyle(
+    caption12L: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1812,7 +1812,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 12.0,
       ),
     ),
-    caption10X: ThemedTextStyle(
+    caption10X: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1821,7 +1821,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 10.0 / 10.0,
       ),
     ),
-    caption10R: ThemedTextStyle(
+    caption10R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1830,7 +1830,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 12.0 / 10.0,
       ),
     ),
-    caption8R: ThemedTextStyle(
+    caption8R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1839,7 +1839,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 10.0 / 8.0,
       ),
     ),
-    caption8M: ThemedTextStyle(
+    caption8M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1848,7 +1848,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 10.0 / 8.0,
       ),
     ),
-    button16M: ThemedTextStyle(
+    button16M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1857,7 +1857,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 16.0,
       ),
     ),
-    button16R: ThemedTextStyle(
+    button16R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1866,7 +1866,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 20.0 / 16.0,
       ),
     ),
-    button14M: ThemedTextStyle(
+    button14M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1875,7 +1875,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 14.0,
       ),
     ),
-    button14R: ThemedTextStyle(
+    button14R: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',
@@ -1884,7 +1884,7 @@ class UIFontsRoboto extends ThemeExtension<UIFontsRoboto> {
         height: 16.0 / 14.0,
       ),
     ),
-    button12M: ThemedTextStyle(
+    button12M: FontsWithColors(
       UI.dark,
       const TextStyle(
         fontFamily: 'Roboto',

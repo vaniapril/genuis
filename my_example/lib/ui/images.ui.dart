@@ -15,15 +15,15 @@ abstract class AppImages {
   static const String logoAbstract_ = 'logo/abstract.svg';
 }
 
-class ThemedImages {
+class ImagesWithColors {
   final String value;
   final Color _brand;
-  const ThemedImages._({required Color brand, required this.value}) : _brand = brand;
-  ThemedImages(UI ui, String value) : this._(brand: ui.colors.primary.brand, value: value);
+  const ImagesWithColors._({required Color brand, required this.value}) : _brand = brand;
+  ImagesWithColors(UI ui, String value) : this._(brand: ui.colors.primary.brand, value: value);
 
-  ThemedImages lerp(ThemedImages other, double t) {
+  ImagesWithColors lerp(ImagesWithColors other, double t) {
     if (identical(this, other)) return this;
-    return ThemedImages._(
+    return ImagesWithColors._(
       brand: Color.lerp(_brand, other._brand, t) ?? _brand,
       value: t < 0.5 ? value : other.value,
     );
@@ -34,14 +34,18 @@ class ThemedImages {
 }
 
 class UIImagesBackground extends ThemeExtension<UIImagesBackground> {
-  final ThemedImages book;
-  final ThemedImages cat;
-  final ThemedImages flowers;
+  final ImagesWithColors book;
+  final ImagesWithColors cat;
+  final ImagesWithColors flowers;
 
   const UIImagesBackground({required this.book, required this.cat, required this.flowers});
 
   @override
-  UIImagesBackground copyWith({ThemedImages? book, ThemedImages? cat, ThemedImages? flowers}) {
+  UIImagesBackground copyWith({
+    ImagesWithColors? book,
+    ImagesWithColors? cat,
+    ImagesWithColors? flowers,
+  }) {
     return UIImagesBackground(
       book: book ?? this.book,
       cat: cat ?? this.cat,
@@ -61,24 +65,24 @@ class UIImagesBackground extends ThemeExtension<UIImagesBackground> {
   }
 
   static final UIImagesBackground light = UIImagesBackground(
-    book: ThemedImages(UI.light, AppImages.backgroundBook),
-    cat: ThemedImages(UI.light, AppImages.backgroundCat),
-    flowers: ThemedImages(UI.light, AppImages.backgroundFlowers),
+    book: ImagesWithColors(UI.light, AppImages.backgroundBook),
+    cat: ImagesWithColors(UI.light, AppImages.backgroundCat),
+    flowers: ImagesWithColors(UI.light, AppImages.backgroundFlowers),
   );
   static final UIImagesBackground dark = UIImagesBackground(
-    book: ThemedImages(UI.dark, AppImages.backgroundBook),
-    cat: ThemedImages(UI.dark, AppImages.backgroundCat),
-    flowers: ThemedImages(UI.dark, AppImages.backgroundFlowers),
+    book: ImagesWithColors(UI.dark, AppImages.backgroundBook),
+    cat: ImagesWithColors(UI.dark, AppImages.backgroundCat),
+    flowers: ImagesWithColors(UI.dark, AppImages.backgroundFlowers),
   );
 }
 
 class UIImagesLogo extends ThemeExtension<UIImagesLogo> {
-  final ThemedImages abstract_;
+  final ImagesWithColors abstract_;
 
   const UIImagesLogo({required this.abstract_});
 
   @override
-  UIImagesLogo copyWith({ThemedImages? abstract_}) {
+  UIImagesLogo copyWith({ImagesWithColors? abstract_}) {
     return UIImagesLogo(abstract_: abstract_ ?? this.abstract_);
   }
 
@@ -90,10 +94,10 @@ class UIImagesLogo extends ThemeExtension<UIImagesLogo> {
   }
 
   static final UIImagesLogo light = UIImagesLogo(
-    abstract_: ThemedImages(UI.light, AppImages.logoAbstract_),
+    abstract_: ImagesWithColors(UI.light, AppImages.logoAbstract_),
   );
   static final UIImagesLogo dark = UIImagesLogo(
-    abstract_: ThemedImages(UI.dark, AppImages.logoAbstract_),
+    abstract_: ImagesWithColors(UI.dark, AppImages.logoAbstract_),
   );
 }
 

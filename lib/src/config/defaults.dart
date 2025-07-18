@@ -27,6 +27,10 @@ abstract class Defaults {
   static String moduleTokenClassName(String name) {
     return '${name}_Token'.named.camelCase.upperFirst;
   }
+  static String moduleColorClassName(String name) {
+    return '${name}_WithColors'.named.camelCase.upperFirst;
+  }
+  static const colorFieldName = 'value';
 
   //Token Config
   static const tokenType = ElementType.color;

@@ -9,7 +9,9 @@ class ModuleConfig {
   final String tokenClassName;
   final String tokenFieldName;
   final bool color;
-  final String? colorClassName;
+  final String colorClassName;
+  final String colorFieldName;
+  final String? colorRecordClassName;
 
   ModuleConfig({
     required this.name,
@@ -20,5 +22,7 @@ class ModuleConfig {
     required this.tokenFieldName,
     required this.color,
     required this.colorClassName,
+    required this.colorFieldName,
+    required this.colorRecordClassName,
   });
 }

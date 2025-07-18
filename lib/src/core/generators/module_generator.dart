@@ -62,11 +62,17 @@ class ModuleGenerator extends FileGenerator {
 
     if (module.config.color) {
       if (module.config.type == ElementType.font) {
-        ColorExtensionWriter()
-            .writeTextStyleExtensionClass(buffer, module.colorFields);
+        ColorExtensionWriter(
+          colorRecordClassName: module.config.colorRecordClassName,
+          colorClassName: module.config.colorClassName,
+          colorFieldName: module.config.colorFieldName,
+        ).writeTextStyleExtensionClass(buffer, module.colorFields);
       } else if (module.config.type == ElementType.asset) {
-        ColorExtensionWriter()
-            .writeAssetExtensionClass(buffer, module, module.colorFields);
+        ColorExtensionWriter(
+          colorRecordClassName: module.config.colorRecordClassName,
+          colorClassName: module.config.colorClassName,
+          colorFieldName: module.config.colorFieldName,
+        ).writeAssetExtensionClass(buffer, module, module.colorFields);
       }
     }
 
