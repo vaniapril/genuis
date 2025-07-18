@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:genuis/src/config/configs/genuis_config.dart';
 import 'package:genuis/src/config/configs/module_config.dart';
 import 'package:genuis/src/config/configs/token_config.dart';
+import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
 
@@ -126,11 +127,8 @@ class ConfigValidator {
   }
 
   void _validateModuleColor(ModuleConfig module) {
-    if (module.color) {
-      if (!module.type.supportsColor) {
-        throw ConfigValidationException(
-            '"color: true" is not supported for ${module.type} module (${module.name})');
-      }
+    if (module.color && module.type == ElementType.color) {
+      throw const ConfigValidationException('cannot set "color: true" for color module');
     }
   }
 

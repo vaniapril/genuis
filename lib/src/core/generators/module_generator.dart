@@ -67,7 +67,7 @@ class ModuleGenerator extends FileGenerator {
           colorClassName: module.config.colorClassName,
           colorFieldName: module.config.colorFieldName,
         ).writeTextStyleExtensionClass(buffer, module.colorFields);
-      } else if (module.config.type == ElementType.asset) {
+      } else {
         ColorExtensionWriter(
           colorRecordClassName: module.config.colorRecordClassName,
           colorClassName: module.config.colorClassName,
