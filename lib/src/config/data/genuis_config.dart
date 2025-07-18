@@ -1,5 +1,5 @@
-import 'package:genuis/src/config/configs/module_config.dart';
-import 'package:genuis/src/config/configs/token_config.dart';
+import 'package:genuis/src/config/data/module_config.dart';
+import 'package:genuis/src/config/data/token_config.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 
 class GenuisConfig {

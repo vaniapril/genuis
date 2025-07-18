@@ -1,4 +1,4 @@
-import 'package:genuis/src/core/data/module.dart';
+import 'package:genuis/src/core/models/module.dart';
 
 class AssetsListWriter {
   AssetsListWriter();

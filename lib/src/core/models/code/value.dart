@@ -1,4 +1,4 @@
-import 'package:genuis/src/core/data/code/flag.dart';
+import 'package:genuis/src/core/models/code/flag.dart';
 
 abstract class Value {
   final List<Flag> flags;

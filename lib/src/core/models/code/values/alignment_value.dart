@@ -1,5 +1,5 @@
-import 'package:genuis/src/core/data/code/value.dart';
-import 'package:genuis/src/core/data/code/values/double_value.dart';
+import 'package:genuis/src/core/models/code/value.dart';
+import 'package:genuis/src/core/models/code/values/double_value.dart';
 import 'package:genuis/src/utils/imports.dart';
 
 class AlignmentValue extends Value {

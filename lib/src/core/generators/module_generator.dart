@@ -2,7 +2,7 @@ import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
-import 'package:genuis/src/core/data/module.dart';
+import 'package:genuis/src/core/models/module.dart';
 import 'package:genuis/src/core/writers/module/color_extension_writer.dart';
 import 'package:genuis/src/core/writers/token/enum_token_writer.dart';
 import 'package:genuis/src/core/writers/module/getter_module_writer.dart';

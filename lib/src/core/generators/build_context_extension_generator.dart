@@ -1,4 +1,4 @@
-import 'package:genuis/src/core/data/module.dart';
+import 'package:genuis/src/core/models/module.dart';
 import 'package:genuis/src/core/writers/build_context_extension_writer.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/utils/imports.dart';

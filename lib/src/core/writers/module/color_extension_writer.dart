@@ -1,8 +1,8 @@
 import 'package:genuis/src/config/types/token_class_type.dart';
-import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/core/data/code/values/colored_value.dart';
-import 'package:genuis/src/core/data/code/values/token_value.dart';
-import 'package:genuis/src/core/data/module.dart';
+import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
+import 'package:genuis/src/core/models/code/values/colored_value.dart';
+import 'package:genuis/src/core/models/code/values/token_value.dart';
+import 'package:genuis/src/core/models/module.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 
 class ColorExtensionWriter {

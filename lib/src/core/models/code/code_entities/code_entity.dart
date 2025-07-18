@@ -1,6 +1,6 @@
 import 'package:genuis/src/config/config.dart';
-import 'package:genuis/src/core/data/code/flag.dart';
-import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/core/models/code/flag.dart';
+import 'package:genuis/src/core/models/code/value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 part 'class.dart';

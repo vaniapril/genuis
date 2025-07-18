@@ -1,7 +1,7 @@
 import 'package:genuis/src/config/config.dart';
-import 'package:genuis/src/core/data/code/entity/code_entity.dart';
-import 'package:genuis/src/core/data/node/node.dart';
-import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
+import 'package:genuis/src/core/models/nodes/node.dart';
+import 'package:genuis/src/core/models/code/value.dart';
 import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 

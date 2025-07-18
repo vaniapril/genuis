@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:genuis/src/core/data/node/node.dart';
-import 'package:genuis/src/core/parsers/file/file_parser.dart';
-import 'package:genuis/src/core/parsers/file/json_file_parser.dart';
-import 'package:genuis/src/core/parsers/file/xml_file_parser.dart';
+import 'package:genuis/src/core/models/nodes/node.dart';
+import 'package:genuis/src/core/parsers/file_parsers/file_parser.dart';
+import 'package:genuis/src/core/parsers/file_parsers/json_file_parser.dart';
+import 'package:genuis/src/core/parsers/file_parsers/xml_file_parser.dart';
 import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';

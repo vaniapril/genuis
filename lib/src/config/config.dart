@@ -1,4 +1,4 @@
-import 'package:genuis/src/config/configs/genuis_config.dart';
+import 'package:genuis/src/config/data/genuis_config.dart';
 import 'package:genuis/src/utils/exceptions.dart';
 
 abstract class Config {

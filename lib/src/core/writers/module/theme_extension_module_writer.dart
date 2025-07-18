@@ -1,4 +1,4 @@
-import 'package:genuis/src/core/data/code/entity/code_entity.dart';
+import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
 
 class ThemeExtensionModuleWriter {
   const ThemeExtensionModuleWriter();

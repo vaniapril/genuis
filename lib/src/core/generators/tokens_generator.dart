@@ -1,5 +1,5 @@
 import 'package:genuis/src/config/types/token_class_type.dart';
-import 'package:genuis/src/core/data/token.dart';
+import 'package:genuis/src/core/models/token.dart';
 import 'package:genuis/src/core/writers/token/enum_token_writer.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/core/writers/token/static_token_writer.dart';

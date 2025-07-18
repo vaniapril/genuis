@@ -1,5 +1,5 @@
-import 'package:genuis/src/config/configs/module_config.dart';
-import 'package:genuis/src/core/data/code/entity/code_entity.dart';
+import 'package:genuis/src/config/data/module_config.dart';
+import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
 
 class Module {
   final ModuleConfig config;

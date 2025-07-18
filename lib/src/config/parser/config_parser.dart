@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:genuis/src/config/configs/genuis_config.dart';
-import 'package:genuis/src/config/configs/module_config.dart';
+import 'package:genuis/src/config/data/genuis_config.dart';
+import 'package:genuis/src/config/data/module_config.dart';
 import 'package:genuis/src/config/parser/config_validator.dart';
-import 'package:genuis/src/config/configs/token_config.dart';
+import 'package:genuis/src/config/data/token_config.dart';
 import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';

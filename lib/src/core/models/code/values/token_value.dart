@@ -1,4 +1,4 @@
-import 'package:genuis/src/core/data/code/value.dart';
+import 'package:genuis/src/core/models/code/value.dart';
 
 class TokenValue extends Value {
   final String tokenType;

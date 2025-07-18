@@ -1,5 +1,5 @@
 import 'package:genuis/src/config/config.dart';
-import 'package:genuis/src/core/data/module.dart';
+import 'package:genuis/src/core/models/module.dart';
 
 class BuildContextExtensionWriter {
   BuildContextExtensionWriter();

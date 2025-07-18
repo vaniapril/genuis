@@ -1,8 +1,8 @@
 import 'dart:io';
 
-import 'package:genuis/src/config/configs/genuis_config.dart';
-import 'package:genuis/src/config/configs/module_config.dart';
-import 'package:genuis/src/config/configs/token_config.dart';
+import 'package:genuis/src/config/data/genuis_config.dart';
+import 'package:genuis/src/config/data/module_config.dart';
+import 'package:genuis/src/config/data/token_config.dart';
 import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
