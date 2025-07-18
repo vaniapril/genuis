@@ -67,3 +67,20 @@ class MyWidget extends StatelessWidget {
     );
   }
 }
+
+class CustomIcon extends StatelessWidget {
+  final (String, Color) icon;
+  final double size;
+
+  const CustomIcon({
+    super.key,
+    required this.icon,
+    required this.size,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    // Create a icon with the specified asset, color and size
+    return Container();
+  }
+}
