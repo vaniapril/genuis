@@ -296,6 +296,10 @@ The module structure is determined by:
       "key_name_1-key_name_2": <value>
   }
   ```
+
+> [!IMPORTANT]  
+> The unnecessary duplications of getters will be shortened, for example `ui.same.same.another.` will be shortened to `ui.same.another.` if the only getter in the first `same` is the second `same`.
+
 ### Themes
 In [GenUIs] you can define different values for a UI element depending on the theme. To do this, one of the structure names must contain the theme name. Let's consider the following element call:
 ```dart
@@ -568,6 +572,9 @@ ui.fonts.roboto.headline
 ui.fonts.roboto.headlineItalic
 ```
 
+> [!NOTE]  
+> You can place `.ttf` files anywhere inside the assets folder. [GenUIs] will ignore them.
+
 ### shadow
 > value type: BoxShadow
 
@@ -835,6 +842,39 @@ ui.fonts.roboto.headline.green
 ui.fonts.roboto.headline.primary
 ```
 
+### XML files support
+
+You can use XML-files instead of JSON-files by specifying JSON-keys using the `name` attribute in XML-elements.
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <element name="name_1">[value]</element>
+    <element name="name_2">
+        <element name="name_3">[value]</element>
+        <element name="name_4">[value]</element>
+        //...
+    </element>
+    //...
+</resources>
+```
+> [!NOTE]  
+> The `<element>` type does not affect functionality, so you can use `<module_name>` or any other type.
+
+References in [color module](#color) to [colored module](#colored-modules) can be specified inside `[value]` or using the `type` attribute in XML-elements with a `,` separator:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <element name="name_1" type="icons">[value]</element>
+    <element name="name_2">
+        <element name="name_3" type="icons, fonts">[value]</element>
+        <element name="name_4" type="fonts">[value]</element>
+        //...
+    </element>
+    //...
+</resources>
+```
 ## Configuration
 
 The configuration is the basis of the [GenUIs]. It defines a list of [modules](#modules) and [tokens](#modules). It also allows you to fine-tune the generated code for different cases of interaction.
