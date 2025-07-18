@@ -461,14 +461,14 @@ tokens:
       type: <type>
 ```
 
-Token elements are listed inside a single JSON file at the root of the assets folder:
+Token elements are usually listed inside a single JSON file at the root of the assets folder:
 
 ```
 assets
 └── token_name.json
 ```
 
-With elements inside:
+With a list of elements inside:
 ```json
 {
     "element_1": <value>,
@@ -476,6 +476,25 @@ With elements inside:
     "element_3": <value>,
     //...
 }
+```
+Token elements also can be located in folder with files and some structure, but they will still be converted into a list of elements.
+```
+assets
+└── token_name
+    ├── token_file_1.json
+    └── token_file_2.json
+```
+```json
+{
+    "element_1": {
+        "element_2": <value>,  
+    }
+    //...
+}
+```
+To access to `element_2`, use the following syntax:
+```dart
+TokenName.tokenFile1Element1Element2
 ```
 
 ## Supported types
@@ -938,6 +957,7 @@ class_type: theme_extension
 dart_line_length: 100
 class_name: UI
 field_name: ui
+postfix: null
 
 tokens:
   - <token_name>:
@@ -1100,6 +1120,10 @@ Widget build(BuildContext context) {
   //...
 }
 ```
+#### postfix
+> default: `null`
+
+Specifies the postfix for generated theme classes.
 
 ### Tokens configuration 
 
@@ -1111,7 +1135,7 @@ Specifies the [type](#supported-types) of [token](#tokens) elements.
 #### path
 > default: `<token_name>.json`
 
-Specifies the path to the file containing [token](#tokens) elements.
+Specifies the path to the file or folder containing [token](#tokens) elements.
 
 #### class_name
 > default: `<token_name in PascalCase>` - 
