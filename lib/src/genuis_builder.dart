@@ -7,11 +7,9 @@ import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GenuisBuilder extends Builder {
-  final Config config;
   final List<FileGenerator> generators;
 
   GenuisBuilder({
-    required this.config,
     required this.generators,
   });
 
@@ -33,10 +31,10 @@ class GenuisBuilder extends Builder {
       buildStep.writeAsString(
         _output(
           buildStep,
-          join(config.outputPath, '${generator.fileName.snakeCase}.ui.dart'),
+          join(Config.it.outputPath, '${generator.fileName.snakeCase}.ui.dart'),
         ),
         DartFormatter(
-          pageWidth: config.dartLineLength,
+          pageWidth: Config.it.dartLineLength,
           languageVersion: DartFormatter.latestLanguageVersion,
         ).format(buffer.toString()),
       );
@@ -57,7 +55,7 @@ class GenuisBuilder extends Builder {
         for (final name in [
           for (final generator in generators) '${generator.fileName.snakeCase}.ui.dart',
         ])
-          join(config.outputPath, name).forwardSlash,
+          join(Config.it.outputPath, name).forwardSlash,
       ],
     };
   }

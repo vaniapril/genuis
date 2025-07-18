@@ -27,13 +27,13 @@ class Class extends CodeEntity {
     final Set<String> themes = {
       for (final e in classes) ...e.themes,
       for (final e in fields) ...e.values.keys,
-    }..remove('');
+    }..remove(Config.it.baseTheme);
 
     return Class(
       name: name,
       path: path,
       classType: classType,
-      themes: themes.isEmpty ? [''] : themes.toList(),
+      themes: themes.isEmpty ? [Config.it.baseTheme] : themes.toList(),
       classes: classes,
       fields: fields,
     );

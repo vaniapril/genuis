@@ -1,4 +1,3 @@
-import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/code/values/colored_value.dart';
 import 'package:genuis/src/core/data/module.dart';
@@ -6,11 +5,9 @@ import 'package:genuis/src/utils/map_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class ColorExtensionWriter {
-  final Config config;
   final String? colorClassName;
 
   ColorExtensionWriter({
-    required this.config,
     this.colorClassName,
   });
 

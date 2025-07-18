@@ -1,12 +1,7 @@
-import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 
 class ThemeExtensionModuleWriter {
-  final Config config;
-
-  const ThemeExtensionModuleWriter({
-    required this.config,
-  });
+  const ThemeExtensionModuleWriter();
 
   void write(StringBuffer buffer, Class root) {
     _writeClassWithSubclasses(buffer, root);
@@ -23,7 +18,7 @@ class ThemeExtensionModuleWriter {
   void _writeMainClassFactory(StringBuffer buffer, Class class_) {
     buffer.writeln('factory ${class_.type}.of(BuildContext context) {');
     buffer.writeln(
-        'return Theme.of(context).extension<${class_.type}>() ?? ${class_.type}.${_theme(class_.themes.first)};');
+        'return Theme.of(context).extension<${class_.type}>() ?? ${class_.type}.${class_.themes.first};');
     buffer.writeln('}');
   }
 
@@ -102,13 +97,11 @@ class ThemeExtensionModuleWriter {
 
   void _writeThemes(StringBuffer buffer, Class class_) {
     for (final theme in class_.themes) {
-      buffer.writeln('static final ${class_.type} ${_theme(theme)} = ${class_.type}(');
+      buffer.writeln('static final ${class_.type} $theme = ${class_.type}(');
       for (final model in class_.nodes) {
-        buffer.writeln('${model.name}: ${model.value(theme, config.baseTheme)},');
+        buffer.writeln('${model.name}: ${model.value(theme)},');
       }
       buffer.writeln(');');
     }
   }
-
-  String _theme(String theme) => theme.isEmpty ? config.baseTheme : theme;
 }

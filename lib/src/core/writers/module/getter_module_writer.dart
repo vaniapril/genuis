@@ -1,13 +1,8 @@
-import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GetterModuleWriter {
-  final Config config;
-
-  const GetterModuleWriter({
-    required this.config,
-  });
+  const GetterModuleWriter();
 
   void write(StringBuffer buffer, Class root) {
     _writeClassWithSubclasses(buffer, root);
@@ -53,7 +48,7 @@ class GetterModuleWriter {
 
   void _writeAbstractThemes(StringBuffer buffer, Class class_) {
     for (final theme in class_.themes) {
-      buffer.writeln('static const ${class_.type} ${_theme(theme)} = ${_themeClassName(class_, theme)}();');
+      buffer.writeln('static const ${class_.type} $theme = ${_themeClassName(class_, theme)}();');
     }
   }
 
@@ -81,10 +76,10 @@ class GetterModuleWriter {
   void _writeThemeClassGetters(StringBuffer buffer, Class class_, String theme) {
     for (final model in class_.nodes) {
       buffer.writeln('@override');
-      buffer.writeln('${model.type} get ${model.name} => ${model.value(theme, config.baseTheme)};');
+      buffer.writeln(
+          '${model.type} get ${model.name} => ${model.value(theme)};');
     }
   }
 
-  String _themeClassName(Class class_, String theme) => '_${class_.type}${_theme(theme).upperFirst}';
-  String _theme(String theme) => theme.isEmpty ? config.baseTheme : theme;
+  String _themeClassName(Class class_, String theme) => '_${class_.type}${theme.upperFirst}';
 }

@@ -1,13 +1,10 @@
-import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 
 class StaticTokenWriter {
-  final Config config;
   final String className;
 
   const StaticTokenWriter({
-    required this.config,
     required this.className,
   });
 

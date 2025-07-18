@@ -7,7 +7,6 @@ class BuildContextExtensionGenerator extends FileGenerator {
   final List<Module> modules;
 
   const BuildContextExtensionGenerator({
-    required super.config,
     required this.modules,
   });
 
@@ -18,9 +17,9 @@ class BuildContextExtensionGenerator extends FileGenerator {
   String generate() {
     final buffer = StringBuffer();
     buffer.writeln(Imports.material);
-    buffer.writeln(Imports.mainClass(config));
+    buffer.writeln(Imports.mainClass);
 
-    BuildContextExtensionWriter(config: config).write(buffer, modules);
+    BuildContextExtensionWriter().write(buffer, modules);
 
     return buffer.toString();
   }

@@ -1,30 +1,14 @@
-import 'package:genuis/src/config/module_config.dart';
-import 'package:genuis/src/config/token_config.dart';
-import 'package:genuis/src/config/types/genuis_class_type.dart';
+import 'package:genuis/src/config/configs/genuis_config.dart';
+import 'package:genuis/src/utils/exceptions.dart';
 
-class Config {
-  String assetsPath;
-  String outputPath;
-  List<String> themes;
-  String baseTheme;
-  GenuisClassType classType;
-  int dartLineLength;
-  String className;
-  String fieldName;
+abstract class Config {
+  static GenuisConfig? _config;
 
-  List<TokenConfig> tokens;
-  List<ModuleConfig> modules;
+  static void init(GenuisConfig config) {
+    _config = config;
+  }
 
-  Config({
-    required this.assetsPath,
-    required this.outputPath,
-    required this.themes,
-    required this.classType,
-    required this.dartLineLength,
-    required this.baseTheme,
-    required this.className,
-    required this.fieldName,
-    required this.tokens,
-    required this.modules,
-  });
+  static GenuisConfig get it {
+    return _config ?? (throw const ConfigNotInitializedException());
+  }
 }

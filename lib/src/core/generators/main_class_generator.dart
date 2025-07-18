@@ -1,3 +1,4 @@
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/core/data/token.dart';
@@ -13,26 +14,25 @@ class MainClassGenerator extends FileGenerator {
   final List<Token> tokens;
 
   const MainClassGenerator({
-    required super.config,
     required this.modules,
     required this.tokens,
   });
 
   @override
-  String get fileName => config.className.snakeCase;
+  String get fileName => Config.it.className.snakeCase;
 
   @override
   String generate() {
     final imports = [
       ...modules.map((e) => e.importCode),
       ...tokens.map((e) => e.importCode),
-      if (config.classType == GenuisClassType.themeExtension) Imports.material,
+      if (Config.it.classType == GenuisClassType.themeExtension) Imports.material,
     ];
 
     final exports = [
       ...modules.map((e) => e.exportCode),
       ...tokens.map((e) => e.exportCode),
-      Imports.buildContextExtensionExport(config),
+      Imports.buildContextExtensionExport,
     ];
 
     StringBuffer buffer = StringBuffer();
@@ -46,10 +46,10 @@ class MainClassGenerator extends FileGenerator {
     }
 
     final tree = Class(
-      name: config.fieldName,
+      name: Config.it.fieldName,
       path: [],
-      classType: config.className,
-      themes: config.themes,
+      classType: Config.it.className,
+      themes: Config.it.themes,
       classes: modules
           .map(
             (e) => Class(
@@ -65,14 +65,14 @@ class MainClassGenerator extends FileGenerator {
       fields: [],
     );
 
-    switch (config.classType) {
+    switch (Config.it.classType) {
       case GenuisClassType.themeExtension:
-        ThemeExtensionModuleWriter(config: config).writeMainClass(
+        const ThemeExtensionModuleWriter().writeMainClass(
           buffer,
           tree,
         );
       case GenuisClassType.getter:
-        GetterModuleWriter(config: config).writeMainClass(
+        const GetterModuleWriter().writeMainClass(
           buffer,
           tree,
         );

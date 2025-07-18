@@ -7,6 +7,6 @@ abstract class Imports {
   static const flutterInsetShadow =
       "import 'package:flutter_inset_shadow/flutter_inset_shadow.dart' as inset_shadow;";
 
-  static String mainClass(Config config) => "import '${config.className.snakeCase}.ui.dart';";
-  static String buildContextExtensionExport(Config config) => "export 'build_context_extension.ui.dart';";
+  static String get mainClass => "import '${Config.it.className.snakeCase}.ui.dart';";
+  static String get buildContextExtensionExport => "export 'build_context_extension.ui.dart';";
 }

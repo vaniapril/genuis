@@ -1,6 +1,13 @@
 class GenuisException implements Exception {}
 
 // Config
+class ConfigNotInitializedException implements GenuisException {
+  const ConfigNotInitializedException();
+
+  @override
+  String toString() => 'Config error: Config not initialized';
+}
+
 class ConfigInvalidStructureException implements GenuisException {
   const ConfigInvalidStructureException();
 

@@ -1,3 +1,4 @@
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
@@ -14,7 +15,6 @@ class ModuleGenerator extends FileGenerator {
   final Module module;
 
   const ModuleGenerator({
-    required super.config,
     required this.module,
   });
 
@@ -26,8 +26,8 @@ class ModuleGenerator extends FileGenerator {
     StringBuffer buffer = StringBuffer();
 
     final Set<String> imports = {
-      if (config.classType == GenuisClassType.themeExtension) Imports.material,
-      if (module.config.color) Imports.mainClass(config),
+      if (Config.it.classType == GenuisClassType.themeExtension) Imports.material,
+      if (module.config.color) Imports.mainClass,
     };
 
     module.rootClass.forEach(
@@ -43,7 +43,6 @@ class ModuleGenerator extends FileGenerator {
     if (module.config.tokenClassType != null) {
       if (module.config.tokenClassType == TokenClassType.enum_) {
         EnumTokenWriter(
-          config: config,
           className: module.config.tokenClassName,
           valueType: module.tokenFields.first.valueType,
           valueName: module.config.tokenFieldName,
@@ -53,7 +52,6 @@ class ModuleGenerator extends FileGenerator {
         );
       } else if (module.config.tokenClassType == TokenClassType.static_) {
         StaticTokenWriter(
-          config: config,
           className: module.config.tokenClassName,
         ).write(
           buffer,
@@ -64,19 +62,19 @@ class ModuleGenerator extends FileGenerator {
 
     if (module.config.color) {
       if (module.config.type == ElementType.font) {
-        ColorExtensionWriter(config: config)
+        ColorExtensionWriter()
             .writeTextStyleExtensionClass(buffer, module.colorFields);
       } else if (module.config.type == ElementType.asset) {
-        ColorExtensionWriter(config: config)
+        ColorExtensionWriter()
             .writeAssetExtensionClass(buffer, module, module.colorFields);
       }
     }
 
-    switch (config.classType) {
+    switch (Config.it.classType) {
       case GenuisClassType.themeExtension:
-        ThemeExtensionModuleWriter(config: config).write(buffer, module.rootClass);
+        const ThemeExtensionModuleWriter().write(buffer, module.rootClass);
       case GenuisClassType.getter:
-        GetterModuleWriter(config: config).write(buffer, module.rootClass);
+        const GetterModuleWriter().write(buffer, module.rootClass);
     }
 
     return buffer.toString();

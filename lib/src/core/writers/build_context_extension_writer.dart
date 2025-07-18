@@ -2,20 +2,16 @@ import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/module.dart';
 
 class BuildContextExtensionWriter {
-  final Config config;
-
-  BuildContextExtensionWriter({
-    required this.config,
-  });
+  BuildContextExtensionWriter();
 
   void write(StringBuffer buffer, List<Module> modules) {
-    buffer.writeln('extension ${config.className}BuildContextExtension on BuildContext {');
+    buffer.writeln('extension ${Config.it.className}BuildContextExtension on BuildContext {');
     buffer.writeln(
-        '${config.className} get ${config.fieldName} => ${config.className}.of(this);');
+        '${Config.it.className} get ${Config.it.fieldName} => ${Config.it.className}.of(this);');
 
     for (final module in modules) {
       buffer.writeln(
-          '${module.rootClass.classType} get ${module.config.name} => ${config.fieldName}.${module.config.name};');
+          '${module.rootClass.classType} get ${module.config.name} => ${Config.it.fieldName}.${module.config.name};');
     }
 
     buffer.writeln('}');

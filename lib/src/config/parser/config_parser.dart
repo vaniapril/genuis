@@ -1,9 +1,9 @@
 import 'dart:io';
 
-import 'package:genuis/src/config/config.dart';
-import 'package:genuis/src/config/module_config.dart';
+import 'package:genuis/src/config/configs/genuis_config.dart';
+import 'package:genuis/src/config/configs/module_config.dart';
 import 'package:genuis/src/config/parser/config_validator.dart';
-import 'package:genuis/src/config/token_config.dart';
+import 'package:genuis/src/config/configs/token_config.dart';
 import 'package:genuis/src/config/types/element_type.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
@@ -13,7 +13,7 @@ import 'package:genuis/src/utils/string_extension.dart';
 import 'package:yaml/yaml.dart';
 
 abstract class ConfigParser {
-  static Config? getConfig() {
+  static GenuisConfig? getConfig() {
     final genuisFile = File(Defaults.genuisFile);
     if (genuisFile.existsSync()) {
       final content = genuisFile.readAsStringSync();
@@ -31,7 +31,7 @@ abstract class ConfigParser {
     return null;
   }
 
-  static Config _configFromYaml(YamlMap map) {
+  static GenuisConfig _configFromYaml(YamlMap map) {
     final assetsPath = _get<String>(map, 'assets_path')?.asFolderPath ?? Defaults.assetsPath;
     final outputPath = _get<String>(map, 'output_path')?.asFolderPath ?? Defaults.outputPath;
     final themes = _getList<String>(map, 'themes') ?? Defaults.themes;
@@ -87,7 +87,7 @@ abstract class ConfigParser {
         }).toList() ??
         [];
 
-    final config = Config(
+    final config = GenuisConfig(
       assetsPath: assetsPath,
       outputPath: outputPath,
       themes: themes,

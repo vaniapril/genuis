@@ -8,7 +8,6 @@ class TokensGenerator extends FileGenerator {
   final Token token;
 
   const TokensGenerator({
-    required super.config,
     required this.token,
   });
 
@@ -33,7 +32,6 @@ class TokensGenerator extends FileGenerator {
 
     if (token.config.classType == TokenClassType.enum_) {
       EnumTokenWriter(
-        config: config,
         className: token.config.className,
         valueType: token.fields.first.type,
         valueName: token.config.fieldName,
@@ -43,7 +41,6 @@ class TokensGenerator extends FileGenerator {
       );
     } else if (token.config.classType == TokenClassType.static_) {
       StaticTokenWriter(
-        config: config,
         className: token.config.className,
       ).write(
         buffer,

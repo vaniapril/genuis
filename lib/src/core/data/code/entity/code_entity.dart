@@ -1,3 +1,4 @@
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/data/code/flag.dart';
 import 'package:genuis/src/core/data/code/value.dart';
 import 'package:genuis/src/utils/string_extension.dart';
@@ -9,11 +10,11 @@ sealed class CodeEntity {
   final String name;
   final List<String> path;
 
-  String value(String theme, String baseTheme) {
+  String value(String theme) {
     final node = this;
     return switch (node) {
-      Field() => node.values[theme]?.toString() ?? node.values['']?.toString() ?? 'null',
-      Class() => '${node.type}.${node.themes.contains(theme) && theme.isNotEmpty ? theme : baseTheme}',
+      Field() => node.values[theme]?.toString() ?? node.values[Config.it.baseTheme]?.toString() ?? 'null',
+      Class() => '${node.type}.${node.themes.contains(theme) ? theme : Config.it.baseTheme}',
     };
   }
 

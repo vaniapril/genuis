@@ -21,11 +21,7 @@ import 'package:genuis/src/utils/list_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GenuisCore {
-  final Config config;
-
-  GenuisCore({
-    required this.config,
-  }) {
+  GenuisCore() {
     _init();
   }
 
@@ -38,20 +34,19 @@ class GenuisCore {
   }
 
   List<FileGenerator> get generators => [
-        ..._modules.map((e) => ModuleGenerator(config: config, module: e)),
-        ..._tokens.map((e) => TokensGenerator(config: config, token: e)),
-        BuildContextExtensionGenerator(config: config, modules: _modules),
+        ..._modules.map((e) => ModuleGenerator(module: e)),
+        ..._tokens.map((e) => TokensGenerator(token: e)),
+        BuildContextExtensionGenerator(modules: _modules),
         MainClassGenerator(
-          config: config,
           modules: _modules,
           tokens: _tokens,
         ),
       ];
 
   List<Token> _parseTokens() {
-    return config.tokens.map((e) {
+    return Config.it.tokens.map((e) {
       Folder node = NodesParser(
-        path: config.assetsPath + e.path,
+        path: Config.it.assetsPath + e.path,
         parseFiles: e.type != ElementType.asset,
       ).parse();
 
@@ -60,7 +55,6 @@ class GenuisCore {
       );
 
       Class tree = ModelsParser(
-        config: config,
         root: node,
         mapper: (value) => valueParser.parse(value),
       ).parse();
@@ -70,16 +64,15 @@ class GenuisCore {
   }
 
   List<Module> _parseModules() {
-    var modules = config.modules.map((e) {
+    var modules = Config.it.modules.map((e) {
       Folder node = NodesParser(
-        path: config.assetsPath + e.path,
+        path: Config.it.assetsPath + e.path,
         parseFiles: e.type != ElementType.asset,
       ).parse();
 
       final valueParser = ValueParser(type: e.type, tokens: _tokens);
 
       Class tree = ModelsParser(
-        config: config,
         root: node,
         mapper: (value) => valueParser.parse(value),
       ).parse();
@@ -169,9 +162,9 @@ class GenuisCore {
 
       var colorThemesSet = {
         for (final themes in module.colorFields.values.map((e) => e.values.keys)) ...themes
-      }..remove('');
+      }..remove(Config.it.baseTheme);
 
-      final colorThemes = colorThemesSet.isEmpty ? [''] : colorThemesSet.toList();
+      final colorThemes = colorThemesSet.isEmpty ? [Config.it.baseTheme] : colorThemesSet.toList();
 
       final rootClass = module.rootClass.map(
         (field) {
@@ -189,7 +182,7 @@ class GenuisCore {
               for (final theme in colorThemes)
                 theme: ColoredValue(
                   coloredType: type,
-                  theme: theme.isEmpty ? config.themes.first : theme,
+                  theme: theme == Config.it.baseTheme ? Config.it.themes.first : theme,
                   innerValue: field.values[theme] ?? field.values.values.first,
                 )
             },

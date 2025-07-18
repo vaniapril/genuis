@@ -1,13 +1,13 @@
 import 'dart:io';
 
-import 'package:genuis/src/config/config.dart';
-import 'package:genuis/src/config/module_config.dart';
-import 'package:genuis/src/config/token_config.dart';
+import 'package:genuis/src/config/configs/genuis_config.dart';
+import 'package:genuis/src/config/configs/module_config.dart';
+import 'package:genuis/src/config/configs/token_config.dart';
 import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
 
 class ConfigValidator {
-  Config config;
+  GenuisConfig config;
 
   ConfigValidator(this.config);
 

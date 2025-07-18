@@ -1,6 +1,7 @@
 library genuis;
 
 import 'package:build/build.dart';
+import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/parser/config_parser.dart';
 import 'package:genuis/src/core/genuis_core.dart';
 import 'package:genuis/src/empty_builder.dart';
@@ -13,10 +14,10 @@ Builder build(BuilderOptions options) {
     return EmptyBuilder();
   }
 
-  final core = GenuisCore(config: config);
+  Config.init(config);
 
+  final core = GenuisCore();
   return GenuisBuilder(
-    config: config,
     generators: core.generators,
   );
 }

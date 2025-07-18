@@ -6,13 +6,11 @@ import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class ModelsParser {
-  final Config config;
   final Folder root;
 
   final Value Function(String value) mapper;
 
   ModelsParser({
-    required this.config,
     required this.root,
     required this.mapper,
   });
@@ -30,7 +28,7 @@ class ModelsParser {
     final Map<String, Value> values = {};
 
     for (final element in folder.nodes) {
-      if (config.themes.contains(element.name)) {
+      if (Config.it.themes.contains(element.name)) {
         if (theme != null) {
           throw ParserMultipleThemesException(path.join('-'));
         }
@@ -79,7 +77,7 @@ class ModelsParser {
               name: element.name,
               path: [...path, folder.name, element.name],
               valueType: value.type,
-              values: {theme ?? '': value},
+              values: {theme ?? Config.it.baseTheme: value},
             ),
           );
         }
@@ -101,15 +99,15 @@ class ModelsParser {
           Field() => e.values.keys,
           Class() => e.themes,
         }
-    }..remove('');
+    }..remove(Config.it.baseTheme);
 
     return Class(
       name: folder.name,
       path: path,
       classes: entities.whereType<Class>().toList(),
       fields: entities.whereType<Field>().toList(),
-      themes: themes.isEmpty ? [''] : themes.toList(),
-      classType: [config.className, ...path, folder.name].join('_').camelCase.upperFirst,
+      themes: themes.isEmpty ? [Config.it.baseTheme] : themes.toList(),
+      classType: [Config.it.className, ...path, folder.name].join('_').camelCase.upperFirst,
     );
   }
 
@@ -135,14 +133,14 @@ class ModelsParser {
     final Set<String> themes = {
       for (final e in classes) ...e.themes,
       for (final e in fields) ...e.values.keys,
-    }..remove('');
+    }..remove(Config.it.baseTheme);
 
     return Class(
       name: entities.first.name,
       path: entities.first.path,
       classes: classes,
       fields: fields,
-      themes: themes.isEmpty ? [''] : themes.toList(),
+      themes: themes.isEmpty ? [Config.it.baseTheme] : themes.toList(),
       classType: entities.first.type,
     );
   }
