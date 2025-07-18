@@ -1,7 +1,7 @@
 {
     "error": {
-        "light": "$colors.primary_error_500 fonts:error",
-        "dark": "$colors.primary_error_600"
+        "light": "$primary_error_500 fonts:error",
+        "dark": "$primary_error_600"
     },
     "alert_notification": {
         "light": "$colors.transparency_white_80 icons",

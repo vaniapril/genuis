@@ -298,7 +298,7 @@ The module structure is determined by:
   ```
 
 > [!IMPORTANT]  
-> The unnecessary duplications of getters will be shortened, for example `ui.same.same.another.` will be shortened to `ui.same.another.` if the only getter in the first `same` is the second `same`.
+> The unnecessary duplications of getters will be shortened, for example `ui.same.same.another.` will be shortened to `ui.same.another.` if the second `same` is the only getter in the first `same`.
 
 ### Themes
 In [GenUIs] you can define different values for a UI element depending on the theme. To do this, one of the structure names must contain the theme name. Let's consider the following element call:
@@ -742,8 +742,9 @@ Strings.flutter
 ## Tokens inside Modules
 You can use values from any [token](#tokens) inside the values of a [module](#modules) element using the following pattern:
 ```
-$<token_name>:<value_name>
+$<optional token_name>.<value_name>
 ```
+If `token_name` is not specified, the value will be searched for in all tokens by `value_name`.
 
 For example, for the `palette` [token](#tokens) with the file `assets/palette.json`:
 ```json
@@ -753,7 +754,7 @@ For example, for the `palette` [token](#tokens) with the file `assets/palette.js
     "green_primary": "#00FF00",
     "green_secondary": "#00DD00",
     "black": "#000000",
-    "white": "#FFFFFF",
+    "white_main": "#FFFFFF",
 }
 ```
 
@@ -761,18 +762,18 @@ The file `assets/colors/colors.json` of the `colors` [module](#modules) will be:
 
 ```json
 {
-    "button": "$palette:red_primary",
-    "text": "$palette:red_secondary",
-    "border": "$palette:green_primary",
-    "icon": "$palette:green_secondary",
+    "button": "$palette.red_primary",
+    "text": "$palette.red_secondary",
+    "border": "$green_primary",
+    "icon": "$green_secondary",
 }
 ```
 The file `assets/shadows/shadows.json` of the `shadows` [module](#modules) will be:
 
 ```json
 {
-    "card": "$palette:black 4.0 3.0 2.0 1.0",
-    "banner":  "$palette:white 4.0 3.0 2.0 1.0 inset"
+    "card": "$palette.black 4.0 3.0 2.0 1.0",
+    "banner":  "$white_main 4.0 3.0 2.0 1.0 inset"
 }
 ```
 

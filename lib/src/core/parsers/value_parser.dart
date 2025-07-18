@@ -79,20 +79,27 @@ class ValueParser {
   TokenValue _parseToken<T extends Value>(String arg, {List<Flag> flags = const []}) {
     arg = arg.substring(1);
 
-    final tokenName = arg.substring(0, arg.indexOf('.'));
-    final name = arg.substring(arg.indexOf('.') + 1).camelCase.named;
+    var tokens = this.tokens;
 
-    final token = tokens.firstWhere((e) => e.config.name == tokenName);
+    if (arg.contains('.')) {
+      final tokenName = arg.substring(0, arg.indexOf('.'));
+      tokens = tokens.where((e) => e.config.name == tokenName).toList();
+      arg = arg.substring(arg.indexOf('.') + 1);
+    }
 
-    for (final field in token.fields) {
-      if (field.name == name) {
-        return TokenValue(
-          tokenType: token.config.className,
-          tokenName: token.config.classType == TokenClassType.enum_ ? '$name.value' : name,
-          innerValue: field.values.values.first,
-          flags: flags,
-          additionalImports: token.importCode,
-        );
+    final name = arg.camelCase.named;
+
+    for (final token in tokens) {
+      for (final field in token.fields) {
+        if (field.name == name) {
+          return TokenValue(
+            tokenType: token.config.className,
+            tokenName: token.config.classType == TokenClassType.enum_ ? '$name.value' : name,
+            innerValue: field.values.values.first,
+            flags: flags,
+            additionalImports: token.importCode,
+          );
+        }
       }
     }
 
