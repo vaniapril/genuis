@@ -26,7 +26,6 @@ class MainClassGenerator extends FileGenerator {
   String generate() {
     final imports = [
       ...modules.map((e) => e.importCode),
-      ...tokens.map((e) => e.importCode),
       if (Config.it.classType == GenuisClassType.themeExtension) Imports.material,
     ];
 

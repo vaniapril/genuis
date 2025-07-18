@@ -11,6 +11,7 @@ class GenuisConfig {
   int dartLineLength;
   String className;
   String fieldName;
+  String postfix;
 
   List<TokenConfig> tokens;
   List<ModuleConfig> modules;
@@ -24,6 +25,7 @@ class GenuisConfig {
     required this.baseTheme,
     required this.className,
     required this.fieldName,
+    required this.postfix,
     required this.tokens,
     required this.modules,
   });

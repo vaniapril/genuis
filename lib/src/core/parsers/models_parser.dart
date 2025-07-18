@@ -107,7 +107,7 @@ class ModelsParser {
       classes: entities.whereType<Class>().toList(),
       fields: entities.whereType<Field>().toList(),
       themes: themes.isEmpty ? [Config.it.baseTheme] : themes.toList(),
-      classType: [Config.it.className, ...path, folder.name].join('_').camelCase.upperFirst,
+      classType: [Config.it.className, ...path, folder.name, Config.it.postfix].join('_').camelCase.upperFirst,
     );
   }
 

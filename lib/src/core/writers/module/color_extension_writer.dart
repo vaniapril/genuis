@@ -1,5 +1,7 @@
+import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/data/code/entity/code_entity.dart';
 import 'package:genuis/src/core/data/code/values/colored_value.dart';
+import 'package:genuis/src/core/data/code/values/token_value.dart';
 import 'package:genuis/src/core/data/module.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 
@@ -18,10 +20,13 @@ class ColorExtensionWriter {
     final coloredValue = module.rootClass.flattenFields.first.values.values.first;
     final value = coloredValue is ColoredValue ? coloredValue.innerValue : coloredValue;
 
-    final recordClassName = colorRecordClassName ?? '(${value.type}, Color)';
+    final valueType = module.config.tokenClassType == TokenClassType.enum_ && value is TokenValue
+        ? value.tokenType
+        : value.type;
+    final recordClassName = colorRecordClassName ?? '($valueType, Color)';
 
     buffer.writeln('class $colorClassName {');
-    buffer.writeln('final ${value.type} $colorFieldName;');
+    buffer.writeln('final $valueType $colorFieldName;');
     for (final name in fields.keys) {
       buffer.writeln('final Color _$name;');
     }
@@ -40,7 +45,7 @@ class ColorExtensionWriter {
     }
     buffer.writeln(';');
 
-    buffer.writeln('$colorClassName(UI ui, ${value.type} $colorFieldName) : this._(');
+    buffer.writeln('$colorClassName(UI ui, $valueType $colorFieldName) : this._(');
     for (final (name, field) in fields.iterable) {
       buffer.writeln('$name: ui.${field.path.join('.')},');
     }
@@ -59,14 +64,16 @@ class ColorExtensionWriter {
     buffer.writeln('}');
 
     for (final name in fields.keys) {
-      buffer.writeln('$recordClassName get $name => ${colorRecordClassName ?? ''}($colorFieldName, _$name);');
+      buffer.writeln(
+          '$recordClassName get $name => ${colorRecordClassName ?? ''}($colorFieldName, _$name);');
     }
-    buffer.writeln('$recordClassName colored(Color color) => ${colorRecordClassName ?? ''}($colorFieldName, color);');
+    buffer.writeln(
+        '$recordClassName colored(Color color) => ${colorRecordClassName ?? ''}($colorFieldName, color);');
     buffer.writeln('}');
 
     if (colorRecordClassName != null) {
       buffer.writeln('class $recordClassName {');
-      buffer.writeln('final ${value.type} $colorFieldName;');
+      buffer.writeln('final $valueType $colorFieldName;');
       buffer.writeln('final Color color;');
       buffer.writeln('const $recordClassName(this.$colorFieldName, this.color);');
       buffer.writeln('}');
@@ -140,6 +147,9 @@ class ColorExtensionWriter {
     for (final name in fields.keys) {
       buffer.writeln('TextStyle get $name => copyWith(color: _$name);');
     }
+    buffer.writeln();
+    buffer.writeln('TextStyle colored(Color color) => copyWith(color: color);');
+
     buffer.writeln('}');
   }
 }

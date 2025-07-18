@@ -21,6 +21,7 @@ class ConfigValidator {
     _validateConfigDartLineLength();
     _validateConfigClassName();
     _validateConfigFieldName();
+    _validateConfigPostfix();
 
     _validateConfigTokens();
     _validateConfigModules();
@@ -64,6 +65,12 @@ class ConfigValidator {
     _validateFieldName(config.fieldName);
   }
 
+  void _validateConfigPostfix() {
+    if (config.postfix.isEmpty) return;
+    
+    _validateFieldName(config.fieldName);
+  }
+
   // Tokens
   void _validateConfigTokens() {
     for (final token in config.tokens) {
@@ -81,7 +88,7 @@ class ConfigValidator {
   }
 
   void _validateTokenPath(TokenConfig token) {
-    _validateFilePath(config.assetsPath + token.path);
+    _validatePath(config.assetsPath + token.path);
   }
 
   void _validateTokenClassName(TokenConfig token) {
@@ -149,8 +156,43 @@ class ConfigValidator {
   }
 
   // Utils
+  static void _validatePath(String value, {bool checkExists = true}) {
+    if (FileSystemEntity.isDirectorySync(value)) {
+      if (!checkExists) {
+        return;
+      }
+      final directory = Directory(value);
+
+      if (!directory.existsSync()) {
+        throw ConfigValidationException('folder does not exist: $value');
+      }
+
+      return;
+    }
+
+    if (FileSystemEntity.isFileSync(value)) {
+      if (!checkExists) {
+        return;
+      }
+
+      final file = File(value);
+
+      if (!file.existsSync()) {
+        throw ConfigValidationException('file does not exist: $value');
+      }
+
+      if (!file.isXml && !file.isJson) {
+        throw ConfigValidationException('file is not xml or json: $value');
+      }
+
+      return;
+    }
+
+    throw ConfigValidationException('$value is not a folder or file');
+  }
+
   static void _validateFolderPath(String value, {bool checkExists = true}) {
-    if (FileSystemEntity.isDirectorySync('/$value')) {
+    if (!FileSystemEntity.isDirectorySync(value)) {
       throw ConfigValidationException('$value is not a folder');
     }
 
@@ -161,21 +203,21 @@ class ConfigValidator {
     }
   }
 
-  static void _validateFilePath(String value) {
-    if (FileSystemEntity.isFileSync('/$value')) {
-      throw ConfigValidationException('$value is not a file');
-    }
+  // static void _validateFilePath(String value) {
+  //   if (!FileSystemEntity.isFileSync(value)) {
+  //     throw ConfigValidationException('$value is not a file');
+  //   }
 
-    final file = File(value);
+  //   final file = File(value);
 
-    if (!file.existsSync()) {
-      throw ConfigValidationException('file does not exist: $value');
-    }
+  //   if (!file.existsSync()) {
+  //     throw ConfigValidationException('file does not exist: $value');
+  //   }
 
-    if (!file.isXml && !file.isJson) {
-      throw ConfigValidationException('file is not xml or json: $value');
-    }
-  }
+  //   if (!file.isXml && !file.isJson) {
+  //     throw ConfigValidationException('file is not xml or json: $value');
+  //   }
+  // }
 
   static void _validateSnakeCaseName(String value) {
     if (value.isEmpty) {

@@ -4,6 +4,7 @@
 // **************************************************************************
 
 // ignore_for_file: unused_import
+// ignore_for_file: type=lint
 
 abstract class AppStrings {
   static const String hello = 'Hello';

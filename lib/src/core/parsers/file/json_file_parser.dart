@@ -5,6 +5,7 @@ import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
+import 'package:genuis/src/utils/num_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class JsonFileParser extends FileParser {
@@ -12,13 +13,13 @@ class JsonFileParser extends FileParser {
   bool canParse(File file) => file.isJson;
 
   @override
-  List<Node> parse(File file) {
+  List<Node> parse(File file, String name) {
     if (!file.isJson) return [];
 
     try {
       final root = json.decode(file.readAsStringSync());
 
-      return root is List ? _parseJson({file.name.camelCase: root}) : _parseJson(root);
+      return _parseJson({name: root});
     } catch (e) {
       if (e is ParserFileElementException) throw ParserFileException(file.path, element: e.element);
       throw ParserFileException(file.path);
@@ -40,10 +41,23 @@ class JsonFileParser extends FileParser {
       if (entity is List) {
         nodes.addAll(
           entity.map(
-            (e) => Item(
-              name: key.camelCase.named + e.toString(),
-              value: e.toString(),
-            ),
+            (e) {
+              var name = key;
+              if (e is double) {
+                if (e.isInt) {
+                  name += e.toStringAsFixed(0);
+                } else {
+                  name += e.toString().snakeCase.named;
+                }
+              } else {
+                name += e.toString().camelCase.named;
+              }
+
+              return Item(
+                name: name,
+                value: e.toString(),
+              );
+            },
           ),
         );
         continue;

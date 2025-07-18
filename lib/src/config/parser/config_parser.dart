@@ -40,6 +40,7 @@ abstract class ConfigParser {
     final className = _get<String>(map, 'class_name') ?? Defaults.className;
     final fieldName = _get<String>(map, 'field_name') ?? Defaults.fieldName;
     final baseTheme = _get<String>(map, 'base_theme') ?? Defaults.baseTheme;
+    final postfix = _get<String>(map, 'postfix') ?? Defaults.postfix;
 
     final tokens = _getList<YamlMap>(map, 'tokens')?.map((e) {
           final (name, map) = _getEntry(e);
@@ -100,6 +101,7 @@ abstract class ConfigParser {
       className: className,
       fieldName: fieldName,
       baseTheme: baseTheme,
+      postfix: postfix,
       tokens: tokens,
       modules: modules,
     );

@@ -60,7 +60,7 @@ class GenuisCore {
         mapper: (value) => valueParser.parse(value),
       ).parse();
 
-      return Token(config: e, fields: tree.fields);
+      return Token(config: e, fields: tree.flattenFields);
     }).toList();
   }
 
@@ -157,15 +157,16 @@ class GenuisCore {
           return Field(
             name: field.name,
             path: field.path,
-            valueType: field.valueType,
+            valueType: module.config.tokenClassType == TokenClassType.enum_
+                ? module.config.tokenClassName
+                : field.valueType,
             values: field.values.map(
               (String key, Value value) {
                 return MapEntry(
                   key,
                   TokenValue(
                     tokenType: module.config.tokenClassName,
-                    tokenName:
-                        '${field.enumName(key)}${module.config.tokenClassType == TokenClassType.enum_ ? '.value' : ''}',
+                    tokenName: field.enumName(key),
                     innerValue: value,
                   ),
                 );

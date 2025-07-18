@@ -4,6 +4,7 @@
 // **************************************************************************
 
 // ignore_for_file: unused_import
+// ignore_for_file: type=lint
 
 import 'blurs.ui.dart';
 import 'colors.ui.dart';
@@ -11,9 +12,6 @@ import 'fonts.ui.dart';
 import 'icons.ui.dart';
 import 'images.ui.dart';
 import 'shadows.ui.dart';
-import 'token_colors.ui.dart';
-import 'token_heights.ui.dart';
-import 'token_strings.ui.dart';
 import 'package:flutter/material.dart';
 
 export 'blurs.ui.dart';

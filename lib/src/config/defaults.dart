@@ -17,6 +17,7 @@ abstract class Defaults {
   static const className = 'UI';
   static const fieldName = 'ui';
   static const baseTheme = 'base';
+  static const postfix = '';
   //Module Config
   static const moduleType = ElementType.asset;
   static const moduleColor = false;

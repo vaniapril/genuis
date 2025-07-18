@@ -4,6 +4,7 @@
 // **************************************************************************
 
 // ignore_for_file: unused_import
+// ignore_for_file: type=lint
 
 abstract class AppHeights {
   static const double heights1 = 1.0;

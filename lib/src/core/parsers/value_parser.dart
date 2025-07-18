@@ -96,7 +96,9 @@ class ValueParser {
         if (field.name == name) {
           return TokenValue(
             tokenType: token.config.className,
-            tokenName: token.config.classType == TokenClassType.enum_ ? '$name.value' : name,
+            tokenName: token.config.classType == TokenClassType.enum_
+                ? '$name.${token.config.fieldName}'
+                : name,
             innerValue: field.values.values.first,
             flags: flags,
             additionalImports: token.importCode,

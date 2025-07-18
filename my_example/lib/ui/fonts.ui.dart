@@ -4,6 +4,7 @@
 // **************************************************************************
 
 // ignore_for_file: unused_import
+// ignore_for_file: type=lint
 
 import 'package:flutter/material.dart';
 import 'ui.ui.dart';
@@ -80,6 +81,8 @@ class FontsWithColors extends TextStyle {
   TextStyle get green => copyWith(color: _green);
   TextStyle get orange => copyWith(color: _orange);
   TextStyle get red => copyWith(color: _red);
+
+  TextStyle colored(Color color) => copyWith(color: color);
 }
 
 class UIFontsManropeLargeTitle extends ThemeExtension<UIFontsManropeLargeTitle> {

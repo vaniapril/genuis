@@ -3,6 +3,7 @@ import 'package:genuis/src/core/data/node/node.dart';
 import 'package:genuis/src/core/parsers/file/file_parser.dart';
 import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
+import 'package:genuis/src/utils/num_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 import 'package:xml/xml.dart';
 
@@ -11,7 +12,7 @@ class XmlFileParser extends FileParser {
   bool canParse(File file) => file.isXml;
 
   @override
-  List<Node> parse(File file) {
+  List<Node> parse(File file, String name) {
     if (!file.isXml) return [];
 
     try {
@@ -19,7 +20,12 @@ class XmlFileParser extends FileParser {
 
       final root = document.childElements;
 
-      return root.length == 1 ? _parseXml(root.first) : _parseXml(document.rootElement);
+      return [
+        Folder(
+          name: name,
+          nodes: root.length == 1 ? _parseXml(root.first) : _parseXml(document.rootElement),
+        ),
+      ];
     } catch (e) {
       if (e is ParserFileElementException) throw ParserFileException(file.path, element: e.element);
       throw ParserFileException(file.path);
@@ -44,10 +50,22 @@ class XmlFileParser extends FileParser {
         continue;
       }
       if (name == null && children.isEmpty && value.isNotEmpty) {
+        var name = xml.getAttribute('name') ?? '';
+        final doubleValue = double.tryParse(value);
+        if (doubleValue != null) {
+          if (doubleValue.isInt) {
+            name += doubleValue.toStringAsFixed(0);
+          } else {
+            name += doubleValue.toString().snakeCase.named;
+          }
+        } else {
+          name += value.toString().camelCase.named;
+        }
+
         nodes.add(
           Item(
-            name: ('${xml.getAttribute('name') ?? ''} $value').camelCase.named,
-            value: value.toString(),
+            name: name,
+            value: value,
           ),
         );
         continue;

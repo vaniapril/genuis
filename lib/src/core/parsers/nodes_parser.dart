@@ -25,11 +25,15 @@ class NodesParser {
     final directory = Directory(path);
 
     if (directory.existsSync()) {
+      final nodes = _parseDirectory(directory);
+
       final node = reduce(
-        Folder(
-          name: directory.name,
-          nodes: _parseDirectory(directory),
-        ),
+        nodes.length == 1
+            ? nodes.first
+            : Folder(
+                name: directory.name,
+                nodes: nodes,
+              ),
       );
 
       return node is Folder
@@ -43,7 +47,15 @@ class NodesParser {
     final file = File(path);
 
     if (file.existsSync()) {
-      final node = reduce(_parseFile(file));
+      final nodes = _parseFile(file);
+      final node = reduce(
+        nodes.length == 1
+            ? nodes.first
+            : Folder(
+                name: file.name,
+                nodes: nodes,
+              ),
+      );
 
       return node is Folder
           ? node
@@ -75,46 +87,49 @@ class NodesParser {
   }
 
   List<Node> _parseDirectory(Directory directory) {
+    final names = directory.name.split('-').map((e) => e.camelCase.named).toList();
+
     List<Node> nodes = [];
 
     for (final entity in directory.listSync()) {
       if (entity is Directory) {
-        nodes.add(
-          Folder(
-            name: entity.name,
-            nodes: _parseDirectory(entity),
-          ),
+        nodes.addAll(
+          _parseDirectory(entity),
         );
       }
       if (entity is File &&
           (!parseFiles || jsonParser.canParse(entity) || xmlParser.canParse(entity))) {
-        nodes.add(_parseFile(entity));
+        nodes.addAll(_parseFile(entity));
       }
+    }
+
+    for (final name in names) {
+      nodes = [Folder(name: name, nodes: nodes)];
     }
 
     return nodes;
   }
 
-  Node _parseFile(File file) {
+  List<Node> _parseFile(File file) {
     final names = file.name.split('-').map((e) => e.camelCase.named).toList();
 
-    Node node = parseFiles
-        ? Folder(
-            name: names.last,
-            nodes: jsonParser.canParse(file)
-                ? jsonParser.parse(file)
-                : xmlParser.canParse(file)
-                    ? xmlParser.parse(file)
-                    : [])
-        : Item(
-            name: names.last,
-            value: relative(file.path, from: path).forwardSlash,
-          );
+    List<Node> nodes = parseFiles
+        ? jsonParser.canParse(file)
+            ? jsonParser.parse(file, names.last)
+            : xmlParser.canParse(file)
+                ? xmlParser.parse(file, names.last)
+                : []
+        : [
+            Item(
+              name: names.last,
+              value: relative(file.path, from: path).forwardSlash,
+            )
+          ];
 
     for (final name in names.sublist(0, names.length - 1)) {
-      node = Folder(name: name, nodes: [node]);
+      nodes = [Folder(name: name, nodes: nodes)];
     }
 
-    return node;
+    return nodes;
   }
 }

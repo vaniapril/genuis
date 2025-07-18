@@ -25,6 +25,7 @@ class GenuisBuilder extends Builder {
 // **************************************************************************
 ''');
       buffer.writeln('// ignore_for_file: unused_import');
+      buffer.writeln('// ignore_for_file: type=lint');
       buffer.writeln();
       buffer.write(generator.generate());
 
