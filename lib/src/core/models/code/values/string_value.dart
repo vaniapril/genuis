@@ -1,0 +1,18 @@
+import 'package:genuis/src/core/models/code/value.dart';
+
+class StringValue extends Value {
+  final String value;
+
+  const StringValue({
+    required this.value,
+  });
+
+  @override
+  String get type => 'String';
+
+  @override
+  Set<String> get imports => {};
+
+  @override
+  String toString() => "'$value'";
+}

@@ -1,0 +1,13 @@
+targets:
+  $default:
+    builders:
+      genuis:
+        enabled: true
+
+builders:
+  generators:
+    import: "package:genuis/genuis.dart"
+    builder_factories: ["build"]
+    build_extensions: { '$package$': ['.ui.dart'] }
+    auto_apply: dependents
+    build_to: source

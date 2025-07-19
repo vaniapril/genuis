@@ -1,0 +1,26 @@
+name: example
+description: A new Flutter project.
+publish_to: none
+
+environment:
+  sdk: ^3.5.0
+  flutter: ">=3.27.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  genuis:
+    path: ../
+
+flutter:
+  assets:
+    - assets/icons/outline/
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700

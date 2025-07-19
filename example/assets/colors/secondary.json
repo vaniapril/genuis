@@ -1,0 +1,10 @@
+{
+    "primary_text": {
+        "light": "#FFFFFF fonts:primary",
+        "dark": "#000000 fonts:primary"
+    },
+    "white_icon": {
+        "light": "#FFFFFF icons:white",
+        "dark": "#000000 icons:white"
+    }
+}
