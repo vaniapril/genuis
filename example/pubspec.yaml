@@ -16,3 +16,11 @@ dev_dependencies:
   genuis:
     path: ../
 
+flutter:
+  assets:
+    - assets/icons/outline/
+  fonts:
+    - family: Roboto
+      fonts:
+        - asset: assets/fonts/Roboto-Bold.ttf
+          weight: 700
