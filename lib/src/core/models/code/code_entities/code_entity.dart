@@ -1,6 +1,7 @@
 import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/models/code/flag.dart';
 import 'package:genuis/src/core/models/code/value.dart';
+import 'package:genuis/src/utils/list_extension.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 part 'class.dart';
@@ -13,7 +14,8 @@ sealed class CodeEntity {
   String value(String theme) {
     final node = this;
     return switch (node) {
-      Field() => node.values[theme]?.toString() ?? node.values[Config.it.baseTheme]?.toString() ?? 'null',
+      Field() =>
+        node.values[theme]?.toString() ?? node.values[Config.it.baseTheme]?.toString() ?? 'null',
       Class() => '${node.type}.${node.themes.contains(theme) ? theme : Config.it.baseTheme}',
     };
   }

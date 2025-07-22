@@ -26,10 +26,10 @@ abstract class Defaults {
     return '${name.snakeCase}/';
   }
   static String moduleTokenClassName(String name) {
-    return '${name}_Token'.named.camelCase.upperFirst;
+    return '${name}_Token'.asName.upperFirst;
   }
   static String moduleColorClassName(String name) {
-    return '${name}_WithColors'.named.camelCase.upperFirst;
+    return '${name}_WithColors'.asName.upperFirst;
   }
   static const colorFieldName = 'value';
 
@@ -41,6 +41,6 @@ abstract class Defaults {
     return '${name.snakeCase}.json';
   }
   static String tokenClassName(String name) {
-    return name.named.camelCase.upperFirst;
+    return name.asName.upperFirst;
   }
 }
