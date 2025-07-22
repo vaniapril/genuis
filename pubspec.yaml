@@ -27,3 +27,10 @@ platforms:
   linux:
   windows:
   macos:
+
+topics:
+ - theme
+ - assets
+ - codegen
+ - material
+ - build-runner

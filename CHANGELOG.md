@@ -1,6 +1,7 @@
 ## 0.0.3
 
 * Upd: Add supported platforms to `pubspec.yaml`
+* Upd: Add topics to `pubspec.yaml`
 
 ## 0.0.2
 
