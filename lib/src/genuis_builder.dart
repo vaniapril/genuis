@@ -37,7 +37,9 @@ class GenuisBuilder extends Builder {
         DartFormatter(
           pageWidth: Config.it.dartLineLength,
           languageVersion: DartFormatter.latestLanguageVersion,
-        ).format(buffer.toString()),
+        ).format(
+          buffer.toString(),
+        ),
       );
     }
   }

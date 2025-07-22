@@ -1,8 +1,15 @@
 extension StringExtension on String {
   String get upperFirst => isEmpty ? '' : '${this[0].toUpperCase()}${substring(1)}';
-
   String get lowerFirst => isEmpty ? '' : '${this[0].toLowerCase()}${substring(1)}';
 
+  String replaceLast(Pattern from, String to) {
+    final lastMatch = from.allMatches(this).lastOrNull;
+    if (lastMatch == null) return this;
+
+    return replaceRange(lastMatch.start, lastMatch.end, to);
+  }
+
+  // Files and directories
   String get withoutExtension => contains('.') ? substring(0, lastIndexOf('.')) : this;
   String get withoutFile => contains('/') ? substring(0, lastIndexOf('/')) : this;
 
@@ -21,6 +28,7 @@ extension StringExtension on String {
     return result;
   }
 
+  // Naming
   String get camelCase => replaceAll(RegExp('[^A-Za-z0-9]'), ' ')
       .split(' ')
       .where((e) => e.isNotEmpty)
@@ -34,20 +42,16 @@ extension StringExtension on String {
       .where((e) => e.isNotEmpty)
       .join('_');
 
-  String get named => _dartKeywords.contains(this) ? '${this}_' : this;
+  String get exceptKeywords => _dartKeywords.contains(this) ? '${this}_' : this;
 
+  String get asName => camelCase.exceptKeywords;
+
+  // Converters
   String get hexToBitInt {
     String source = replaceFirst('#', '');
     if (source.length == 6) source = '${source}FF';
     source = source.substring(6) + source.substring(0, 6);
     return '0x$source';
-  }
-
-  String replaceLast(Pattern from, String to) {
-    final lastMatch = from.allMatches(this).lastOrNull;
-    if (lastMatch == null) return this;
-
-    return replaceRange(lastMatch.start, lastMatch.end, to);
   }
 }
 

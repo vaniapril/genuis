@@ -89,7 +89,7 @@ class ValueParser {
       arg = arg.substring(arg.indexOf('.') + 1);
     }
 
-    final name = arg.camelCase.named;
+    final name = arg.asName;
 
     for (final token in tokens) {
       for (final field in token.fields) {
