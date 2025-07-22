@@ -73,7 +73,8 @@ abstract class ConfigParser {
               _get<String>(map, 'token_class_name') ?? Defaults.moduleTokenClassName(name);
           final tokenFieldName = _get<String>(map, 'token_field_name') ?? Defaults.tokenFieldName;
           final color = _get<bool>(map, 'color') ?? Defaults.moduleColor;
-          final colorClassName = _get<String>(map, 'color_class_name') ?? Defaults.moduleColorClassName(name);
+          final colorClassName =
+              _get<String>(map, 'color_class_name') ?? Defaults.moduleColorClassName(name);
           final colorFieldName = _get<String>(map, 'color_field_name') ?? Defaults.colorFieldName;
           final colorRecordClassName = _get<String>(map, 'color_record_class_name');
 

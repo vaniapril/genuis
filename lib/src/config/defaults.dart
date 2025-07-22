@@ -25,12 +25,15 @@ abstract class Defaults {
   static String modulePathFrom(String name) {
     return '${name.snakeCase}/';
   }
+
   static String moduleTokenClassName(String name) {
     return '${name}_Token'.asName.upperFirst;
   }
+
   static String moduleColorClassName(String name) {
     return '${name}_WithColors'.asName.upperFirst;
   }
+
   static const colorFieldName = 'value';
 
   //Token Config
@@ -40,6 +43,7 @@ abstract class Defaults {
   static String tokenPathFrom(String name) {
     return '${name.snakeCase}.json';
   }
+
   static String tokenClassName(String name) {
     return name.asName.upperFirst;
   }
