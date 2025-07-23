@@ -1,4 +1,5 @@
 import 'package:genuis/src/core/models/code/value.dart';
+import 'package:genuis/src/utils/num_extension.dart';
 
 class DoubleValue extends Value {
   final double value;
@@ -17,5 +18,5 @@ class DoubleValue extends Value {
   Set<String> get imports => {};
 
   @override
-  String toString() => value.toStringAsFixed(1);
+  String toString() => value.isInt ? value.toStringAsFixed(1) : '$value';
 }

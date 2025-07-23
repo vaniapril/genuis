@@ -11,7 +11,7 @@ class Token {
   });
 
   String get fileName => 'token_${config.name}';
-  
+
   String get importCode => "import '$fileName.ui.dart';";
   String get exportCode => "export '$fileName.ui.dart';";
 }

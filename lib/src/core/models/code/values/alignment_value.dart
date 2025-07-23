@@ -16,24 +16,24 @@ class AlignmentValue extends Value {
 
   @override
   Set<String> get imports => {
-        Imports.material,
-        ...x.imports,
-        ...y.imports,
-      };
+    Imports.material,
+    ...x.imports,
+    ...y.imports,
+  };
 
   @override
   String toString() => switch ((x, y)) {
-        (-1.0, -1.0) => 'Alignment.topLeft',
-        (0.0, -1.0) => 'Alignment.topCenter',
-        (1.0, -1.0) => 'Alignment.topRight',
-        (-1.0, 0.0) => 'Alignment.centerLeft',
-        (0.0, 0.0) => 'Alignment.center',
-        (1.0, 0.0) => 'Alignment.centerRight',
-        (-1.0, 1.0) => 'Alignment.bottomLeft',
-        (0.0, 1.0) => 'Alignment.bottomCenter',
-        (1.0, 1.0) => 'Alignment.bottomRight',
-        _ => 'Alignment($x, $y)',
-      };
+    (-1.0, -1.0) => 'Alignment.topLeft',
+    (0.0, -1.0) => 'Alignment.topCenter',
+    (1.0, -1.0) => 'Alignment.topRight',
+    (-1.0, 0.0) => 'Alignment.centerLeft',
+    (0.0, 0.0) => 'Alignment.center',
+    (1.0, 0.0) => 'Alignment.centerRight',
+    (-1.0, 1.0) => 'Alignment.bottomLeft',
+    (0.0, 1.0) => 'Alignment.bottomCenter',
+    (1.0, 1.0) => 'Alignment.bottomRight',
+    _ => 'Alignment($x, $y)',
+  };
 
   static const topLeft = AlignmentValue(x: DoubleValue(value: -1.0), y: DoubleValue(value: -1.0));
   static const topCenter = AlignmentValue(x: DoubleValue(value: 0.0), y: DoubleValue(value: -1.0));
@@ -42,7 +42,9 @@ class AlignmentValue extends Value {
   static const center = AlignmentValue(x: DoubleValue(value: 0.0), y: DoubleValue(value: 0.0));
   static const centerRight = AlignmentValue(x: DoubleValue(value: 1.0), y: DoubleValue(value: 0.0));
   static const bottomLeft = AlignmentValue(x: DoubleValue(value: -1.0), y: DoubleValue(value: 1.0));
-  static const bottomCenter =
-      AlignmentValue(x: DoubleValue(value: 0.0), y: DoubleValue(value: 1.0));
+  static const bottomCenter = AlignmentValue(
+    x: DoubleValue(value: 0.0),
+    y: DoubleValue(value: 1.0),
+  );
   static const bottomRight = AlignmentValue(x: DoubleValue(value: 1.0), y: DoubleValue(value: 1.0));
 }

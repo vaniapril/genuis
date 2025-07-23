@@ -35,20 +35,21 @@ class GenuisCore {
   }
 
   List<FileGenerator> get generators => [
-        ..._modules.map((e) => ModuleGenerator(module: e)),
-        ..._tokens.map((e) => TokensGenerator(token: e)),
-        BuildContextExtensionGenerator(modules: _modules),
-        MainClassGenerator(
-          modules: _modules,
-          tokens: _tokens,
-        ),
-      ];
+    ..._modules.map((e) => ModuleGenerator(module: e)),
+    ..._tokens.map((e) => TokensGenerator(token: e)),
+    BuildContextExtensionGenerator(modules: _modules),
+    MainClassGenerator(
+      modules: _modules,
+      tokens: _tokens,
+    ),
+  ];
 
   List<Token> _parseTokens() {
     return Config.it.tokens.map((e) {
       Folder node = NodesParser(
         path: Config.it.assetsPath + e.path,
         parseFiles: e.type != ElementType.asset,
+        parseThemes: false,
       ).parse();
 
       final valueParser = ValueParser(
@@ -70,6 +71,7 @@ class GenuisCore {
       Folder node = NodesParser(
         path: path,
         parseFiles: e.type != ElementType.asset,
+        parseThemes: true,
       ).parse();
 
       final valueParser = ValueParser(
@@ -120,7 +122,7 @@ class GenuisCore {
 
     final colorFields = [
       for (final module in colorModules)
-        ...module.rootClass.flattenFields.where((e) => e.flags.isNotEmpty)
+        ...module.rootClass.flattenFields.where((e) => e.flags.isNotEmpty),
     ];
 
     return modules.map((module) {
@@ -132,7 +134,7 @@ class GenuisCore {
       for (final colorField in colorFields) {
         final Flag? flag = colorField.flags.firstWhereOrNull((e) => e.name == module.config.name);
         if (flag != null) {
-          fields[flag.value ?? colorField.name] = colorField;
+          fields[flag.value?.asName ?? colorField.name] = colorField;
         }
       }
 
@@ -190,7 +192,7 @@ class GenuisCore {
       }
 
       var colorThemesSet = {
-        for (final themes in module.colorFields.values.map((e) => e.values.keys)) ...themes
+        for (final themes in module.colorFields.values.map((e) => e.values.keys)) ...themes,
       }..remove(Config.it.baseTheme);
 
       final colorThemes = colorThemesSet.isEmpty ? [Config.it.baseTheme] : colorThemesSet.toList();
@@ -205,9 +207,9 @@ class GenuisCore {
               for (final theme in colorThemes)
                 theme: ColoredValue(
                   coloredType: module.config.colorClassName,
-                  theme: theme == Config.it.baseTheme ? Config.it.themes.first : theme,
+                  theme: theme,
                   innerValue: field.values[theme] ?? field.values.values.first,
-                )
+                ),
             },
           );
         },

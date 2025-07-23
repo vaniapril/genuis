@@ -42,7 +42,8 @@ abstract class ConfigParser {
     final baseTheme = _get<String>(map, 'base_theme') ?? Defaults.baseTheme;
     final postfix = _get<String>(map, 'postfix') ?? Defaults.postfix;
 
-    final tokens = _getList<YamlMap>(map, 'tokens')?.map((e) {
+    final tokens =
+        _getList<YamlMap>(map, 'tokens')?.map((e) {
           final (name, map) = _getEntry(e);
 
           final path = _get<String>(map, 'path')?.asFilePath ?? Defaults.tokenPathFrom(name);
@@ -63,7 +64,8 @@ abstract class ConfigParser {
         }).toList() ??
         [];
 
-    final modules = _getList<YamlMap>(map, 'modules')?.map((e) {
+    final modules =
+        _getList<YamlMap>(map, 'modules')?.map((e) {
           final (name, map) = _getEntry(e);
 
           final path = _get<String>(map, 'path')?.asFolderPath ?? Defaults.modulePathFrom(name);
@@ -73,7 +75,8 @@ abstract class ConfigParser {
               _get<String>(map, 'token_class_name') ?? Defaults.moduleTokenClassName(name);
           final tokenFieldName = _get<String>(map, 'token_field_name') ?? Defaults.tokenFieldName;
           final color = _get<bool>(map, 'color') ?? Defaults.moduleColor;
-          final colorClassName = _get<String>(map, 'color_class_name') ?? Defaults.moduleColorClassName(name);
+          final colorClassName =
+              _get<String>(map, 'color_class_name') ?? Defaults.moduleColorClassName(name);
           final colorFieldName = _get<String>(map, 'color_field_name') ?? Defaults.colorFieldName;
           final colorRecordClassName = _get<String>(map, 'color_record_class_name');
 

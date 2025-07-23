@@ -20,20 +20,24 @@ class ShadowValue extends Value {
 
   @override
   String lerpCode(String arg1, String arg2) =>
-      '${inset ? 'inset_shadow.' : ''}BoxShadow.lerp($arg1, $arg2, t) ?? $arg2';
+      //TODO: inset_shadow
+      // '${inset ? 'inset_shadow.' : ''}BoxShadow.lerp($arg1, $arg2, t) ?? $arg2';
+      'BoxShadow.lerp($arg1, $arg2, t) ?? $arg2';
 
   @override
-  String get type => '${inset ? 'inset_shadow.' : ''}BoxShadow';
+  //TODO: inset_shadow
+  // String get type => '${inset ? 'inset_shadow.' : ''}BoxShadow';
+  String get type => 'BoxShadow';
 
   @override
   Set<String> get imports => {
-        inset ? Imports.flutterInsetShadow : Imports.material,
-        ...color.imports,
-        ...spread.imports,
-        ...blur.imports,
-        ...dx.imports,
-        ...dy.imports,
-      };
+    inset ? Imports.flutterInsetShadow : Imports.material,
+    ...color.imports,
+    ...spread.imports,
+    ...blur.imports,
+    ...dx.imports,
+    ...dy.imports,
+  };
 
   @override
   String toString() =>

@@ -14,6 +14,7 @@ import 'package:path/path.dart';
 
 class NodesParser {
   final bool parseFiles;
+  final bool parseThemes;
   final String path;
 
   final List<FileParser> parsers = [
@@ -24,6 +25,7 @@ class NodesParser {
   NodesParser({
     required this.path,
     required this.parseFiles,
+    required this.parseThemes,
   });
 
   Folder parse() {
@@ -33,11 +35,13 @@ class NodesParser {
     Node node = directory.existsSync()
         ? _parseDirectory(directory)
         : file.existsSync()
-            ? _parseFile(file)
-            : throw ParserFolderOrFileIsNotExistsException(path);
+        ? _parseFile(file)
+        : throw ParserFolderOrFileIsNotExistsException(path);
 
     node = splitWithSeparators(node);
-    node = collectThemes(node);
+    if (parseThemes) {
+      node = collectThemes(node);
+    }
     node = removeSpaces(node);
     node = merge(node);
     node = reduceDuplicates(node);
@@ -124,8 +128,9 @@ class NodesParser {
       return Folder(
         name: node.name,
         nodes: [
-          ...folders.iterable
-              .map((e) => merge(Folder(name: e.$1, nodes: e.$2.expand((e) => e.nodes).toList()))),
+          ...folders.iterable.map(
+            (e) => merge(Folder(name: e.$1, nodes: e.$2.expand((e) => e.nodes).toList())),
+          ),
           ...node.items,
         ],
       );

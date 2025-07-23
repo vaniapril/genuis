@@ -66,7 +66,7 @@ class Class extends CodeEntity {
   }
 
   List<Field> get flattenFields => [
-        ...classes.expand((e) => e.flattenFields),
-        ...fields,
-      ];
+    ...classes.expand((e) => e.flattenFields),
+    ...fields,
+  ];
 }

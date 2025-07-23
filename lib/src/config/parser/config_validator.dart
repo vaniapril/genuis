@@ -47,7 +47,8 @@ class ConfigValidator {
 
     if (config.themes.contains(config.baseTheme)) {
       throw ConfigValidationException(
-          'base_theme (${config.baseTheme}) must not be in themes (${config.themes})');
+        'base_theme (${config.baseTheme}) must not be in themes (${config.themes})',
+      );
     }
   }
 
@@ -226,7 +227,7 @@ class ConfigValidator {
     }
 
     if (!RegExp(r'^[a-z0-9]+(_[a-z0-9]+)*$').hasMatch(value)) {
-      throw ConfigValidationException('$value' 'is not valid name (must be snake_case)');
+      throw ConfigValidationException('$value is not valid name (must be snake_case)');
     }
   }
 

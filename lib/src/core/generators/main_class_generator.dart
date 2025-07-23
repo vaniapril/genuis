@@ -55,7 +55,7 @@ class MainClassGenerator extends FileGenerator {
       classes: modules
           .map(
             (e) => Class(
-              name: e.config.name,
+              name: e.config.name.asName,
               path: [],
               classType: e.rootClass.classType,
               themes: e.rootClass.themes,
