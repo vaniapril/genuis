@@ -49,6 +49,7 @@ class GenuisCore {
       Folder node = NodesParser(
         path: Config.it.assetsPath + e.path,
         parseFiles: e.type != ElementType.asset,
+        parseThemes: false,
       ).parse();
 
       final valueParser = ValueParser(
@@ -70,6 +71,7 @@ class GenuisCore {
       Folder node = NodesParser(
         path: path,
         parseFiles: e.type != ElementType.asset,
+        parseThemes: true,
       ).parse();
 
       final valueParser = ValueParser(
