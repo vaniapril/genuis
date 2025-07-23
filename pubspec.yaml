@@ -1,6 +1,6 @@
 name: genuis
 description: Code generation for theme classes based on files from the assets folder and its structure.
-version: 0.0.2
+version: 0.0.3
 repository: https://github.com/vaniapril/genuis
 issue_tracker: https://github.com/vaniapril/genuis/issues
 
@@ -30,7 +30,7 @@ platforms:
 
 topics:
  - theme
+ - theme-extension
  - assets
  - codegen
- - material
  - build-runner
