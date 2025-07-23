@@ -21,11 +21,11 @@ class GradientValue extends Value {
 
   @override
   Set<String> get imports => {
-        Imports.material,
-        ...begin.imports,
-        ...end.imports,
-        ...colors.expand((e) => e.imports),
-      };
+    Imports.material,
+    ...begin.imports,
+    ...end.imports,
+    ...colors.expand((e) => e.imports),
+  };
 
   @override
   String toString() =>

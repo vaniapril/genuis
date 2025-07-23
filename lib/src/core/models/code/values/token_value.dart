@@ -22,9 +22,9 @@ class TokenValue extends Value {
 
   @override
   Set<String> get imports => {
-        ...innerValue.imports,
-        additionalImports ?? '',
-      };
+    ...innerValue.imports,
+    additionalImports ?? '',
+  };
 
   @override
   String toString() => '$tokenType.$tokenName';

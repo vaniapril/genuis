@@ -35,8 +35,8 @@ class NodesParser {
     Node node = directory.existsSync()
         ? _parseDirectory(directory)
         : file.existsSync()
-            ? _parseFile(file)
-            : throw ParserFolderOrFileIsNotExistsException(path);
+        ? _parseFile(file)
+        : throw ParserFolderOrFileIsNotExistsException(path);
 
     node = splitWithSeparators(node);
     if (parseThemes) {
@@ -128,8 +128,9 @@ class NodesParser {
       return Folder(
         name: node.name,
         nodes: [
-          ...folders.iterable
-              .map((e) => merge(Folder(name: e.$1, nodes: e.$2.expand((e) => e.nodes).toList()))),
+          ...folders.iterable.map(
+            (e) => merge(Folder(name: e.$1, nodes: e.$2.expand((e) => e.nodes).toList())),
+          ),
           ...node.items,
         ],
       );

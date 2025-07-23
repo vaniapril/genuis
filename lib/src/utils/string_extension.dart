@@ -29,18 +29,15 @@ extension StringExtension on String {
   }
 
   // Naming
-  String get camelCase => replaceAll(RegExp('[^A-Za-z0-9]'), ' ')
-      .split(' ')
-      .where((e) => e.isNotEmpty)
-      .map((e) => e.upperFirst)
-      .join()
-      .lowerFirst;
+  String get camelCase => replaceAll(
+    RegExp('[^A-Za-z0-9]'),
+    ' ',
+  ).split(' ').where((e) => e.isNotEmpty).map((e) => e.upperFirst).join().lowerFirst;
 
-  String get snakeCase => replaceAll(RegExp('[^A-Za-z0-9]'), ' ')
-      .split(' ')
-      .map((e) => e.toLowerCase())
-      .where((e) => e.isNotEmpty)
-      .join('_');
+  String get snakeCase => replaceAll(
+    RegExp('[^A-Za-z0-9]'),
+    ' ',
+  ).split(' ').map((e) => e.toLowerCase()).where((e) => e.isNotEmpty).join('_');
 
   String get exceptKeywords => _dartKeywords.contains(this) ? '${this}_' : this;
 

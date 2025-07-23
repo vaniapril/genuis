@@ -36,7 +36,9 @@ class ModelsParser {
     final folders = folder.nodes.whereType<Folder>().toList();
     final items = folder.nodes.whereType<Item>().toList();
 
-    final foldersEntities = folders.expand((e) => parseFolder([...path, folder.name.asName], e)).toList();
+    final foldersEntities = folders
+        .expand((e) => parseFolder([...path, folder.name.asName], e))
+        .toList();
 
     final List<Map<String, Value>> values = [];
 
@@ -58,7 +60,7 @@ class ModelsParser {
     final fieldsEntities = values.map(
       (e) {
         if (wrapWithClass) {
-          final name = _toName(e.values.first, identical(folder, root)? folder.name.asName: '');
+          final name = _toName(e.values.first, identical(folder, root) ? folder.name.asName : '');
 
           return Field(
             name: name,

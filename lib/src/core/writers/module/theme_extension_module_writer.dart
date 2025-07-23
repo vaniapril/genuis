@@ -18,7 +18,8 @@ class ThemeExtensionModuleWriter {
   void _writeMainClassFactory(StringBuffer buffer, Class class_) {
     buffer.writeln('factory ${class_.type}.of(BuildContext context) {');
     buffer.writeln(
-        'return Theme.of(context).extension<${class_.type}>() ?? ${class_.type}.${class_.themes.first};');
+      'return Theme.of(context).extension<${class_.type}>() ?? ${class_.type}.${class_.themes.first};',
+    );
     buffer.writeln('}');
   }
 

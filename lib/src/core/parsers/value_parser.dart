@@ -113,13 +113,14 @@ class ValueParser {
   Value _parseBlur(List<String> args) {
     if (args.length > 2) throw ParserValueArgsException(args, 'blur');
 
-    final sigmaX =
-        args[0].startsWith('\$') ? _parseToken<DoubleValue>(args[0]) : _parseDouble(args[0]);
+    final sigmaX = args[0].startsWith('\$')
+        ? _parseToken<DoubleValue>(args[0])
+        : _parseDouble(args[0]);
 
     final sigmaY = args.length > 1
         ? args[1].startsWith('\$')
-            ? _parseToken<DoubleValue>(args[1])
-            : _parseDouble(args[1])
+              ? _parseToken<DoubleValue>(args[1])
+              : _parseDouble(args[1])
         : null;
 
     return BlurValue(

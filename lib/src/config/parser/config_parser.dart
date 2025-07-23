@@ -42,7 +42,8 @@ abstract class ConfigParser {
     final baseTheme = _get<String>(map, 'base_theme') ?? Defaults.baseTheme;
     final postfix = _get<String>(map, 'postfix') ?? Defaults.postfix;
 
-    final tokens = _getList<YamlMap>(map, 'tokens')?.map((e) {
+    final tokens =
+        _getList<YamlMap>(map, 'tokens')?.map((e) {
           final (name, map) = _getEntry(e);
 
           final path = _get<String>(map, 'path')?.asFilePath ?? Defaults.tokenPathFrom(name);
@@ -63,7 +64,8 @@ abstract class ConfigParser {
         }).toList() ??
         [];
 
-    final modules = _getList<YamlMap>(map, 'modules')?.map((e) {
+    final modules =
+        _getList<YamlMap>(map, 'modules')?.map((e) {
           final (name, map) = _getEntry(e);
 
           final path = _get<String>(map, 'path')?.asFolderPath ?? Defaults.modulePathFrom(name);

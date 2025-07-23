@@ -76,8 +76,7 @@ class GetterModuleWriter {
   void _writeThemeClassGetters(StringBuffer buffer, Class class_, String theme) {
     for (final model in class_.nodes) {
       buffer.writeln('@override');
-      buffer.writeln(
-          '${model.type} get ${model.name} => ${model.value(theme)};');
+      buffer.writeln('${model.type} get ${model.name} => ${model.value(theme)};');
     }
   }
 

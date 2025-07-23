@@ -35,14 +35,14 @@ class GenuisCore {
   }
 
   List<FileGenerator> get generators => [
-        ..._modules.map((e) => ModuleGenerator(module: e)),
-        ..._tokens.map((e) => TokensGenerator(token: e)),
-        BuildContextExtensionGenerator(modules: _modules),
-        MainClassGenerator(
-          modules: _modules,
-          tokens: _tokens,
-        ),
-      ];
+    ..._modules.map((e) => ModuleGenerator(module: e)),
+    ..._tokens.map((e) => TokensGenerator(token: e)),
+    BuildContextExtensionGenerator(modules: _modules),
+    MainClassGenerator(
+      modules: _modules,
+      tokens: _tokens,
+    ),
+  ];
 
   List<Token> _parseTokens() {
     return Config.it.tokens.map((e) {
@@ -122,7 +122,7 @@ class GenuisCore {
 
     final colorFields = [
       for (final module in colorModules)
-        ...module.rootClass.flattenFields.where((e) => e.flags.isNotEmpty)
+        ...module.rootClass.flattenFields.where((e) => e.flags.isNotEmpty),
     ];
 
     return modules.map((module) {
@@ -192,7 +192,7 @@ class GenuisCore {
       }
 
       var colorThemesSet = {
-        for (final themes in module.colorFields.values.map((e) => e.values.keys)) ...themes
+        for (final themes in module.colorFields.values.map((e) => e.values.keys)) ...themes,
       }..remove(Config.it.baseTheme);
 
       final colorThemes = colorThemesSet.isEmpty ? [Config.it.baseTheme] : colorThemesSet.toList();
@@ -209,7 +209,7 @@ class GenuisCore {
                   coloredType: module.config.colorClassName,
                   theme: theme,
                   innerValue: field.values[theme] ?? field.values.values.first,
-                )
+                ),
             },
           );
         },

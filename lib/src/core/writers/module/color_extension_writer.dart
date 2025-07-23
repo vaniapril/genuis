@@ -83,10 +83,12 @@ class ColorExtensionWriter {
 
     for (final name in fields.keys) {
       buffer.writeln(
-          '$recordClassName get $name => ${colorRecordClassName ?? ''}($colorFieldName, _$name);');
+        '$recordClassName get $name => ${colorRecordClassName ?? ''}($colorFieldName, _$name);',
+      );
     }
     buffer.writeln(
-        '$recordClassName colored(Color color) => ${colorRecordClassName ?? ''}($colorFieldName, color);');
+      '$recordClassName colored(Color color) => ${colorRecordClassName ?? ''}($colorFieldName, color);',
+    );
     buffer.writeln('}');
 
     if (colorRecordClassName != null) {

@@ -27,12 +27,11 @@ class Module {
     Map<String, Field>? colorFields,
     List<Field>? tokenFields,
     List<String>? assetsList,
-  }) =>
-      Module(
-        config: config ?? this.config,
-        rootClass: rootClass ?? this.rootClass,
-        colorFields: colorFields ?? this.colorFields,
-        tokenFields: tokenFields ?? this.tokenFields,
-        assetsList: assetsList ?? this.assetsList,
-      );
+  }) => Module(
+    config: config ?? this.config,
+    rootClass: rootClass ?? this.rootClass,
+    colorFields: colorFields ?? this.colorFields,
+    tokenFields: tokenFields ?? this.tokenFields,
+    assetsList: assetsList ?? this.assetsList,
+  );
 }

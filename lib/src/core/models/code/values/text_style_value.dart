@@ -26,13 +26,13 @@ class TextStyleValue extends Value {
 
   @override
   Set<String> get imports => {
-        Imports.material,
-        ...family.imports,
-        ...weight.imports,
-        ...size.imports,
-        ...height.imports,
-        ...spacing?.imports ?? {},
-      };
+    Imports.material,
+    ...family.imports,
+    ...weight.imports,
+    ...size.imports,
+    ...height.imports,
+    ...spacing?.imports ?? {},
+  };
 
   @override
   String toString() =>

@@ -21,7 +21,7 @@ Builder build(BuilderOptions options) {
   OutputDirectoryCleaner.clean();
 
   final core = GenuisCore();
-  
+
   return GenuisBuilder(
     generators: core.generators,
   );

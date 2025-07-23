@@ -31,13 +31,13 @@ class ShadowValue extends Value {
 
   @override
   Set<String> get imports => {
-        inset ? Imports.flutterInsetShadow : Imports.material,
-        ...color.imports,
-        ...spread.imports,
-        ...blur.imports,
-        ...dx.imports,
-        ...dy.imports,
-      };
+    inset ? Imports.flutterInsetShadow : Imports.material,
+    ...color.imports,
+    ...spread.imports,
+    ...blur.imports,
+    ...dx.imports,
+    ...dy.imports,
+  };
 
   @override
   String toString() =>

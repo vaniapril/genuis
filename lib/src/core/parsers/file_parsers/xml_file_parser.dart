@@ -35,8 +35,9 @@ class XmlFileParser extends FileParser {
     }
 
     final type = element.getAttribute('type')?.split(',').join(' ');
-    final value =
-        element.innerText.isEmpty ? '' : '${element.innerText}${type != null ? ' $type' : ''}';
+    final value = element.innerText.isEmpty
+        ? ''
+        : '${element.innerText}${type != null ? ' $type' : ''}';
 
     if (value.isNotEmpty) {
       return Folder(
