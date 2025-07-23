@@ -1,7 +1,8 @@
 ## 0.0.3
 
-* Upd: Add supported platforms to `pubspec.yaml`
-* Upd: Add topics to `pubspec.yaml`
+* New: Add supported platforms to `pubspec.yaml`
+* New: Add topics to `pubspec.yaml`
+* Upd: Clean the `output_path` folder from old `.ui.dart` files before build
 
 ## 0.0.2
 

@@ -13,7 +13,7 @@ extension StringExtension on String {
   String get withoutExtension => contains('.') ? substring(0, lastIndexOf('.')) : this;
   String get withoutFile => contains('/') ? substring(0, lastIndexOf('/')) : this;
 
-  String get forwardSlash => replaceAll('\\', '/');
+  String get forwardSlash => replaceAll(r'\', '/');
 
   String get asFolderPath {
     var result = forwardSlash;

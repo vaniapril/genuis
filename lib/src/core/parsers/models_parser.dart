@@ -58,7 +58,7 @@ class ModelsParser {
     final fieldsEntities = values.map(
       (e) {
         if (wrapWithClass) {
-          final name = _toName(e.values.first);
+          final name = _toName(e.values.first, identical(folder, root)? folder.name.asName: '');
 
           return Field(
             name: name,
@@ -93,12 +93,12 @@ class ModelsParser {
     ];
   }
 
-  String _toName(Value value) {
+  String _toName(Value value, [String optionalPrefix = '']) {
     if (value is DoubleValue) {
       if (value.value.isInt) {
-        return value.value.toStringAsFixed(0);
+        return optionalPrefix + value.value.toStringAsFixed(0);
       } else {
-        return value.value.toString().snakeCase;
+        return optionalPrefix + value.value.toString().snakeCase;
       }
     } else {
       return value.toString().asName;
