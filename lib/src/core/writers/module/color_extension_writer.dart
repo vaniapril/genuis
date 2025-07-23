@@ -45,12 +45,14 @@ class ColorExtensionWriter {
     }
     buffer.writeln(';');
 
-    buffer.writeln('$colorClassName(UI ui, $valueType $colorFieldName) : this._(');
-    for (final (name, field) in fields.iterable) {
-      buffer.writeln('$name: ui.${field.path.join('.')},');
+    for (final theme in module.rootClass.themes) {
+      buffer.writeln('$colorClassName.$theme($valueType $colorFieldName) : this._(');
+      for (final (name, field) in fields.iterable) {
+        buffer.writeln('$name: ${field.value(theme)},');
+      }
+      buffer.writeln('value: $colorFieldName,');
+      buffer.writeln(');');
     }
-    buffer.writeln('value: $colorFieldName,');
-    buffer.writeln(');');
 
     buffer.writeln('');
     buffer.writeln('$colorClassName lerp($colorClassName other, double t){');
@@ -61,6 +63,22 @@ class ColorExtensionWriter {
     }
     buffer.writeln('$colorFieldName: ${value.lerpCode(colorFieldName, 'other.$colorFieldName')},');
     buffer.writeln(');');
+    buffer.writeln('}');
+
+    buffer.writeln('@override');
+    buffer.writeln('bool operator ==(Object other) {');
+    buffer.writeln('if (identical(this, other)) {');
+    buffer.writeln('return true;');
+    buffer.writeln('}');
+    buffer.writeln('if (other.runtimeType != runtimeType) {');
+    buffer.writeln('return false;');
+    buffer.writeln('}');
+    buffer.writeln('return other is $colorClassName');
+    buffer.writeln('&& other.$colorFieldName == $colorFieldName');
+    for (final name in fields.keys) {
+      buffer.writeln('&& other._$name == _$name');
+    }
+    buffer.writeln(';');
     buffer.writeln('}');
 
     for (final name in fields.keys) {
@@ -80,7 +98,7 @@ class ColorExtensionWriter {
     }
   }
 
-  void writeTextStyleExtensionClass(StringBuffer buffer, Map<String, Field> fields) {
+  void writeTextStyleExtensionClass(StringBuffer buffer, Module module, Map<String, Field> fields) {
     buffer.writeln('class $colorClassName extends TextStyle {');
     for (final name in fields.keys) {
       buffer.writeln('final Color _$name;');
@@ -122,15 +140,14 @@ class ColorExtensionWriter {
     buffer.writeln('overflow: style.overflow,');
     buffer.writeln(');');
 
-    buffer.writeln('$colorClassName(');
-    buffer.writeln('UI ui,');
-    buffer.writeln('TextStyle style');
-    buffer.writeln(') : this._(');
-    for (final (name, field) in fields.iterable) {
-      buffer.writeln('$name: ui.${field.path.join('.')},');
+    for (final theme in module.rootClass.themes) {
+      buffer.writeln('$colorClassName.$theme(TextStyle style) : this._(');
+      for (final (name, field) in fields.iterable) {
+        buffer.writeln('$name: ${field.value(theme)},');
+      }
+      buffer.writeln('style: style,');
+      buffer.writeln(');');
     }
-    buffer.writeln('style: style,');
-    buffer.writeln(');');
 
     buffer.writeln('');
     buffer.writeln('$colorClassName lerp($colorClassName other, double t){');
@@ -143,12 +160,28 @@ class ColorExtensionWriter {
     buffer.writeln(');');
     buffer.writeln('}');
 
+    buffer.writeln('@override');
+    buffer.writeln('bool operator ==(Object other) {');
+    buffer.writeln('if (identical(this, other)) {');
+    buffer.writeln('return true;');
+    buffer.writeln('}');
+    buffer.writeln('if (other.runtimeType != runtimeType) {');
+    buffer.writeln('return false;');
+    buffer.writeln('}');
+    buffer.writeln('return other is $colorClassName');
+    buffer.writeln('&& super == other');
+    for (final name in fields.keys) {
+      buffer.writeln('&& other._$name == _$name');
+    }
+    buffer.writeln(';');
+    buffer.writeln('}');
+
     buffer.writeln();
     for (final name in fields.keys) {
       buffer.writeln('TextStyle get $name => copyWith(color: _$name);');
     }
     buffer.writeln();
-    buffer.writeln('TextStyle colored(Color color) => copyWith(color: color);');
+    buffer.writeln('TextStyle colored(Color? color) => copyWith(color: color);');
 
     buffer.writeln('}');
   }

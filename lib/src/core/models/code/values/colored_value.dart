@@ -25,5 +25,5 @@ class ColoredValue extends Value {
       };
 
   @override
-  String toString() => '$coloredType(UI.$theme, $innerValue)';
+  String toString() => '$coloredType.$theme($innerValue)';
 }

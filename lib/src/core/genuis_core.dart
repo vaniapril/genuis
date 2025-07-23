@@ -134,7 +134,7 @@ class GenuisCore {
       for (final colorField in colorFields) {
         final Flag? flag = colorField.flags.firstWhereOrNull((e) => e.name == module.config.name);
         if (flag != null) {
-          fields[flag.value ?? colorField.name] = colorField;
+          fields[flag.value?.asName ?? colorField.name] = colorField;
         }
       }
 
@@ -207,7 +207,7 @@ class GenuisCore {
               for (final theme in colorThemes)
                 theme: ColoredValue(
                   coloredType: module.config.colorClassName,
-                  theme: theme == Config.it.baseTheme ? Config.it.themes.first : theme,
+                  theme: theme,
                   innerValue: field.values[theme] ?? field.values.values.first,
                 )
             },

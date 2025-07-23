@@ -36,7 +36,7 @@ class ModelsParser {
     final folders = folder.nodes.whereType<Folder>().toList();
     final items = folder.nodes.whereType<Item>().toList();
 
-    final foldersEntities = folders.expand((e) => parseFolder([...path, folder.name], e)).toList();
+    final foldersEntities = folders.expand((e) => parseFolder([...path, folder.name.asName], e)).toList();
 
     final List<Map<String, Value>> values = [];
 

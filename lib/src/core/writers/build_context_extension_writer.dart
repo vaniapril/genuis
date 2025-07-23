@@ -1,5 +1,6 @@
 import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/models/module.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class BuildContextExtensionWriter {
   BuildContextExtensionWriter();
@@ -11,7 +12,7 @@ class BuildContextExtensionWriter {
 
     for (final module in modules) {
       buffer.writeln(
-          '${module.rootClass.classType} get ${module.config.name} => ${Config.it.fieldName}.${module.config.name};');
+          '${module.rootClass.classType} get ${module.config.name.asName} => ${Config.it.fieldName}.${module.config.name.asName};');
     }
 
     buffer.writeln('}');
