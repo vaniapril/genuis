@@ -17,9 +17,3 @@ const testIcons01 = "test_assets/test_folder/icons_folder_test/example_test/aliq
 const testIcons02 = "test_assets/test_folder/icons_folder_test/example_test/eiusmod-dolore.svg";
 const testIcons03 = "test_assets/test_folder/icons_folder_test/example_test/eiusmod-tempor-dark_test.svg";
 const testIcons04 = "test_assets/test_folder/icons_folder_test/example_test/eiusmod-tempor-light_test.svg";
-
-
-
-
-
-

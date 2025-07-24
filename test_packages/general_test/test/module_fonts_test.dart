@@ -69,7 +69,7 @@ void testFonts() {
 }
 
 void testFontsXml() {
-   test('Module: fonts_xml - manrope (light)', () {
+  test('Module: fonts_xml - manrope (light)', () {
     final ui = UI.light;
 
     expect(ui.fontsXml.manrope.lorem.ipsum.dolor.sit, testFont01);
@@ -125,7 +125,6 @@ void testFontsXml() {
     expect(ui.fontsXml.roboto.labore, testFont19);
   });
 }
-
 
 void testFontsColored() {
   test('Module: fonts_colored - manrope (light)', () {
@@ -306,7 +305,7 @@ void testFontsColored() {
 }
 
 void testFontsColoredXml() {
- test('Module: fonts_colored_xml - manrope (light)', () {
+  test('Module: fonts_colored_xml - manrope (light)', () {
     final ui = UI.light;
 
     expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.sit, FontsColoredXmlWithColors.light(testFont01));

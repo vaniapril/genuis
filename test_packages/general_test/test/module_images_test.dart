@@ -70,15 +70,15 @@ void testImagesColored() {
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.doloreXml, (testImage01, testColor09));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.doloreXml, (testImage02, testColor09));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.doloreXml, (testImage03, testColor09));
-    
+
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.et, (testImage01, testColor13));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.et, (testImage02, testColor13));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.et, (testImage03, testColor13));
-    
+
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.minim, (testImage01, testColor14));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.minim, (testImage02, testColor14));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.minim, (testImage03, testColor14));
-    
+
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.minimXml, (testImage01, testColor14));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.minimXml, (testImage02, testColor14));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.minimXml, (testImage03, testColor14));
@@ -117,7 +117,7 @@ void testImagesColored() {
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.doloreXml, (testImage01, testColor09));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.doloreXml, (testImage02, testColor09));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.doloreXml, (testImage03, testColor09));
-    
+
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.et, (testImage01, testColor13));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.et, (testImage02, testColor13));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.et, (testImage03, testColor13));
@@ -125,7 +125,7 @@ void testImagesColored() {
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.minim, (testImage01, testColor14));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.minim, (testImage02, testColor14));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.minim, (testImage03, testColor14));
-    
+
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.minimXml, (testImage01, testColor14));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.minimXml, (testImage02, testColor14));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.minimXml, (testImage03, testColor14));

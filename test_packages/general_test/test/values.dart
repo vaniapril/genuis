@@ -253,7 +253,6 @@ final testFont13Color04 = testFont13.copyWith(color: testColor04);
 final testFont13Color13 = testFont13.copyWith(color: testColor13);
 final testFont13Color14 = testFont13.copyWith(color: testColor14);
 
-
 // Gradients
 const testGradient01 = LinearGradient(
   begin: Alignment.topLeft,

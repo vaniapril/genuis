@@ -107,11 +107,11 @@ void testShadowsColored() {
     expect(ui.shadowsColored.lorem.ipsum.amet.ut, (testShadow01, testColor12));
     expect(ui.shadowsColored.lorem.ipsum.elit.ut, (testShadow03, testColor12));
     expect(ui.shadowsColored.lorem.sed.ut, (testShadow04, testColor12));
-    
+
     expect(ui.shadowsColored.lorem.ipsum.amet.et, (testShadow01, testColor13));
     expect(ui.shadowsColored.lorem.ipsum.elit.et, (testShadow03, testColor13));
     expect(ui.shadowsColored.lorem.sed.et, (testShadow04, testColor13));
-    
+
     expect(ui.shadowsColored.lorem.ipsum.amet.veniam, (testShadow01, testColor14));
     expect(ui.shadowsColored.lorem.ipsum.elit.veniam, (testShadow03, testColor14));
     expect(ui.shadowsColored.lorem.sed.veniam, (testShadow04, testColor14));

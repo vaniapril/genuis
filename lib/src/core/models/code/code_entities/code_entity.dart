@@ -15,7 +15,9 @@ sealed class CodeEntity {
     final node = this;
     return switch (node) {
       Field() =>
-        node.values[theme]?.toString() ?? node.values[Config.it.baseTheme.asName]?.toString() ?? 'null',
+        node.values[theme]?.toString() ??
+            node.values[Config.it.baseTheme.asName]?.toString() ??
+            'null',
       Class() => '${node.type}.${node.themes.contains(theme) ? theme : Config.it.baseTheme.asName}',
     };
   }
