@@ -4,8 +4,8 @@
         <color name="ipsum">
             <color name="sit">
                 <color name="amet">
-                    <color name="dark">#000021</color>
-                    <color name="light">#000022</color>
+                    <color name="dark">#000021FF</color>
+                    <color name="light">#000022FF</color>
                 </color>
                 <color name="consectetur">#000023</color>
             </color>
@@ -16,14 +16,14 @@
             <color name="elit">#000026</color>
         </color>
         <color name="sed">
-            <color name="dark">#000027</color>
-            <color name="light">#000028</color>
+            <color name="dark">0xFF000027</color>
+            <color name="light">0xFF000028</color>
         </color>
-        <color name="do">#000029</color>
+        <color name="do">0x000029</color>
     </color>
     <color name="tempor">
-        <color name="dark">#000030</color>
-        <color name="light">#000031</color>
+        <color name="dark">0x000030</color>
+        <color name="light">0x000031</color>
     </color>
-    <color name="ut">#000032</color>
+    <color name="ut">0x000032</color>
 </resources>
