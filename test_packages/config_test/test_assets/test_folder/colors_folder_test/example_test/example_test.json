@@ -1,0 +1,14 @@
+{
+    "voluptate": {
+        "dark_test": "#000001 icons_module_test",
+        "light_test": "#000002 icons_module_test"
+    },
+    "velit": {
+        "dark_test": "#000003",
+        "light_test": "#000004"
+    },
+    "esse": {
+        "dark_test": "#000005",
+        "light_test": "#000006"
+    }
+}

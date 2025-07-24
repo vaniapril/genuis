@@ -1,0 +1,35 @@
+assets_path: test_assets/test_folder
+output_path: /lib/test_ui/
+themes:
+  - light_test
+  - dark_test
+base_theme: base_test
+class_type: theme_extension
+class_name: UITest
+field_name: uiTest
+postfix: PostfixTest
+
+tokens:
+  - color_token_test:
+      type: color
+      path: colors_token_folder_test/colors_token_test.json
+      class_name: TokenClassNameTest
+      class_type: enum
+      field_name: valueTest
+
+modules:
+  - color_module_test:
+      type: color
+      path: colors_folder_test/example_test/
+      token_class_type: static
+      token_class_name: ColorModuleTokenTest
+    
+  - icons_module_test:
+      path: icons_folder_test/example_test/
+      color: true
+      token_class_type: enum
+      token_class_name: TokenModuleClassNameTest
+      token_field_name: valueTest
+      color_class_name: ColorClassNameTest
+      color_field_name: valueTest
+      color_record_class_name: RecordClassNameTest

@@ -1,4 +1,4 @@
-import 'package:genuis_test/ui/ui.ui.dart';
+import 'package:general_test/ui/ui.ui.dart';
 import 'package:test/test.dart';
 
 import 'values.dart';

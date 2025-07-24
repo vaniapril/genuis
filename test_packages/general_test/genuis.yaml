@@ -1,3 +1,5 @@
+base_theme: base_theme
+
 tokens:
   - colors:
       type: color
