@@ -16,6 +16,7 @@ class NodesParser {
   final bool parseFiles;
   final bool parseThemes;
   final String path;
+  final String rootName;
 
   final List<FileParser> parsers = [
     JsonFileParser(),
@@ -26,6 +27,7 @@ class NodesParser {
     required this.path,
     required this.parseFiles,
     required this.parseThemes,
+    required this.rootName,
   });
 
   Folder parse() {
@@ -45,6 +47,10 @@ class NodesParser {
     node = removeSpaces(node);
     node = merge(node);
     node = reduceDuplicates(node);
+
+    if (node is Folder) {
+      node = Folder(name: rootName, nodes: node.nodes);
+    }
 
     return node as Folder;
   }

@@ -50,6 +50,7 @@ class GenuisCore {
         path: Config.it.assetsPath + e.path,
         parseFiles: e.type != ElementType.asset,
         parseThemes: false,
+        rootName: e.name,
       ).parse();
 
       final valueParser = ValueParser(
@@ -72,6 +73,7 @@ class GenuisCore {
         path: path,
         parseFiles: e.type != ElementType.asset,
         parseThemes: true,
+        rootName: e.name,
       ).parse();
 
       final valueParser = ValueParser(
