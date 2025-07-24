@@ -1,0 +1,22 @@
+{
+    "theme_dolor": {
+        "cillum_nisi": {
+            "ex": "#000053"
+        }
+    },
+    "theme_ipsum": {
+        "cillum_nisi": {
+            "ex": "#000054"
+        }
+    },
+    "theme_lorem": {
+        "cillum_nisi": {
+            "ex": "#000055"
+        }
+    },
+    "theme_sit": {
+        "cillum_nisi": {
+            "ex": "#000056"
+        }
+    }
+}

@@ -1,0 +1,15 @@
+themes:
+  - theme_lorem
+  - theme_ipsum
+  - theme_dolor
+  - theme_sit
+
+modules:
+  - colors:
+      type: color
+  - colors_root:
+      type: color
+  - icons:
+  - icons_colored:
+      path: icons/
+      color: true
