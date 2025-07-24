@@ -75,7 +75,7 @@ class NodesParser {
 
   Node collectThemes(Node node, {String? theme}) {
     if (node is Folder) {
-      if (Config.it.themes.contains(node.name)) {
+      if (Config.it.themeNames.contains(node.name.asName)) {
         if (theme != null) {
           //TODO: description
           throw const ParserMultipleThemesException('');

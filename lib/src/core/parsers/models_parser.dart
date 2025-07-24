@@ -44,7 +44,7 @@ class ModelsParser {
 
     for (final item in items) {
       final value = mapper(item.value);
-      final theme = item.theme ?? Config.it.baseTheme;
+      final theme = (item.theme ?? Config.it.baseTheme.asName).asName;
 
       final map = values.firstWhereOrNull((e) => !e.containsKey(theme));
 

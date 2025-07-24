@@ -7,7 +7,7 @@ class Field extends CodeEntity {
   String enumName(String theme) {
     return [
       ...path.skip(1),
-      theme != Config.it.baseTheme ? theme : '',
+      theme != Config.it.baseTheme.asName ? theme : '',
     ].joinCamelCase.lowerFirst;
   }
 
