@@ -1,0 +1,21 @@
+{
+    "lorem": {
+        "ipsum": {
+            "dolor": {
+                "sit": "'Manrope' 100 10px 11px 12px",
+                "amet": "'Manrope' 200 20px 21px 22px"
+            },
+            "consectetur": "'Manrope' 300 30px 31px 32px"
+        },
+        "adipiscing": {
+            "elit": "'Manrope' 400 40 41px 42px",
+            "sed": "'Manrope' 500 50px 51 52px"
+        },
+        "eiusmod": "'Manrope' 600 60px 61px 62"
+    },
+    "tempor": {
+        "incididunt": "'Manrope' 700 70 71px 72px",
+        "ut": "'Manrope' 800 80px 81 82px"
+    },
+    "labore": "'Manrope' 900 90px 91px 92"
+}

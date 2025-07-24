@@ -138,14 +138,21 @@ class ValueParser {
       return _parseToken<ColorValue>(args[0], flags: flags);
     }
 
-    if (!RegExp(r'#([0-9A-Fa-f]{8}|[0-9A-Fa-f]{6})').hasMatch(args[0])) {
-      throw ParserValueArgsException(args[0], 'color');
+    if (RegExp(r'#([0-9A-Fa-f]{8}|[0-9A-Fa-f]{6})').hasMatch(args[0])) {
+      return ColorValue(
+        hex: args[0].hexToBitInt,
+        flags: flags,
+      );
     }
 
-    return ColorValue(
-      hex: args[0].hexToBitInt,
-      flags: flags,
-    );
+    if (RegExp(r'0x([0-9A-Fa-f]{8}|[0-9A-Fa-f]{6})').hasMatch(args[0])) {
+      return ColorValue(
+        hex: args[0].expandBitInt,
+        flags: flags,
+      );
+    }
+
+    throw ParserValueArgsException(args[0], 'color');
   }
 
   Value _parseDouble(String value) {
@@ -192,7 +199,7 @@ class ValueParser {
   }
 
   Value? _tryParseAlignmentString(String arg) {
-    return switch (arg) {
+    return switch (arg.asName) {
       'topLeft' => AlignmentValue.topLeft,
       'topCenter' => AlignmentValue.topCenter,
       'topRight' => AlignmentValue.topRight,

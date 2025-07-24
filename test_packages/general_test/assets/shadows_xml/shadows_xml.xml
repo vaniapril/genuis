@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <shadow name="lorem">
+        <shadow name="ipsum">
+            <shadow name="amet">
+                <shadow name="dark">#000001 10px 11px 12px 13</shadow>
+                <shadow name="light">#000002 20px 21px 22 23px inset</shadow>
+            </shadow>
+            <shadow name="elit">#000003 30px 31 32px 33px</shadow>
+        </shadow>
+        <shadow name="sed">
+            <shadow name="dark">#000004 40px 41px 42px 43px inset</shadow>
+            <shadow name="light">#000005 50px 51px 52px 53px</shadow>
+        </shadow>
+        <shadow name="do">#000006 60px 61px 62px 63px</shadow>
+    </shadow>
+    <shadow name="tempor">
+        <shadow name="dark">#000007 70px 71 72px 73px</shadow>
+        <shadow name="light">#000008 80px 81px 82 83px</shadow>
+    </shadow>
+    <shadow name="ut">#000009 90px 91px 92px 93 inset</shadow>
+</resources>

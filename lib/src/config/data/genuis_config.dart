@@ -1,6 +1,7 @@
 import 'package:genuis/src/config/data/module_config.dart';
 import 'package:genuis/src/config/data/token_config.dart';
 import 'package:genuis/src/config/types/genuis_class_type.dart';
+import 'package:genuis/src/utils/string_extension.dart';
 
 class GenuisConfig {
   String assetsPath;
@@ -29,4 +30,6 @@ class GenuisConfig {
     required this.tokens,
     required this.modules,
   });
+
+  late final List<String> themeNames = themes.map((e) => e.asName).toList();
 }

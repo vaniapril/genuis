@@ -50,7 +50,7 @@ class ColorExtensionWriter {
       for (final (name, field) in fields.iterable) {
         buffer.writeln('$name: ${field.value(theme)},');
       }
-      buffer.writeln('value: $colorFieldName,');
+      buffer.writeln('$colorFieldName: $colorFieldName,');
       buffer.writeln(');');
     }
 

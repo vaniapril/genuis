@@ -24,7 +24,7 @@ class Class extends CodeEntity {
     final Set<String> themes = {
       for (final e in classes) ...e.themes,
       for (final e in fields) ...e.values.keys,
-    }..remove(Config.it.baseTheme);
+    }..remove(Config.it.baseTheme.asName);
 
     return Class(
       name: name,
@@ -34,7 +34,7 @@ class Class extends CodeEntity {
         ...path,
         Config.it.postfix,
       ].joinCamelCase,
-      themes: themes.isEmpty ? [Config.it.baseTheme] : themes.toList(),
+      themes: themes.isEmpty ? [Config.it.baseTheme.asName] : themes.toList(),
       classes: classes,
       fields: fields,
     );

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <font name="lorem">
+        <font name="ipsum">
+            <font name="dolor">
+                <font name="sit">'Roboto' 100 10px 11px 12px</font>
+                <font name="amet">'Roboto' 200 20px 21px 22px</font>
+            </font>
+            <font name="consectetur">'Roboto' 300 30px 31px 32px</font>
+        </font>
+        <font name="adipiscing">
+            <font name="elit">'Roboto' 400 40 41px 42px</font>
+            <font name="sed">'Roboto' 500 50px 51 52px</font>
+        </font>
+        <font name="eiusmod">'Roboto' 600 60px 61px 62</font>
+    </font>
+    <font name="tempor">
+        <font name="incididunt">'Roboto' 700 70 71px 72px</font>
+        <font name="ut">'Roboto' 800 80px 81 82px</font>
+    </font>
+    <font name="labore">'Roboto' 900 90px 91px 92</font>
+</resources>
+
+

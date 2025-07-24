@@ -50,6 +50,7 @@ class GenuisCore {
         path: Config.it.assetsPath + e.path,
         parseFiles: e.type != ElementType.asset,
         parseThemes: false,
+        rootName: e.name,
       ).parse();
 
       final valueParser = ValueParser(
@@ -72,6 +73,7 @@ class GenuisCore {
         path: path,
         parseFiles: e.type != ElementType.asset,
         parseThemes: true,
+        rootName: e.name,
       ).parse();
 
       final valueParser = ValueParser(
@@ -193,9 +195,11 @@ class GenuisCore {
 
       var colorThemesSet = {
         for (final themes in module.colorFields.values.map((e) => e.values.keys)) ...themes,
-      }..remove(Config.it.baseTheme);
+      }..remove(Config.it.baseTheme.asName);
 
-      final colorThemes = colorThemesSet.isEmpty ? [Config.it.baseTheme] : colorThemesSet.toList();
+      final colorThemes = colorThemesSet.isEmpty
+          ? [Config.it.baseTheme.asName]
+          : colorThemesSet.toList();
 
       final rootClass = module.rootClass.map(
         (field) {

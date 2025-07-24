@@ -16,6 +16,7 @@ class NodesParser {
   final bool parseFiles;
   final bool parseThemes;
   final String path;
+  final String rootName;
 
   final List<FileParser> parsers = [
     JsonFileParser(),
@@ -26,6 +27,7 @@ class NodesParser {
     required this.path,
     required this.parseFiles,
     required this.parseThemes,
+    required this.rootName,
   });
 
   Folder parse() {
@@ -45,6 +47,10 @@ class NodesParser {
     node = removeSpaces(node);
     node = merge(node);
     node = reduceDuplicates(node);
+
+    if (node is Folder) {
+      node = Folder(name: rootName, nodes: node.nodes);
+    }
 
     return node as Folder;
   }
@@ -69,7 +75,7 @@ class NodesParser {
 
   Node collectThemes(Node node, {String? theme}) {
     if (node is Folder) {
-      if (Config.it.themes.contains(node.name)) {
+      if (Config.it.themeNames.contains(node.name.asName)) {
         if (theme != null) {
           //TODO: description
           throw const ParserMultipleThemesException('');

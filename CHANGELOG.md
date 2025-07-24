@@ -1,3 +1,10 @@
+## 0.0.4
+
+* New: Add `0xffffffff` pattern support for `color` type
+* New: Cover the package with tests
+* Upd: Allow to use some `dart` keywords as element name
+* Fix: Theme, classes, fields names format
+
 ## 0.0.3
 
 * New: Add supported platforms to `pubspec.yaml`
