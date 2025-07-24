@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lorem">
+        <color name="ipsum">
+            <color name="sit">
+                <color name="amet">
+                    <color name="dark">$colors.token_reference_41</color>
+                    <color name="light">$colors.token_reference_42</color>
+                </color>
+                <color name="consectetur">$colors.token_reference_43</color>
+            </color>
+            <color name="adipiscing">
+                <color name="dark">$colors.token_reference_44</color>
+                <color name="light">$colors.token_reference_45</color>
+            </color>
+            <color name="elit">$colors.token_reference_46</color>
+        </color>
+        <color name="sed">
+            <color name="dark">$colors.token_reference_47</color>
+            <color name="light">$colors.token_reference_48</color>
+        </color>
+        <color name="do">$colors.token_reference_49</color>
+    </color>
+    <color name="tempor">
+        <color name="dark">$colors.token_reference_50</color>
+        <color name="light">$colors.token_reference_51</color>
+    </color>
+    <color name="ut">$colors.token_reference_52</color>
+</resources>

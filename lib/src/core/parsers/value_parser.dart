@@ -192,7 +192,7 @@ class ValueParser {
   }
 
   Value? _tryParseAlignmentString(String arg) {
-    return switch (arg) {
+    return switch (arg.asName) {
       'topLeft' => AlignmentValue.topLeft,
       'topCenter' => AlignmentValue.topCenter,
       'topRight' => AlignmentValue.topRight,

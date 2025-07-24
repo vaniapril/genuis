@@ -1,0 +1,30 @@
+{
+    "lorem": {
+        "ipsum": {
+            "sit": {
+                "amet": {
+                    "dark": "#000001 fonts_colored",
+                    "light": "#000002 fonts_colored"
+                },
+                "consectetur": "#000003 fonts_colored:labore"
+            },
+            "adipiscing": {
+                "dark": "#000004 icons_colored:adipiscing",
+                "light": "#000005 icons_colored:adipiscing"
+            },
+            "elit": "#000006 icons_colored:elit"
+        },
+        "sed": {
+            "dark": "#000007 images_colored:sed",
+            "light": "#000008 images_colored:sed"
+        },
+        "do": "#000009 images_colored:dolore"
+    },
+    "tempor": {
+        "dark": "#000010 shadows_colored:magna",
+        "light": "#000011 shadows_colored:magna"
+    },
+    "ut": "#000012 shadows_colored",
+    "et": "#000013 fonts_colored images_colored shadows_colored",
+    "aliqua" : "#000014 fonts_colored:enim icons_colored:ad images_colored:minim shadows_colored:veniam"
+}

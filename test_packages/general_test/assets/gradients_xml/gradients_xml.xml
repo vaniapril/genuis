@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <gradient name="lorem">
+        <gradient name="ipsum">
+            <gradient name="dark">top_left bottom_right #000001 #000002</gradient>
+            <gradient name="light">0.11 0.12 0.13 0.14 #000003 #000004 #000005</gradient>
+        </gradient>
+        <gradient name="sed">center 0.21 0.22 #000006 #000007 #000008 #000009 #000010</gradient>
+    </gradient>
+    <gradient name="tempor">
+        <gradient name="dark">0.31 0.32 0.33 0.34 #000011 #000012 #000013</gradient>
+        <gradient name="light">top_right bottom_left #000014 #000015</gradient>
+    </gradient>
+    <gradient name="ut">0.41 0.42 center #000016 #000017 #000018 #000019 #000020</gradient>
+</resources>

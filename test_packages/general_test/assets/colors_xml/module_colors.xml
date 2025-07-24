@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="lorem">
+        <color name="ipsum">
+            <color name="sit">
+                <color name="amet">
+                    <color name="dark" type="fonts_colored_xml">#000001</color>
+                    <color name="light" type="fonts_colored_xml">#000002</color>
+                </color>
+                <color name="consectetur" type="fonts_colored_xml:labore">#000003</color>
+            </color>
+            <color name="adipiscing">
+                <color name="dark" type="icons_colored:adipiscing_xml">#000004</color>
+                <color name="light" type="icons_colored:adipiscing_xml">#000005</color>
+            </color>
+            <color name="elit" type="icons_colored:elit_xml">#000006</color>
+        </color>
+        <color name="sed">
+            <color name="dark" type="images_colored:sed_xml">#000007</color>
+            <color name="light" type="images_colored:sed_xml">#000008</color>
+        </color>
+        <color name="do" type="images_colored:dolore_xml">#000009</color>
+    </color>
+    <color name="tempor">
+        <color name="dark" type="shadows_colored_xml:magna">#000010</color>
+        <color name="light" type="shadows_colored_xml:magna">#000011</color>
+    </color>
+    <color name="ut" type="shadows_colored_xml">#000012</color>
+    <color name="et" type="fonts_colored_xml, icons_colored, shadows_colored_xml">#000013</color>
+    <color name="aliqua" type="fonts_colored_xml:enim_xml, icons_colored:ad_xml, images_colored:minim_xml, shadows_colored_xml:veniam_xml">#000014</color>
+</resources>

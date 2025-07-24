@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <blur name="blur_1">1</blur>
+    <blur name="blur_2">2 3</blur>
+    <blur name="blur_3">4.0 5</blur>
+    <blur name="blur_4">6.0 7</blur>
+    <blur name="blur_5">8.0 9.0</blur>
+    <blur name="blur_6">1px</blur>
+    <blur name="blur_7">2px 3px</blur>
+    <blur name="blur_8">4.0px 5px</blur>
+    <blur name="blur_9">6.0px 7px</blur>
+    <blur name="blur_10">8.0px 9.0px</blur>
+</resources>

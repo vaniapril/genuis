@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <font name="lorem">
+        <font name="ipsum">
+            <font name="dolor">
+                <font name="sit">'Manrope' 100 10px 11px 12px</font>
+                <font name="amet">'Manrope' 200 20px 21px 22px</font>
+            </font>
+            <font name="consectetur">'Manrope' 300 30px 31px 32px</font>
+        </font>
+        <font name="adipiscing">
+            <font name="elit">'Manrope' 400 40 41px 42px</font>
+            <font name="sed">'Manrope' 500 50px 51 52px</font>
+        </font>
+        <font name="eiusmod">'Manrope' 600 60px 61px 62</font>
+    </font>
+    <font name="tempor">
+        <font name="incididunt">'Manrope' 700 70 71px 72px</font>
+        <font name="ut">'Manrope' 800 80px 81 82px</font>
+    </font>
+    <font name="labore">'Manrope' 900 90px 91px 92</font>
+</resources>
+
+

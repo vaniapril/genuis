@@ -1,0 +1,21 @@
+{
+    "lorem": {
+        "ipsum": {
+            "amet": {
+                "dark": "#000001 10px 11px 12px 13",
+                "light": "#000002 20px 21px 22 23px inset"
+            },
+            "elit": "#000003 30px 31 32px 33px"
+        },
+        "sed": {
+            "dark": "#000004 40px 41px 42px 43px inset",
+            "light": "#000005 50px 51px 52px 53px"
+        },
+        "do": "#000006 60px 61px 62px 63px"
+    },
+    "tempor": {
+        "dark": "#000007 70px 71 72px 73px",
+        "light": "#000008 80px 81px 82 83px"
+    },
+    "ut": "#000009 90px 91px 92px 93 inset"
+}
