@@ -7,17 +7,21 @@ void main() {
   test('Module: color_module_test (light)', () {
     final uiTest = UITest.lightTest;
 
-    expect(uiTest.colorModuleTest.voluptate, testColor02);
-    expect(uiTest.colorModuleTest.velit, testColor04);
-    expect(uiTest.colorModuleTest.esse, testColor06);
+    final UITestColorModuleTestPostfixTest colorModule = uiTest.colorModuleTest;
+
+    expect(colorModule.voluptate, testColor02);
+    expect(colorModule.velit, testColor04);
+    expect(colorModule.esse, testColor06);
   });
 
   test('Module: color_module_test (dark)', () {
     final uiTest = UITest.darkTest;
 
-    expect(uiTest.colorModuleTest.voluptate, testColor01);
-    expect(uiTest.colorModuleTest.velit, testColor03);
-    expect(uiTest.colorModuleTest.esse, testColor05);
+    final UITestColorModuleTestPostfixTest colorModule = uiTest.colorModuleTest;
+
+    expect(colorModule.voluptate, testColor01);
+    expect(colorModule.velit, testColor03);
+    expect(colorModule.esse, testColor05);
   });
 
   test('Token: color_module_test', () {
