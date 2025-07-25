@@ -201,7 +201,7 @@ To generate `UI` class (`.ui.dart` files) run the following command in the packa
 ```console
 dart run build_runner build
 ```
-> [!NOTE]
+> [!IMPORTANT]
 > Before running the generator, it cleans up the [`output_path`](#output_path) folder from ALL `.ui.dart` files. Do not create your own `.ui.dart` files in this folder.
 
 ### 5. Use UI class
@@ -1080,9 +1080,6 @@ Specifies the type of theme classes. Possible values:
   ```
 - `interface` \
   A lightweight version where all fields are turned into getters and determined through interface inheritance.
-  > [!NOTE]  
-  > It is recommended to use when the features of ThemeExtension are not needed and only the structure of theme classes is required. You can integrate this `UI` class into a custom theme holder.
-
   ```dart
   abstract class Example {
     ElementType get element1;
@@ -1113,6 +1110,8 @@ Specifies the type of theme classes. Possible values:
     //...
   }
   ```
+> [!NOTE]  
+> It is recommended to use `interface` when the features of ThemeExtension are not needed and only the structure of theme classes is required. You can integrate this `UI` class into a custom theme holder.
 
 #### dart_line_length
 _default: `100`_
