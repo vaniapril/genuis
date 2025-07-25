@@ -2,8 +2,9 @@
 
 Stable development release.
 
-* New: Add ability to define a `module` structure in a file
+* New: Add ability to define a `module` structure in a single file
 * Upd: Add notes and list support description to `README.md`
+* Upd: Rename main class type `getter` to `interface`
 
 ## 0.0.4
 

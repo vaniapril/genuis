@@ -1,5 +1,6 @@
 import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/types/element_type.dart';
+import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
 import 'package:genuis/src/core/models/code/flag.dart';
@@ -37,7 +38,7 @@ class GenuisCore {
   List<FileGenerator> get generators => [
     ..._modules.map((e) => ModuleGenerator(module: e)),
     ..._tokens.map((e) => TokensGenerator(token: e)),
-    BuildContextExtensionGenerator(modules: _modules),
+    if (Config.it.classType == GenuisClassType.themeExtension) BuildContextExtensionGenerator(modules: _modules),
     MainClassGenerator(
       modules: _modules,
       tokens: _tokens,
