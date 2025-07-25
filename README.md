@@ -1173,7 +1173,7 @@ Specifies the [type](#supported-types) of [token](#tokens) elements.
 #### path
 _default: `<token_name>.json`_
 
-Specifies the path to the file or folder containing [token](#tokens) elements.
+Specifies the path to the file or folder containing a [token](#tokens) elements.
 
 #### class_name
 _default: `<token_name in PascalCase>` - _
@@ -1228,7 +1228,7 @@ Specifies the [type](#supported-types) of [module](#modules) elements.
 #### path 
 _default: `<module_name>/`_
 
-Specifies the path to the folder containing [module](#modules) files.
+Specifies the path to the file or folder containing a [module](#modules) files.
 
 #### token_class_type 
 _default: `null`_
