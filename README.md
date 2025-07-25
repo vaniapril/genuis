@@ -1080,6 +1080,9 @@ Specifies the type of theme classes. Possible values:
   ```
 - `interface` \
   A lightweight version where all fields are turned into getters and determined through interface inheritance.
+  > [!NOTE]  
+  > It is recommended to use when the features of ThemeExtension are not needed and only the structure of theme classes is required. You can integrate this `UI` class into a custom theme holder.
+
   ```dart
   abstract class Example {
     ElementType get element1;
@@ -1110,8 +1113,6 @@ Specifies the type of theme classes. Possible values:
     //...
   }
   ```
-> [!NOTE]  
-> It is recommended to use `interface` when the features of ThemeExtension are not needed and only the structure of theme classes is required. You can integrate this `UI` class into a custom theme holder.
 
 #### dart_line_length
 _default: `100`_
@@ -1198,7 +1199,6 @@ Specifies the type of the [token](#tokens) class. Possible values:
   A class with elements that represent an `enum`
   > [!NOTE]  
   > It is recommended to use when you need to set token values as an enumeration with the ability to use `Example` as a type or use a `switch` statement.
-
 
   ```dart
   enum Example {
