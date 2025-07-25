@@ -3,6 +3,7 @@
 Stable development release.
 
 * New: Add ability to define a `module` structure in a file
+* Upd: Add notes and list support description to `README.md`
 
 ## 0.0.4
 

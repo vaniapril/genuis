@@ -1,7 +1,54 @@
 [GenUIs] - is a code generator for theme classes, enabling convenient creation and use of UI properties based on the structure of the assets folder and JSON configuration files.
 
-> [!WARNING]  
-> [GenUIs] is still under development. Features and documentation may change.
+# Example
+
+```dart
+class MyWidget extends StatelessWidget {
+  const MyWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final UI ui = context.ui;
+
+    return Column(
+      children: [
+        // Color
+        ColoredBox(
+          color: ui.colors.primary.red,
+        ),
+        // Icon
+        CustomIcon(
+          icon: ui.icons.outline.example.white,
+          size: Sizes.iconMedium,
+        ),
+        // TextStyle
+        Text(
+          Strings.tag,
+          style: ui.fonts.roboto.headline.primary,
+        ),
+        // Shadow
+        DecoratedBox(
+          decoration: BoxDecoration(
+            boxShadow: [
+              ui.shadows.card,
+            ],
+          ),
+        ),
+        // Gradient
+        DecoratedBox(
+          decoration: BoxDecoration(
+            gradient: ui.gradients.background,
+          ),
+        ),
+        // Blur
+        BackdropFilter(
+          filter: ui.blurs.blur4,
+        ),
+      ],
+    );
+  }
+}
+```
 
 # Motivation
 Setting UI properties directly in a widget is bad practice, as it inevitably leads to project clutter, constant code duplication, and prevents the implementation of even basic light and dark themes for the application.
@@ -82,56 +129,6 @@ Widget build(BuildContext context) {
 }
 ```
 
-# Example
-Example of using UI properties with [GenUIs]:
-```dart
-class MyWidget extends StatelessWidget {
-  const MyWidget({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    final UI ui = context.ui;
-
-    return Column(
-      children: [
-        // Color
-        ColoredBox(
-          color: ui.colors.primary.red,
-        ),
-        // Icon
-        CustomIcon(
-          icon: ui.icons.outline.example.white,
-          size: Sizes.iconMedium,
-        ),
-        // TextStyle
-        Text(
-          Strings.tag,
-          style: ui.fonts.roboto.headline.primary,
-        ),
-        // Shadow
-        DecoratedBox(
-          decoration: BoxDecoration(
-            boxShadow: [
-              ui.shadows.card,
-            ],
-          ),
-        ),
-        // Gradient
-        DecoratedBox(
-          decoration: BoxDecoration(
-            gradient: ui.gradients.background,
-          ),
-        ),
-        // Blur
-        BackdropFilter(
-          filter: ui.blurs.blur4,
-        ),
-      ],
-    );
-  }
-}
-```
-
 # How to use
 ## Install
 ### 1. Add dependencies
@@ -146,7 +143,7 @@ flutter pub add \
 
 ### 2. Update assets folder
 
-[GenUIs] works with [Modules](#modules) and [Tokens](#tokens). Add folder for each module and JSON-file for each token. \
+[GenUIs] works with [Modules](#modules) and [Tokens](#tokens). Add folder or JSON-file for each module and token. \
 Asset folder structure for [Example](#example):
 
 ```
@@ -200,14 +197,16 @@ modules:
 
 ### 4. Run generator
 
-To generate `.ui.dart` files run the following command in the package directory: 
+To generate `UI` class (`.ui.dart` files) run the following command in the package directory: 
 ```console
 dart run build_runner build
 ```
+> [!NOTE]
+> Before running the generator, it cleans up the [`output_path`](#output_path) folder from ALL `.ui.dart` files. Do not create your own `.ui.dart` files in this folder.
 
 ### 5. Use UI class
 
-Add `ThemeData` with generated theme extension to `MaterialApp` and use elements of `UI` class in any widget in your application:
+Add `ThemeData` with generated theme extension to `MaterialApp` and use `UI` class in any widget in your application:
 
 ```dart
 import 'ui/ui.ui.dart';
@@ -261,7 +260,7 @@ modules:
 ```
 
 > [!NOTE]
-> Set names for modules, folders, files and other elements using `snake_case`.
+> Prefer to set names for modules, folders, files and other elements using `snake_case`.
 
 The module structure is determined by:
 - Folders inside the module:
@@ -287,7 +286,7 @@ The module structure is determined by:
   ```dart
   ui.moduleName.folderName1.folderName2.fileName.keyName1.keyName2
   ```
-- Naming of folders and JSON keys with a '-' separator. \
+- Naming of folders, files and JSON keys with a '-' separator. \
   For a similar usage as above, the structure can be defined as follows:
   ```
   module_name
@@ -501,7 +500,7 @@ TokenName.tokenFile1Element1Element2
 ```
 
 ## Supported types
-The following types are supported by [GenUIs]:
+The following types of modules and tokens are supported:
 - [asset](#asset)
 - [color](#color)
 - [font](#font)
@@ -512,7 +511,7 @@ The following types are supported by [GenUIs]:
 - [string](#string)
 
 ### asset
-> value type: String
+_value type: String_
 
 The value of an element with the [`asset`](#asset) type is the path to the file in the assets folder. \
 For example, for the `icons` [module](#modules) with the folders structure:
@@ -550,7 +549,7 @@ class UI extends ThemeExtension<UI> {
 ```
 
 ### color
-> value type: Color
+_value type: Color_
 
 The value of an element with the [`color`](#color) type is a `Color` specified in Hex code format.
 
@@ -575,7 +574,7 @@ ui.colors.red
 ```
 
 ### font
-> value type: TextStyle
+_value type: TextStyle_
 
 The value of an element with the [`font`](#font) type is a `TextStyle` specified with the following pattern:
 ```
@@ -613,7 +612,7 @@ ui.fonts.roboto.headlineItalic
 > You can place `.ttf` files anywhere inside the assets folder. [GenUIs] will ignore them.
 
 ### shadow
-> value type: BoxShadow
+_value type: BoxShadow_
 
 The value of an element with the [`shadow`](#shadow) type is a `BoxShadow` specified with the following pattern:
 
@@ -652,7 +651,7 @@ ui.shadows.banner
 ```
 
 ### gradient
-> value type: LinearGradient
+_value type: LinearGradient_
 
 The value of an element with the [`gradient`](#gradient) type is a `LinearGradient` specified with one of the following patterns:
 
@@ -695,7 +694,7 @@ ui.gradients.scene
 ```
 
 ### number
-> value type: int or double
+_value type: int or double_
 
 The value of an element with the [`number`](#number) type is a `int` or `double` depends on value of element:
 
@@ -724,7 +723,7 @@ Sizes.index
 ```
 
 ### blur
-> value type: ImageFilter
+_value type: ImageFilter_
 
 The value of an element with the [`blur`](#blur) type is a `ImageFilter` specified with the following pattern:
 
@@ -755,7 +754,7 @@ ui.blurs.secondary
 ```
 
 ### string
-> value type: String
+_value type: String_
 
 The value of an element with the [`string`](#string) type is a `String` \
 For example, for the `strings` [token](#tokens) with the file `assets/strings.json`:
@@ -913,6 +912,39 @@ References in [color module](#color) to [colored module](#colored-modules) can b
     //...
 </resources>
 ```
+
+### Lists support
+
+You can use lists of elements inside your JSON-files. The names of these elements will be generated automatically based on the values, so use lists only when necessary. For elements with a numeric type, the name will be a combination of the root element (json-key or file name) and the value of the element.
+
+For example, for the `numbers` [token](#tokens) with the file `assets/numbers.json`:
+```json
+[
+  1,
+  2,
+  2.5,
+  3.0
+]
+```
+The following names will be assigned to the elements:
+```dart
+Numbers.numbers1
+Numbers.numbers2
+Numbers.numbers2_5
+Numbers.numbers3
+```
+The equivalent of a list in XML is a list of elements without the name attribute:
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <number>1</number>
+    <number>2</number>
+    <number>2.5</number>
+    <number>3.0</number>
+</resources>
+```
+
 ## Configuration
 
 The configuration is the basis of the [GenUIs]. It defines a list of [modules](#modules) and [tokens](#modules). It also allows you to fine-tune the generated code for different cases of interaction.
@@ -984,27 +1016,27 @@ modules:
 ### GenUIs configuration 
 
 #### assets_path
-> default: `assets/`
+_default: `assets/`_
 
 Specifies the path to the folder containing [modules](#modules) and [tokens](#tokens) files.
 
 #### output_path
-> default: `lib/ui/`
+_default: `lib/ui/`_
 
 Specifies the path to the folder where the generated `.ui.dart` theme files will be located.
 
 #### themes
-> default: `light, dark`
+_default: `light, dark`_
 
 Specifies the list of [themes](#themes) for [modules](#modules).
 
 #### base_theme
-> default: `base`
+_default: `base`_
 
 Specifies the the name of the base [theme](#themes) for [modules](#modules), applied to elements that do not have a theme specified
 
 #### class_type
-> default: `theme_extension`
+_default: `theme_extension`_
 
 Specifies the type of theme classes. Possible values: 
 - `theme_extension` \
@@ -1044,55 +1076,56 @@ Specifies the type of theme classes. Possible values:
     );
   }
   ```
-- `getter` \
-  A lightweight version where all fields are turned into getters and determined through inheritance. 
+- `interface` \
+  A lightweight version where all fields are turned into getters and determined through interface inheritance.
   > [!NOTE]  
-  > It is recommended to use when the features of ThemeExtension are not needed and only the structure of theme classes is required.
+  > It is recommended to use when the features of ThemeExtension are not needed and only the structure of theme classes is required. You can integrate this `UI` class into a custom theme holder.
+
   ```dart
-  class Example {
+  abstract class Example {
     ElementType get element1;
     ElementType get element2;
     //...
-
-    const Example._();
   
-    static const theme1 = _ExampleTheme1();
-    static const theme2 = _ExampleTheme2();
+    static const theme1 = _ExampleTheme1Impl();
+    static const theme2 = _ExampleTheme2Impl();
   }
 
-  class _ExampleTheme1 {
+  class _ExampleTheme1Impl implements Example {
+    const _ExampleTheme1Impl();
+
     @override
     ElementType get element1 => <theme1 value>;
     @override
     ElementType get element2 => <theme1 value>;
     //...
-    const _ExampleTheme1(): super._();
   }
 
-  class _ExampleTheme2 {
+  class _ExampleTheme2Impl implements Example {
+    const _ExampleTheme2Impl();
+
     @override
     ElementType get element1 => <theme2 value>;
     @override
     ElementType get element2 => <theme2 value>;
     //...
-    const _ExampleTheme2(): super._();
   }
   ```
 
 #### dart_line_length
-> default: `100`
+_default: `100`_
 
 Specifies the line length for dart formatter in generated `.ui.dart` files.
 
 #### class_name
-> default: `UI`
+_default: `UI`_
 
-Specifies the name for the main [GenUIs] class.
+Specifies the name for the main class.
 
 #### field_name
-> default: `ui`
+_default: `ui`_
 
-Specifies the name for the main [GenUIs] getter and field.
+Specifies the name for the main getter and field.
 
 An example of an alternative `class_name` and `field_name`:
 ```yaml
@@ -1124,29 +1157,29 @@ Widget build(BuildContext context) {
 }
 ```
 #### postfix
-> default: `null`
+_default: `null`_
 
 Specifies the postfix for generated theme classes.
 
 ### Tokens configuration 
 
 #### type
-> default: `asset`
+_default: `asset`_
 
 Specifies the [type](#supported-types) of [token](#tokens) elements.
 
 #### path
-> default: `<token_name>.json`
+_default: `<token_name>.json`_
 
 Specifies the path to the file or folder containing [token](#tokens) elements.
 
 #### class_name
-> default: `<token_name in PascalCase>` - 
+_default: `<token_name in PascalCase>` - _
 
 Specifies the name of the [token](#tokens) class.
 
 #### class_type
-> default: `static`
+_default: `static`_
 
 Specifies the type of the [token](#tokens) class. Possible values:
 
@@ -1180,24 +1213,24 @@ Specifies the type of the [token](#tokens) class. Possible values:
   ```
 
 #### field_name
-> default: `value`
+_default: `value`_
 
 Specifies the name of the field used to get the value from the [enum token](#class_type-1).
 
 ### Modules configuration 
 
 #### type 
-> default: `asset`
+_default: `asset`_
 
 Specifies the [type](#supported-types) of [module](#modules) elements.
 
 #### path 
-> default: `<module_name>/`
+_default: `<module_name>/`_
 
 Specifies the path to the folder containing [module](#modules) files.
 
 #### token_class_type 
-> default: `null`
+_default: `null`_
 
 Specifies the type of the [token](#tokens) class, specially created for the module with all values of elements of them.
 
@@ -1235,23 +1268,23 @@ Possible values:
   Similar to [tokens](#class_type-1)
 
 #### token_class_name 
-> default: `<module_name in PascalCase>Token`
+_default: `<module_name in PascalCase>Token`_
 
 Specifies the name of the [token class](#token_class_type) for [module](#modules).
 
 #### token_filed_name 
-> default: `value`
+_default: `value`_
 
 Specifies the name of the field used to get the value from the [enum module token](#token_class_type).
 
 #### color 
-> default: `false`
+_default: `false`_
 
 Specifies whether to use [colors](#colored-modules) in the [module](#modules).
 
 
 #### color_class_name 
-> default: `<module_name in PascalCase>WithColors`
+_default: `<module_name in PascalCase>WithColors`_
 
 Specifies the name of the color class, which wraps all elements of the [colored module](#colored-modules), contains additional getters with colors and the `.colored(...)` method.
 ```dart
@@ -1268,12 +1301,12 @@ class ExampleWithColors {
 ```
 
 #### color_filed_name 
-> default: `value`
+_default: `value`_
 
 Specifies the name of the field used to get the value from the [color class](#color_class_name).
 
 #### color_record_class_name 
-> default: `null`
+_default: `null`_
 
 Specifies the name of class returned by the additional getter instead of record. 
 - If specified, a new class will be generated and used:
