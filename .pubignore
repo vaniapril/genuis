@@ -1,2 +1,4 @@
+# Test packages and scripts
 test/
 test_packages/
+run_tests.sh
