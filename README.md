@@ -551,15 +551,17 @@ class UI extends ThemeExtension<UI> {
 ### color
 _value type: Color_
 
-The value of an element with the [`color`](#color) type is a `Color` specified in Hex code format.
+The value of an element with the [`color`](#color) type is a `Color` specified in HEX-code format:
+  - with prefix `#`: `#RRGGBB` or `#RRGGBBAA`
+  - with prefix `0x`: `0xRRGGBB` or `0xAARRGGBB`
 
 For example, for the `colors` [module](#modules) with the file `assets/colors/colors.json`:
 ```json
 {
     "green": "#00FF00",
     "red": {
-        "dark": "#CC0000",
-        "light": "#FF0000"
+        "dark": "#CC0000DD",
+        "light": "0xDDFF0000"
     }
 }
 ```
@@ -568,8 +570,8 @@ The result of the following calls will be:
 // Color(0x00ff00) - for each theme
 ui.colors.green
 
-// Color(0xcc0000) - for dark theme
-// Color(0xff0000) - for light theme
+// Color(0xddcc0000) - for dark theme
+// Color(0xddff0000) - for light theme
 ui.colors.red
 ```
 
