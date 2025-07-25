@@ -22,7 +22,7 @@ extension StringExtension on String {
     return result;
   }
 
-  String get asFilePath {
+  String get asPath {
     var result = forwardSlash;
     if (result.startsWith('/')) result = result.substring(1);
     return result;
