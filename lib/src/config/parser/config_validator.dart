@@ -121,7 +121,7 @@ class ConfigValidator {
   }
 
   void _validateModulePath(ModuleConfig module) {
-    _validateFolderPath(config.assetsPath + module.path);
+    _validatePath(config.assetsPath + module.path);
   }
 
   void _validateModuleType(ModuleConfig module) {}

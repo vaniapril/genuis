@@ -1,8 +1,8 @@
 import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
-class GetterModuleWriter {
-  const GetterModuleWriter();
+class InterfaceModuleWriter {
+  const InterfaceModuleWriter();
 
   void write(StringBuffer buffer, Class root) {
     _writeClassWithSubclasses(buffer, root);
@@ -41,8 +41,6 @@ class GetterModuleWriter {
   void _writeAbstractClassBody(StringBuffer buffer, Class class_) {
     _writeAbstractThemes(buffer, class_);
     buffer.writeln();
-    buffer.writeln('const ${class_.type}._();');
-    buffer.writeln();
     _writeAbstractClassGetters(buffer, class_);
   }
 
@@ -60,7 +58,7 @@ class GetterModuleWriter {
 
   void _writeThemeClasses(StringBuffer buffer, Class class_) {
     for (final theme in class_.themes) {
-      buffer.writeln('class ${_themeClassName(class_, theme)} extends ${class_.type} {');
+      buffer.writeln('class ${_themeClassName(class_, theme)} implements ${class_.type} {');
       _writeThemeClassBody(buffer, class_, theme);
       buffer.writeln('}');
       buffer.writeln();
@@ -68,7 +66,7 @@ class GetterModuleWriter {
   }
 
   void _writeThemeClassBody(StringBuffer buffer, Class class_, String theme) {
-    buffer.writeln('const ${_themeClassName(class_, theme)}(): super._();');
+    buffer.writeln('const ${_themeClassName(class_, theme)}();');
     buffer.writeln();
     _writeThemeClassGetters(buffer, class_, theme);
   }
@@ -80,5 +78,5 @@ class GetterModuleWriter {
     }
   }
 
-  String _themeClassName(Class class_, String theme) => '_${class_.type}${theme.upperFirst}';
+  String _themeClassName(Class class_, String theme) => '_${class_.type}${theme.upperFirst}Impl';
 }

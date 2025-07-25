@@ -1,3 +1,11 @@
+## 0.1.0
+
+Stable development release.
+
+* New: Add ability to define a `module` structure in a single file
+* Upd: Add notes and list support description to `README.md`
+* Upd: Rename main class type `getter` to `interface`
+
 ## 0.0.4
 
 * New: Add `0xffffffff` pattern support for `color` type
@@ -20,4 +28,4 @@
 
 ## 0.0.1
 
-* Initial development release.
+Initial development release.

@@ -1,11 +1,11 @@
 enum GenuisClassType {
   themeExtension,
-  getter;
+  interface_;
 
   static GenuisClassType? tryParse(String value) {
     return switch (value) {
       'theme_extension' => GenuisClassType.themeExtension,
-      'getter' => GenuisClassType.getter,
+      'interface' => GenuisClassType.interface_,
       _ => null,
     };
   }

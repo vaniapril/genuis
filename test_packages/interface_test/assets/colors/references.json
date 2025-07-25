@@ -1,0 +1,28 @@
+{
+    "lorem": {
+        "ipsum": {
+            "sit": {
+                "amet": {
+                    "dark": "$colors.token_reference_41",
+                    "light": "$colors.token_reference_42"
+                },
+                "consectetur": "$colors.token_reference_43"
+            },
+            "adipiscing": {
+                "dark": "$colors.token_reference_44",
+                "light": "$colors.token_reference_45"
+            },
+            "elit": "$colors.token_reference_46"
+        },
+        "sed": {
+            "dark": "$colors.token_reference_47",
+            "light": "$colors.token_reference_48"
+        },
+        "do": "$colors.token_reference_49"
+    },
+    "tempor": {
+        "dark": "$colors.token_reference_50",
+        "light": "$colors.token_reference_51"
+    },
+    "ut": "$colors.token_reference_52"
+}
