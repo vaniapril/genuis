@@ -32,7 +32,8 @@ class MainClassGenerator extends FileGenerator {
     final exports = [
       ...modules.map((e) => e.exportCode),
       ...tokens.map((e) => e.exportCode),
-      Imports.buildContextExtensionExport,
+      if (Config.it.classType == GenuisClassType.themeExtension)
+        Imports.buildContextExtensionExport,
     ];
 
     StringBuffer buffer = StringBuffer();

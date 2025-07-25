@@ -1,0 +1,17 @@
+base_theme: base_theme
+class_type: interface
+
+tokens:
+  - colors:
+      type: color
+      class_name: ColorsPalette
+
+modules:
+  - colors:
+      type: color
+  - icons:
+      type: asset
+  - icons_colored:
+      type: asset
+      path: icons/
+      color: true

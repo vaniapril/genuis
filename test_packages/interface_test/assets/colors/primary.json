@@ -1,0 +1,28 @@
+{
+    "lorem": {
+        "ipsum": {
+            "sit": {
+                "amet": {
+                    "dark": "#000021FF",
+                    "light": "#000022FF"
+                },
+                "consectetur": "#000023"
+            },
+            "adipiscing": {
+                "dark": "#000024",
+                "light": "#000025"
+            },
+            "elit": "#000026"
+        },
+        "sed": {
+            "dark": "0xFF000027",
+            "light": "0xFF000028"
+        },
+        "do": "0x000029"
+    },
+    "tempor": {
+        "dark": "0x000030",
+        "light": "0x000031"
+    },
+    "ut": "0x000032"
+}
