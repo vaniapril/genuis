@@ -38,7 +38,8 @@ class GenuisCore {
   List<FileGenerator> get generators => [
     ..._modules.map((e) => ModuleGenerator(module: e)),
     ..._tokens.map((e) => TokensGenerator(token: e)),
-    if (Config.it.classType == GenuisClassType.themeExtension) BuildContextExtensionGenerator(modules: _modules),
+    if (Config.it.classType == GenuisClassType.themeExtension)
+      BuildContextExtensionGenerator(modules: _modules),
     MainClassGenerator(
       modules: _modules,
       tokens: _tokens,
