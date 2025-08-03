@@ -1,3 +1,8 @@
+## 0.1.1
+
+* Fix: Change default token type to `asset`
+* Fix: Fix values of `asset` token, add collecting feature
+
 ## 0.1.0
 
 Stable development release.

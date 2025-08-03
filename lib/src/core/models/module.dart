@@ -6,14 +6,14 @@ class Module {
   final Class rootClass;
   final Map<String, Field> colorFields;
   final List<Field> tokenFields;
-  final List<String> assetsList;
+  final Set<String> assetsList;
 
   Module({
     required this.config,
     required this.rootClass,
     this.colorFields = const {},
     this.tokenFields = const [],
-    this.assetsList = const [],
+    this.assetsList = const {},
   });
 
   String get fileName => config.name;
@@ -26,7 +26,7 @@ class Module {
     Class? rootClass,
     Map<String, Field>? colorFields,
     List<Field>? tokenFields,
-    List<String>? assetsList,
+    Set<String>? assetsList,
   }) => Module(
     config: config ?? this.config,
     rootClass: rootClass ?? this.rootClass,

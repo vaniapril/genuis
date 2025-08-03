@@ -47,7 +47,7 @@ class GenuisCore {
   ];
 
   List<Token> _parseTokens() {
-    return Config.it.tokens.map((e) {
+    var tokens = Config.it.tokens.map((e) {
       Folder node = NodesParser(
         path: Config.it.assetsPath + e.path,
         parseFiles: e.type != ElementType.asset,
@@ -57,6 +57,7 @@ class GenuisCore {
 
       final valueParser = ValueParser(
         type: e.type,
+        path: Config.it.assetsPath + e.path,
       );
 
       Class tree = ModelsParser(
@@ -66,6 +67,9 @@ class GenuisCore {
 
       return Token(config: e, fields: tree.flattenFields);
     }).toList();
+
+    tokens = _collectAssetsListToken(tokens);
+    return tokens;
   }
 
   List<Module> _parseModules() {
@@ -99,6 +103,28 @@ class GenuisCore {
     return modules;
   }
 
+  List<Token> _collectAssetsListToken(List<Token> tokens) {
+    return tokens.map((token) {
+      if (token.config.type != ElementType.asset) {
+        return token;
+      }
+
+      final Set<String> assetsSet = {};
+
+      for (var field in token.fields) {
+        for (final value in field.values.values) {
+          if (value is StringValue) {
+            assetsSet.add('${value.value.withoutFile}/');
+          }
+        }
+      }
+
+      return token.copyWith(
+        assetsList: assetsSet,
+      );
+    }).toList();
+  }
+
   List<Module> _collectAssetsList(List<Module> modules) {
     return modules.map((module) {
       if (module.config.type != ElementType.asset) {
@@ -116,7 +142,7 @@ class GenuisCore {
       });
 
       return module.copyWith(
-        assetsList: assetsSet.toList()..sort(),
+        assetsList: assetsSet,
       );
     }).toList();
   }

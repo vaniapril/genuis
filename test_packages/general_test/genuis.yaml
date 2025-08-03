@@ -9,6 +9,8 @@ tokens:
   - strings_xml:
       path: strings.xml
       type: string
+  - icons_tokens:
+      path: icons/
 
 modules:
   - blurs:
