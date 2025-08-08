@@ -21,6 +21,9 @@ modules:
       type: color
   - colors_xml:
       type: color
+  - colors_file:
+      type: color
+      path: colors_file.json
   - fonts:
       type: font
   - fonts_xml:
