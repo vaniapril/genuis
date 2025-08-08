@@ -46,13 +46,13 @@ class MainClassGenerator extends FileGenerator {
       buffer.writeln(export);
     }
 
-    AssetsListWriter().write(buffer, modules);
+    AssetsListWriter().write(buffer, modules, tokens);
 
     final tree = Class(
       name: Config.it.fieldName,
       path: [],
       classType: Config.it.className,
-      themes: Config.it.themeNames.toList(),
+      themes: Config.it.themeNames,
       classes: modules
           .map(
             (e) => Class(

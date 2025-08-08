@@ -4,7 +4,14 @@ import 'package:test/test.dart';
 import 'values.dart';
 
 void main() {
-  test('Module: colors - keywords (light)', () {
+testColors();
+testColorsXml();
+testColorsFile();
+
+}
+
+void testColors(){
+    test('Module: colors - keywords (light)', () {
     final ui = UI.light;
 
     expect(ui.colors.keywords.abstract, testColor01);
@@ -228,6 +235,10 @@ void main() {
     expect(ui.colors.references.ut, testColor52);
   });
 
+}
+
+void testColorsXml(){
+
   test('Module: colors_xml - keywords (light)', () {
     final ui = UI.light;
 
@@ -450,5 +461,34 @@ void main() {
     expect(ui.colorsXml.references.lorem.do_, testColor49);
     expect(ui.colorsXml.references.tempor, testColor50);
     expect(ui.colorsXml.references.ut, testColor52);
+  });
+  
+}
+
+void testColorsFile(){
+    test('Module: colors_file (light)', () {
+    final ui = UI.light;
+
+    expect(ui.colorsFile.lorem.ipsum.sit.amet, testColor22);
+    expect(ui.colorsFile.lorem.ipsum.sit.consectetur, testColor23);
+    expect(ui.colorsFile.lorem.ipsum.adipiscing, testColor25);
+    expect(ui.colorsFile.lorem.ipsum.elit, testColor26);
+    expect(ui.colorsFile.lorem.sed, testColor28);
+    expect(ui.colorsFile.lorem.do_, testColor29);
+    expect(ui.colorsFile.tempor, testColor31);
+    expect(ui.colorsFile.ut, testColor32);
+  });
+
+  test('Module: colors_file (dark)', () {
+    final ui = UI.dark;
+
+    expect(ui.colorsFile.lorem.ipsum.sit.amet, testColor21);
+    expect(ui.colorsFile.lorem.ipsum.sit.consectetur, testColor23);
+    expect(ui.colorsFile.lorem.ipsum.adipiscing, testColor24);
+    expect(ui.colorsFile.lorem.ipsum.elit, testColor26);
+    expect(ui.colorsFile.lorem.sed, testColor27);
+    expect(ui.colorsFile.lorem.do_, testColor29);
+    expect(ui.colorsFile.tempor, testColor30);
+    expect(ui.colorsFile.ut, testColor32);
   });
 }

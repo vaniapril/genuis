@@ -37,7 +37,7 @@ abstract class Defaults {
   static const colorFieldName = 'value';
 
   //Token Config
-  static const tokenType = ElementType.color;
+  static const tokenType = ElementType.asset;
   static const tokenClassType = TokenClassType.static_;
   static const tokenFieldName = 'value';
   static String tokenPathFrom(String name) {
