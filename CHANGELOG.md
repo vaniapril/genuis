@@ -1,3 +1,7 @@
+## 0.1.2
+
+* Upd: Update dependencies to the latest versions
+
 ## 0.1.1
 
 * Fix: Change default token type to `asset`
