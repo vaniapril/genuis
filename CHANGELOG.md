@@ -1,3 +1,9 @@
+## 0.1.3
+
+* Upd: New code writers
+* Upd: Extend dependencies versions constraints
+* Fix: Test dependencies
+
 ## 0.1.2
 
 * Upd: Update dependencies to the latest versions
