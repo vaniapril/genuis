@@ -15,6 +15,7 @@ dev_dependencies:
     sdk: flutter
   genuis:
     path: ../
+  build_runner: ^2.10.5
 
 flutter:
   assets:
