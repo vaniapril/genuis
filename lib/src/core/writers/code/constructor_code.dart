@@ -12,6 +12,7 @@ class ConstructorCode extends Code {
   final String? name;
   final ParamsCode params;
   final Code? body;
+  final Code? redirect;
 
   ConstructorCode({
     this.const_ = false,
@@ -19,7 +20,7 @@ class ConstructorCode extends Code {
     required this.type,
     this.name,
     this.params = const ParamsCode(),
-    this.body,
+    this.body, this.redirect,
   });
 
   @override
@@ -29,6 +30,10 @@ class ConstructorCode extends Code {
     buffer.write(type);
     if (name != null) buffer.write('.$name');
     params.encode(buffer);
+    if (redirect != null) {
+      buffer.write(': ');
+      redirect?.encode(buffer);
+    }
     if (body != null) {
       buffer.writeln('{ ');
       body?.encode(buffer);

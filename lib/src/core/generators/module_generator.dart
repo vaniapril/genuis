@@ -4,6 +4,7 @@ import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/models/module.dart';
 import 'package:genuis/src/core/writers/module/color_extension_writer.dart';
+import 'package:genuis/src/core/writers/module/getter_module_writer.dart';
 import 'package:genuis/src/core/writers/token/enum_token_writer.dart';
 import 'package:genuis/src/core/writers/module/interface_module_writer.dart';
 import 'package:genuis/src/core/writers/module/theme_extension_module_writer.dart';
@@ -26,8 +27,10 @@ class ModuleGenerator extends FileGenerator {
     StringBuffer buffer = StringBuffer();
 
     final Set<String> imports = {
-      if (Config.it.classType == GenuisClassType.themeExtension) Imports.material,
-      if (module.config.color) Imports.mainClass,
+      if (Config.it.classType == GenuisClassType.themeExtension ||
+          Config.it.classType == GenuisClassType.getter)
+        Imports.material,
+      if (module.config.color || Config.it.classType == GenuisClassType.getter) Imports.mainClass,
     };
 
     module.rootClass.forEach(
@@ -81,6 +84,8 @@ class ModuleGenerator extends FileGenerator {
         const ThemeExtensionModuleWriter().write(buffer, module.rootClass);
       case GenuisClassType.interface_:
         const InterfaceModuleWriter().write(buffer, module.rootClass);
+      case GenuisClassType.getter:
+        const GetterModuleWriter().write(buffer, module.rootClass);
     }
 
     return buffer.toString();

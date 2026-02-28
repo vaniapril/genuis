@@ -5,7 +5,7 @@ import 'values.dart';
 
 void main() {
   test('Module: colors - moduleColors (light)', () {
-    const ui = UI.light;
+    final ui = UI.light;
 
     expect(ui.colors.moduleColors.lorem.ipsum.sit.amet, testColor02);
     expect(ui.colors.moduleColors.lorem.ipsum.sit.consectetur, testColor03);
@@ -18,7 +18,7 @@ void main() {
   });
 
   test('Module: colors - moduleColors (dark)', () {
-    const ui = UI.dark;
+    final ui = UI.dark;
 
     expect(ui.colors.moduleColors.lorem.ipsum.sit.amet, testColor01);
     expect(ui.colors.moduleColors.lorem.ipsum.sit.consectetur, testColor03);
@@ -31,7 +31,7 @@ void main() {
   });
 
   test('Module: colors - primary (light)', () {
-    const ui = UI.light;
+    final ui = UI.light;
 
     expect(ui.colors.primary.lorem.ipsum.sit.amet, testColor22);
     expect(ui.colors.primary.lorem.ipsum.sit.consectetur, testColor23);
@@ -44,7 +44,7 @@ void main() {
   });
 
   test('Module: colors - primary (dark)', () {
-    const ui = UI.dark;
+    final ui = UI.dark;
 
     expect(ui.colors.primary.lorem.ipsum.sit.amet, testColor21);
     expect(ui.colors.primary.lorem.ipsum.sit.consectetur, testColor23);
@@ -57,7 +57,7 @@ void main() {
   });
 
   test('Module: colors - references (light)', () {
-    const ui = UI.light;
+    final ui = UI.light;
 
     expect(ui.colors.references.lorem.ipsum.sit.amet, testColor42);
     expect(ui.colors.references.lorem.ipsum.sit.consectetur, testColor43);
@@ -70,7 +70,7 @@ void main() {
   });
 
   test('Module: colors - references (dark)', () {
-    const ui = UI.dark;
+    final ui = UI.dark;
 
     expect(ui.colors.references.lorem.ipsum.sit.amet, testColor41);
     expect(ui.colors.references.lorem.ipsum.sit.consectetur, testColor43);

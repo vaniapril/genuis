@@ -10,7 +10,7 @@ void main() {
 
 void testIcons() {
   test('Module: icons (light)', () {
-    const ui = UI.light;
+    final ui = UI.light;
 
     expect(ui.icons.lorem.ipsum.dolor.amet, testIcon01);
     expect(ui.icons.lorem.ipsum.dolor.sit, testIcon03);
@@ -23,7 +23,7 @@ void testIcons() {
   });
 
   test('Module: icons (dark)', () {
-    const ui = UI.dark;
+    final ui = UI.dark;
 
     expect(ui.icons.lorem.ipsum.dolor.amet, testIcon01);
     expect(ui.icons.lorem.ipsum.dolor.sit, testIcon02);
@@ -38,7 +38,7 @@ void testIcons() {
 
 void testIconsColored() {
   test('Module: icons_colored (light)', () {
-    const ui = UI.light;
+    final ui = UI.light;
 
     expect(ui.iconsColored.lorem.ipsum.dolor.amet, IconsColoredWithColors.light(testIcon01));
     expect(ui.iconsColored.lorem.ipsum.dolor.sit, IconsColoredWithColors.light(testIcon03));
@@ -67,7 +67,7 @@ void testIconsColored() {
   });
 
   test('Module: icons (dark)', () {
-    const ui = UI.dark;
+    final ui = UI.dark;
 
     expect(ui.iconsColored.lorem.ipsum.dolor.amet, IconsColoredWithColors.dark(testIcon01));
     expect(ui.iconsColored.lorem.ipsum.dolor.sit, IconsColoredWithColors.dark(testIcon02));

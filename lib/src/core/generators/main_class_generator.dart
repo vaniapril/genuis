@@ -3,6 +3,7 @@ import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/core/models/module.dart';
 import 'package:genuis/src/core/models/token.dart';
 import 'package:genuis/src/core/writers/assets_list_writer.dart';
+import 'package:genuis/src/core/writers/module/getter_module_writer.dart';
 import 'package:genuis/src/core/writers/module/interface_module_writer.dart';
 import 'package:genuis/src/core/writers/module/theme_extension_module_writer.dart';
 import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
@@ -26,7 +27,9 @@ class MainClassGenerator extends FileGenerator {
   String generate() {
     final imports = [
       ...modules.map((e) => e.importCode),
-      if (Config.it.classType == GenuisClassType.themeExtension) Imports.material,
+      if (Config.it.classType == GenuisClassType.themeExtension ||
+          Config.it.classType == GenuisClassType.getter)
+        Imports.material,
     ];
 
     final exports = [
@@ -76,6 +79,11 @@ class MainClassGenerator extends FileGenerator {
         );
       case GenuisClassType.interface_:
         const InterfaceModuleWriter().writeMainClass(
+          buffer,
+          tree,
+        );
+      case GenuisClassType.getter:
+        const GetterModuleWriter().writeMainClass(
           buffer,
           tree,
         );
