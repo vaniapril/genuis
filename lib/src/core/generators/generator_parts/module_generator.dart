@@ -4,42 +4,20 @@ import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
 import 'package:genuis/src/core/models/module.dart';
 import 'package:genuis/src/core/writers/module/color_extension_writer.dart';
+import 'package:genuis/src/core/writers/module/getter_module_writer.dart';
 import 'package:genuis/src/core/writers/token/enum_token_writer.dart';
 import 'package:genuis/src/core/writers/module/interface_module_writer.dart';
 import 'package:genuis/src/core/writers/module/theme_extension_module_writer.dart';
-import 'package:genuis/src/core/generators/file_generator.dart';
 import 'package:genuis/src/core/writers/token/static_token_writer.dart';
-import 'package:genuis/src/utils/imports.dart';
 
-class ModuleGenerator extends FileGenerator {
+class ModuleGenerator {
   final Module module;
 
   const ModuleGenerator({
     required this.module,
   });
 
-  @override
-  String get fileName => module.fileName;
-
-  @override
-  String generate() {
-    StringBuffer buffer = StringBuffer();
-
-    final Set<String> imports = {
-      if (Config.it.classType == GenuisClassType.themeExtension) Imports.material,
-      if (module.config.color) Imports.mainClass,
-    };
-
-    module.rootClass.forEach(
-      (e) => imports.addAll({
-        for (final value in e.values.values) ...value.imports,
-      }),
-    );
-
-    for (final import in imports) {
-      buffer.writeln(import);
-    }
-
+  void generate(StringBuffer buffer) {
     if (module.config.tokenClassType != null) {
       if (module.config.tokenClassType == TokenClassType.enum_) {
         EnumTokenWriter(
@@ -81,8 +59,8 @@ class ModuleGenerator extends FileGenerator {
         const ThemeExtensionModuleWriter().write(buffer, module.rootClass);
       case GenuisClassType.interface_:
         const InterfaceModuleWriter().write(buffer, module.rootClass);
+      case GenuisClassType.getter:
+        const GetterModuleWriter().write(buffer, module.rootClass);
     }
-
-    return buffer.toString();
   }
 }

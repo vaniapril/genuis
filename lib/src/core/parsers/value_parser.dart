@@ -101,7 +101,6 @@ class ValueParser {
                 : name,
             innerValue: field.values.values.first,
             flags: flags,
-            additionalImports: token.importCode,
           );
         }
       }

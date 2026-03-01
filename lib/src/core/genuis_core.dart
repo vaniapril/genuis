@@ -1,7 +1,7 @@
 import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/config/types/element_type.dart';
-import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/config/types/token_class_type.dart';
+import 'package:genuis/src/core/generators/genuis_generator.dart';
 import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
 import 'package:genuis/src/core/models/code/flag.dart';
 import 'package:genuis/src/core/models/code/value.dart';
@@ -11,11 +11,7 @@ import 'package:genuis/src/core/models/code/values/token_value.dart';
 import 'package:genuis/src/core/models/module.dart';
 import 'package:genuis/src/core/models/nodes/node.dart';
 import 'package:genuis/src/core/models/token.dart';
-import 'package:genuis/src/core/generators/build_context_extension_generator.dart';
 import 'package:genuis/src/core/generators/file_generator.dart';
-import 'package:genuis/src/core/generators/main_class_generator.dart';
-import 'package:genuis/src/core/generators/module_generator.dart';
-import 'package:genuis/src/core/generators/tokens_generator.dart';
 import 'package:genuis/src/core/parsers/models_parser.dart';
 import 'package:genuis/src/core/parsers/nodes_parser.dart';
 import 'package:genuis/src/core/parsers/value_parser.dart';
@@ -36,14 +32,7 @@ class GenuisCore {
   }
 
   List<FileGenerator> get generators => [
-    ..._modules.map((e) => ModuleGenerator(module: e)),
-    ..._tokens.map((e) => TokensGenerator(token: e)),
-    if (Config.it.classType == GenuisClassType.themeExtension)
-      BuildContextExtensionGenerator(modules: _modules),
-    MainClassGenerator(
-      modules: _modules,
-      tokens: _tokens,
-    ),
+    GenuisGenerator(modules: _modules, tokens: _tokens),
   ];
 
   List<Token> _parseTokens() {
