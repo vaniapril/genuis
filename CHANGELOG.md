@@ -1,3 +1,9 @@
+## 0.2.0
+
+* New: Add `getter` class type
+* New: Add test package for `getter` class type
+* Upd: Switch to single file build
+
 ## 0.1.3
 
 * Upd: New code writers
