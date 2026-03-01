@@ -19,13 +19,13 @@ class GetterModuleWriter {
       className,
       [
         // Fields
-        for (final f in root.nodes) FieldCode.final_(f.type, '_${f.name}'),
+        for (final f in root.nodes) FieldCode.final_('\$${f.type}', '_${f.name}'),
         //Getters
         for (final f in root.nodes)
           MethodCode(
             name: f.name,
-            type: '\$${f.type}',
-            body: '\$${f.type}(this)'.code,
+            type: f.type,
+            body: '${f.type}(this)'.code,
             getter: true,
             expression: true,
           ),
@@ -38,7 +38,7 @@ class GetterModuleWriter {
               for (final f in root.nodes)
                 ParamCode(
                   required_: true,
-                  type: f.type,
+                  type: '\$${f.type}',
                   name: f.name,
                 ),
             ],
@@ -62,7 +62,7 @@ class GetterModuleWriter {
                 ParamCode(
                   required_: false,
                   this_: false,
-                  type: '${f.type}?',
+                  type: '\$${f.type}?',
                   name: f.name,
                 ),
             ],
@@ -77,7 +77,7 @@ class GetterModuleWriter {
         // Const Theme Fields
         for (final theme in root.themes)
           FieldCode.themeConst(className, theme, [
-            for (final f in root.nodes) (f.name, f.value(theme)),
+            for (final f in root.nodes) (f.name, '\$${f.value(theme)}'),
           ]),
         // Factory of context
         ConstructorCode.ofContextFactory(className, root.themes.first),
@@ -91,7 +91,7 @@ class GetterModuleWriter {
   }
 
   void _writeThemeExtClass(StringBuffer buffer, Class root) {
-    final className = root.type;
+    final className = '\$${root.type}';
 
     final fields = root.flattenFields;
 
@@ -137,7 +137,7 @@ class GetterModuleWriter {
   }
 
   void _writeClass(StringBuffer buffer, Class class_, String moduleName) {
-    final className = '\$${class_.type}';
+    final className = class_.type;
 
     ClassCode(
       name: className,
@@ -170,10 +170,10 @@ class GetterModuleWriter {
         )
       : MethodCode(
           name: f.name,
-          type: '\$${f.type}',
+          type: f.type,
           getter: true,
           expression: true,
-          body: '\$${f.type}($mainField)'.code,
+          body: '${f.type}($mainField)'.code,
         );
 
   String get mainField => '_${Config.it.fieldName}';

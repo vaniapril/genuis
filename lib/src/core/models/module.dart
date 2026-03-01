@@ -18,9 +18,6 @@ class Module {
 
   String get fileName => config.name;
 
-  String get importCode => "import '${config.name}.ui.dart';";
-  String get exportCode => "export '${config.name}.ui.dart';";
-
   Module copyWith({
     ModuleConfig? config,
     Class? rootClass,
