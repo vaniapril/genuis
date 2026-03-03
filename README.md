@@ -1038,7 +1038,7 @@ _default: `base`_
 Specifies the the name of the base [theme](#themes) for [modules](#modules), applied to elements that do not have a theme specified
 
 #### class_type
-_default: `theme_extension`_
+_default: `theme_extension` (will be changed to `getter`)_
 
 Specifies the type of theme classes. Possible values: 
 - `theme_extension` \
@@ -1111,6 +1111,50 @@ Specifies the type of theme classes. Possible values:
     @override
     ElementType get element2 => <theme2 value>;
     //...
+  }
+  ```
+- `getter` \
+  Fields are placed in the class as a flat structure. The class extends `ThemeExtension`, overrides `copyWith` and `lerp` methods; nesting is handled by a structure of simple getter classes.
+
+  ```dart
+
+  class Example {
+    final MainExample _mainExample;
+
+    ElementType1 get element1 => _mainExample._example._element1;
+    ElementType2 get element2 => ElementType2(_mainExample);
+    //...
+
+    Example(this._mainExample);
+  }
+
+  class $Example extends ThemeExtension<$Example>{
+    final ElementType1 _element1;
+    final ElementType2 _element2;
+    //...
+  }
+
+  class MainExample extends ThemeExtension<MainExample> {
+    final $Example _example;
+    //...
+
+    Example get example => Example(this);
+    //...
+    const UI({
+      required $Example example,
+      //...
+    }) : _example = example,
+         //...
+         ;
+
+    //... lerp
+      
+    //... copyWith
+    
+    static final MainExample theme1 = MainExample(
+      example: $Example.theme1,
+      //...
+    );
   }
   ```
 
