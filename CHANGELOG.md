@@ -1,3 +1,9 @@
+## 0.2.1
+
+* Upd: Add `getter` class type description to README
+* Upd: Add note about single file build feature to README
+* FIx: Some README fixes
+
 ## 0.2.0
 
 * New: Add `getter` class type
