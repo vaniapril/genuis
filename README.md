@@ -197,12 +197,12 @@ modules:
 
 ### 4. Run generator
 
-To generate `UI` class (`.ui.dart` files) run the following command in the package directory: 
+To generate `UI` class (`.ui.dart` file) run the following command in the package directory: 
 ```console
 dart run build_runner build
 ```
 > [!IMPORTANT]
-> Before running the generator, it cleans up the [`output_path`](#output_path) folder from ALL `.ui.dart` files. Do not create your own `.ui.dart` files in this folder.
+> Before running the generator, it cleans up the [`output_path`](#output_path) folder from ALL `*.ui.dart` files. Do not create your own `.ui.dart` files in this folder. _(In future releases, it will delete only one generated file.)_
 
 ### 5. Use UI class
 
@@ -1025,7 +1025,9 @@ Specifies the path to the folder containing [modules](#modules) and [tokens](#to
 #### output_path
 _default: `lib/ui/`_
 
-Specifies the path to the folder where the generated `.ui.dart` theme files will be located.
+Specifies the path to the folder where the generated `.ui.dart` theme file will be located.
+> [!NOTE]  
+> Currently, all classes are generated into a single file; this config will be changed or removed.
 
 #### themes
 _default: `light, dark`_
@@ -1038,7 +1040,7 @@ _default: `base`_
 Specifies the the name of the base [theme](#themes) for [modules](#modules), applied to elements that do not have a theme specified
 
 #### class_type
-_default: `theme_extension`_
+_default: `theme_extension` (will be changed to `getter`)_
 
 Specifies the type of theme classes. Possible values: 
 - `theme_extension` \
@@ -1113,11 +1115,55 @@ Specifies the type of theme classes. Possible values:
     //...
   }
   ```
+- `getter` \
+  Fields are placed in the class as a flat structure. The class extends `ThemeExtension`, overrides `copyWith` and `lerp` methods; nesting is handled by a structure of simple getter classes.
+
+  ```dart
+
+  class Example {
+    final MainExample _mainExample;
+
+    ElementType1 get element1 => _mainExample._example._element1;
+    ElementType2 get element2 => ElementType2(_mainExample);
+    //...
+
+    Example(this._mainExample);
+  }
+
+  class $Example extends ThemeExtension<$Example>{
+    final ElementType1 _element1;
+    final ElementType2 _element2;
+    //...
+  }
+
+  class MainExample extends ThemeExtension<MainExample> {
+    final $Example _example;
+    //...
+
+    Example get example => Example(this);
+    //...
+    const UI({
+      required $Example example,
+      //...
+    }) : _example = example,
+         //...
+         ;
+
+    //... lerp
+      
+    //... copyWith
+    
+    static final MainExample theme1 = MainExample(
+      example: $Example.theme1,
+      //...
+    );
+  }
+  ```
 
 #### dart_line_length
 _default: `100`_
 
-Specifies the line length for dart formatter in generated `.ui.dart` files.
+Specifies the line length for dart formatter in generated `.ui.dart` file.
 
 #### class_name
 _default: `UI`_
@@ -1273,7 +1319,7 @@ _default: `<module_name in PascalCase>Token`_
 
 Specifies the name of the [token class](#token_class_type) for [module](#modules).
 
-#### token_filed_name 
+#### token_field_name 
 _default: `value`_
 
 Specifies the name of the field used to get the value from the [enum module token](#token_class_type).
@@ -1301,7 +1347,7 @@ class ExampleWithColors {
 }
 ```
 
-#### color_filed_name 
+#### color_field_name 
 _default: `value`_
 
 Specifies the name of the field used to get the value from the [color class](#color_class_name).
