@@ -3,7 +3,7 @@ import 'package:genuis/src/core/writers/code/param_code.dart';
 import 'package:genuis/src/core/writers/code/params_code.dart';
 
 /// ``` dart
-/// |const| |Name| (|Args|, [|OptionalArgs|], {|NamedArgs|});
+/// {const} {factory} |Type|{.|Name|}({|Params|}) {: |Redirect|} {|Body|}
 /// ```
 class ConstructorCode extends Code {
   final bool const_;

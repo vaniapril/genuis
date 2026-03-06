@@ -1,7 +1,7 @@
 import 'package:genuis/src/core/writers/code/code.dart';
 
 /// ``` dart
-/// |required| |Type| |Name|,
+/// |required| |Type| |super.||this.||Name|,
 /// ```
 class ParamCode extends Code {
   final bool required_;
