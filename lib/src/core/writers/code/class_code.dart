@@ -1,7 +1,7 @@
 import 'package:genuis/src/core/writers/code/code.dart';
 
 /// ``` dart
-/// class |Name| extends |Extends| {
+/// {abstract} class |Name| {extends |Extends|} {implements |Implements|} {
 ///   |Parts|
 /// }
 /// ```

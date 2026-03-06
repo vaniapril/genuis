@@ -1,7 +1,7 @@
 import 'package:genuis/src/core/writers/code/code.dart';
 
 /// ``` dart
-/// |static| |final| |Type| |Name| |= Value|;
+/// |static| |const| |final| |Type| |Name| |= Value|;
 /// ```
 class FieldCode extends Code {
   final bool static;

@@ -2,11 +2,15 @@ import 'package:genuis/src/core/writers/code/code.dart';
 import 'package:genuis/src/core/writers/code/param_code.dart';
 import 'package:genuis/src/core/writers/code/params_code.dart';
 
+/// ``` dart
+/// {override} |Type| {getter} |Name|({|Params|}) {async} {=>} {|Body|}
+/// ```
 class MethodCode extends Code {
   final bool override_;
   final String? type;
   final String name;
   final bool getter;
+  final bool operator;
   final bool async_;
   final ParamsCode params;
   final bool expression;
@@ -16,6 +20,7 @@ class MethodCode extends Code {
     this.override_ = false,
     this.type,
     this.getter = false,
+    this.operator = false,
     required this.name,
     this.params = const ParamsCode(),
     this.async_ = false,
@@ -31,6 +36,7 @@ class MethodCode extends Code {
       buffer.write(' ');
     }
     if (getter) buffer.write('get ');
+    if (operator) buffer.write('operator ');
     buffer.write(name);
     if (!getter) {
       params.encode(buffer);
