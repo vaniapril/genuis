@@ -1,3 +1,8 @@
+## 0.2.2
+
+* Upd: Update colored code writer
+* FIx: Some comments
+
 ## 0.2.1
 
 * Upd: Add `getter` class type description to README
