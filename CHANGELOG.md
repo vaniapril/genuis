@@ -1,6 +1,7 @@
 ## 0.2.3
 
 * Upd: Update colored `TextStyle` code writer
+* Upd: Update token code writers
 
 ## 0.2.2
 
