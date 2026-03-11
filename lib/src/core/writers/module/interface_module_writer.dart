@@ -18,13 +18,6 @@ class InterfaceModuleWriter {
     _writeClass(buffer, class_);
   }
 
-  // void _writeMainClassFactory(StringBuffer buffer, Class class_) {
-  //   buffer.writeln('factory ${class_.type}.of(BuildContext context) {');
-  //   buffer.writeln(
-  //       'return ${class_.type}Widget.of(context)?.${config.fieldName} ?? ${class_.type}.${_theme(class_.themes.first)};');
-  //   buffer.writeln('}');
-  // }
-
   void _writeClassWithSubclasses(StringBuffer buffer, Class class_) {
     for (final model in class_.classes) {
       _writeClassWithSubclasses(buffer, model);

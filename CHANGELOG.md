@@ -1,3 +1,9 @@
+## 0.2.3
+
+* Upd: Update colored `TextStyle` code writer
+* Upd: Update token code writers
+* Upd: Update build context extension code writer
+
 ## 0.2.2
 
 * Upd: Update colored code writer

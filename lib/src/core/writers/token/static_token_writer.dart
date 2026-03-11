@@ -1,4 +1,7 @@
 import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
+import 'package:genuis/src/core/writers/code/class_code.dart';
+import 'package:genuis/src/core/writers/code/code.dart';
+import 'package:genuis/src/core/writers/code/field_code.dart';
 import 'package:genuis/src/utils/map_extension.dart';
 
 class StaticTokenWriter {
@@ -9,21 +12,20 @@ class StaticTokenWriter {
   });
 
   void write(StringBuffer buffer, List<Field> fields) {
-    buffer.writeln('abstract class $className {');
-    _writeFields(buffer, fields);
-    buffer.writeln('}');
-  }
-
-  void _writeFields(StringBuffer buffer, List<Field> fields) {
-    buffer.writeln();
-    for (final field in fields) {
-      _writeField(buffer, field);
-    }
-  }
-
-  void _writeField(StringBuffer buffer, Field field) {
-    for (final (theme, value) in field.values.iterable) {
-      buffer.writeln("static const ${field.type} ${field.enumName(theme)} = $value;");
-    }
+    ClassCode(
+      name: className,
+      abstract_: true,
+      body: [
+        for (final field in fields)
+          for (final (theme, value) in field.values.iterable)
+            FieldCode(
+              static: true,
+              const_: true,
+              type: field.type,
+              name: field.enumName(theme),
+              value: '$value'.code,
+            ),
+      ],
+    ).encode(buffer);
   }
 }
