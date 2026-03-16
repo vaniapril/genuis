@@ -143,7 +143,7 @@ class GenuisCore {
       for (final module in colorModules)
         ...module.rootClass.flattenFields
             .where((e) => e.flags.isNotEmpty)
-            .map((e) => (module.config.name, e)),
+            .map((e) => (module.config.name.asName, e)),
     ];
 
     return modules.map((module) {

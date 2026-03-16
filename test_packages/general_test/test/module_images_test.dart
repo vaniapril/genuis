@@ -44,16 +44,16 @@ void testImagesColored() {
   test('Module: images_colored (light)', () {
     final ui = UI.light;
 
-    expect(ui.imagesColored.lorem.ipsum.dolor.amet, ImagesColoredWithColors.light(testImage01));
-    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur, ImagesColoredWithColors.light(testImage02));
-    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing, ImagesColoredWithColors.light(testImage03));
-    expect(ui.imagesColored.lorem.ipsum.sit.elit, ImagesColoredWithColors.light(testImage04));
-    expect(ui.imagesColored.lorem.ipsum.do_, ImagesColoredWithColors.light(testImage05));
-    expect(ui.imagesColored.lorem.ipsum.sed, ImagesColoredWithColors.light(testImage06));
-    expect(ui.imagesColored.lorem.eiusmod, ImagesColoredWithColors.light(testImage07));
-    expect(ui.imagesColored.lorem.tempor, ImagesColoredWithColors.light(testImage08));
-    expect(ui.imagesColored.incididunt, ImagesColoredWithColors.light(testImage09));
-    expect(ui.imagesColored.ut, ImagesColoredWithColors.light(testImage10));
+    expect(ui.imagesColored.lorem.ipsum.dolor.amet, ImagesColoredWithColors(testImage01, ui));
+    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur, ImagesColoredWithColors(testImage02, ui));
+    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing, ImagesColoredWithColors(testImage03, ui));
+    expect(ui.imagesColored.lorem.ipsum.sit.elit, ImagesColoredWithColors(testImage04, ui));
+    expect(ui.imagesColored.lorem.ipsum.do_, ImagesColoredWithColors(testImage05, ui));
+    expect(ui.imagesColored.lorem.ipsum.sed, ImagesColoredWithColors(testImage06, ui));
+    expect(ui.imagesColored.lorem.eiusmod, ImagesColoredWithColors(testImage07, ui));
+    expect(ui.imagesColored.lorem.tempor, ImagesColoredWithColors(testImage08, ui));
+    expect(ui.imagesColored.incididunt, ImagesColoredWithColors(testImage09, ui));
+    expect(ui.imagesColored.ut, ImagesColoredWithColors(testImage10, ui));
 
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.sed, (testImage01, testColor08));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.sed, (testImage02, testColor08));
@@ -91,16 +91,16 @@ void testImagesColored() {
   test('Module: images (dark)', () {
     final ui = UI.dark;
 
-    expect(ui.imagesColored.lorem.ipsum.dolor.amet, ImagesColoredWithColors.dark(testImage01));
-    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur, ImagesColoredWithColors.dark(testImage02));
-    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing, ImagesColoredWithColors.dark(testImage03));
-    expect(ui.imagesColored.lorem.ipsum.sit.elit, ImagesColoredWithColors.dark(testImage04));
-    expect(ui.imagesColored.lorem.ipsum.do_, ImagesColoredWithColors.dark(testImage05));
-    expect(ui.imagesColored.lorem.ipsum.sed, ImagesColoredWithColors.dark(testImage06));
-    expect(ui.imagesColored.lorem.eiusmod, ImagesColoredWithColors.dark(testImage07));
-    expect(ui.imagesColored.lorem.tempor, ImagesColoredWithColors.dark(testImage08));
-    expect(ui.imagesColored.incididunt, ImagesColoredWithColors.dark(testImage09));
-    expect(ui.imagesColored.ut, ImagesColoredWithColors.dark(testImage10));
+    expect(ui.imagesColored.lorem.ipsum.dolor.amet, ImagesColoredWithColors(testImage01, ui));
+    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur, ImagesColoredWithColors(testImage02, ui));
+    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing, ImagesColoredWithColors(testImage03, ui));
+    expect(ui.imagesColored.lorem.ipsum.sit.elit, ImagesColoredWithColors(testImage04, ui));
+    expect(ui.imagesColored.lorem.ipsum.do_, ImagesColoredWithColors(testImage05, ui));
+    expect(ui.imagesColored.lorem.ipsum.sed, ImagesColoredWithColors(testImage06, ui));
+    expect(ui.imagesColored.lorem.eiusmod, ImagesColoredWithColors(testImage07, ui));
+    expect(ui.imagesColored.lorem.tempor, ImagesColoredWithColors(testImage08, ui));
+    expect(ui.imagesColored.incididunt, ImagesColoredWithColors(testImage09, ui));
+    expect(ui.imagesColored.ut, ImagesColoredWithColors(testImage10, ui));
 
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.sed, (testImage01, testColor07));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.sed, (testImage02, testColor07));

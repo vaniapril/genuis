@@ -130,15 +130,15 @@ void testFontsColored() {
   test('Module: fonts_colored - manrope (light)', () {
     final ui = UI.light;
 
-    expect(ui.fontsColored.manrope.lorem.ipsum.dolor.sit, FontsColoredWithColors.light(testFont01));
-    expect(ui.fontsColored.manrope.lorem.ipsum.dolor.amet, FontsColoredWithColors.light(testFont02));
-    expect(ui.fontsColored.manrope.lorem.ipsum.consectetur, FontsColoredWithColors.light(testFont03));
-    expect(ui.fontsColored.manrope.lorem.adipiscing.elit, FontsColoredWithColors.light(testFont04));
-    expect(ui.fontsColored.manrope.lorem.adipiscing.sed, FontsColoredWithColors.light(testFont05));
-    expect(ui.fontsColored.manrope.lorem.eiusmod, FontsColoredWithColors.light(testFont06));
-    expect(ui.fontsColored.manrope.tempor.incididunt, FontsColoredWithColors.light(testFont07));
-    expect(ui.fontsColored.manrope.tempor.ut, FontsColoredWithColors.light(testFont08));
-    expect(ui.fontsColored.manrope.labore, FontsColoredWithColors.light(testFont09));
+    expect(ui.fontsColored.manrope.lorem.ipsum.dolor.sit, FontsColoredWithColors(testFont01, ui));
+    expect(ui.fontsColored.manrope.lorem.ipsum.dolor.amet, FontsColoredWithColors(testFont02, ui));
+    expect(ui.fontsColored.manrope.lorem.ipsum.consectetur, FontsColoredWithColors(testFont03, ui));
+    expect(ui.fontsColored.manrope.lorem.adipiscing.elit, FontsColoredWithColors(testFont04, ui));
+    expect(ui.fontsColored.manrope.lorem.adipiscing.sed, FontsColoredWithColors(testFont05, ui));
+    expect(ui.fontsColored.manrope.lorem.eiusmod, FontsColoredWithColors(testFont06, ui));
+    expect(ui.fontsColored.manrope.tempor.incididunt, FontsColoredWithColors(testFont07, ui));
+    expect(ui.fontsColored.manrope.tempor.ut, FontsColoredWithColors(testFont08, ui));
+    expect(ui.fontsColored.manrope.labore, FontsColoredWithColors(testFont09, ui));
 
     expect(ui.fontsColored.manrope.lorem.ipsum.dolor.sit.colored(null), testFont01);
     expect(ui.fontsColored.manrope.lorem.ipsum.dolor.amet.colored(null), testFont02);
@@ -174,15 +174,15 @@ void testFontsColored() {
   test('Module: fonts_colored - manrope (dark)', () {
     final ui = UI.dark;
 
-    expect(ui.fontsColored.manrope.lorem.ipsum.dolor.sit, FontsColoredWithColors.dark(testFont01));
-    expect(ui.fontsColored.manrope.lorem.ipsum.dolor.amet, FontsColoredWithColors.dark(testFont02));
-    expect(ui.fontsColored.manrope.lorem.ipsum.consectetur, FontsColoredWithColors.dark(testFont03));
-    expect(ui.fontsColored.manrope.lorem.adipiscing.elit, FontsColoredWithColors.dark(testFont04));
-    expect(ui.fontsColored.manrope.lorem.adipiscing.sed, FontsColoredWithColors.dark(testFont05));
-    expect(ui.fontsColored.manrope.lorem.eiusmod, FontsColoredWithColors.dark(testFont06));
-    expect(ui.fontsColored.manrope.tempor.incididunt, FontsColoredWithColors.dark(testFont07));
-    expect(ui.fontsColored.manrope.tempor.ut, FontsColoredWithColors.dark(testFont08));
-    expect(ui.fontsColored.manrope.labore, FontsColoredWithColors.dark(testFont09));
+    expect(ui.fontsColored.manrope.lorem.ipsum.dolor.sit, FontsColoredWithColors(testFont01, ui));
+    expect(ui.fontsColored.manrope.lorem.ipsum.dolor.amet, FontsColoredWithColors(testFont02, ui));
+    expect(ui.fontsColored.manrope.lorem.ipsum.consectetur, FontsColoredWithColors(testFont03, ui));
+    expect(ui.fontsColored.manrope.lorem.adipiscing.elit, FontsColoredWithColors(testFont04, ui));
+    expect(ui.fontsColored.manrope.lorem.adipiscing.sed, FontsColoredWithColors(testFont05, ui));
+    expect(ui.fontsColored.manrope.lorem.eiusmod, FontsColoredWithColors(testFont06, ui));
+    expect(ui.fontsColored.manrope.tempor.incididunt, FontsColoredWithColors(testFont07, ui));
+    expect(ui.fontsColored.manrope.tempor.ut, FontsColoredWithColors(testFont08, ui));
+    expect(ui.fontsColored.manrope.labore, FontsColoredWithColors(testFont09, ui));
 
     expect(ui.fontsColored.manrope.lorem.ipsum.dolor.sit.colored(null), testFont01);
     expect(ui.fontsColored.manrope.lorem.ipsum.dolor.amet.colored(null), testFont02);
@@ -218,15 +218,15 @@ void testFontsColored() {
   test('Module: fonts_colored - roboto (light)', () {
     final ui = UI.light;
 
-    expect(ui.fontsColored.roboto.lorem.ipsum.dolor.sit, FontsColoredWithColors.light(testFont11));
-    expect(ui.fontsColored.roboto.lorem.ipsum.dolor.amet, FontsColoredWithColors.light(testFont12));
-    expect(ui.fontsColored.roboto.lorem.ipsum.consectetur, FontsColoredWithColors.light(testFont13));
-    expect(ui.fontsColored.roboto.lorem.adipiscing.elit, FontsColoredWithColors.light(testFont14));
-    expect(ui.fontsColored.roboto.lorem.adipiscing.sed, FontsColoredWithColors.light(testFont15));
-    expect(ui.fontsColored.roboto.lorem.eiusmod, FontsColoredWithColors.light(testFont16));
-    expect(ui.fontsColored.roboto.tempor.incididunt, FontsColoredWithColors.light(testFont17));
-    expect(ui.fontsColored.roboto.tempor.ut, FontsColoredWithColors.light(testFont18));
-    expect(ui.fontsColored.roboto.labore, FontsColoredWithColors.light(testFont19));
+    expect(ui.fontsColored.roboto.lorem.ipsum.dolor.sit, FontsColoredWithColors(testFont11, ui));
+    expect(ui.fontsColored.roboto.lorem.ipsum.dolor.amet, FontsColoredWithColors(testFont12, ui));
+    expect(ui.fontsColored.roboto.lorem.ipsum.consectetur, FontsColoredWithColors(testFont13, ui));
+    expect(ui.fontsColored.roboto.lorem.adipiscing.elit, FontsColoredWithColors(testFont14, ui));
+    expect(ui.fontsColored.roboto.lorem.adipiscing.sed, FontsColoredWithColors(testFont15, ui));
+    expect(ui.fontsColored.roboto.lorem.eiusmod, FontsColoredWithColors(testFont16, ui));
+    expect(ui.fontsColored.roboto.tempor.incididunt, FontsColoredWithColors(testFont17, ui));
+    expect(ui.fontsColored.roboto.tempor.ut, FontsColoredWithColors(testFont18, ui));
+    expect(ui.fontsColored.roboto.labore, FontsColoredWithColors(testFont19, ui));
 
     expect(ui.fontsColored.roboto.lorem.ipsum.dolor.sit.colored(null), testFont11);
     expect(ui.fontsColored.roboto.lorem.ipsum.dolor.amet.colored(null), testFont12);
@@ -262,15 +262,15 @@ void testFontsColored() {
   test('Module: fonts_colored - roboto (dark)', () {
     final ui = UI.dark;
 
-    expect(ui.fontsColored.roboto.lorem.ipsum.dolor.sit, FontsColoredWithColors.dark(testFont11));
-    expect(ui.fontsColored.roboto.lorem.ipsum.dolor.amet, FontsColoredWithColors.dark(testFont12));
-    expect(ui.fontsColored.roboto.lorem.ipsum.consectetur, FontsColoredWithColors.dark(testFont13));
-    expect(ui.fontsColored.roboto.lorem.adipiscing.elit, FontsColoredWithColors.dark(testFont14));
-    expect(ui.fontsColored.roboto.lorem.adipiscing.sed, FontsColoredWithColors.dark(testFont15));
-    expect(ui.fontsColored.roboto.lorem.eiusmod, FontsColoredWithColors.dark(testFont16));
-    expect(ui.fontsColored.roboto.tempor.incididunt, FontsColoredWithColors.dark(testFont17));
-    expect(ui.fontsColored.roboto.tempor.ut, FontsColoredWithColors.dark(testFont18));
-    expect(ui.fontsColored.roboto.labore, FontsColoredWithColors.dark(testFont19));
+    expect(ui.fontsColored.roboto.lorem.ipsum.dolor.sit, FontsColoredWithColors(testFont11, ui));
+    expect(ui.fontsColored.roboto.lorem.ipsum.dolor.amet, FontsColoredWithColors(testFont12, ui));
+    expect(ui.fontsColored.roboto.lorem.ipsum.consectetur, FontsColoredWithColors(testFont13, ui));
+    expect(ui.fontsColored.roboto.lorem.adipiscing.elit, FontsColoredWithColors(testFont14, ui));
+    expect(ui.fontsColored.roboto.lorem.adipiscing.sed, FontsColoredWithColors(testFont15, ui));
+    expect(ui.fontsColored.roboto.lorem.eiusmod, FontsColoredWithColors(testFont16, ui));
+    expect(ui.fontsColored.roboto.tempor.incididunt, FontsColoredWithColors(testFont17, ui));
+    expect(ui.fontsColored.roboto.tempor.ut, FontsColoredWithColors(testFont18, ui));
+    expect(ui.fontsColored.roboto.labore, FontsColoredWithColors(testFont19, ui));
 
     expect(ui.fontsColored.roboto.lorem.ipsum.dolor.sit.colored(null), testFont11);
     expect(ui.fontsColored.roboto.lorem.ipsum.dolor.amet.colored(null), testFont12);
@@ -308,15 +308,15 @@ void testFontsColoredXml() {
   test('Module: fonts_colored_xml - manrope (light)', () {
     final ui = UI.light;
 
-    expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.sit, FontsColoredXmlWithColors.light(testFont01));
-    expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.amet, FontsColoredXmlWithColors.light(testFont02));
-    expect(ui.fontsColoredXml.manrope.lorem.ipsum.consectetur, FontsColoredXmlWithColors.light(testFont03));
-    expect(ui.fontsColoredXml.manrope.lorem.adipiscing.elit, FontsColoredXmlWithColors.light(testFont04));
-    expect(ui.fontsColoredXml.manrope.lorem.adipiscing.sed, FontsColoredXmlWithColors.light(testFont05));
-    expect(ui.fontsColoredXml.manrope.lorem.eiusmod, FontsColoredXmlWithColors.light(testFont06));
-    expect(ui.fontsColoredXml.manrope.tempor.incididunt, FontsColoredXmlWithColors.light(testFont07));
-    expect(ui.fontsColoredXml.manrope.tempor.ut, FontsColoredXmlWithColors.light(testFont08));
-    expect(ui.fontsColoredXml.manrope.labore, FontsColoredXmlWithColors.light(testFont09));
+    expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.sit, FontsColoredXmlWithColors(testFont01, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.amet, FontsColoredXmlWithColors(testFont02, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.ipsum.consectetur, FontsColoredXmlWithColors(testFont03, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.adipiscing.elit, FontsColoredXmlWithColors(testFont04, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.adipiscing.sed, FontsColoredXmlWithColors(testFont05, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.eiusmod, FontsColoredXmlWithColors(testFont06, ui));
+    expect(ui.fontsColoredXml.manrope.tempor.incididunt, FontsColoredXmlWithColors(testFont07, ui));
+    expect(ui.fontsColoredXml.manrope.tempor.ut, FontsColoredXmlWithColors(testFont08, ui));
+    expect(ui.fontsColoredXml.manrope.labore, FontsColoredXmlWithColors(testFont09, ui));
 
     expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.sit.colored(null), testFont01);
     expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.amet.colored(null), testFont02);
@@ -352,15 +352,15 @@ void testFontsColoredXml() {
   test('Module: fonts_colored_xml - manrope (dark)', () {
     final ui = UI.dark;
 
-    expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.sit, FontsColoredXmlWithColors.dark(testFont01));
-    expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.amet, FontsColoredXmlWithColors.dark(testFont02));
-    expect(ui.fontsColoredXml.manrope.lorem.ipsum.consectetur, FontsColoredXmlWithColors.dark(testFont03));
-    expect(ui.fontsColoredXml.manrope.lorem.adipiscing.elit, FontsColoredXmlWithColors.dark(testFont04));
-    expect(ui.fontsColoredXml.manrope.lorem.adipiscing.sed, FontsColoredXmlWithColors.dark(testFont05));
-    expect(ui.fontsColoredXml.manrope.lorem.eiusmod, FontsColoredXmlWithColors.dark(testFont06));
-    expect(ui.fontsColoredXml.manrope.tempor.incididunt, FontsColoredXmlWithColors.dark(testFont07));
-    expect(ui.fontsColoredXml.manrope.tempor.ut, FontsColoredXmlWithColors.dark(testFont08));
-    expect(ui.fontsColoredXml.manrope.labore, FontsColoredXmlWithColors.dark(testFont09));
+    expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.sit, FontsColoredXmlWithColors(testFont01, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.amet, FontsColoredXmlWithColors(testFont02, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.ipsum.consectetur, FontsColoredXmlWithColors(testFont03, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.adipiscing.elit, FontsColoredXmlWithColors(testFont04, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.adipiscing.sed, FontsColoredXmlWithColors(testFont05, ui));
+    expect(ui.fontsColoredXml.manrope.lorem.eiusmod, FontsColoredXmlWithColors(testFont06, ui));
+    expect(ui.fontsColoredXml.manrope.tempor.incididunt, FontsColoredXmlWithColors(testFont07, ui));
+    expect(ui.fontsColoredXml.manrope.tempor.ut, FontsColoredXmlWithColors(testFont08, ui));
+    expect(ui.fontsColoredXml.manrope.labore, FontsColoredXmlWithColors(testFont09, ui));
 
     expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.sit.colored(null), testFont01);
     expect(ui.fontsColoredXml.manrope.lorem.ipsum.dolor.amet.colored(null), testFont02);
@@ -396,15 +396,15 @@ void testFontsColoredXml() {
   test('Module: fonts_colored_xml - roboto (light)', () {
     final ui = UI.light;
 
-    expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.sit, FontsColoredXmlWithColors.light(testFont11));
-    expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.amet, FontsColoredXmlWithColors.light(testFont12));
-    expect(ui.fontsColoredXml.roboto.lorem.ipsum.consectetur, FontsColoredXmlWithColors.light(testFont13));
-    expect(ui.fontsColoredXml.roboto.lorem.adipiscing.elit, FontsColoredXmlWithColors.light(testFont14));
-    expect(ui.fontsColoredXml.roboto.lorem.adipiscing.sed, FontsColoredXmlWithColors.light(testFont15));
-    expect(ui.fontsColoredXml.roboto.lorem.eiusmod, FontsColoredXmlWithColors.light(testFont16));
-    expect(ui.fontsColoredXml.roboto.tempor.incididunt, FontsColoredXmlWithColors.light(testFont17));
-    expect(ui.fontsColoredXml.roboto.tempor.ut, FontsColoredXmlWithColors.light(testFont18));
-    expect(ui.fontsColoredXml.roboto.labore, FontsColoredXmlWithColors.light(testFont19));
+    expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.sit, FontsColoredXmlWithColors(testFont11, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.amet, FontsColoredXmlWithColors(testFont12, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.ipsum.consectetur, FontsColoredXmlWithColors(testFont13, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.adipiscing.elit, FontsColoredXmlWithColors(testFont14, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.adipiscing.sed, FontsColoredXmlWithColors(testFont15, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.eiusmod, FontsColoredXmlWithColors(testFont16, ui));
+    expect(ui.fontsColoredXml.roboto.tempor.incididunt, FontsColoredXmlWithColors(testFont17, ui));
+    expect(ui.fontsColoredXml.roboto.tempor.ut, FontsColoredXmlWithColors(testFont18, ui));
+    expect(ui.fontsColoredXml.roboto.labore, FontsColoredXmlWithColors(testFont19, ui));
 
     expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.sit.colored(null), testFont11);
     expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.amet.colored(null), testFont12);
@@ -440,15 +440,15 @@ void testFontsColoredXml() {
   test('Module: fonts_colored_xml - roboto (dark)', () {
     final ui = UI.dark;
 
-    expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.sit, FontsColoredXmlWithColors.dark(testFont11));
-    expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.amet, FontsColoredXmlWithColors.dark(testFont12));
-    expect(ui.fontsColoredXml.roboto.lorem.ipsum.consectetur, FontsColoredXmlWithColors.dark(testFont13));
-    expect(ui.fontsColoredXml.roboto.lorem.adipiscing.elit, FontsColoredXmlWithColors.dark(testFont14));
-    expect(ui.fontsColoredXml.roboto.lorem.adipiscing.sed, FontsColoredXmlWithColors.dark(testFont15));
-    expect(ui.fontsColoredXml.roboto.lorem.eiusmod, FontsColoredXmlWithColors.dark(testFont16));
-    expect(ui.fontsColoredXml.roboto.tempor.incididunt, FontsColoredXmlWithColors.dark(testFont17));
-    expect(ui.fontsColoredXml.roboto.tempor.ut, FontsColoredXmlWithColors.dark(testFont18));
-    expect(ui.fontsColoredXml.roboto.labore, FontsColoredXmlWithColors.dark(testFont19));
+    expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.sit, FontsColoredXmlWithColors(testFont11, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.amet, FontsColoredXmlWithColors(testFont12, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.ipsum.consectetur, FontsColoredXmlWithColors(testFont13, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.adipiscing.elit, FontsColoredXmlWithColors(testFont14, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.adipiscing.sed, FontsColoredXmlWithColors(testFont15, ui));
+    expect(ui.fontsColoredXml.roboto.lorem.eiusmod, FontsColoredXmlWithColors(testFont16, ui));
+    expect(ui.fontsColoredXml.roboto.tempor.incididunt, FontsColoredXmlWithColors(testFont17, ui));
+    expect(ui.fontsColoredXml.roboto.tempor.ut, FontsColoredXmlWithColors(testFont18, ui));
+    expect(ui.fontsColoredXml.roboto.labore, FontsColoredXmlWithColors(testFont19, ui));
 
     expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.sit.colored(null), testFont11);
     expect(ui.fontsColoredXml.roboto.lorem.ipsum.dolor.amet.colored(null), testFont12);

@@ -62,12 +62,12 @@ void testShadowsColored() {
   test('Module: shadows_colored (light)', () {
     final ui = UI.light;
 
-    expect(ui.shadowsColored.lorem.ipsum.amet, ShadowsColoredWithColors.light(testShadow02));
-    expect(ui.shadowsColored.lorem.ipsum.elit, ShadowsColoredWithColors.light(testShadow03));
-    expect(ui.shadowsColored.lorem.sed, ShadowsColoredWithColors.light(testShadow05));
-    expect(ui.shadowsColored.lorem.do_, ShadowsColoredWithColors.light(testShadow06));
-    expect(ui.shadowsColored.tempor, ShadowsColoredWithColors.light(testShadow08));
-    expect(ui.shadowsColored.ut, ShadowsColoredWithColors.light(testShadow09));
+    expect(ui.shadowsColored.lorem.ipsum.amet, ShadowsColoredWithColors(testShadow02, ui));
+    expect(ui.shadowsColored.lorem.ipsum.elit, ShadowsColoredWithColors(testShadow03, ui));
+    expect(ui.shadowsColored.lorem.sed, ShadowsColoredWithColors(testShadow05, ui));
+    expect(ui.shadowsColored.lorem.do_, ShadowsColoredWithColors(testShadow06, ui));
+    expect(ui.shadowsColored.tempor, ShadowsColoredWithColors(testShadow08, ui));
+    expect(ui.shadowsColored.ut, ShadowsColoredWithColors(testShadow09, ui));
 
     expect(ui.shadowsColored.lorem.ipsum.amet.magna, (testShadow02, testColor11));
     expect(ui.shadowsColored.lorem.ipsum.elit.magna, (testShadow03, testColor11));
@@ -93,12 +93,12 @@ void testShadowsColored() {
   test('Module: shadows_colored (dark)', () {
     final ui = UI.dark;
 
-    expect(ui.shadowsColored.lorem.ipsum.amet, ShadowsColoredWithColors.dark(testShadow01));
-    expect(ui.shadowsColored.lorem.ipsum.elit, ShadowsColoredWithColors.dark(testShadow03));
-    expect(ui.shadowsColored.lorem.sed, ShadowsColoredWithColors.dark(testShadow04));
-    expect(ui.shadowsColored.lorem.do_, ShadowsColoredWithColors.dark(testShadow06));
-    expect(ui.shadowsColored.tempor, ShadowsColoredWithColors.dark(testShadow07));
-    expect(ui.shadowsColored.ut, ShadowsColoredWithColors.dark(testShadow09));
+    expect(ui.shadowsColored.lorem.ipsum.amet, ShadowsColoredWithColors(testShadow01, ui));
+    expect(ui.shadowsColored.lorem.ipsum.elit, ShadowsColoredWithColors(testShadow03, ui));
+    expect(ui.shadowsColored.lorem.sed, ShadowsColoredWithColors(testShadow04, ui));
+    expect(ui.shadowsColored.lorem.do_, ShadowsColoredWithColors(testShadow06, ui));
+    expect(ui.shadowsColored.tempor, ShadowsColoredWithColors(testShadow07, ui));
+    expect(ui.shadowsColored.ut, ShadowsColoredWithColors(testShadow09, ui));
 
     expect(ui.shadowsColored.lorem.ipsum.amet.magna, (testShadow01, testColor10));
     expect(ui.shadowsColored.lorem.ipsum.elit.magna, (testShadow03, testColor10));
@@ -126,12 +126,12 @@ void testShadowsColoredXml() {
   test('Module: shadows_colored_xml (light)', () {
     final ui = UI.light;
 
-    expect(ui.shadowsColoredXml.lorem.ipsum.amet, ShadowsColoredXmlWithColors.light(testShadow02));
-    expect(ui.shadowsColoredXml.lorem.ipsum.elit, ShadowsColoredXmlWithColors.light(testShadow03));
-    expect(ui.shadowsColoredXml.lorem.sed, ShadowsColoredXmlWithColors.light(testShadow05));
-    expect(ui.shadowsColoredXml.lorem.do_, ShadowsColoredXmlWithColors.light(testShadow06));
-    expect(ui.shadowsColoredXml.tempor, ShadowsColoredXmlWithColors.light(testShadow08));
-    expect(ui.shadowsColoredXml.ut, ShadowsColoredXmlWithColors.light(testShadow09));
+    expect(ui.shadowsColoredXml.lorem.ipsum.amet, ShadowsColoredXmlWithColors(testShadow02, ui));
+    expect(ui.shadowsColoredXml.lorem.ipsum.elit, ShadowsColoredXmlWithColors(testShadow03, ui));
+    expect(ui.shadowsColoredXml.lorem.sed, ShadowsColoredXmlWithColors(testShadow05, ui));
+    expect(ui.shadowsColoredXml.lorem.do_, ShadowsColoredXmlWithColors(testShadow06, ui));
+    expect(ui.shadowsColoredXml.tempor, ShadowsColoredXmlWithColors(testShadow08, ui));
+    expect(ui.shadowsColoredXml.ut, ShadowsColoredXmlWithColors(testShadow09, ui));
 
     expect(ui.shadowsColoredXml.lorem.ipsum.amet.magna, (testShadow02, testColor11));
     expect(ui.shadowsColoredXml.lorem.ipsum.elit.magna, (testShadow03, testColor11));
@@ -157,12 +157,12 @@ void testShadowsColoredXml() {
   test('Module: shadows_colored_xml (dark)', () {
     final ui = UI.dark;
 
-    expect(ui.shadowsColoredXml.lorem.ipsum.amet, ShadowsColoredXmlWithColors.dark(testShadow01));
-    expect(ui.shadowsColoredXml.lorem.ipsum.elit, ShadowsColoredXmlWithColors.dark(testShadow03));
-    expect(ui.shadowsColoredXml.lorem.sed, ShadowsColoredXmlWithColors.dark(testShadow04));
-    expect(ui.shadowsColoredXml.lorem.do_, ShadowsColoredXmlWithColors.dark(testShadow06));
-    expect(ui.shadowsColoredXml.tempor, ShadowsColoredXmlWithColors.dark(testShadow07));
-    expect(ui.shadowsColoredXml.ut, ShadowsColoredXmlWithColors.dark(testShadow09));
+    expect(ui.shadowsColoredXml.lorem.ipsum.amet, ShadowsColoredXmlWithColors(testShadow01, ui));
+    expect(ui.shadowsColoredXml.lorem.ipsum.elit, ShadowsColoredXmlWithColors(testShadow03, ui));
+    expect(ui.shadowsColoredXml.lorem.sed, ShadowsColoredXmlWithColors(testShadow04, ui));
+    expect(ui.shadowsColoredXml.lorem.do_, ShadowsColoredXmlWithColors(testShadow06, ui));
+    expect(ui.shadowsColoredXml.tempor, ShadowsColoredXmlWithColors(testShadow07, ui));
+    expect(ui.shadowsColoredXml.ut, ShadowsColoredXmlWithColors(testShadow09, ui));
 
     expect(ui.shadowsColoredXml.lorem.ipsum.amet.magna, (testShadow01, testColor10));
     expect(ui.shadowsColoredXml.lorem.ipsum.elit.magna, (testShadow03, testColor10));

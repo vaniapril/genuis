@@ -12,8 +12,6 @@ class Token {
     this.assetsList = const {},
   });
 
-  String get fileName => 'token_${config.name}';
-
   Token copyWith({
     TokenConfig? config,
     List<Field>? fields,

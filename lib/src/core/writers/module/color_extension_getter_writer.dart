@@ -81,6 +81,29 @@ class ColorExtensionGetterWriter {
           ),
           body: '${colorRecordClassName ?? ''}($colorFieldName, color)'.code,
         ),
+        MethodCode(
+          override_: true,
+          name: '==',
+          type: 'bool',
+          operator: true,
+          params: ParamsCode(
+            params: [
+              ParamCode(name: 'other', type: 'Object'),
+            ],
+          ),
+          body: [
+            'if (identical(this, other)) {',
+            'return true;',
+            '}',
+            'if (other.runtimeType != runtimeType) {',
+            'return false;',
+            '}',
+            'return other is $colorClassName',
+            '&& other.$colorFieldName == $colorFieldName',
+            '&& other._${Config.it.fieldName} == _${Config.it.fieldName}',
+            ';',
+          ].code,
+        ),
       ],
     ).encode(buffer);
 
@@ -189,6 +212,32 @@ class ColorExtensionGetterWriter {
             ],
           ),
           body: 'copyWith(color: color)'.code,
+        ),
+        MethodCode(
+          type: 'bool',
+          operator: true,
+          override_: true,
+          name: '==',
+          params: ParamsCode(
+            params: [
+              ParamCode(
+                type: 'Object',
+                name: 'other',
+              ),
+            ],
+          ),
+          body: [
+            'if (identical(this, other)) {',
+            'return true;',
+            '}',
+            'if (other.runtimeType != runtimeType) {',
+            'return false;',
+            '}',
+            'return other is $colorClassName',
+            '&& super == other',
+            '&& other._${Config.it.fieldName} == _${Config.it.fieldName}',
+            ';',
+          ].code,
         ),
       ],
     ).encode(buffer);
