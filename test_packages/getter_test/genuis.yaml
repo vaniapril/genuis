@@ -11,6 +11,10 @@ modules:
       type: color
   - icons:
       type: asset
+  - fonts_colored:
+      type: font
+      path: fonts/
+      color: true
   - icons_colored:
       type: asset
       path: icons/

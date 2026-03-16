@@ -85,3 +85,89 @@ const testIcon09 = "assets/icons/lorem/sed.svg";
 const testIcon10 = "assets/icons/do-dark.svg";
 const testIcon11 = "assets/icons/do-light.svg";
 const testIcon12 = "assets/icons/eiusmod.svg";
+
+// Fonts
+const testFont11 = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w100,
+  fontSize: 10.0,
+  height: 11.0 / 10.0,
+  letterSpacing: 12.0,
+);
+const testFont12 = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w200,
+  fontSize: 20.0,
+  height: 21.0 / 20.0,
+  letterSpacing: 22.0,
+);
+const testFont13 = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w300,
+  fontSize: 30.0,
+  height: 31.0 / 30.0,
+  letterSpacing: 32.0,
+);
+const testFont14 = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w400,
+  fontSize: 40.0,
+  height: 41.0 / 40.0,
+  letterSpacing: 42.0,
+);
+const testFont15 = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w500,
+  fontSize: 50.0,
+  height: 51.0 / 50.0,
+  letterSpacing: 52.0,
+);
+const testFont16 = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w600,
+  fontSize: 60.0,
+  height: 61.0 / 60.0,
+  letterSpacing: 62.0,
+);
+const testFont17 = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w700,
+  fontSize: 70.0,
+  height: 71.0 / 70.0,
+  letterSpacing: 72.0,
+);
+const testFont18 = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w800,
+  fontSize: 80.0,
+  height: 81.0 / 80.0,
+  letterSpacing: 82.0,
+);
+const testFont19 = TextStyle(
+  fontFamily: 'Roboto',
+  fontWeight: FontWeight.w900,
+  fontSize: 90.0,
+  height: 91.0 / 90.0,
+  letterSpacing: 92.0,
+);
+
+final testFont11Color01 = testFont11.copyWith(color: testColor01);
+final testFont11Color02 = testFont11.copyWith(color: testColor02);
+final testFont11Color03 = testFont11.copyWith(color: testColor03);
+final testFont11Color04 = testFont11.copyWith(color: testColor04);
+final testFont11Color13 = testFont11.copyWith(color: testColor13);
+final testFont11Color14 = testFont11.copyWith(color: testColor14);
+
+final testFont12Color01 = testFont12.copyWith(color: testColor01);
+final testFont12Color02 = testFont12.copyWith(color: testColor02);
+final testFont12Color03 = testFont12.copyWith(color: testColor03);
+final testFont12Color04 = testFont12.copyWith(color: testColor04);
+final testFont12Color13 = testFont12.copyWith(color: testColor13);
+final testFont12Color14 = testFont12.copyWith(color: testColor14);
+
+final testFont13Color01 = testFont13.copyWith(color: testColor01);
+final testFont13Color02 = testFont13.copyWith(color: testColor02);
+final testFont13Color03 = testFont13.copyWith(color: testColor03);
+final testFont13Color04 = testFont13.copyWith(color: testColor04);
+final testFont13Color13 = testFont13.copyWith(color: testColor13);
+final testFont13Color14 = testFont13.copyWith(color: testColor14);

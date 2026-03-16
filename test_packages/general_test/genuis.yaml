@@ -1,3 +1,4 @@
+class_type: getter
 base_theme: base_theme
 
 tokens:

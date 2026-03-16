@@ -141,19 +141,21 @@ class GenuisCore {
 
     final colorFields = [
       for (final module in colorModules)
-        ...module.rootClass.flattenFields.where((e) => e.flags.isNotEmpty),
+        ...module.rootClass.flattenFields
+            .where((e) => e.flags.isNotEmpty)
+            .map((e) => (module.config.name.asName, e)),
     ];
 
     return modules.map((module) {
       if (!module.config.color) {
         return module;
       }
-      Map<String, Field> fields = {};
+      Map<(String, String), Field> fields = {};
 
-      for (final colorField in colorFields) {
+      for (final (moduleName, colorField) in colorFields) {
         final Flag? flag = colorField.flags.firstWhereOrNull((e) => e.name == module.config.name);
         if (flag != null) {
-          fields[flag.value?.asName ?? colorField.name] = colorField;
+          fields[(moduleName, flag.value?.asName ?? colorField.name)] = colorField;
         }
       }
 

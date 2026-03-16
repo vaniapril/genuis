@@ -1,5 +1,11 @@
 [GenUIs] - is a code generator for theme classes, enabling convenient creation and use of UI properties based on the structure of the assets folder and JSON configuration files.
 
+> [!IMPORTANT]  
+> #### Upcoming BREAKING changes
+> - Default `class_type` will be changed to `getter`
+> - Module config `color_record_class_name` will be removed
+> - Errors will be added for unused parameters in `genuis.yaml` config
+
 # Example
 
 ```dart

@@ -1,3 +1,10 @@
+## 0.2.4
+
+* New: Add upcoming changes warning to README
+* Upd: Update `getter` colored classes structure
+* Upd: Temporary change `class_type` of `general_test` package to `getter`
+* Fix: Fix fields formatting and test packages
+
 ## 0.2.3
 
 * Upd: Update colored `TextStyle` code writer

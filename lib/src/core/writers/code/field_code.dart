@@ -39,7 +39,7 @@ class FieldCode extends Code {
       buffer.write(' = ');
       value?.encode(buffer);
     }
-    buffer.writeln(';');
+    buffer.write(';');
   }
 
   factory FieldCode.final_(String type, String name) => FieldCode(
