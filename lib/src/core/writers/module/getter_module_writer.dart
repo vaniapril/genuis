@@ -1,5 +1,6 @@
 import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
+import 'package:genuis/src/core/models/code/values/colored_value.dart';
 import 'package:genuis/src/core/writers/code/class_code.dart';
 import 'package:genuis/src/core/writers/code/code.dart';
 import 'package:genuis/src/core/writers/code/constructor_code.dart';
@@ -49,8 +50,7 @@ class GetterModuleWriter {
         ),
         // lerp method
         MethodCode.lerpMethod(className, [
-          for (final f in root.nodes)
-            (f.name, f.lerpCode('_${f.name}', 'other.${'_${f.name}'}')),
+          for (final f in root.nodes) (f.name, f.lerpCode('_${f.name}', 'other.${'_${f.name}'}')),
         ]),
         // copyWith method
         MethodCode(
@@ -93,7 +93,18 @@ class GetterModuleWriter {
   void _writeThemeExtClass(StringBuffer buffer, Class root) {
     final className = '\$${root.type}';
 
-    final fields = root.flattenFields;
+    final fields = root.flattenFields.map((e) {
+      final values = e.values.map((k, v) {
+        return MapEntry(k, v is ColoredValue ? v.innerValue : v);
+      });
+
+      return Field(
+        name: e.name,
+        path: e.path,
+        valueType: values.values.first.type,
+        values: values,
+      );
+    });
 
     ClassCode.themeExtension(
       className,
@@ -166,7 +177,10 @@ class GetterModuleWriter {
           type: f.type,
           getter: true,
           expression: true,
-          body: '$mainField._$moduleName.${f.enumName(Config.it.baseTheme.asName)}'.code,
+          body: f.values.values.first is ColoredValue
+              ? '${f.type}($mainField._$moduleName.${f.enumName(Config.it.baseTheme.asName)},$mainField)'
+                    .code
+              : '$mainField._$moduleName.${f.enumName(Config.it.baseTheme.asName)}'.code,
         )
       : MethodCode(
           name: f.name,

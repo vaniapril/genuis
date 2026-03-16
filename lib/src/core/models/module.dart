@@ -4,7 +4,7 @@ import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
 class Module {
   final ModuleConfig config;
   final Class rootClass;
-  final Map<String, Field> colorFields;
+  final Map<(String, String), Field> colorFields;
   final List<Field> tokenFields;
   final Set<String> assetsList;
 
@@ -21,7 +21,7 @@ class Module {
   Module copyWith({
     ModuleConfig? config,
     Class? rootClass,
-    Map<String, Field>? colorFields,
+    Map<(String, String), Field>? colorFields,
     List<Field>? tokenFields,
     Set<String>? assetsList,
   }) => Module(
