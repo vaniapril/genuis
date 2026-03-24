@@ -300,10 +300,15 @@ class ValueParser {
     if (args.length != 1) throw ParserValueArgsException(args, 'number');
 
     if (args[0].startsWith('\$')) {
+      // return _parseToken<IntValue>(args[0]);
       return _parseToken<DoubleValue>(args[0]);
     }
 
-    return _parseDouble(args[0]);
+    if (args[0].contains('.')) {
+      return _parseDouble(args[0]);
+    } else {
+      return _parseInt(args[0]);
+    }
   }
 
   Value _parseAsset(List<String> args) {
