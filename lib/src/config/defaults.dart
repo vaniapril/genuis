@@ -34,7 +34,8 @@ abstract class Defaults {
     return '${name}_WithColors'.asName.upperFirst;
   }
 
-  static const colorFieldName = 'value';
+  static const moduleColorFieldName = 'value';
+  static const moduleUsePackage = false;
 
   //Token Config
   static const tokenType = ElementType.asset;
@@ -47,4 +48,5 @@ abstract class Defaults {
   static String tokenClassName(String name) {
     return name.asName.upperFirst;
   }
+  static const tokenUsePackage = false;
 }

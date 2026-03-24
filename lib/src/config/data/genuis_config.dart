@@ -4,20 +4,22 @@ import 'package:genuis/src/config/types/genuis_class_type.dart';
 import 'package:genuis/src/utils/string_extension.dart';
 
 class GenuisConfig {
-  String assetsPath;
-  String outputPath;
-  List<String> themes;
-  String baseTheme;
-  GenuisClassType classType;
-  int dartLineLength;
-  String className;
-  String fieldName;
-  String postfix;
+  final String package;
+  final String assetsPath;
+  final String outputPath;
+  final List<String> themes;
+  final String baseTheme;
+  final GenuisClassType classType;
+  final int dartLineLength;
+  final String className;
+  final String fieldName;
+  final String postfix;
 
-  List<TokenConfig> tokens;
-  List<ModuleConfig> modules;
+  final List<TokenConfig> tokens;
+  final List<ModuleConfig> modules;
 
   GenuisConfig({
+    required this.package,
     required this.assetsPath,
     required this.outputPath,
     required this.themes,

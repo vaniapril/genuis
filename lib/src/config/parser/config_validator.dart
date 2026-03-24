@@ -81,6 +81,7 @@ class ConfigValidator {
       // _validateTokenClassType(token);
       _validateTokenClassName(token);
       _validateTokenFieldName(token);
+      _validateTokenUsePackage(token);
     }
   }
 
@@ -100,6 +101,12 @@ class ConfigValidator {
     _validateFieldName(token.fieldName);
   }
 
+  void _validateTokenUsePackage(TokenConfig token) {
+    if (token.usePackage && token.type != ElementType.font) {
+      throw const ConfigValidationException('only font token supports "use_package: true"');
+    }
+  }
+
   // Modules
   void _validateConfigModules() {
     for (final module in config.modules) {
@@ -113,6 +120,7 @@ class ConfigValidator {
       _validateModuleColorClassName(module);
       _validateModuleColorFieldName(module);
       _validateModuleColorRecordClassName(module);
+      _validateModuleUsePackage(module);
     }
   }
 
@@ -154,6 +162,12 @@ class ConfigValidator {
 
   void _validateModuleColorFieldName(ModuleConfig module) {
     _validateFieldName(module.colorFieldName);
+  }
+
+  void _validateModuleUsePackage(ModuleConfig module){
+    if (module.usePackage && module.type != ElementType.font) {
+      throw const ConfigValidationException('only font module supports "use_package: true"');
+    }
   }
 
   // Utils

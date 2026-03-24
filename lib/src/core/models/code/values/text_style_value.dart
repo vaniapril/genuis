@@ -8,6 +8,7 @@ class TextStyleValue extends Value {
   final Value height;
   final Value? spacing;
   final bool italic;
+  final Value? package;
 
   const TextStyleValue({
     required this.family,
@@ -16,6 +17,7 @@ class TextStyleValue extends Value {
     required this.height,
     required this.spacing,
     required this.italic,
+    this.package,
   });
 
   @override
@@ -36,5 +38,5 @@ class TextStyleValue extends Value {
 
   @override
   String toString() =>
-      'const TextStyle(fontFamily: $family, fontWeight: FontWeight.w$weight, fontSize: $size, height: $height / $size, ${spacing != null ? 'letterSpacing: $spacing,' : ''} ${italic ? 'fontStyle: FontStyle.italic,' : ''})';
+      'const TextStyle(fontFamily: $family, fontWeight: FontWeight.w$weight, fontSize: $size, height: $height / $size, ${spacing != null ? 'letterSpacing: $spacing,' : ''} ${italic ? 'fontStyle: FontStyle.italic,' : ''} ${package != null ? 'package: $package,' : ''} )';
 }

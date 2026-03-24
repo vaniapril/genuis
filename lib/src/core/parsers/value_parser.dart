@@ -18,6 +18,7 @@ import 'package:genuis/src/utils/string_extension.dart';
 
 class ValueParser {
   final String path;
+  final String? package;
   final ElementType type;
   final List<Token> tokens;
 
@@ -25,6 +26,7 @@ class ValueParser {
     required this.type,
     this.path = '',
     this.tokens = const [],
+    this.package,
   });
 
   static List<String> _split(String value) {
@@ -237,6 +239,7 @@ class ValueParser {
       spacing = null;
     }
     final italic = args.last == 'italic';
+    Value? package = this.package != null ? _parseString(this.package!) : null;
 
     return TextStyleValue(
       family: family,
@@ -245,6 +248,7 @@ class ValueParser {
       height: height,
       spacing: spacing,
       italic: italic,
+      package: package,
     );
   }
 

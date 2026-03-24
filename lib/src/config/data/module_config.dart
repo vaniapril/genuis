@@ -12,8 +12,9 @@ class ModuleConfig {
   final String colorClassName;
   final String colorFieldName;
   final String? colorRecordClassName;
+  final bool usePackage;
 
-  ModuleConfig({
+  const ModuleConfig({
     required this.name,
     required this.path,
     required this.type,
@@ -24,5 +25,6 @@ class ModuleConfig {
     required this.colorClassName,
     required this.colorFieldName,
     required this.colorRecordClassName,
+    required this.usePackage,
   });
 }
