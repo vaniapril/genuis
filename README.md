@@ -5,6 +5,8 @@
 > - Default `class_type` will be changed to `getter`
 > - Module config `color_record_class_name` will be removed
 > - Errors will be added for unused parameters in `genuis.yaml` config
+> - `font` module type will be renamed
+> - `.xml` file support will be disabled
 
 # Example
 
@@ -1009,6 +1011,7 @@ tokens:
       class_name: <token_name in PascalCase>
       class_type: static
       field_name: value
+      use_package: false
 
 modules:
   - <module_name>:
@@ -1020,6 +1023,7 @@ modules:
       color_class_name: <module_name in PascalCase>WithColors
       color_field_name: value
       color_record_class_name: null
+      use_package: false
 ```
 ### GenUIs configuration 
 
@@ -1270,6 +1274,11 @@ _default: `value`_
 
 Specifies the name of the field used to get the value from the [enum token](#class_type-1).
 
+#### use_package
+_default: false_
+
+Specifies the use of a package name in element declarations. Only for [font](#font) token type.
+
 ### Modules configuration 
 
 #### type 
@@ -1371,6 +1380,11 @@ Specifies the name of class returned by the additional getter instead of record.
   }
   ```
 - If not specified, the record `(ElementType, Color)` will be used.
+
+#### use_package
+_default: false_
+
+Specifies the use of a package name in element declarations. Only for [font](#font) module type.
 
 [build_runner]: https://pub.dev/packages/build_runner
 [flutter_inset_shadow]: https://pub.dev/packages/flutter_inset_shadow
