@@ -44,7 +44,7 @@ class NodesParser {
     if (parseThemes) {
       node = collectThemes(node);
     }
-    node = removeSpaces(node);
+    node = removeEmpties(node);
     node = merge(node);
     node = reduceDuplicates(node);
 
@@ -101,9 +101,9 @@ class NodesParser {
     return node;
   }
 
-  Node removeSpaces(Node node) {
+  Node removeEmpties(Node node) {
     if (node is Folder) {
-      final nodes = node.nodes.map((e) => removeSpaces(e)).toList();
+      final nodes = node.nodes.map((e) => removeEmpties(e)).toList();
 
       return Folder(
         name: node.name,
@@ -115,6 +115,7 @@ class NodesParser {
               return [e];
             })
             .expand((e) => e)
+            .where((e) => e is! Folder || e.nodes.isNotEmpty)
             .toList(),
       );
     }
