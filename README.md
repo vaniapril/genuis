@@ -4,9 +4,10 @@
 > #### Upcoming BREAKING changes
 > - Default `class_type` will be changed to `getter`
 > - Module config `color_record_class_name` will be removed
-> - Errors will be added for unused parameters in `genuis.yaml` config
+> - Errors will now be raised for unused parameters in `genuis.yaml` config
 > - `font` module type will be renamed
 > - `.xml` file support will be disabled
+> - The ability to use an element from the colored `font` module without selecting a color will be removed
 
 # Example
 
