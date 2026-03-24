@@ -1,3 +1,11 @@
+## 0.2.5
+
+* New: Add `use_package` flag for `font` type
+* Upd: Update list of upcoming changes in README
+* Fix: Fix parsing empty folders
+* Fix: Fix parsing `.json` list with one element
+* Fix: Fix parsing int values
+
 ## 0.2.4
 
 * New: Add upcoming changes warning to README
