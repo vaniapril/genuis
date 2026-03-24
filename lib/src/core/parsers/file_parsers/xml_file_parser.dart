@@ -43,7 +43,7 @@ class XmlFileParser extends FileParser {
       return Folder(
         name: name ?? '',
         nodes: [
-          Item(value: value.toString()),
+          Item(value: value.toString(), unnamed: name == null),
         ],
       );
     }

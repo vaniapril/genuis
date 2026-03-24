@@ -95,6 +95,7 @@ class NodesParser {
       return Item(
         value: node.value,
         theme: theme,
+        unnamed: node.unnamed,
       );
     }
 
@@ -191,7 +192,7 @@ class NodesParser {
       return Folder(
         name: file.name,
         nodes: [
-          Item(value: relative(file.path, from: path).forwardSlash),
+          Item(value: relative(file.path, from: path).forwardSlash, unnamed: false),
         ],
       );
     }

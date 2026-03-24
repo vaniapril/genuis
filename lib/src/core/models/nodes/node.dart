@@ -25,10 +25,12 @@ class Folder extends Node {
 class Item extends Node {
   final String value;
   final String? theme;
+  final bool unnamed;
 
   Item({
     required this.value,
     this.theme,
+    this.unnamed = false,
   });
 
   @override
