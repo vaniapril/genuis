@@ -20,14 +20,14 @@ class JsonFileParser extends FileParser {
     try {
       final content = json.decode(file.readAsStringSync());
 
-      return _parseEntry(content);
+      return _parseEntry(content, false);
     } catch (e) {
       if (e is ParserFileElementException) throw ParserFileException(file.path, element: e.element);
       throw ParserFileException(file.path);
     }
   }
 
-  Node _parseEntry(dynamic value) {
+  Node _parseEntry(dynamic value, bool fromList) {
     if (value is _JsonMap) {
       return Folder(
         name: '',
@@ -38,13 +38,14 @@ class JsonFileParser extends FileParser {
     if (value is _JsonList) {
       return Folder(
         name: '',
-        nodes: value.map((e) => _parseEntry(e)).toList(),
+        nodes: value.map((e) => _parseEntry(e, true)).toList(),
       );
     }
 
     if (value is String || value is int || value is double || value is bool) {
       return Item(
         value: value.toString(),
+        unnamed: fromList,
       );
     }
 
@@ -67,7 +68,7 @@ class JsonFileParser extends FileParser {
         nodes.add(
           Folder(
             name: key,
-            nodes: [_parseEntry(entity)],
+            nodes: [_parseEntry(entity, false)],
           ),
         );
       }

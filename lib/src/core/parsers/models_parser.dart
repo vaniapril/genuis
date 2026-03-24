@@ -1,6 +1,7 @@
 import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/models/code/code_entities/code_entity.dart';
 import 'package:genuis/src/core/models/code/values/double_value.dart';
+import 'package:genuis/src/core/models/code/values/int_value.dart';
 import 'package:genuis/src/core/models/nodes/node.dart';
 import 'package:genuis/src/core/models/code/value.dart';
 import 'package:genuis/src/utils/list_extension.dart';
@@ -55,7 +56,7 @@ class ModelsParser {
       }
     }
 
-    final wrapWithClass = values.length > 1 || foldersEntities.isNotEmpty;
+    final wrapWithClass = values.length > 1 || foldersEntities.isNotEmpty || values.any((e) => items.any((e) => e.unnamed));
 
     final fieldsEntities = values.map(
       (e) {
@@ -102,6 +103,9 @@ class ModelsParser {
       } else {
         return optionalPrefix + value.value.toString().snakeCase;
       }
+    }
+    if (value is IntValue) {
+      return optionalPrefix + value.value;
     } else {
       return value.toString().asName;
     }

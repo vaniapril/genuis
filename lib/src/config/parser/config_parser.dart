@@ -15,23 +15,26 @@ import 'package:yaml/yaml.dart';
 abstract class ConfigParser {
   static GenuisConfig? getConfig() {
     final genuisFile = File(Defaults.genuisFile);
+    final pubspecFile = File(Defaults.pubspecFile);
+    final pubspecContent = pubspecFile.readAsStringSync();
+    final pubspecYaml = loadYaml(pubspecContent) as YamlMap;
+    final package = pubspecYaml['name'];
+
     if (genuisFile.existsSync()) {
       final content = genuisFile.readAsStringSync();
       final map = loadYaml(content) as YamlMap;
-      return _configFromYaml(map);
+      return _configFromYaml(map, package);
     }
 
-    final pubspecFile = File(Defaults.pubspecFile);
-    final content = pubspecFile.readAsStringSync();
-    final map = (loadYaml(content) as YamlMap)['genuis'];
+    final map = pubspecYaml['genuis'];
     if (map != null && map is YamlMap) {
-      return _configFromYaml(map);
+      return _configFromYaml(map, package);
     }
 
     return null;
   }
 
-  static GenuisConfig _configFromYaml(YamlMap map) {
+  static GenuisConfig _configFromYaml(YamlMap map, String package) {
     final assetsPath = _get<String>(map, 'assets_path')?.asFolderPath ?? Defaults.assetsPath;
     final outputPath = _get<String>(map, 'output_path')?.asFolderPath ?? Defaults.outputPath;
     final themes = _getList<String>(map, 'themes') ?? Defaults.themes;
@@ -52,6 +55,7 @@ abstract class ConfigParser {
               _getType(map, 'class_type', TokenClassType.tryParse) ?? Defaults.tokenClassType;
           final className = _get<String>(map, 'class_name') ?? Defaults.tokenClassName(name);
           final fieldName = _get<String>(map, 'field_name') ?? Defaults.tokenFieldName;
+          final usePackage = _get<bool>(map, 'use_package') ?? Defaults.tokenUsePackage;
 
           return TokenConfig(
             name: name.snakeCase,
@@ -60,6 +64,7 @@ abstract class ConfigParser {
             classType: classType,
             className: className,
             fieldName: fieldName,
+            usePackage: usePackage,
           );
         }).toList() ??
         [];
@@ -77,8 +82,10 @@ abstract class ConfigParser {
           final color = _get<bool>(map, 'color') ?? Defaults.moduleColor;
           final colorClassName =
               _get<String>(map, 'color_class_name') ?? Defaults.moduleColorClassName(name);
-          final colorFieldName = _get<String>(map, 'color_field_name') ?? Defaults.colorFieldName;
+          final colorFieldName =
+              _get<String>(map, 'color_field_name') ?? Defaults.moduleColorFieldName;
           final colorRecordClassName = _get<String>(map, 'color_record_class_name');
+          final usePackage = _get<bool>(map, 'use_package') ?? Defaults.moduleUsePackage;
 
           return ModuleConfig(
             name: name.snakeCase,
@@ -91,11 +98,13 @@ abstract class ConfigParser {
             colorClassName: colorClassName,
             colorFieldName: colorFieldName,
             colorRecordClassName: colorRecordClassName,
+            usePackage: usePackage,
           );
         }).toList() ??
         [];
 
     final config = GenuisConfig(
+      package: package,
       assetsPath: assetsPath,
       outputPath: outputPath,
       themes: themes,

@@ -47,6 +47,7 @@ class GenuisCore {
       final valueParser = ValueParser(
         type: e.type,
         path: Config.it.assetsPath + e.path,
+        package: e.usePackage ? Config.it.package : null,
       );
 
       Class tree = ModelsParser(
@@ -75,6 +76,7 @@ class GenuisCore {
         path: path,
         type: e.type,
         tokens: _tokens,
+        package: e.usePackage ? Config.it.package : null,
       );
 
       Class tree = ModelsParser(
