@@ -11,7 +11,7 @@ abstract class Defaults {
   static const assetsPath = 'assets/';
   static const outputPath = 'lib/ui/';
   static const themes = ['light', 'dark'];
-  static const classType = GenuisClassType.themeExtension;
+  static const classType = GenuisClassType.getter;
   static const fromJsonMethod = true;
   static const dartLineLength = 100;
   static const className = 'UI';
