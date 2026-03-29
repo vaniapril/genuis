@@ -17,12 +17,10 @@ import 'package:genuis/src/utils/string_extension.dart';
 class ColorExtensionGetterWriter {
   final String colorClassName;
   final String colorFieldName;
-  final String? colorRecordClassName;
 
   ColorExtensionGetterWriter({
     required this.colorFieldName,
     required this.colorClassName,
-    this.colorRecordClassName,
   });
 
   void writeAssetExtensionClass(
@@ -36,7 +34,6 @@ class ColorExtensionGetterWriter {
     final valueType = module.config.tokenClassType == TokenClassType.enum_ && value is TokenValue
         ? value.tokenType
         : value.type;
-    final recordClassName = colorRecordClassName ?? '($valueType, Color)';
 
     ClassCode(
       name: colorClassName,
@@ -64,22 +61,22 @@ class ColorExtensionGetterWriter {
           MethodCode(
             getter: true,
             name: name,
-            type: recordClassName,
+            type: '($valueType, Color)',
             expression: true,
             body:
-                '${colorRecordClassName ?? ''}($colorFieldName, _${Config.it.fieldName}._$moduleName.${field.enumName(Config.it.baseTheme.asName)})'
+                '($colorFieldName, _${Config.it.fieldName}._$moduleName.${field.enumName(Config.it.baseTheme.asName)})'
                     .code,
           ),
         MethodCode(
           name: 'colored',
-          type: recordClassName,
+          type: '($valueType, Color)',
           expression: true,
           params: ParamsCode(
             params: [
               ParamCode(name: 'color', type: 'Color'),
             ],
           ),
-          body: '${colorRecordClassName ?? ''}($colorFieldName, color)'.code,
+          body: '($colorFieldName, color)'.code,
         ),
         MethodCode(
           override_: true,
@@ -106,32 +103,6 @@ class ColorExtensionGetterWriter {
         ),
       ],
     ).encode(buffer);
-
-    if (colorRecordClassName != null) {
-      ClassCode(
-        name: recordClassName,
-        body: [
-          FieldCode.final_(valueType, colorFieldName),
-          FieldCode.final_('Color', 'color'),
-          ConstructorCode(
-            type: recordClassName,
-            const_: true,
-            params: ParamsCode(
-              params: [
-                ParamCode(
-                  this_: true,
-                  name: colorFieldName,
-                ),
-                ParamCode(
-                  this_: true,
-                  name: 'color',
-                ),
-              ],
-            ),
-          ),
-        ],
-      ).encode(buffer);
-    }
   }
 
   void writeTextStyleExtensionClass(

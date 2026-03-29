@@ -119,7 +119,6 @@ class ConfigValidator {
       _validateModuleColor(module);
       _validateModuleColorClassName(module);
       _validateModuleColorFieldName(module);
-      _validateModuleColorRecordClassName(module);
       _validateModuleUsePackage(module);
     }
   }
@@ -150,14 +149,6 @@ class ConfigValidator {
 
   void _validateModuleColorClassName(ModuleConfig module) {
     _validateClassName(module.colorClassName);
-  }
-
-  void _validateModuleColorRecordClassName(ModuleConfig module) {
-    final colorRecordClassName = module.colorRecordClassName;
-
-    if (colorRecordClassName != null) {
-      _validateClassName(colorRecordClassName);
-    }
   }
 
   void _validateModuleColorFieldName(ModuleConfig module) {

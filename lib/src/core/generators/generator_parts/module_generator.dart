@@ -43,13 +43,11 @@ class ModuleGenerator {
       if (Config.it.classType == GenuisClassType.getter) {
         if (module.config.type == ElementType.font) {
           ColorExtensionGetterWriter(
-            colorRecordClassName: module.config.colorRecordClassName,
             colorClassName: module.config.colorClassName,
             colorFieldName: module.config.colorFieldName,
           ).writeTextStyleExtensionClass(buffer, module, module.colorFields);
         } else {
           ColorExtensionGetterWriter(
-            colorRecordClassName: module.config.colorRecordClassName,
             colorClassName: module.config.colorClassName,
             colorFieldName: module.config.colorFieldName,
           ).writeAssetExtensionClass(buffer, module, module.colorFields);
@@ -57,7 +55,6 @@ class ModuleGenerator {
       } else {
         if (module.config.type == ElementType.font) {
           ColorExtensionWriter(
-            colorRecordClassName: module.config.colorRecordClassName,
             colorClassName: module.config.colorClassName,
             colorFieldName: module.config.colorFieldName,
           ).writeTextStyleExtensionClass(
@@ -67,7 +64,6 @@ class ModuleGenerator {
           );
         } else {
           ColorExtensionWriter(
-            colorRecordClassName: module.config.colorRecordClassName,
             colorClassName: module.config.colorClassName,
             colorFieldName: module.config.colorFieldName,
           ).writeAssetExtensionClass(
