@@ -46,16 +46,14 @@ class ColorExtensionGetterWriter {
             params: [
               ParamCode(
                 this_: true,
-                type: valueType,
                 name: colorFieldName,
               ),
               ParamCode(
-                type: Config.it.className,
-                name: Config.it.fieldName,
+                this_: true,
+                name: '_${Config.it.fieldName}',
               ),
             ],
           ),
-          redirect: '_${Config.it.fieldName} = ${Config.it.fieldName}'.code,
         ),
         for (final ((moduleName, name), field) in fields.iterable)
           MethodCode(
@@ -112,52 +110,23 @@ class ColorExtensionGetterWriter {
   ) {
     ClassCode(
       name: colorClassName,
-      extends_: 'TextStyle',
       body: [
+        FieldCode.final_('TextStyle', colorFieldName),
         FieldCode.final_(Config.it.className, '_${Config.it.fieldName}'),
         ConstructorCode(
           type: colorClassName,
           params: ParamsCode(
             params: [
               ParamCode(
-                type: 'TextStyle',
-                name: 'style',
+                this_: true,
+                name: colorFieldName,
               ),
               ParamCode(
-                type: Config.it.className,
-                name: Config.it.fieldName,
+                this_: true,
+                name: '_${Config.it.fieldName}',
               ),
             ],
           ),
-          redirect: [
-            '_${Config.it.fieldName} = ${Config.it.fieldName},',
-            'super(',
-            'inherit: style.inherit,',
-            'color: style.color,',
-            'backgroundColor: style.backgroundColor,',
-            'fontSize: style.fontSize,',
-            'fontWeight: style.fontWeight,',
-            'fontStyle: style.fontStyle,',
-            'letterSpacing: style.letterSpacing,',
-            'wordSpacing: style.wordSpacing,',
-            'textBaseline: style.textBaseline,',
-            'height: style.height,',
-            'leadingDistribution: style.leadingDistribution,',
-            'locale: style.locale,',
-            'foreground: style.foreground,',
-            'background: style.background,',
-            'shadows: style.shadows,',
-            'fontFeatures: style.fontFeatures,',
-            'fontVariations: style.fontVariations,',
-            'decoration: style.decoration,',
-            'decorationColor: style.decorationColor,',
-            'decorationStyle: style.decorationStyle,',
-            'decorationThickness: style.decorationThickness,',
-            'debugLabel: style.debugLabel,',
-            'fontFamily: style.fontFamily,',
-            'overflow: style.overflow,',
-            ')',
-          ].code,
         ),
 
         for (final ((moduleName, name), field) in fields.iterable)
@@ -167,7 +136,7 @@ class ColorExtensionGetterWriter {
             type: 'TextStyle',
             expression: true,
             body:
-                'copyWith(color: _${Config.it.fieldName}._$moduleName.${field.enumName(Config.it.baseTheme.asName)})'
+                '$colorFieldName.copyWith(color: _${Config.it.fieldName}._$moduleName.${field.enumName(Config.it.baseTheme.asName)})'
                     .code,
           ),
         MethodCode(
@@ -182,7 +151,7 @@ class ColorExtensionGetterWriter {
               ),
             ],
           ),
-          body: 'copyWith(color: color)'.code,
+          body: '$colorFieldName.copyWith(color: color)'.code,
         ),
         MethodCode(
           type: 'bool',
@@ -205,7 +174,7 @@ class ColorExtensionGetterWriter {
             'return false;',
             '}',
             'return other is $colorClassName',
-            '&& super == other',
+            '&& other.$colorFieldName == $colorFieldName',
             '&& other._${Config.it.fieldName} == _${Config.it.fieldName}',
             ';',
           ].code,
