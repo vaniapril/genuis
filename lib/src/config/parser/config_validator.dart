@@ -184,8 +184,8 @@ class ConfigValidator {
         throw ConfigValidationException('file does not exist: $value');
       }
 
-      if (!file.isXml && !file.isJson) {
-        throw ConfigValidationException('file is not xml or json: $value');
+      if (!file.isJson) {
+        throw ConfigValidationException('file is not .json: $value');
       }
 
       return;
@@ -221,8 +221,8 @@ class ConfigValidator {
   //     throw ConfigValidationException('file does not exist: $value');
   //   }
 
-  //   if (!file.isXml && !file.isJson) {
-  //     throw ConfigValidationException('file is not xml or json: $value');
+  //   if (!file.isJson) {
+  //     throw ConfigValidationException('file is not .json: $value');
   //   }
   // }
 

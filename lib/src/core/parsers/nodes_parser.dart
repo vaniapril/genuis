@@ -4,7 +4,6 @@ import 'package:genuis/src/config/config.dart';
 import 'package:genuis/src/core/models/nodes/node.dart';
 import 'package:genuis/src/core/parsers/file_parsers/file_parser.dart';
 import 'package:genuis/src/core/parsers/file_parsers/json_file_parser.dart';
-import 'package:genuis/src/core/parsers/file_parsers/xml_file_parser.dart';
 import 'package:genuis/src/utils/exceptions.dart';
 import 'package:genuis/src/utils/file_system_entity_extension.dart';
 import 'package:genuis/src/utils/list_extension.dart';
@@ -20,7 +19,6 @@ class NodesParser {
 
   final List<FileParser> parsers = [
     JsonFileParser(),
-    XmlFileParser(),
   ];
 
   NodesParser({

@@ -4,15 +4,15 @@ import 'package:test/test.dart';
 import 'values.dart';
 
 void main() {
-  test('Token: numbers', () {
-    expect(StringsXml.lorem, testString01);
-    expect(StringsXml.ipsumDolor, testString02);
-    expect(StringsXml.sitAmet, testString03);
-    expect(StringsXml.consecteturAdipiscingElit, testString04);
-    expect(StringsXml.sedDoEiusmodTemporIncididunt, testString05);
-    expect(StringsXml.utLaboreEtDolore, testString06);
-    expect(StringsXml.magnaAliqua, testString07);
-    expect(StringsXml.utEnimAdMinimVeniam, testString08);
-    expect(StringsXml.quisNostrudExercitationUllamco, testString09);
+  test('Token: strings', () {
+    expect(Strings.lorem, testString01);
+    expect(Strings.ipsumDolor, testString02);
+    expect(Strings.sitAmet, testString03);
+    expect(Strings.consecteturAdipiscingElit, testString04);
+    expect(Strings.sedDoEiusmodTemporIncididunt, testString05);
+    expect(Strings.utLaboreEtDolore, testString06);
+    expect(Strings.magnaAliqua, testString07);
+    expect(Strings.utEnimAdMinimVeniam, testString08);
+    expect(Strings.quisNostrudExercitationUllamco, testString09);
   });
 }

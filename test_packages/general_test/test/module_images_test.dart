@@ -59,17 +59,9 @@ void testImagesColored() {
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.sed, (testImage02, testColor08));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.sed, (testImage03, testColor08));
 
-    expect(ui.imagesColored.lorem.ipsum.dolor.amet.sedXml, (testImage01, testColor08));
-    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.sedXml, (testImage02, testColor08));
-    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.sedXml, (testImage03, testColor08));
-
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.dolore, (testImage01, testColor09));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.dolore, (testImage02, testColor09));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.dolore, (testImage03, testColor09));
-
-    expect(ui.imagesColored.lorem.ipsum.dolor.amet.doloreXml, (testImage01, testColor09));
-    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.doloreXml, (testImage02, testColor09));
-    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.doloreXml, (testImage03, testColor09));
 
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.et, (testImage01, testColor13));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.et, (testImage02, testColor13));
@@ -78,10 +70,6 @@ void testImagesColored() {
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.minim, (testImage01, testColor14));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.minim, (testImage02, testColor14));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.minim, (testImage03, testColor14));
-
-    expect(ui.imagesColored.lorem.ipsum.dolor.amet.minimXml, (testImage01, testColor14));
-    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.minimXml, (testImage02, testColor14));
-    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.minimXml, (testImage03, testColor14));
 
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.colored(testColor01), (testImage01, testColor01));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.colored(testColor01), (testImage02, testColor01));
@@ -106,17 +94,9 @@ void testImagesColored() {
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.sed, (testImage02, testColor07));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.sed, (testImage03, testColor07));
 
-    expect(ui.imagesColored.lorem.ipsum.dolor.amet.sedXml, (testImage01, testColor07));
-    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.sedXml, (testImage02, testColor07));
-    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.sedXml, (testImage03, testColor07));
-
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.dolore, (testImage01, testColor09));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.dolore, (testImage02, testColor09));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.dolore, (testImage03, testColor09));
-
-    expect(ui.imagesColored.lorem.ipsum.dolor.amet.doloreXml, (testImage01, testColor09));
-    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.doloreXml, (testImage02, testColor09));
-    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.doloreXml, (testImage03, testColor09));
 
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.et, (testImage01, testColor13));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.et, (testImage02, testColor13));
@@ -125,10 +105,6 @@ void testImagesColored() {
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.minim, (testImage01, testColor14));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.minim, (testImage02, testColor14));
     expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.minim, (testImage03, testColor14));
-
-    expect(ui.imagesColored.lorem.ipsum.dolor.amet.minimXml, (testImage01, testColor14));
-    expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.minimXml, (testImage02, testColor14));
-    expect(ui.imagesColored.lorem.ipsum.sit.adipiscing.minimXml, (testImage03, testColor14));
 
     expect(ui.imagesColored.lorem.ipsum.dolor.amet.colored(testColor01), (testImage01, testColor01));
     expect(ui.imagesColored.lorem.ipsum.dolor.consectetur.colored(testColor01), (testImage02, testColor01));
