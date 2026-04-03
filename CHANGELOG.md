@@ -1,3 +1,11 @@
+## 0.3.0
+
+* BREAKING: Chang default `class_type` to `getter`
+* BREAKING: Remove `color_record_class_name` module config
+* BREAKING: Disable `.xml` file support
+* BREAKING: Remove the ability to use an element from the colored `font` module without selecting a color
+* Upd: Add new upcoming changes to README
+
 ## 0.2.5
 
 * New: Add `use_package` flag for `font` type
