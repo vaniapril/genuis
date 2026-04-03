@@ -155,7 +155,7 @@ class ConfigValidator {
     _validateFieldName(module.colorFieldName);
   }
 
-  void _validateModuleUsePackage(ModuleConfig module){
+  void _validateModuleUsePackage(ModuleConfig module) {
     if (module.usePackage && module.type != ElementType.font) {
       throw const ConfigValidationException('only font module supports "use_package: true"');
     }

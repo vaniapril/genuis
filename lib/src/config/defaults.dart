@@ -48,5 +48,6 @@ abstract class Defaults {
   static String tokenClassName(String name) {
     return name.asName.upperFirst;
   }
+
   static const tokenUsePackage = false;
 }

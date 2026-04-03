@@ -20,7 +20,8 @@ class ConstructorCode extends Code {
     required this.type,
     this.name,
     this.params = const ParamsCode(),
-    this.body, this.redirect,
+    this.body,
+    this.redirect,
   });
 
   @override

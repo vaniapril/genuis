@@ -9,7 +9,7 @@ class TokenConfig {
   final String className;
   final String fieldName;
   final bool usePackage;
-  
+
   const TokenConfig({
     required this.name,
     required this.path,
