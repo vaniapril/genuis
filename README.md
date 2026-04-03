@@ -2,12 +2,9 @@
 
 > [!IMPORTANT]  
 > #### Upcoming BREAKING changes
-> - Default `class_type` will be changed to `getter`
-> - Module config `color_record_class_name` will be removed
 > - Errors will now be raised for unused parameters in `genuis.yaml` config
-> - `font` module type will be renamed
-> - `.xml` file support will be disabled
-> - The ability to use an element from the colored `font` module without selecting a color will be removed
+> - `theme_extension` and `interface` class types will be removed
+> - `class_types` config property will be removed
 
 # Example
 
@@ -831,6 +828,7 @@ You can add [colors](#color) to a [module](#modules), so any element of this [mo
 - For other types it returns `(<ElementType>, Color)` record
 
 > [!NOTE]  
+> Using this feature you cannot use `TextStyle` without color getter \
 > Instead of an additional getter, you can call the `.colored(...)` method to get an element with any other color.
 
 To use [colors](#color) in a [module](#modules), add `color: true` to the module [configuration](#configuration):
@@ -890,40 +888,6 @@ ui.fonts.roboto.headline.green
 ui.fonts.roboto.headline.primary
 ```
 
-### XML files support
-
-You can use XML-files instead of JSON-files by specifying JSON-keys using the `name` attribute in XML-elements.
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <element name="name_1">[value]</element>
-    <element name="name_2">
-        <element name="name_3">[value]</element>
-        <element name="name_4">[value]</element>
-        //...
-    </element>
-    //...
-</resources>
-```
-> [!NOTE]  
-> The `<element>` type does not affect functionality, so you can use `<module_name>` or any other type.
-
-References in [color module](#color) to [colored module](#colored-modules) can be specified inside `[value]` or using the `type` attribute in XML-elements with a `,` separator:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <element name="name_1" type="icons">[value]</element>
-    <element name="name_2">
-        <element name="name_3" type="icons, fonts">[value]</element>
-        <element name="name_4" type="fonts">[value]</element>
-        //...
-    </element>
-    //...
-</resources>
-```
-
 ### Lists support
 
 You can use lists of elements inside your JSON-files. The names of these elements will be generated automatically based on the values, so use lists only when necessary. For elements with a numeric type, the name will be a combination of the root element (json-key or file name) and the value of the element.
@@ -943,17 +907,6 @@ Numbers.numbers1
 Numbers.numbers2
 Numbers.numbers2_5
 Numbers.numbers3
-```
-The equivalent of a list in XML is a list of elements without the name attribute:
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<resources>
-    <number>1</number>
-    <number>2</number>
-    <number>2.5</number>
-    <number>3.0</number>
-</resources>
 ```
 
 ## Configuration
