@@ -17,12 +17,10 @@ import 'package:genuis/src/utils/string_extension.dart';
 class ColorExtensionGetterWriter {
   final String colorClassName;
   final String colorFieldName;
-  final String? colorRecordClassName;
 
   ColorExtensionGetterWriter({
     required this.colorFieldName,
     required this.colorClassName,
-    this.colorRecordClassName,
   });
 
   void writeAssetExtensionClass(
@@ -36,7 +34,6 @@ class ColorExtensionGetterWriter {
     final valueType = module.config.tokenClassType == TokenClassType.enum_ && value is TokenValue
         ? value.tokenType
         : value.type;
-    final recordClassName = colorRecordClassName ?? '($valueType, Color)';
 
     ClassCode(
       name: colorClassName,
@@ -49,37 +46,35 @@ class ColorExtensionGetterWriter {
             params: [
               ParamCode(
                 this_: true,
-                type: valueType,
                 name: colorFieldName,
               ),
               ParamCode(
-                type: Config.it.className,
-                name: Config.it.fieldName,
+                this_: true,
+                name: '_${Config.it.fieldName}',
               ),
             ],
           ),
-          redirect: '_${Config.it.fieldName} = ${Config.it.fieldName}'.code,
         ),
         for (final ((moduleName, name), field) in fields.iterable)
           MethodCode(
             getter: true,
             name: name,
-            type: recordClassName,
+            type: '($valueType, Color)',
             expression: true,
             body:
-                '${colorRecordClassName ?? ''}($colorFieldName, _${Config.it.fieldName}._$moduleName.${field.enumName(Config.it.baseTheme.asName)})'
+                '($colorFieldName, _${Config.it.fieldName}._$moduleName.${field.enumName(Config.it.baseTheme.asName)})'
                     .code,
           ),
         MethodCode(
           name: 'colored',
-          type: recordClassName,
+          type: '($valueType, Color)',
           expression: true,
           params: ParamsCode(
             params: [
               ParamCode(name: 'color', type: 'Color'),
             ],
           ),
-          body: '${colorRecordClassName ?? ''}($colorFieldName, color)'.code,
+          body: '($colorFieldName, color)'.code,
         ),
         MethodCode(
           override_: true,
@@ -106,32 +101,6 @@ class ColorExtensionGetterWriter {
         ),
       ],
     ).encode(buffer);
-
-    if (colorRecordClassName != null) {
-      ClassCode(
-        name: recordClassName,
-        body: [
-          FieldCode.final_(valueType, colorFieldName),
-          FieldCode.final_('Color', 'color'),
-          ConstructorCode(
-            type: recordClassName,
-            const_: true,
-            params: ParamsCode(
-              params: [
-                ParamCode(
-                  this_: true,
-                  name: colorFieldName,
-                ),
-                ParamCode(
-                  this_: true,
-                  name: 'color',
-                ),
-              ],
-            ),
-          ),
-        ],
-      ).encode(buffer);
-    }
   }
 
   void writeTextStyleExtensionClass(
@@ -141,52 +110,23 @@ class ColorExtensionGetterWriter {
   ) {
     ClassCode(
       name: colorClassName,
-      extends_: 'TextStyle',
       body: [
+        FieldCode.final_('TextStyle', colorFieldName),
         FieldCode.final_(Config.it.className, '_${Config.it.fieldName}'),
         ConstructorCode(
           type: colorClassName,
           params: ParamsCode(
             params: [
               ParamCode(
-                type: 'TextStyle',
-                name: 'style',
+                this_: true,
+                name: colorFieldName,
               ),
               ParamCode(
-                type: Config.it.className,
-                name: Config.it.fieldName,
+                this_: true,
+                name: '_${Config.it.fieldName}',
               ),
             ],
           ),
-          redirect: [
-            '_${Config.it.fieldName} = ${Config.it.fieldName},',
-            'super(',
-            'inherit: style.inherit,',
-            'color: style.color,',
-            'backgroundColor: style.backgroundColor,',
-            'fontSize: style.fontSize,',
-            'fontWeight: style.fontWeight,',
-            'fontStyle: style.fontStyle,',
-            'letterSpacing: style.letterSpacing,',
-            'wordSpacing: style.wordSpacing,',
-            'textBaseline: style.textBaseline,',
-            'height: style.height,',
-            'leadingDistribution: style.leadingDistribution,',
-            'locale: style.locale,',
-            'foreground: style.foreground,',
-            'background: style.background,',
-            'shadows: style.shadows,',
-            'fontFeatures: style.fontFeatures,',
-            'fontVariations: style.fontVariations,',
-            'decoration: style.decoration,',
-            'decorationColor: style.decorationColor,',
-            'decorationStyle: style.decorationStyle,',
-            'decorationThickness: style.decorationThickness,',
-            'debugLabel: style.debugLabel,',
-            'fontFamily: style.fontFamily,',
-            'overflow: style.overflow,',
-            ')',
-          ].code,
         ),
 
         for (final ((moduleName, name), field) in fields.iterable)
@@ -196,7 +136,7 @@ class ColorExtensionGetterWriter {
             type: 'TextStyle',
             expression: true,
             body:
-                'copyWith(color: _${Config.it.fieldName}._$moduleName.${field.enumName(Config.it.baseTheme.asName)})'
+                '$colorFieldName.copyWith(color: _${Config.it.fieldName}._$moduleName.${field.enumName(Config.it.baseTheme.asName)})'
                     .code,
           ),
         MethodCode(
@@ -211,7 +151,7 @@ class ColorExtensionGetterWriter {
               ),
             ],
           ),
-          body: 'copyWith(color: color)'.code,
+          body: '$colorFieldName.copyWith(color: color)'.code,
         ),
         MethodCode(
           type: 'bool',
@@ -234,7 +174,7 @@ class ColorExtensionGetterWriter {
             'return false;',
             '}',
             'return other is $colorClassName',
-            '&& super == other',
+            '&& other.$colorFieldName == $colorFieldName',
             '&& other._${Config.it.fieldName} == _${Config.it.fieldName}',
             ';',
           ].code,

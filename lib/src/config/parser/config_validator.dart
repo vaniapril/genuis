@@ -119,7 +119,6 @@ class ConfigValidator {
       _validateModuleColor(module);
       _validateModuleColorClassName(module);
       _validateModuleColorFieldName(module);
-      _validateModuleColorRecordClassName(module);
       _validateModuleUsePackage(module);
     }
   }
@@ -152,19 +151,11 @@ class ConfigValidator {
     _validateClassName(module.colorClassName);
   }
 
-  void _validateModuleColorRecordClassName(ModuleConfig module) {
-    final colorRecordClassName = module.colorRecordClassName;
-
-    if (colorRecordClassName != null) {
-      _validateClassName(colorRecordClassName);
-    }
-  }
-
   void _validateModuleColorFieldName(ModuleConfig module) {
     _validateFieldName(module.colorFieldName);
   }
 
-  void _validateModuleUsePackage(ModuleConfig module){
+  void _validateModuleUsePackage(ModuleConfig module) {
     if (module.usePackage && module.type != ElementType.font) {
       throw const ConfigValidationException('only font module supports "use_package: true"');
     }
@@ -193,8 +184,8 @@ class ConfigValidator {
         throw ConfigValidationException('file does not exist: $value');
       }
 
-      if (!file.isXml && !file.isJson) {
-        throw ConfigValidationException('file is not xml or json: $value');
+      if (!file.isJson) {
+        throw ConfigValidationException('file is not .json: $value');
       }
 
       return;
@@ -230,8 +221,8 @@ class ConfigValidator {
   //     throw ConfigValidationException('file does not exist: $value');
   //   }
 
-  //   if (!file.isXml && !file.isJson) {
-  //     throw ConfigValidationException('file is not xml or json: $value');
+  //   if (!file.isJson) {
+  //     throw ConfigValidationException('file is not .json: $value');
   //   }
   // }
 

@@ -56,7 +56,10 @@ class ModelsParser {
       }
     }
 
-    final wrapWithClass = values.length > 1 || foldersEntities.isNotEmpty || values.any((e) => items.any((e) => e.unnamed));
+    final wrapWithClass =
+        values.length > 1 ||
+        foldersEntities.isNotEmpty ||
+        values.any((e) => items.any((e) => e.unnamed));
 
     final fieldsEntities = values.map(
       (e) {

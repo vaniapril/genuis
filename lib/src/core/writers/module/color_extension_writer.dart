@@ -15,12 +15,10 @@ import 'package:genuis/src/utils/map_extension.dart';
 class ColorExtensionWriter {
   final String colorClassName;
   final String colorFieldName;
-  final String? colorRecordClassName;
 
   ColorExtensionWriter({
     required this.colorFieldName,
     required this.colorClassName,
-    this.colorRecordClassName,
   });
 
   void writeAssetExtensionClass(StringBuffer buffer, Module module, Map<String, Field> fields) {
@@ -30,7 +28,6 @@ class ColorExtensionWriter {
     final valueType = module.config.tokenClassType == TokenClassType.enum_ && value is TokenValue
         ? value.tokenType
         : value.type;
-    final recordClassName = colorRecordClassName ?? '($valueType, Color)';
 
     ClassCode(
       name: colorClassName,
@@ -147,49 +144,23 @@ class ColorExtensionWriter {
           MethodCode(
             getter: true,
             name: name,
-            type: recordClassName,
+            type: '($valueType, Color)',
             expression: true,
-            body: '${colorRecordClassName ?? ''}($colorFieldName, _$name)'.code,
+            body: '($colorFieldName, _$name)'.code,
           ),
         MethodCode(
           name: 'colored',
-          type: recordClassName,
+          type: '($valueType, Color)',
           expression: true,
           params: ParamsCode(
             params: [
               ParamCode(name: 'color', type: 'Color'),
             ],
           ),
-          body: '${colorRecordClassName ?? ''}($colorFieldName, color)'.code,
+          body: '($colorFieldName, color)'.code,
         ),
       ],
     ).encode(buffer);
-
-    if (colorRecordClassName != null) {
-      ClassCode(
-        name: recordClassName,
-        body: [
-          FieldCode.final_(valueType, colorFieldName),
-          FieldCode.final_('Color', 'color'),
-          ConstructorCode(
-            type: recordClassName,
-            const_: true,
-            params: ParamsCode(
-              params: [
-                ParamCode(
-                  this_: true,
-                  name: colorFieldName,
-                ),
-                ParamCode(
-                  this_: true,
-                  name: 'color',
-                ),
-              ],
-            ),
-          ),
-        ],
-      ).encode(buffer);
-    }
   }
 
   void writeTextStyleExtensionClass(StringBuffer buffer, Module module, Map<String, Field> fields) {

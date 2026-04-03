@@ -1,4 +1,3 @@
-class_type: getter
 base_theme: base_theme
 
 tokens:
@@ -7,8 +6,7 @@ tokens:
       class_name: ColorsPalette
   - numbers:
       type: number
-  - strings_xml:
-      path: strings.xml
+  - strings:
       type: string
   - icons_tokens:
       path: icons/
@@ -16,30 +14,18 @@ tokens:
 modules:
   - blurs:
       type: blur
-  - blurs_xml:
-      type: blur
   - colors:
-      type: color
-  - colors_xml:
       type: color
   - colors_file:
       type: color
       path: colors_file.json
   - fonts:
       type: font
-  - fonts_xml:
-      type: font
   - fonts_colored:
       type: font
       path: fonts/
       color: true
-  - fonts_colored_xml:
-      type: font
-      path: fonts_xml/
-      color: true
   - gradients:
-      type: gradient
-  - gradients_xml:
       type: gradient
   - icons:
       type: asset
@@ -55,13 +41,7 @@ modules:
       color: true
   - shadows:
       type: shadow
-  - shadows_xml:
-      type: shadow
   - shadows_colored:
       type: shadow
       path: shadows/
-      color: true
-  - shadows_colored_xml:
-      type: shadow
-      path: shadows_xml/
       color: true

@@ -18,17 +18,9 @@ void main() {
     expect(iconsModuleEiusmod.dolore.valueTest, TokenModuleClassNameTest.eiusmodDolore);
     expect(iconsModuleEiusmod.tempor.valueTest, TokenModuleClassNameTest.eiusmodTemporLightTest);
 
-    const testAliqua = RecordClassNameTest(TokenModuleClassNameTest.aliqua, testColor02);
-    const testDolore = RecordClassNameTest(TokenModuleClassNameTest.eiusmodDolore, testColor02);
-    const testTempor = RecordClassNameTest(TokenModuleClassNameTest.eiusmodTemporLightTest, testColor02);
-
-    expect(iconsModule.aliqua.voluptate.color, testAliqua.color);
-    expect(iconsModuleEiusmod.dolore.voluptate.color, testDolore.color);
-    expect(iconsModuleEiusmod.tempor.voluptate.color, testTempor.color);
-
-    expect(iconsModule.aliqua.voluptate.valueTest, testAliqua.valueTest);
-    expect(iconsModuleEiusmod.dolore.voluptate.valueTest, testDolore.valueTest);
-    expect(iconsModuleEiusmod.tempor.voluptate.valueTest, testTempor.valueTest);
+    expect(iconsModule.aliqua.voluptate, (TokenModuleClassNameTest.aliqua, testColor02));
+    expect(iconsModuleEiusmod.dolore.voluptate, (TokenModuleClassNameTest.eiusmodDolore, testColor02));
+    expect(iconsModuleEiusmod.tempor.voluptate, (TokenModuleClassNameTest.eiusmodTemporLightTest, testColor02));
   });
 
   test('Module: icons_module_test (dark)', () {
@@ -45,17 +37,9 @@ void main() {
     expect(iconsModuleEiusmod.dolore.valueTest, TokenModuleClassNameTest.eiusmodDolore);
     expect(iconsModuleEiusmod.tempor.valueTest, TokenModuleClassNameTest.eiusmodTemporDarkTest);
 
-    const testAliqua = RecordClassNameTest(TokenModuleClassNameTest.aliqua, testColor01);
-    const testDolore = RecordClassNameTest(TokenModuleClassNameTest.eiusmodDolore, testColor01);
-    const testTempor = RecordClassNameTest(TokenModuleClassNameTest.eiusmodTemporDarkTest, testColor01);
-
-    expect(iconsModule.aliqua.voluptate.color, testAliqua.color);
-    expect(iconsModuleEiusmod.dolore.voluptate.color, testDolore.color);
-    expect(iconsModuleEiusmod.tempor.voluptate.color, testTempor.color);
-
-    expect(iconsModule.aliqua.voluptate.valueTest, testAliqua.valueTest);
-    expect(iconsModuleEiusmod.dolore.voluptate.valueTest, testDolore.valueTest);
-    expect(iconsModuleEiusmod.tempor.voluptate.valueTest, testTempor.valueTest);
+    expect(iconsModule.aliqua.voluptate, (TokenModuleClassNameTest.aliqua, testColor01));
+    expect(iconsModuleEiusmod.dolore.voluptate, (TokenModuleClassNameTest.eiusmodDolore, testColor01));
+    expect(iconsModuleEiusmod.tempor.voluptate, (TokenModuleClassNameTest.eiusmodTemporDarkTest, testColor01));
   });
 
   test('Token: icons_module_test', () {

@@ -12,6 +12,5 @@ extension FileSystemEntityExtension on FileSystemEntity {
 }
 
 extension FileExtension on File {
-  bool get isXml => extension(path) == '.xml';
   bool get isJson => extension(path) == '.json';
 }

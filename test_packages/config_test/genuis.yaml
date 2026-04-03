@@ -32,4 +32,3 @@ modules:
       token_field_name: valueTest
       color_class_name: ColorClassNameTest
       color_field_name: valueTest
-      color_record_class_name: RecordClassNameTest

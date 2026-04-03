@@ -24,4 +24,3 @@ class TokenValue extends Value {
   @override
   String toString() => '$tokenType.$tokenName';
 }
- 

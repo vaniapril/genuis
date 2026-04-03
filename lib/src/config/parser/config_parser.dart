@@ -84,7 +84,6 @@ abstract class ConfigParser {
               _get<String>(map, 'color_class_name') ?? Defaults.moduleColorClassName(name);
           final colorFieldName =
               _get<String>(map, 'color_field_name') ?? Defaults.moduleColorFieldName;
-          final colorRecordClassName = _get<String>(map, 'color_record_class_name');
           final usePackage = _get<bool>(map, 'use_package') ?? Defaults.moduleUsePackage;
 
           return ModuleConfig(
@@ -97,7 +96,6 @@ abstract class ConfigParser {
             color: color,
             colorClassName: colorClassName,
             colorFieldName: colorFieldName,
-            colorRecordClassName: colorRecordClassName,
             usePackage: usePackage,
           );
         }).toList() ??
